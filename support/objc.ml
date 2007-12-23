@@ -46,7 +46,7 @@ let () =
     init() (* MUST DO THIS HERE - it sets the "new:" selector used below *)
 
 (* tag values *)
-let tag_unit = (Obj.magic Unit : int)	(* not really a tag *)
+let tag_unit = -1
 let tag_bool = Obj.tag (Obj.repr (Bool true))
 let tag_char = Obj.tag (Obj.repr (Char 'a'))
 let tag_int = Obj.tag (Obj.repr (Int 0))
