@@ -213,6 +213,7 @@ let compile_interface ow name il =
   kprintf ow#ml "let class_%s = object\n" name;
   kprintf (ow#mltab 2) "val o = Classes.find \"%s\"\n" name;
   kprintf (ow#mltab 2) "method _new = (Objc.objcnew o : [`%s] nativeNSObject)\n" name;
+  kprintf (ow#mltab 2) "method _alloc = (Objc.objcalloc o : [`%s] nativeNSObject)\n" name;
 
   (* register all selectors *)
   List.iter (function (_,_,_,methods) ->
@@ -333,11 +334,13 @@ let outfiles ?(out_dir = !default_out_dir)  f =
 
 let preludes ow todo f =
   let base = Filename.chop_suffix (Filename.basename f) ".h" in
+    kprintf ow#c "// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD\n";
     kprintf ow#c "#include <caml/mlvalues.h>\n";
     kprintf ow#c "#include <caml/memory.h>\n";
     kprintf ow#c "#include <caml/callback.h>\n";
     kprintf ow#c "#import <%s>\n" f;
 
+    kprintf ow#ml "(* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)\n";
     kprintf ow#ml "open Objc\n";
     todo#compile_imports ow;
 
