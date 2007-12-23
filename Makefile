@@ -18,7 +18,8 @@ $(eval $(call add_dir, generator))
 # Add files that need to be backed up when doing "make save". Standard .ml* source
 # files and C source files (.c, .h), Makefile will be saved by default
 SAVED_SUFFIXES+=m
-SAVE=README TODO \
+SAVE=README TODO LICENSE \
+     $(wildcard mk/Makefile.*) \
      $(wildcard tryouts/*.ml*) tryouts/Makefile \
      $(wildcard tests/*.ml*)
 
