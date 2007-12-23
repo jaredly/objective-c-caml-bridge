@@ -10,8 +10,10 @@ LINKFLAGS += $(INCS) -g
 DEPFLAGS +=  $(INCS)
 CAMLCFLAGS += -g
 
+# This adds the directories for depend generation, includes, linking, snapshot save, clean
 $(eval $(call add_dir, support))
 $(eval $(call add_dir, generator))
+$(eval $(call add_dir, tests))
 
 
 # Backup support
@@ -82,13 +84,16 @@ test_parser: generator/tiger.cmo libgenerator.cma generator/test_parser.cmo
 test_generator: generator/tiger.cmo libgenerator.cma generator/test_generator.cmo
 	$(BYTELINK) && ./$@ 2> generator.log || mv $@ $@.debug
 
-tests: tests/t1 tests/t2
+tests: tests/t1 tests/t2 tests/t3
 
 tests/t1: bridgeocamlobjc.cma foundation.cma tests/t1.cmo
 	$(BYTELINK) && ./tests/t1
 
 tests/t2: generator/debug.cmo bridgeocamlobjc.cma foundation.cma tests/t2.cmo
 	$(BYTELINK) && ./tests/t2
+
+tests/t3: generator/debug.cmo bridgeocamlobjc.cma foundation.cma appkit.cma tests/t3.cmo
+	$(BYTELINK) && ./tests/t3 foo
 
 # would like to use define and eval, but so painful to debug...
 include Makefile.foundation
