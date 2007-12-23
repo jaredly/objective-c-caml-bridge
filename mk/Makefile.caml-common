@@ -1,0 +1,21 @@
+CAMLC=ocamlc
+CAMLOPT=ocamlopt
+CAMLLEX=ocamllex
+CAMLYACC=ocamlyacc
+CAMLDEP=ocamldep
+CAMLDOC=ocamldoc
+CAMLMKLIB=ocamlmklib
+
+# Optional : -g, -custom in LINKFLAGS
+BYTELINK=$(CAMLC) $(LINKFLAGS) $(LIBS) -g -o $@ $^
+OPTLINK=$(CAMLOPT) $(LINKFLAGS) $(LIBS:.cma=.cmxa) -o $@ $^
+TOPLINK=$(CAMLTOP) $(LINKFLAGS) -o $@ $^
+
+# Building libraries
+BYTELIB=$(CAMLC) -a $(LIBFLAGS) -o $@ $^
+MIXEDBYTELIB=$(CAMLMKLIB) $(LIBFLAGS) -o $(subst .cma,,$@) $^
+
+OPTLIB=$(CAMLOPT) -a $(LIBFLAGS) -o $@ $^
+MIXEDOPTLIB=$(CAMLMKLIB) $(LIBFLAGS) -o $(subst .cmxa,,$@) $^
+
+

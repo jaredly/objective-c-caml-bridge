@@ -1,0 +1,17 @@
+CAMLSTDLIB:=$(shell ocamlc -where)
+
+CPPFLAGS=-I$(CAMLSTDLIB)
+# Always use camlp4 extensions
+PP=-pp camlp4o
+
+# CAMLCCOPT += -I/usr/local/mysql/include
+CAMLCFLAGS=
+
+INSTALL=cp -p
+
+# This doesn't belong here really, but we need it included at the top
+define add_dir
+DIRS+=$(1)
+INCS+=-I $(1)/
+SAVE+=$(wildcard $(1)/*.ml*)
+endef

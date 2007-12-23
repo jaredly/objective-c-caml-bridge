@@ -1,0 +1,13 @@
+# AppKit framework
+gen_appkit: generator/tiger.cmo libgenerator.cma generator/gen_appkit.cmo
+	$(BYTELINK) && ./$@ 2> gen_appkit.log || mv $@ $@.debug
+
+APPKIT_LIB=$(wildcard appkit/*.ml)
+APPKIT_OBJS=$(APPKIT_LIB:.ml=.cmo)
+APPKIT_STUBS=$(wildcard appkit/*.m)
+APPKIT_C_OBJS=$(APPKIT_STUBS:.m=.o)
+
+appkit.cma: $(APPKIT_OBJS) $(APPKIT_C_OBJS)
+	$(MIXEDBYTELIB) -ccopt -g  -framework AppKit
+
+$(eval $(call add_dir, appkit))

@@ -1,0 +1,20 @@
+CAMLC:=ocamlfind $(CAMLC)
+CAMLOPT:=ocamlfind $(CAMLOPT)
+CAMLDOC:=ocamlfind $(CAMLDOC) -package "$(R)"
+COMPFLAGS += -package "$(R)"
+CAMLTOP=ocamlfind ocamlmktop
+LINKFLAGS += -package "$(R)" -linkpkg
+
+CAMLMKLIB := ocamlmklib -ocamlc "$(CAMLC)" -ocamlopt "$(CAMLOPT)"
+
+install:: META $(wildcard *.cma) $(wildcard *.cmxa) $(wildcard *.cmi) $(wildcard *.mli) $(wildcard *.a) $(wildcard dll*.so) $(install)
+	-ocamlfind remove $(PACKAGE)
+	ocamlfind install $(PACKAGE) $^
+
+uninstall::
+	ocamlfind remove $(PACKAGE)
+
+
+help::
+	@echo "make install      #Installs as ocamlfind package $(PACKAGE)"
+	@echo "make uninstall    #Uninstalls as ocamlfind package $(PACKAGE)"

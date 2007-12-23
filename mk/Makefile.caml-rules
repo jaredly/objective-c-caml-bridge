@@ -1,0 +1,141 @@
+# Default rules
+
+.SUFFIXES: .ml .mli .p.ml .cmo .cmi .cmx .cma .cmxa .mll .mly .c .m .o .mlp .mlip
+
+
+# ADDTHIS is meant to be added at the command line level
+# For example, to print types for a .ml that doesn't have a .mli yet, use
+# make ADDTHIS=-i -W foo.ml 
+
+.ml.cmo:
+	$(CAMLC) $(ADDTHIS) $(COMPFLAGS) -g -c $<
+
+.mli.cmi:
+	$(CAMLC) $(COMPFLAGS) -g -c $<
+
+.ml.cmx:
+	$(CAMLOPT) $(ADDTHIS) $(COMPFLAGS) -c $<
+
+.mlip.cmi:
+	$(CAMLC) -pp "camlp4o -intf" $(COMPFLAGS) -g -c -intf $<
+
+.mlp.cmo:
+	$(CAMLC) -pp "camlp4o -impl" $(COMPFLAGS) -g -c -impl $<
+
+.mlp.cmx:
+	$(CAMLOPT) -pp "camlp4o -impl" $(COMPFLAGS) -c -impl $<
+
+.c.o:
+	$(CAMLC) -c $(CAMLCFLAGS) -ccopt -g -ccopt -O2 -ccopt "-o $@" $<
+
+# ObjC on MacOSX
+.m.o:
+	gcc $(CAMLCFLAGS) $(CPPFLAGS) -c -o $@ $<	
+
+# Note: 3.08 ocamlmklib should not be invoked where there isn't a .o
+# It's bogus (it produces runtimes that attempt to load dllfoo.so where none
+# has been generated. Until we figure out how to do call the appropriate version, we
+# default to non-mixed libraries. 
+# Use 
+# foo.cma: targs
+# 	$(MIXEDBYTELIB)
+# when needed
+
+%.cma:
+	$(BYTELIB)
+
+%.cmxa:
+	$(OPTLIB)
+
+.mll.ml:
+	rm -f $@
+	$(CAMLLEX) $<
+	chmod -w $@
+
+.mly.ml:
+	rm -f $@
+	$(CAMLYACC) $<
+	chmod -w $@
+
+#Attempted this to have make depend work  
+#.mlp.ml:
+#	ln -s $< $@ 
+#
+
+%.a:
+	ar cr $@ $^
+	ranlib $@
+
+# DIRS
+DIRS+=.
+
+# Common targets
+clean ::
+	for d in $(DIRS);\
+	do \
+	  rm -f $$d/*.cm* $$d/*.o $$d/*.a $$d/*.so; \
+	done
+
+clean ::
+	rm -f $(GEN) $(BIN)
+
+# Dependencies
+
+depend:: cleandepend $(GEN) .depend
+
+# YASL...
+# We want to do "ln -s foo.mlp foo.ml"
+# link = ln -s $(1) $(addsuffix .ml, $(basename $(1) .mlp))
+# map = $(foreach a, $(2), $(call $(1), $(a)))
+
+.depend:: 
+	for i in $(foreach d, $(DIRS), $(wildcard $(d)/*.mlp));\
+	do \
+	   t=`dirname $$i`/`basename $$i .mlp`.ml; \
+	   [ -L $$t ] || ln -s `basename $$i` $$t; \
+        done
+	for d in $(DIRS); \
+	do \
+	   $(CAMLDEP) $(PP) $(DEPFLAGS) $$d/*.ml $$d/*.mli >> .depend; \
+	done
+	rm -f $(patsubst %.mlp,%.ml,$(foreach d, $(DIRS), $(wildcard $(d)/*.mlp)))
+
+cleandepend:
+	rm -f .depend
+	rm -f $(ml_files)
+
+
+doc:: $(wildcard *.ml) $(wildcard *.mli)
+	-mkdir html
+	$(CAMLDOC) -html -stars -hide Pervasives -I +threads -v -d html \
+	$^
+
+# Using lowercase variable names, most people don't
+# If PACKAGE is defined, we want to use it - but if it's not, or if it's empty 
+# we use the dir name
+thisdir=$(shell basename `pwd`)
+savename:=$(PACKAGE)
+ifeq ($(strip $(savename)),)
+savename:=$(thisdir)
+endif
+
+SAVED_SUFFIXES+=ml mli mll mlp c h
+save: Makefile \
+      $(foreach s, $(SAVED_SUFFIXES), $(foreach d, $(DIRS), $(wildcard $(d)/*.$(s)))) \
+      $(SAVE)
+
+save:
+	-mkdir saves
+	tar zcvf saves/$(savename)-save-$(shell date +%Y%m%d-%H%M).tgz -C ..\
+	   $(addprefix $(thisdir)/,$^)
+	chmod 400 saves/*
+
+help::
+	@echo "make depend       # generates GEN=$(GEN) and .depend"
+	@echo "make cleandepend  # removes generated files GEN=$(GEN)"
+	@echo "make doc          # produces HTML documentation in ./html/"
+	@echo "make save         # makes a backup of common source files and $(SAVE)"
+	@echo "make clean        # removes object files and GEN=$(GEN) and BIN=$(BIN)"
+
+.PHONY: all install uninstall depend clean doc save
+
