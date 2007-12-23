@@ -1,0 +1,38 @@
+Next:
+  * testing: NSError **, NSRange
+  * enum values
+  * better naming convention? (NSFoo.nsclass for default?)
+  * nil as valid object of any type.
+  * better string/NSString passing?
+  * inheritance w/ coercion
+  * dynamic type checking of arguments? (using @encode and such)
+  * includes from CoreFoundation
+  * NSAffineTransform and NSAttributedString are defined both in Foundation and AppKit...
+  * casts:
+    	  NSComparisonResult: enum, builtin at low level
+	  SEL: we have it already
+	  NSTimeInverval
+	  Class: we should have it too?
+	  NSExpressionType
+	  NSRange: need to hardcode
+	  NSDecimal? 20 bytes, not a class
+	  NSPoint, NSSize, NSRect
+  
+----------------------------------------------------------------------
+DONE
+  DONE * types/injections are wrong for args - need to think that through
+  DONE  * group categories into class def
+  * factoring of opt args
+    * naive version fails sometimes due to different naming of args...; still performs some factoring
+    * needs to NOT opt out some arguments if we don't have the shorter selectors
+    * problem with return type    (foo)a:  and  (bar)a: are both compiled
+  * record typedef enums as equivalent to int
+  * release/retain stuff
+  * return type w/ encapsulation is not correct?
+  * get some simple testing quickly
+  * SEL mapping seems to be inconsistent (wrapping/no wrapping)
+  * callbacks are unsafe (two params allocs)
+  * iron out the first hello world
+  * why do we crash with the dynamically linked version (wrong option to camlmklib - use -framework instead 
+  of -ccopt -framework
+  * return type of class constructor

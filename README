@@ -1,0 +1,79 @@
+Objective Caml - Objective C Bridge
+
+Main source: http://code.google.com/p/objective-c-caml-bridge/
+
+
+What do we do with
+     - #if/#endif: HOC ignores them
+     one option is to preprocess using cpp and some #defines, and then parse, 
+     ignoring whatever #line remains - so let's ignore them
+     - .h we don't know how to handle?  HOC processes only AppKit and Foundation
+
+Class object:
+      - responds to class methods
+      - responds to alloc, which returns a native object
+
+Type conversions
+     - pointer : NSFoo == 'NSFoo ObjC
+       Since these are malloc-ed pointers, they don't need huge encapsulation
+     - class :   let NSFoo nsfoo = class ... end
+       Initialize from a malloc-ed pointer
+     - methods?
+
+[o  s_a: a   s_b:b] ==  o#s_a a ~s_b:b
+
+//////////////////////////////////////////////////////////////////////
+// Verbose version
+//////////////////////////////////////////////////////////////////////
+// Each method gets a stub
+value caml_NSFoo_s_a_s_b (value o, value a, value b)
+{
+   return (caml2obcj_x [o s_a:(caml2obcj_a a) s_b:(caml2obcj_b b)]);
+}
+class NSFoo = fun o -> object (self)
+ val o = o
+ method s_a a ?s_b:b =
+       match b with
+       | Some b -> caml_NSFoo_s_a_s_b o  a b
+       | None -> caml_NSFoo_s_a o a
+end
+
+//////////////////////////////////////////////////////////////////////
+// Reflexive version
+//////////////////////////////////////////////////////////////////////
+// http://theocacao.com/document.page/264
+// NSInvocation.h
+
+  // need way to convert string to selector
+  //  "s_a:s_b:" -> @selector(s_a:s_b:)
+  // We could have a global table for that
+  // Initcode would do: callback("foo:", @selector(foo:));
+  // This assumes one single type for all objects arguments to methods, 
+  // or a simple union scheme, same for the results
+  // All in all, very similar to the CamlTk of old
+
+  method s_a a ?s_b:b =
+      project_x (invoke (selector "s_a:s_b:") [self#o; a#o; b#o])
+
+// Callbacks
+// Say we have an OCaml object implementing a protocol
+// To access it from ObjC, we need 
+
+@implementation Foo : NSObject
+{ 
+  value o; // the ocaml value with its methods
+}
+- (return type)selector:(arg_t)arg
+{
+  caml_callback2(caml_get_public_method(o, hash_variant("selector")), o, (some cast)arg);
+  // in general use caml_callbackN
+}
+
+value new_Foo(value o) {
+      return (value)[Foo new o]
+}
+
+// Q: how do we pass these objects to ObjC? how are they typed compared to 
+// the native NS objects? - also, how do we implement the NSObject part? 
+// let ObjC do it through inheritance
+// We can have a generator for these interfaces
