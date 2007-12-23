@@ -1,3 +1,4 @@
+#define CAML_NAME_SPACE
 #include <caml/mlvalues.h>
 #include <caml/alloc.h>
 #include <caml/memory.h>
@@ -9,6 +10,7 @@
 #import <Foundation/NSInvocation.h>
 #import <Foundation/NSError.h>
 #import <Foundation/NSRange.h>
+#import <Foundation/Foundation.h>
 
 /*
 http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSInvocation_Class/Reference/Reference.html
@@ -91,7 +93,7 @@ value caml_wrap_pointer (void *x)
 value caml_message_new(value aClass)
 {
   CAMLparam1(aClass);
-  Class c = (Class) aClass;
+  Class c = (Class)Camlid_val(aClass);
   id o = [c new];
   CAMLreturn(caml_wrap_id(o));
 }
@@ -99,7 +101,7 @@ value caml_message_new(value aClass)
 value caml_message_alloc(value aClass)
 {
   CAMLparam1(aClass);
-  Class c = (Class) aClass;
+  Class c = (Class)Camlid_val(aClass);
   id o = [c alloc];
   CAMLreturn(caml_wrap_id(o));
 }
@@ -114,8 +116,10 @@ value caml_invoke(value rtag, value o, value sel, value args)
   Class c = [target class];
   SEL selector = Caml_pointer_val(sel);
   NSMethodSignature *sig = [target methodSignatureForSelector: (SEL)selector];
-  if (sig == nil)
+  if (sig == nil) {
+    NSLog(@"invalid selector class: %@ selector: %s", [c description], sel_getName(selector));
     caml_invalid_argument("method not implemented");
+  }
   NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
   [inv setTarget:target];
   [inv setSelector: (SEL)selector];
@@ -126,11 +130,13 @@ value caml_invoke(value rtag, value o, value sel, value args)
   int i, k = [sig numberOfArguments];
   int nserror_arg = 0;
   NSError *error = nil;
+
   for (i=2;i<k;i++) {
     if (Is_block(args)) { // make sure it's a cons
       value a = Field(args, 0); // the car
       args = Field(args, 1);    // the cdr
       if (!Is_block(a)) {
+	NSLog(@"class: %@ selector: %s rtag: %d #args: %d", [c description], sel_getName(selector), Int_val(rtag), k-2);
 	caml_invalid_argument("argument of type unit not supported");
       } else {
 	switch (Tag_val(a)) { // this reflects Objc.ffi
@@ -169,11 +175,13 @@ value caml_invoke(value rtag, value o, value sel, value args)
 	    [inv setArgument:&r atIndex:i];}
 	  break;
 	default: 
+	  NSLog(@"class: %@ selector: %s rtag: %d #args: %d", [c description], sel_getName(selector), Int_val(rtag), k-2);
 	  caml_invalid_argument("unsupported argument type");
 	  break;
 	}
       }
     } else {
+      NSLog(@"class: %@ selector: %s rtag: %d #args: %d", [c description], sel_getName(selector), Int_val(rtag), k-2);
       caml_invalid_argument("message is missing arguments");
     }
   }
@@ -193,60 +201,60 @@ value caml_invoke(value rtag, value o, value sel, value args)
   }
 
   // Getting the result back
-  unsigned int len = [sig methodReturnLength];
-  void *buffer = malloc(len);
-  [inv getReturnValue: buffer];
-
-  // Injecting back to caml
-  switch(Int_val(rtag)) {
-  case tagBool:
-    retval = (*(BOOL *)buffer) ? Val_true : Val_false;
-    break;
-  case tagChar:
-    retval = Val_int(*(char *)buffer);
-    break;
-  case tagInt:
-    retval = Val_int(*(int *)buffer);
-    break;
-  case tagInt64:
-    retval = caml_copy_int64(*(long int *)buffer);
-    break;
-  case tagDouble:
-    retval = caml_copy_double(*(double *)buffer);
-    break;
-  case tagString:
-    if (NULL == *(char **)buffer) {
-      caml_failwith("null");
-    } else {
-      retval = caml_copy_string(*(char **)buffer);
+  if (Int_val(rtag) >= 0) { // negative values have special meanings
+    unsigned int len = [sig methodReturnLength];
+    void *buffer = malloc(len);
+    [inv getReturnValue: buffer];
+    // Injecting back to caml
+    switch(Int_val(rtag)) {
+    case tagBool:
+      retval = (*(BOOL *)buffer) ? Val_true : Val_false;
+      break;
+    case tagChar:
+      retval = Val_int(*(char *)buffer);
+      break;
+    case tagInt:
+      retval = Val_int(*(int *)buffer);
+      break;
+    case tagInt64:
+      retval = caml_copy_int64(*(long int *)buffer);
+      break;
+    case tagDouble:
+      retval = caml_copy_double(*(double *)buffer);
+      break;
+    case tagString:
+      if (NULL == *(char **)buffer) {
+	caml_failwith("null");
+      } else {
+	retval = caml_copy_string(*(char **)buffer);
+      }
+      break;
+    case tagPointer:
+      retval = caml_wrap_id(*(id *)buffer);
+      break;
+    case tagSelector:
+      retval = caml_wrap_pointer(*(void **)buffer);
+      break;
+    case tagNSRange:
+      { NSRange r = *(NSRange *)buffer;
+	retval = caml_alloc(2, Int_val(rtag));
+	Store_field(retval, 0, Val_int(r.location));
+	Store_field(retval, 1, Val_int(r.length));
+      }
+      break;
+    default:
+      caml_invalid_argument("unknown return type"); // this leaks buffer
+      break;
     }
-    break;
-  case tagPointer:
-    retval = caml_wrap_id(*(id *)buffer);
-    break;
-  case tagSelector:
-    retval = caml_wrap_pointer(*(void **)buffer);
-    break;
-  case tagNSRange:
-    { NSRange r = *(NSRange *)buffer;
-      retval = caml_alloc(2, Int_val(rtag));
-      Store_field(retval, 0, Val_int(r.location));
-      Store_field(retval, 1, Val_int(r.length));
-    }
-    break;
-  case -1: // unsupported
-  default:
-    caml_invalid_argument("unknown return type"); // this leaks buffer
-  }
-  // Inject into sum type
-  if (Int_val(rtag) == -1) {
-    taggedval = Val_int(0);
-  } else {
+    // Inject into sum type
     taggedval = caml_alloc(1, Int_val(rtag));
     Store_field(taggedval, 0, retval);
+    if (buffer) free(buffer);
+  } else if (Int_val(rtag) == -1) { // unit - this only supports one constructor without arguments
+    taggedval = Val_int(0);
+  } else {
+    caml_invalid_argument("unknown return type");
   }
-
-  if (buffer) free(buffer);
   CAMLreturn(taggedval);
 }
 
