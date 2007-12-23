@@ -82,13 +82,25 @@ and declarations = parser
 	declarations ss
 
 and decl_method = parser
-  | [< 'Keyword "typedef"; _ = typedef; ss >] -> 
-      (* stil want to parse it to get type equivalence *)
+  | [< 'Keyword "typedef"; x = typedef; ss >] -> 
+      (* still want to parse it to get type equivalence when possible *)
       Debug.f ~lvl:dlvl "skipped typedef in decl_method";
+      begin match x with
+	| Ast.Ignore -> ()
+	| Ast.Enum l -> Enum.add l
+	| _ -> assert false
+      end;
       decl_method ss
+  | [< x = enum; 'Keyword ";"; ss >] ->
+      begin match x with 
+	| Ast.Enum l -> Enum.add l
+	| _ -> assert false
+      end;
+      decl_method ss
+(*
   | [< 'Keyword "enum"; _ = skip_to 0 ";"; ss >] -> 
 	Debug.f ~lvl:dlvl "skipped enum in decl_method";
-	decl_method ss
+*)
   | [< m = method_scope; 
        return_type = opt (parser [< 'Keyword "("; 
 				    pq = opt protocol_qualifier; 
@@ -165,7 +177,12 @@ let rec dot_h_phrase = parser
       Ast.Ignore
   | [< 'Keyword "typedef"; t = typedef >] -> t
 (*  | [< 'Keyword "enum"; _ = skip_to 0 ";" ?? "skipping to ;"; ss >] -> dot_h_phrase ss *)
-  | [< l = enum; 'Keyword ";" >] -> l
+  | [< x = enum; 'Keyword ";" >] -> 
+      begin match x with 
+	| Ast.Enum l -> Enum.add l
+	| _ -> assert false
+      end;
+      Ast.Ignore
   | [< _ = decl_variable >] ->
       Debug.f ~lvl:dlvl "toplevel decl variable";
       Ast.Ignore

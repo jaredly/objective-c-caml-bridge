@@ -41,5 +41,5 @@ type phrase =
     | Class of string list
     | Preproc of string
     | Import of string
-    | Enum of (string * int64) list
+    | Enum of (string * int64 option) list
     | Ignore

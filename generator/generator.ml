@@ -388,6 +388,7 @@ let compile_file ?out_dir f =
 	and todo = todo() in
 	  handle_phrases todo (from_channel ic);
 	  preludes ow todo f;
+	  Enum.dump ow;
 	  todo#compile ow;
 	  postludes ow f;
 	  ow#close

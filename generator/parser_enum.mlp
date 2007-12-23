@@ -35,7 +35,7 @@ and enum_infix = parser
   | [< 'Keyword "|"; e = enum_expr ?? "right argument expected" >] -> "|", e
 
 and enum_base = parser
-  | [< 'Number n >] -> Enum.EVal n
+  | [< 'Number n >] -> Enum.EVal (Some n)
   | [< 'Keyword "("; e = enum_expr; 'Keyword ")" >] -> e
   | [< 'Ident i >] -> Enum.ESym i
 
