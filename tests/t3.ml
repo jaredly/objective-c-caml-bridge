@@ -10,7 +10,7 @@ let simple =
 	if ss#isSpeaking then (Debug.f "still speaking, stopping"; ss#stopSpeaking);
 	Debug.f "start speaking";
 	let say_what = ns_of_string s in
-	let success = ss#startSpeakingString (say_what :> [`NSString] Objc.t) in
+	let _ = ss#startSpeakingString (say_what :> [`NSString] Objc.t) in
 	())
 
 
