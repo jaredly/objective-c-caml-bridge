@@ -7,7 +7,7 @@ open NSString
 *)
 
 let ns_of_string (s : string) = new native_NSString (class_NSString#stringWithCString s)
-let string_of_ns (ns : NSString.native_NSString) = ns#cStringUsingEncoding 4L
+let string_of_ns (ns : NSString.native_NSString) = ns#cStringUsingEncoding _NSUTF8StringEncoding
 
 let f2 () =
   Debug.f "create NSCalendarDate";
