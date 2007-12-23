@@ -1,0 +1,77 @@
+open Printf
+open Ustream
+open Lexobjc
+
+let rec type_specifier = parser
+  | [< t = type0; 
+       pt = pointer t ?? "optional * expected";
+       f = opt fun_type ?? "optional func type expected";
+       a = opt (parser [< 'Keyword "["; n = opt number; 'Keyword "]" >] -> n)
+    >] -> 
+      let t1 = match f with
+	| None -> pt
+	| Some l -> Ast.Fun (l, pt) in
+	match a with
+	  | None -> t1
+	  | Some x -> Ast.ArrayType (t1, x)
+
+and pointer t = parser
+  | [< 'Keyword "*"; 
+       c = opt (parser [< 'Ident "const">] -> true); 
+       t = pointer (Ast.Pointer ((match c with Some _ -> true | None -> false),t)) >] -> t
+  | [<>] -> t
+
+and fun_type = parser
+    [< 'Keyword "("; 
+       'Keyword "*" ?? "* expected"; 
+       'Keyword ")" ?? ") expected";
+       'Keyword "(" ?? "( expected";
+       l = sep_list "," type_specifier ?? "argument types expected"; 
+       'Keyword ")" ?? ") expected" >] -> l
+
+(* some qualified valid types are: 
+   long int, 
+   long long,
+   unsigned long,
+   unsigned long long,
+   unsigned
+   unsigned int,
+   unsigned short,
+ *)
+and signable = parser
+  | [< 'Ident "char" >] -> Ast.NamedType "char"
+  | [< 'Ident "short" >] -> Ast.NamedType "short"
+  | [< 'Ident "int" >] -> Ast.NamedType "int"
+  | [< 'Ident "long"; t = longable >] -> Ast.Qualified ("long", t)
+  | [<>] -> Ast.NamedType "int"
+
+and longable = parser
+  | [< 'Ident "long" >] -> Ast.NamedType "long"
+  | [< 'Ident "int" >] -> Ast.NamedType "int"
+  | [< >] -> Ast.NamedType "int"
+
+and type0 = parser
+  | [< 'Ident "void" >] -> Ast.NamedType "void"
+  | [< 'Ident "char" >] -> Ast.NamedType "char"
+  | [< 'Ident "short" >] -> Ast.NamedType "short"
+  | [< 'Ident "int" >] -> Ast.NamedType "int"
+  | [< 'Ident "float" >] -> Ast.NamedType "float"
+  | [< 'Ident "double" >] -> Ast.NamedType "double"
+  | [< 'Ident "id"; _ = opt protocol_reference_list >] -> Ast.NamedType "id"
+  | [< 'Ident "signed"; t = signable >] -> Ast.Qualified ("signed", t)
+  | [< 'Ident "unsigned"; t = signable >] -> Ast.Qualified ("unsigned", t)
+  | [< 'Ident "long"; t = longable >] -> Ast.Qualified ("long", t)
+  | [< 'Ident "const"; t = type0 >] -> Ast.Qualified ("const", t)
+  | [< 'Ident "extern"; t = type0 >] -> Ast.Qualified ("extern", t)
+  | [< 'Ident i >] -> Ast.NamedType i
+
+and protocol_reference_list = parser
+  | [< 'Keyword "<"; 
+       l = sep_list "," ident ?? "ident,ident,... expected"; 
+       'Keyword ">" ?? "> expected" >] -> l
+
+(* implicit type conventions *)
+let deopt_type = function
+    | None -> Ast.NamedType "id" (* this should actually be the context class? *)
+    | Some (q, t) -> Hardcoded.type_synonym t
+

@@ -1,0 +1,173 @@
+open Printf
+open Ustream
+open Lexobjc
+open Parser_enum
+open Parser_types
+
+let dlvl = 30
+
+(*
+http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/index.html?http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Articles/chapter_6_section_2.html#//apple_ref/doc/uid/TP30001163-CH15-BAJJABHJ
+*)
+
+let typedef = parser
+  | [< e = enum; name = ident; 'Keyword ";" ?? "; expected" >] -> 
+      Hardcoded.add_enum name;
+      e
+  | [< _ = skip_to 0 ";" >] -> Ast.Ignore
+
+(* category interface or class interface *)
+let rec interface_kind = parser 
+  | [< 'Keyword "("; 'Ident i; 'Keyword ")"; >]  -> Ast.CategoryInterface i
+  | [< super = opt superclass_name; >] -> Ast.ClassInterface super
+
+and superclass_name = parser
+  | [< 'Keyword ":"; 'Ident name ?? "identifier expected" >] -> name
+
+and class_or_category_interface = parser
+    [< kind = interface_kind;
+       protos = opt protocol_reference_list ?? "[ <p1,p2,...> ] expected";
+       variables = opt (parser [< 'Keyword "{";
+				  variables = list_of declarations ?? "declaration list expected"; 
+				  'Keyword "}" ?? "} expected" 
+			       >] -> variables);
+       methods = list_of decl_method ?? "list of methods expected";
+       'Keyword "@end" ?? "@end expected";
+    >] -> 
+      Debug.f ~lvl:dlvl "class_or_category_interface";
+      (kind, deopt protos, deopt variables, methods)
+
+and protocol = parser
+    [< 'Ident p; 
+       ps = opt protocol_reference_list;
+       methods = list_of decl_method; 
+       'Keyword "@end" ?? "@end expected" >] -> 
+      Ast.Protocol (p, deopt ps, methods)
+
+(** declarations within a class *)
+and visibility = parser
+  | [< 'Keyword "@private" >] -> "private"
+  | [< 'Keyword "@public" >] -> "public"
+  | [< 'Keyword "@protected" >] -> "protected"
+
+(* doesn't handle well all the cases for simultaneous declaration within one statement *)
+and decl_variable = parser
+  | [< typ = type_specifier; 
+       l = sep_list "," (parser [< 'Ident var;
+				   a = opt array_decl ?? "optional array size expected";
+				   b = opt bit_size ?? "optional bit size expected";
+				   _ = opt (parser [< 'Keyword "("; _ = skip_to 0 ")" >] -> ());
+				>] -> 
+	 Debug.f ~lvl:dlvl "%s %s of type \"%s\""  
+	   (match a with Some n -> sprintf "array of %d " n | None -> "var")
+	   var (Ast.string_of_c_type typ);
+	 (var, a, b)
+			);
+       'Keyword ";" ?? "; expected" >] -> 
+      Ast.Variable (typ, l)
+
+and array_decl = parser 
+  | [< 'Keyword "["; 'Number n; 'Keyword "]" >] -> Int64.to_int n
+and bit_size = parser
+  | [< 'Keyword ":"; 'Number n >] -> Int64.to_int n
+
+and declarations = parser
+  | [< v = visibility >] -> Ast.Visibility v
+  | [< v = decl_variable >] -> v
+  | [< 'Keyword "struct"; _ = skip_to 0 ";"; ss >] -> 
+	Debug.f ~lvl:dlvl "skipped struct decl in declarations";
+	declarations ss
+  | [< 'Keyword "union"; _ = skip_to 0 ";"; ss >] -> 
+	Debug.f ~lvl:dlvl "skipped union decl in declarations";
+	declarations ss
+
+and decl_method = parser
+  | [< 'Keyword "typedef"; _ = typedef; ss >] -> 
+      (* stil want to parse it to get type equivalence *)
+      Debug.f ~lvl:dlvl "skipped typedef in decl_method";
+      decl_method ss
+  | [< 'Keyword "enum"; _ = skip_to 0 ";"; ss >] -> 
+	Debug.f ~lvl:dlvl "skipped enum in decl_method";
+	decl_method ss
+  | [< m = method_scope; 
+       return_type = opt (parser [< 'Keyword "("; 
+				    pq = opt protocol_qualifier; 
+				    return_type = type_specifier; 
+				    'Keyword ")" >] -> (pq, return_type)) ?? "optional return type expected";
+       l = list_of selector ?? "selector list expected"; 
+       'Keyword ";" ?? "; expected"
+    >] -> 
+      Debug.f ~lvl:dlvl "method";
+      (m, deopt_type return_type, l)
+
+and method_scope = parser 
+  | [< 'Keyword "-" >] -> Ast.InstanceMethod
+  | [< 'Keyword "+" >] -> Ast.ClassMethod
+
+and selector = parser 
+  | [< 'Ident selector_name; 
+       arg = opt (parser [< 'Keyword ":";
+			    arg_type = opt (parser [< 'Keyword "("; 
+						      pq = opt protocol_qualifier;
+						      arg_type  = type_specifier; 
+						      'Keyword ")"; 
+						   >] -> (pq, arg_type));
+			    'Ident arg_name;
+			    vararg = opt (parser [<'Keyword ","; 
+						   'Keyword "...">] -> true)
+			 >] -> 
+	 deopt_type arg_type, Hardcoded.safe_ident arg_name, match vararg with Some t -> true | _ -> false)
+       ?? "optional argument expected";
+    >] ->
+      Debug.f ~lvl:dlvl "sel: %s" selector_name;
+      if selector_name.[0] >= 'A' && selector_name.[0] <= 'Z' then
+	Debug.f ~lvl:dlvl "WARNING: UPPERCASE %s" selector_name;
+      (Hardcoded.safe_selector selector_name, arg)
+
+and protocol_qualifier = parser
+  | [< 'Ident "inout" >] -> "inout"
+  | [< 'Ident "out" >] -> "out"
+  | [< 'Ident "oneway" >] -> "oneway"
+
+let class_forward = parser
+  [< l = sep_list "," ident; 'Keyword ";" >] -> l
+
+let rec dot_h_phrase = parser
+  | [< 'Comment c >] -> 
+      Debug.f ~lvl:dlvl "comment";
+      Ast.Comment c
+  | [< 'Keyword "@interface"; 'Ident i; x = class_or_category_interface >] -> 
+      Debug.f ~lvl:dlvl "interface %s" i;
+      Ast.Interface (i, x)
+  | [< 'Keyword "@class"; x = class_forward >] -> 
+      Debug.f ~lvl:dlvl "class %s" (String.concat "," x);
+      Ast.Class x;
+  | [< 'Keyword "@protocol"; p = protocol >] ->
+      Debug.f ~lvl:dlvl "protocol";
+      p
+  | [< 'Preproc p >] -> 
+      Debug.f ~lvl:dlvl "preproc %s" p;
+      Ast.Preproc p
+  | [< 'Import i >] -> 
+      Debug.f ~lvl:dlvl "import %s" i;
+      Ast.Import i
+  | [< 'Ident "FOUNDATION_EXPORT"; _ = skip_to 0 ";" >] ->
+      Debug.f ~lvl:dlvl "skipping FOUNDATION_EXPORT";
+      Ast.Ignore
+  | [< 'Ident "FOUNDATION_STATIC_INLINE"; _ = skip_inline 0 >] ->
+      Debug.f ~lvl:dlvl "skipping FOUNDATION_STATIC_INLINE";
+      Ast.Ignore
+  | [< 'Ident "static"; 'Ident "inline"; _ = skip_inline 0 >] ->
+      Debug.f ~lvl:dlvl "skipping static inline";
+      Ast.Ignore
+  | [< 'Ident "APPKIT_EXTERN"; _ = skip_to 0 ";" >] ->
+      Debug.f ~lvl:dlvl "skipping APPKIT_EXTERN";
+      Ast.Ignore
+  | [< 'Keyword "typedef"; t = typedef >] -> t
+(*  | [< 'Keyword "enum"; _ = skip_to 0 ";" ?? "skipping to ;"; ss >] -> dot_h_phrase ss *)
+  | [< l = enum; 'Keyword ";" >] -> l
+  | [< _ = decl_variable >] ->
+      Debug.f ~lvl:dlvl "toplevel decl variable";
+      Ast.Ignore
+
+let dot_h = list_of dot_h_phrase

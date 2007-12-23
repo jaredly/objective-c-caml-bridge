@@ -1,0 +1,52 @@
+open Lexobjc
+
+let dlvl = 30
+
+let rec list_of p = parser
+  | [< e = p ; l = list_of p>] -> e::l
+  | [<>] -> []			 
+
+let opt p = parser
+  | [< e = p >] -> Some e
+  | [<>] -> None
+
+(* sanitize optional lists *)
+let deopt = function
+  | Some [] -> []
+  | None -> []
+  | Some l -> l
+
+let ident = parser [< 'Ident s >] -> s
+let number = parser [< 'Number s >] -> s
+
+let sep_list k p = parser 
+    [< hd = p; s >] ->
+      let rec rest accu = parser 
+	  [<'Keyword k' when k = k'; 
+	    x = p ?? "list element expected"; s>] -> rest (x::accu) s
+	| [<>] -> List.rev accu
+      in
+      rest [hd] s
+  | [<>] -> []
+
+let rec skip_to lvl k = parser
+  | [< 'Keyword k' when k=k'; ss>] -> 
+      if lvl = 0 then (Debug.f ~lvl:dlvl "found mark %s" k; ())
+      else skip_to lvl k ss
+  | [< 'Keyword "{"; ss >] -> skip_to (succ lvl) k ss
+  | [< 'Keyword "}"; ss >] -> skip_to (pred lvl) k ss
+  | [< 't ; ss >] -> 
+      (* print_token prerr_string t; *)
+      Debug.f ~lvl:dlvl "skip"; skip_to lvl k ss
+
+let rec skip_inline lvl = parser
+  | [< 'Keyword "{"; ss >] -> skip_inline (succ lvl) ss
+  | [< 'Keyword "}"; ss >] -> 
+      begin match pred lvl with
+	| 0 -> Debug.f ~lvl:dlvl "found closing brace"
+	| n -> skip_inline lvl ss
+      end
+  | [< 't ; ss >] -> 
+      (* print_token prerr_string t; *)
+      Debug.f ~lvl:dlvl "skip"; skip_inline lvl ss
+

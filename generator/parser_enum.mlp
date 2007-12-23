@@ -1,0 +1,41 @@
+open Printf
+open Ustream
+open Lexobjc
+
+let dlvl = 30
+
+let rec enum = parser
+  | [< 'Keyword "enum"; _ = opt ident; l = enum_values >] -> l
+
+and enum_values = parser
+  | [< 'Keyword "{"; 
+       l = list_of enum_value ?? "list of enum values expected"; 
+       'Keyword "}" ?? "} expected"; 
+    >] -> 
+      Ast.Enum l
+and enum_value = parser
+  | [< 'Ident i; 
+       e = opt (parser [< 'Keyword "="; e = enum_expr; >] -> e) ?? "opt = <value> expected";
+       _ = opt (parser [< 'Keyword "," >] -> ()) ?? "opt , expected"
+    >] ->
+      Debug.f ~lvl:dlvl "ENUM %s" i;
+      (i, Enum.eval e)
+and enum_expr = parser
+  | [< l = enum_base; 
+       op = opt enum_infix ?? "opt infix operator expected"
+    >] -> 
+      begin match op with 
+	| None -> l
+	| Some (o, r) -> Enum.EOp (o, [l;r])
+      end
+  | [< 'Keyword "-"; e = enum_expr >] -> Enum.EOp ("neg", [e])
+
+and enum_infix = parser
+  | [< 'Keyword "<<"; e = enum_expr ?? "right argument expected" >] -> "<<", e
+  | [< 'Keyword "|"; e = enum_expr ?? "right argument expected" >] -> "|", e
+
+and enum_base = parser
+  | [< 'Number n >] -> Enum.EVal n
+  | [< 'Keyword "("; e = enum_expr; 'Keyword ")" >] -> e
+  | [< 'Ident i >] -> Enum.ESym i
+
