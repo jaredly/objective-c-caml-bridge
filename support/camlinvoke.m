@@ -106,6 +106,14 @@ value caml_message_alloc(value aClass)
   CAMLreturn(caml_wrap_id(o));
 }
 
+static int debug = 0;
+value caml_debug_invoke(value toggle)
+{
+  CAMLparam0();
+  debug = Int_val(toggle);
+  CAMLreturn(Val_int(0));
+}
+
 value caml_invoke(value rtag, value o, value sel, value args) 
 {
   CAMLparam4(o, sel, args, rtag);
@@ -124,12 +132,17 @@ value caml_invoke(value rtag, value o, value sel, value args)
   [inv setTarget:target];
   [inv setSelector: (SEL)selector];
 
+  // Support for (NSError **) args
+  int nserror_arg = 0;
+  NSError *error = nil;
+
   // Let's loop over the arguments
   // setArgument makes copies, so it's ok to use stack to hold temporary values
   // Also, we aren't allocating within this loop
   int i, k = [sig numberOfArguments];
-  int nserror_arg = 0;
-  NSError *error = nil;
+
+  if (debug) 
+    NSLog(@"class: %@ selector: %s rtag: %d #args: %d", [c description], sel_getName(selector), Int_val(rtag), k-2);
 
   for (i=2;i<k;i++) {
     if (Is_block(args)) { // make sure it's a cons
@@ -166,8 +179,8 @@ value caml_invoke(value rtag, value o, value sel, value args)
 	  break;			   
 	case tagNSErrorArg:
 	  { nserror_arg = Int_val(Field(a, 0));
-	    NSError **e = nserror_arg ? &error : nil;
-	    [inv setArgument:e atIndex:i];
+	    NSError **e = &error;
+	    [inv setArgument:(nserror_arg ? &e : nil) atIndex:i];
 	  }
 	  break;
 	case tagNSRange:
@@ -209,46 +222,59 @@ value caml_invoke(value rtag, value o, value sel, value args)
     switch(Int_val(rtag)) {
     case tagBool:
       retval = (*(BOOL *)buffer) ? Val_true : Val_false;
+      taggedval = caml_alloc(1, Int_val(rtag));
+      Store_field(taggedval, 0, retval);
       break;
     case tagChar:
       retval = Val_int(*(char *)buffer);
+      taggedval = caml_alloc(1, Int_val(rtag));
+      Store_field(taggedval, 0, retval);
       break;
     case tagInt:
       retval = Val_int(*(int *)buffer);
+      taggedval = caml_alloc(1, Int_val(rtag));
+      Store_field(taggedval, 0, retval);
       break;
     case tagInt64:
       retval = caml_copy_int64(*(long int *)buffer);
+      taggedval = caml_alloc(1, Int_val(rtag));
+      Store_field(taggedval, 0, retval);
       break;
     case tagDouble:
       retval = caml_copy_double(*(double *)buffer);
+      taggedval = caml_alloc(1, Int_val(rtag));
+      Store_field(taggedval, 0, retval);
       break;
     case tagString:
       if (NULL == *(char **)buffer) {
 	caml_failwith("null");
       } else {
 	retval = caml_copy_string(*(char **)buffer);
+	taggedval = caml_alloc(1, Int_val(rtag));
+	Store_field(taggedval, 0, retval);
       }
       break;
     case tagPointer:
       retval = caml_wrap_id(*(id *)buffer);
+      taggedval = caml_alloc(1, Int_val(rtag));
+      Store_field(taggedval, 0, retval);
       break;
     case tagSelector:
       retval = caml_wrap_pointer(*(void **)buffer);
+      taggedval = caml_alloc(1, Int_val(rtag));
+      Store_field(taggedval, 0, retval);
       break;
     case tagNSRange:
       { NSRange r = *(NSRange *)buffer;
-	retval = caml_alloc(2, Int_val(rtag));
-	Store_field(retval, 0, Val_int(r.location));
-	Store_field(retval, 1, Val_int(r.length));
+	taggedval = caml_alloc(2, Int_val(rtag));
+	Store_field(taggedval, 0, Val_int(r.location));
+	Store_field(taggedval, 1, Val_int(r.length));
       }
       break;
     default:
       caml_invalid_argument("unknown return type"); // this leaks buffer
       break;
     }
-    // Inject into sum type
-    taggedval = caml_alloc(1, Int_val(rtag));
-    Store_field(taggedval, 0, retval);
     if (buffer) free(buffer);
   } else if (Int_val(rtag) == -1) { // unit - this only supports one constructor without arguments
     taggedval = Val_int(0);

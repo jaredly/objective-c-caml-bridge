@@ -27,7 +27,7 @@ type 'a ffi =
     | NSRange of int * int (* location and length *)
 
 (* when an argument NSError ** is set to non-nil *)
-exception NSError of string
+exception NSError of [`NSError] nativeNSObject
 
 (* Object encapsulated in a class w/ some methods *)
 type 'a t = < o : 'a nativeNSObject >
@@ -38,11 +38,12 @@ external objcalloc : 'a nativeNSObject -> 'b nativeNSObject = "caml_message_allo
 
 (* arguments: tag for return value injection, target, selector, argument list *)
 external invoke : int -> 'a nativeNSObject -> Selector.t -> 'b ffi list -> 'c ffi = "caml_invoke"
+external debug_invoke : bool -> unit = "caml_debug_invoke"
 
 (* some usual inits *)
 external init : unit -> unit = "caml_init_default"
 let () = 
-  let () = Callback.register_exception "NSError" (NSError "foo") in
+  let () = Callback.register_exception "NSError" (NSError (Obj.magic "foo" : [`NSError] nativeNSObject)) in
     init() (* MUST DO THIS HERE - it sets the "new:" selector used below *)
 
 (* tag values *)
