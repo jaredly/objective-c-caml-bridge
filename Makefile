@@ -86,7 +86,7 @@ tests: tests/t1 tests/t2
 tests/t1: bridgeocamlobjc.cma foundation.cma tests/t1.cmo
 	$(BYTELINK) && ./tests/t1
 
-tests/t2: bridgeocamlobjc.cma foundation.cma tests/t2.cmo
+tests/t2: generator/debug.cmo bridgeocamlobjc.cma foundation.cma tests/t2.cmo
 	$(BYTELINK) && ./tests/t2
 
 # would like to use define and eval, but so painful to debug...
