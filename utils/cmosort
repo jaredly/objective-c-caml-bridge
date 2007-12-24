@@ -7,6 +7,6 @@ cat .depend | \
     sed -e :a -e '/\\$/N; s/\\\n//; ta' | \
     grep .cmo | \
     tr -d ':' | \
-    awk '{for (i=2;i<NF;i++) print $i, $1}' | \
+    awk '{for (i=1;i<NF;i++) print $i, $1}' | \
     grep "^$d/.*$d/" | \
     /usr/bin/tsort
