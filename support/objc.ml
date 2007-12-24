@@ -30,7 +30,7 @@ type 'a ffi =
 exception NSError of [`NSError] nativeNSObject
 
 (* Object encapsulated in a class w/ some methods *)
-type 'a t = < o : 'a nativeNSObject >
+type 'a t = < repr : [`NSObject] nativeNSObject >
 
 (* argument is assumed to be a class object *)
 external objcnew : 'a nativeNSObject -> 'b nativeNSObject = "caml_message_new"
@@ -70,7 +70,7 @@ let make_float d = Double d
 let make_string s = String s
 let make_pointer p = Pointer p
 let forget_type (x : 'a nativeNSObject) = (Obj.magic x : [`NSObject] nativeNSObject)
-let make_pointer_from_object (o : 'a t) = Pointer (forget_type o#o)
+let make_pointer_from_object (o : 'a t) = Pointer (o#repr)
 let make_selector s = Selector s
 let make_error b = NSErrorArg b
 let make_range (loc, len) = NSRange (loc, len)

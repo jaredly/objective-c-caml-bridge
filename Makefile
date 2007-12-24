@@ -27,7 +27,8 @@ SAVE=README TODO LICENSE \
 
 # List  binaries here (make clean will remove them)
 BIN=test_lexer test_parser test_generator \
-    gen_foundation gen_appkit
+    gen_foundation gen_appkit \
+    tests/t?
 
 # List generated files here (make depend will generate them)
 GEN=generator/lexobjc.ml
@@ -48,11 +49,12 @@ GENERATOR_OBJ= \
 # For runtime support
 SUPPORT_OBJ=support/classes.cmo support/selector.cmo support/objc.cmo 
 
-all: $(GENERATOR_OBJ) \
+all: 	libgenerator.cma \
 	bridgeocamlobjc.cma \
 	compiler_tests \
 	gen_foundation gen_appkit \
 	tests
+
 
 TARGET_LIBS+=foundation.cma
 TARGET_LIBS+=appkit.cma

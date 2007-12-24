@@ -1,4 +1,5 @@
 open Printf
+open Utils
 open Ast
 open Parser
 open Btypes
@@ -98,7 +99,7 @@ let trim_methods il =
       (cmc, imc)
 
 (* compile a method *)
-let compile_method uniqueh trimh ow ((kind, ret_type, selectors) : method_declaration) = 
+let compile_method classname uniqueh trimh ow ((kind, ret_type, selectors) : method_declaration) = 
   try
     let sels = abstract_selector selectors in
     let optargs = trimh#find sels in  (* check if it's allowed *)
@@ -112,11 +113,15 @@ let compile_method uniqueh trimh ow ((kind, ret_type, selectors) : method_declar
 	  with
 	    | Not_found -> uniqueh#add name true
       end;
+      (* filtering out one-offs that we know are broken *)
+      begin
+	if Hardcoded.optout (classname, List.map fst sels) then ow#ml "(* unsupported: breaks compilation somewhere *)\n"
+      end;
       begin match selectors with
 	| [sel, None] -> (* one selector, no named args *)
 	    kprintf (ow#mltab 2) "method %s =\n" (Hardcoded.rename_method sel);
 	    kprintf (ow#mltab 4) "(" ; native2caml ow#ml ret_type;
-	    kprintf ow#ml " (Objc.invoke %s o (Selector.find \"%s:\")[])" (Btypes.tag ret_type) sel;
+	    kprintf ow#ml " (Objc.invoke %s repr (Selector.find \"%s:\")[])" (Btypes.tag ret_type) sel;
 	    kprintf ow#ml " : ";
 	    Btypes.ret_type ow#ml ret_type;
 	    kprintf ow#ml ")\n";
@@ -127,7 +132,7 @@ let compile_method uniqueh trimh ow ((kind, ret_type, selectors) : method_declar
 	    Btypes.typed_expr ow#ml argt argn;
 	    kprintf ow#ml " =\n";
 	    kprintf (ow#mltab 4) "(" ; native2caml ow#ml ret_type;
-	    kprintf ow#ml " (Objc.invoke %s o (Selector.find \"%s:\")[%s %s])" 
+	    kprintf ow#ml " (Objc.invoke %s repr (Selector.find \"%s:\")[%s %s])" 
 	      (Btypes.tag ret_type) sel (caml2native argt) argn;
 	    kprintf ow#ml " : ";
 	    Btypes.ret_type ow#ml ret_type;
@@ -165,7 +170,7 @@ let compile_method uniqueh trimh ow ((kind, ret_type, selectors) : method_declar
 	    kprintf (ow#mltab 4) ") ([],[]) in\n";
 	    kprintf (ow#mltab 6) "(";
 	    native2caml ow#ml ret_type;
-	    kprintf ow#ml " (Objc.invoke %s o (Selector.find_list sel) args)" (Btypes.tag ret_type);
+	    kprintf ow#ml " (Objc.invoke %s repr (Selector.find_list sel) args)" (Btypes.tag ret_type);
 	    kprintf ow#ml " : ";
 	    Btypes.ret_type ow#ml ret_type;
 	    kprintf ow#ml ")\n"
@@ -204,6 +209,14 @@ let fix_class_return_type name = function
  * file, so not all of the Objective-C allowed use-cases are supported 
  *)
 let compile_interface ow name il = 
+  (* legal coercions *)
+  List.iter (function 
+    | Ast.ClassInterface (Some parent), _,_,_ ->
+	kprintf ow#ml "let make_%s_of_%s (o : [`%s] nativeNSObject) = (Obj.magic o : [`%s] nativeNSObject)\n"
+	  parent name name parent
+    | _ -> ())
+    il;
+
   (* register the class object *)
   kprintf (ow#ctab 2) "arg1 = caml_copy_string(\"%s\");\n" name;
   kprintf (ow#ctab 2) "arg2 = caml_wrap_id([%s class]);\n" name; 
@@ -211,9 +224,9 @@ let compile_interface ow name il =
   (* the class methods *)
   kprintf ow#ml "(* Class object for %s *)\n" name;
   kprintf ow#ml "let class_%s = object\n" name;
-  kprintf (ow#mltab 2) "val o = Classes.find \"%s\"\n" name;
-  kprintf (ow#mltab 2) "method _new = (Objc.objcnew o : [`%s] nativeNSObject)\n" name;
-  kprintf (ow#mltab 2) "method _alloc = (Objc.objcalloc o : [`%s] nativeNSObject)\n" name;
+  kprintf (ow#mltab 2) "val repr = Classes.find \"%s\"\n" name;
+  kprintf (ow#mltab 2) "method _new = (Objc.objcnew repr : [`%s] nativeNSObject)\n" name;
+  kprintf (ow#mltab 2) "method _alloc = (Objc.objcalloc repr : [`%s] nativeNSObject)\n" name;
 
   (* register all selectors *)
   List.iter (function (_,_,_,methods) ->
@@ -234,11 +247,11 @@ let compile_interface ow name il =
   let ucm, uim = new Ohash.t 53, new Ohash.t 53 in (* used for enforcing unicity of method names *)
   List.iter (function
     | Ast.ClassInterface parent, protos, decls, methods ->
-	List.iter (compile_method ucm cm ow) 
+	List.iter (compile_method name ucm cm ow) 
 	  (List.map (fix_class_return_type name) (List.filter (fun m -> is_class_method m && not (has_vararg m)) methods))
     | Ast.CategoryInterface cat, protos, decls, methods ->
 	kprintf ow#ml "(* methods for category %s *)\n" cat;
-	List.iter (compile_method ucm cm ow) 
+	List.iter (compile_method name ucm cm ow) 
 	  (List.map (fix_class_return_type name) (List.filter (fun m -> is_class_method m && not (has_vararg m)) methods))
 	    ) il;
   kprintf ow#ml "end\n";
@@ -246,15 +259,29 @@ let compile_interface ow name il =
   (* the instance methods *)
   kprintf ow#ml "(* Encapsulation for native instance of %s *)\n" name;
   kprintf ow#ml "class native_%s = fun (o : [`%s] nativeNSObject) -> object (self)\n" name name;
-  kprintf (ow#mltab 2) "val o = o\n";
-  kprintf (ow#mltab 2) "method o = o\n";
+  let has_repr = ref false in
+  List.iter (function
+    | Ast.ClassInterface (Some parent), _, _ ,_  ->
+	has_repr := true; (* from parent *)
+	kprintf (ow#mltab 2) "inherit native_%s (make_%s_of_%s o) as super\n" parent parent name
+    | Ast.ClassInterface None, _, _, _ -> 
+	has_repr := true;
+	kprintf (ow#mltab 2) "val repr = (Obj.magic o : [`NSObject] nativeNSObject)\n";
+	kprintf (ow#mltab 2) "method repr = repr\n";
+    | _ -> ()
+	    )
+    il;
+    if not !has_repr then begin
+	kprintf (ow#mltab 2) "val repr = (Obj.magic o : [`NSObject] nativeNSObject)\n";
+	kprintf (ow#mltab 2) "method repr = repr\n";
+      end;
   List.iter (function
     | Ast.ClassInterface parent, protos, decls, methods ->
-	List.iter (compile_method uim im ow) 
+	List.iter (compile_method name uim im ow) 
 	  (List.filter (fun m -> is_instance_method m && not (has_vararg m)) methods)
     | Ast.CategoryInterface cat, protos, decls, methods ->
 	kprintf ow#ml "(* methods for category %s *)\n" cat;
-	List.iter (compile_method uim im ow) 
+	List.iter (compile_method name uim im ow) 
 	  (List.filter (fun m -> is_instance_method m && not (has_vararg m)) methods)
 	    ) il;
   kprintf ow#ml "end\n"
@@ -342,7 +369,7 @@ let preludes ow todo f =
 
     kprintf ow#ml "(* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)\n";
     kprintf ow#ml "open Objc\n";
-    todo#compile_imports ow;
+    todo#compile_imports base ow;
 
     kprintf ow#c "value caml_init_%s(value unit)\n" base;
     kprintf ow#c "{\n";
@@ -365,18 +392,39 @@ let postludes ow f =
 
 let todo() = object
   val classes = new Ohash.autoinit (fun _ -> ref[]) 499
+  val mutable compile_order = []
   val imports = ref []
+
   method add_interface name i =
+    compile_order <- name :: compile_order;
     Utils.add_hd i (classes#find name)
   method add_import s =
     Utils.add_hd s imports
 
-  method compile_imports ow = 
-    List.iter (compile_import ow) (List.rev !imports)
+  (* adding implicit import of NSObject.h for all files
+   * because some of them only get in transitively, which
+   * we don't support
+   *)
+  method compile_imports base ow = 
+    let imports = 
+      if (( base = "NSObject") || (base = "NSZone")
+      || (base = "NSObjCRuntime")) then
+	List.rev !imports 
+      else
+	"NSObject.h"::List.rev !imports
+    in
+      List.iter (compile_import ow) imports
 
   method compile ow =
-    (* BROKEN? this doesn't print them in the same order as the .h *)
-    classes#iter (fun k r -> compile_interface ow k !r)
+    ignore (List.fold_left (fun compiled name ->
+      if StringSet.mem name compiled then compiled
+      else begin
+	  compile_interface ow name !(classes#find name);
+	  StringSet.add name compiled
+	end
+	)
+      StringSet.empty (List.rev compile_order)
+	   )
 end
 
 let compile_file ?out_dir f =

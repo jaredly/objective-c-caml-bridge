@@ -8,7 +8,14 @@ FOUNDATION_STUBS=$(wildcard foundation/*.m)
 FOUNDATION_C_OBJS=$(FOUNDATION_STUBS:.m=.o)
 
 # Can't forget the -framework options to make the linker happy later
-foundation.cma: $(FOUNDATION_OBJS) $(FOUNDATION_C_OBJS)
+# cmosort uses the .depend to gather names of .cmo
+FOUNDATION_SORTED_OBJS=$(shell utils/cmosort foundation) 
+
+foundation.cma:: $(FOUNDATION_SORTED_OBJS) $(FOUNDATION_C_OBJS)
 	$(MIXEDBYTELIB) -ccopt -g -framework Foundation
 
 $(eval $(call add_dir, foundation))
+
+# Local Variables:
+# mode: Makefile
+# End:

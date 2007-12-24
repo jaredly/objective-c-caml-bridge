@@ -1,7 +1,8 @@
-(* method names *)
+(** Hardcoded decisions and one-off uglies *)
 open Utils
 open Ast
 
+(* method names that aren't compatible with OCaml syntax *)
 let rename_method = function
   | "AMSymbol" -> "getAMSymbol"
   | "PMSymbol" -> "getPMSymbol"
@@ -29,8 +30,12 @@ let rename_method = function
       "http" ^ String.sub s 4  (String.length s - 4)
   | s -> s
 
+(* Globally maintained set of declared enum typedefs 
+ * If we see the tyoe later we'll map it to int64
+ *)
 let enums = ref StringSet.empty
 let add_enum e = enums := StringSet.add e !enums
+
 (* Most of this should eventually come from recursive includes *)
 let type_synonym = function
   | NamedType "NSComparisonResult" -> NamedType "int"
@@ -48,7 +53,7 @@ let type_synonym = function
   | Pointer (_, Qualified ("const", NamedType "char")) -> NamedType "string"
   | t -> t
 
-(* sanitize some OCaml keywords *)
+(* sanitize idents that collide with OCaml keywords *)
 let safe_prefix p = function
   | "object" -> p ^ "object"
   | "method" -> p ^ "method"
@@ -68,3 +73,56 @@ let safe_prefix p = function
 let safe_ident = safe_prefix "_"
 (* TBD: selector mapping needs to be updated for this *)
 let safe_selector = safe_prefix "l_"
+
+(* one-offs: some methods can't be compiled due to 
+ * weaknesses in our approch to methods/arg naming
+ * Instead of writing lots of code (which is hard
+ * anyway due to ObjC categories distributed over
+ * many files), we just opt out to compile some 
+ * specific methods.
+ * Ugly, yes, ok.
+ *)
+
+module DescSet = Set.Make(struct type t = string * string list let compare = compare end)
+let optout_methods =
+  List.fold_right DescSet.add [
+      ("NSArchiver", ["encodeConditionalObject"]);
+      ("NSDistantObjectRequest", ["connection"]);
+      ("NSDistributedNotificationCenter", ["addObserver";"selector";"name";"l_object";"suspensionBehavior"]);
+      ("NSDistributedNotificationCenter", ["removeObserver";"name";"l_object"]);
+      ("NSDistributedNotificationCenter", ["postNotificationName"; "l_object"; "userInfo"; "deliverImmediately"]);
+      ("NSCountedSet", ["initWithSet"]);
+      ("NSSocketPortNameServer", ["portForName";"host";"nameServerPortNumber"]);
+      ("NSSocketPortNameServer", ["registerPort"; "name"; "nameServerPortNumber"]);
+      ("NSIndexSpecifier", ["initWithContainerClassDescription";"containerSpecifier";"key";"index"]);
+      ("NSNameSpecifier", ["initWithContainerClassDescription";"containerSpecifier";"key";"name"]);
+      ("NSRangeSpecifier", ["initWithContainerClassDescription"; "containerSpecifier"; "key"; "startSpecifier"; "endSpecifier"]);
+      ("NSRelativeSpecifier", ["initWithContainerClassDescription"; "containerSpecifier"; "key"; "relativePosition"; "baseSpecifier"]);
+      ("NSUniqueIDSpecifier", ["initWithContainerClassDescription"; "containerSpecifier"; "key"; "uniqueID"]);
+      ("NSWhoseSpecifier", ["initWithContainerClassDescription"; "containerSpecifier"; "key"; "test"]);
+      ("NSText", ["copy"]);
+      ("NSMovieView", ["copy"]);
+      ("NSOpenPanel", ["beginSheetForDirectory";"file";"types";"modalForWindow";"modalDelegate";"didEndSelector";"contextInfo"]);
+      ("NSOpenPanel", ["runModalForDirectory"; "file"; "types"]);
+      ("NSControl", ["setNeedsDisplay"]);
+      ("NSPersistentDocument", ["writeToURL"; "ofType"; "forSaveOperation"; "originalContentsURL"; "error"]);
+      ("NSPersistentDocument", ["readFromURL"; "ofType"; "error"]);
+      ("NSBrowser", ["sendAction"]);
+      ("NSMatrix", ["sendAction"; "l_to"; "forAllCells"]);
+      ("NSMatrix", ["setToolTip"; "forCell"]);
+      ("NSPopUpButtonCell", ["initTextCell"; "pullsDown"]);
+      ("NSScroller", ["setFloatValue"; "knobProportion"]);
+      ("NSSegmentedCell", ["setImage"; "forSegment"]);
+      ("NSSegmentedCell", ["setEnabled"; "forSegment"]);
+      ("NSSegmentedCell", ["setMenu"; "forSegment"]);
+      ("NSSegmentedCell", ["setTag"; "forSegment"]);
+      ("NSSegmentedControl", ["setMenu"; "forSegment"]);
+      ("NSSegmentedControl", ["setEnabled"; "forSegment"]);
+      ("NSTextView", ["setSelectedRange"; "affinity"; "stillSelecting"]);
+      ("NSTextView", ["setAlignment"; "range"]);
+      ("NSTextView", ["setBaseWritingDirection"; "range"]);
+      ("NSToolbarItem", ["toolbar"]);
+    ] DescSet.empty
+
+
+let optout x = DescSet.mem x optout_methods

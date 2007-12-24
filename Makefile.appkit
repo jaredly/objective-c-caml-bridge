@@ -7,7 +7,13 @@ APPKIT_OBJS=$(APPKIT_LIB:.ml=.cmo)
 APPKIT_STUBS=$(wildcard appkit/*.m)
 APPKIT_C_OBJS=$(APPKIT_STUBS:.m=.o)
 
-appkit.cma: $(APPKIT_OBJS) $(APPKIT_C_OBJS)
+APPKIT_SORTED_OBJS=$(shell utils/cmosort appkit)
+
+appkit.cma: $(APPKIT_SORTED_OBJS) $(APPKIT_C_OBJS)
 	$(MIXEDBYTELIB) -ccopt -g  -framework AppKit
 
 $(eval $(call add_dir, appkit))
+
+# Local Variables:
+# mode: Makefile
+# End:

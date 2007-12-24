@@ -5,6 +5,7 @@ open NSString
    arg type for pointers
    ret type for string
 *)
+let _ = Objc.debug_invoke true
 
 let ns_of_string (s : string) = new native_NSString (class_NSString#stringWithCString s)
 let string_of_ns (ns : NSString.native_NSString) = ns#cStringUsingEncoding _NSUTF8StringEncoding
