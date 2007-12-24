@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,6 +9,12 @@ value caml_init_NSScriptWhoseTests(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
+   arg1 = caml_copy_string("NSScriptWhoseTest");
+   arg2 = caml_wrap_id([NSScriptWhoseTest class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("isTrue:");
+   arg2 = caml_wrap_pointer(@selector(isTrue ));
+   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSLogicalTest");
    arg2 = caml_wrap_id([NSLogicalTest class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -19,12 +26,6 @@ value caml_init_NSScriptWhoseTests(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("initNotTestWithTest:");
    arg2 = caml_wrap_pointer(@selector(initNotTestWithTest:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("NSScriptWhoseTest");
-   arg2 = caml_wrap_id([NSScriptWhoseTest class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("isTrue:");
-   arg2 = caml_wrap_pointer(@selector(isTrue ));
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSSpecifierTest");
    arg2 = caml_wrap_id([NSSpecifierTest class]);

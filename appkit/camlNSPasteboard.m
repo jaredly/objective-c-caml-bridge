@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,15 +9,6 @@ value caml_init_NSPasteboard(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSURL");
-   arg2 = caml_wrap_id([NSURL class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("l_URLFromPasteboard:");
-   arg2 = caml_wrap_pointer(@selector(l_URLFromPasteboard:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("writeToPasteboard:");
-   arg2 = caml_wrap_pointer(@selector(writeToPasteboard:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSPasteboard");
    arg2 = caml_wrap_id([NSPasteboard class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -91,6 +83,15 @@ value caml_init_NSPasteboard(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("stringForType:");
    arg2 = caml_wrap_pointer(@selector(stringForType:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSURL");
+   arg2 = caml_wrap_id([NSURL class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("l_URLFromPasteboard:");
+   arg2 = caml_wrap_pointer(@selector(l_URLFromPasteboard:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("writeToPasteboard:");
+   arg2 = caml_wrap_pointer(@selector(writeToPasteboard:));
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSObject");
    arg2 = caml_wrap_id([NSObject class]);

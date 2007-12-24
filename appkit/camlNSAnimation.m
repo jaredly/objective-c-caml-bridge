@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,18 +9,6 @@ value caml_init_NSAnimation(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSViewAnimation");
-   arg2 = caml_wrap_id([NSViewAnimation class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("initWithViewAnimations:");
-   arg2 = caml_wrap_pointer(@selector(initWithViewAnimations:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("viewAnimations:");
-   arg2 = caml_wrap_pointer(@selector(viewAnimations ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("setViewAnimations:");
-   arg2 = caml_wrap_pointer(@selector(setViewAnimations:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSAnimation");
    arg2 = caml_wrap_id([NSAnimation class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -118,6 +107,18 @@ value caml_init_NSAnimation(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("animation:didReachProgressMark:");
    arg2 = caml_wrap_pointer(@selector(animation:didReachProgressMark:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSViewAnimation");
+   arg2 = caml_wrap_id([NSViewAnimation class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("initWithViewAnimations:");
+   arg2 = caml_wrap_pointer(@selector(initWithViewAnimations:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("viewAnimations:");
+   arg2 = caml_wrap_pointer(@selector(viewAnimations ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("setViewAnimations:");
+   arg2 = caml_wrap_pointer(@selector(setViewAnimations:));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

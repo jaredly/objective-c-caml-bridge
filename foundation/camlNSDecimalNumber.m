@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,24 +9,6 @@ value caml_init_NSDecimalNumber(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSDecimalNumberHandler");
-   arg2 = caml_wrap_id([NSDecimalNumberHandler class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("defaultDecimalNumberHandler:");
-   arg2 = caml_wrap_pointer(@selector(defaultDecimalNumberHandler ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:");
-   arg2 = caml_wrap_pointer(@selector(initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:");
-   arg2 = caml_wrap_pointer(@selector(decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("NSNumber");
-   arg2 = caml_wrap_id([NSNumber class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("decimalValue:");
-   arg2 = caml_wrap_pointer(@selector(decimalValue ));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSDecimalNumber");
    arg2 = caml_wrap_id([NSDecimalNumber class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -127,6 +110,24 @@ value caml_init_NSDecimalNumber(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("doubleValue:");
    arg2 = caml_wrap_pointer(@selector(doubleValue ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSDecimalNumberHandler");
+   arg2 = caml_wrap_id([NSDecimalNumberHandler class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("defaultDecimalNumberHandler:");
+   arg2 = caml_wrap_pointer(@selector(defaultDecimalNumberHandler ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:");
+   arg2 = caml_wrap_pointer(@selector(initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:");
+   arg2 = caml_wrap_pointer(@selector(decimalNumberHandlerWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSNumber");
+   arg2 = caml_wrap_id([NSNumber class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("decimalValue:");
+   arg2 = caml_wrap_pointer(@selector(decimalValue ));
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSScanner");
    arg2 = caml_wrap_id([NSScanner class]);

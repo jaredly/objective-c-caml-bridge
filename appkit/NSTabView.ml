@@ -1,120 +1,124 @@
+(* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
+open NSObject
 open NSView
 open NSCell
 
 
 external init : unit -> unit = "caml_init_NSTabView"
 let _ = init()
+let make_NSView_of_NSTabView (o : [`NSTabView] nativeNSObject) = (Obj.magic o : [`NSView] nativeNSObject)
 (* Class object for NSTabView *)
 let class_NSTabView = object
-   val o = Classes.find "NSTabView"
-   method _new = (Objc.objcnew o : [`NSTabView] nativeNSObject)
+   val repr = Classes.find "NSTabView"
+   method _new = (Objc.objcnew repr : [`NSTabView] nativeNSObject)
+   method _alloc = (Objc.objcalloc repr : [`NSTabView] nativeNSObject)
 end
 (* Encapsulation for native instance of NSTabView *)
 class native_NSTabView = fun (o : [`NSTabView] nativeNSObject) -> object (self)
-   val o = o
-   method o = o
+   inherit native_NSView (make_NSView_of_NSTabView o) as super
    method selectTabViewItem (tabViewItem : [`NSTabViewItem] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "selectTabViewItem:")[make_pointer_from_object tabViewItem]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "selectTabViewItem:")[make_pointer_from_object tabViewItem]) : unit)
    method selectTabViewItemAtIndex (index : int) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "selectTabViewItemAtIndex:")[make_int index]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "selectTabViewItemAtIndex:")[make_int index]) : unit)
    method selectTabViewItemWithIdentifier (identifier : [`NSObject] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "selectTabViewItemWithIdentifier:")[make_pointer_from_object identifier]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "selectTabViewItemWithIdentifier:")[make_pointer_from_object identifier]) : unit)
    method takeSelectedTabViewItemFromSender (sender : [`NSObject] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "takeSelectedTabViewItemFromSender:")[make_pointer_from_object sender]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "takeSelectedTabViewItemFromSender:")[make_pointer_from_object sender]) : unit)
    method selectFirstTabViewItem (sender : [`NSObject] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "selectFirstTabViewItem:")[make_pointer_from_object sender]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "selectFirstTabViewItem:")[make_pointer_from_object sender]) : unit)
    method selectLastTabViewItem (sender : [`NSObject] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "selectLastTabViewItem:")[make_pointer_from_object sender]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "selectLastTabViewItem:")[make_pointer_from_object sender]) : unit)
    method selectNextTabViewItem (sender : [`NSObject] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "selectNextTabViewItem:")[make_pointer_from_object sender]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "selectNextTabViewItem:")[make_pointer_from_object sender]) : unit)
    method selectPreviousTabViewItem (sender : [`NSObject] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "selectPreviousTabViewItem:")[make_pointer_from_object sender]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "selectPreviousTabViewItem:")[make_pointer_from_object sender]) : unit)
    method selectedTabViewItem =
-     (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find "selectedTabViewItem:")[]) : [`NSTabViewItem] Objc.nativeNSObject)
+     (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find "selectedTabViewItem:")[]) : [`NSTabViewItem] Objc.nativeNSObject)
    method font =
-     (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find "font:")[]) : [`NSFont] Objc.nativeNSObject)
+     (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find "font:")[]) : [`NSFont] Objc.nativeNSObject)
    method tabViewType =
-     (get_int (Objc.invoke Objc.tag_int o (Selector.find "tabViewType:")[]) : int)
+     (get_int (Objc.invoke Objc.tag_int repr (Selector.find "tabViewType:")[]) : int)
    method tabViewItems =
-     (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find "tabViewItems:")[]) : [`NSArray] Objc.nativeNSObject)
+     (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find "tabViewItems:")[]) : [`NSArray] Objc.nativeNSObject)
    method allowsTruncatedLabels =
-     (get_bool (Objc.invoke Objc.tag_bool o (Selector.find "allowsTruncatedLabels:")[]) : bool)
+     (get_bool (Objc.invoke Objc.tag_bool repr (Selector.find "allowsTruncatedLabels:")[]) : bool)
 (*  UNSUPPORTED
    method minimumSize =
-     ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported o (Selector.find "minimumSize:")[]) : (*NSSize*) unsupported)
+     ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported repr (Selector.find "minimumSize:")[]) : (*NSSize*) unsupported)
 
 *)
    method drawsBackground =
-     (get_bool (Objc.invoke Objc.tag_bool o (Selector.find "drawsBackground:")[]) : bool)
+     (get_bool (Objc.invoke Objc.tag_bool repr (Selector.find "drawsBackground:")[]) : bool)
    method controlTint =
-     (get_int (Objc.invoke Objc.tag_int o (Selector.find "controlTint:")[]) : int)
+     (get_int (Objc.invoke Objc.tag_int repr (Selector.find "controlTint:")[]) : int)
    method controlSize =
-     (get_int (Objc.invoke Objc.tag_int o (Selector.find "controlSize:")[]) : int)
+     (get_int (Objc.invoke Objc.tag_int repr (Selector.find "controlSize:")[]) : int)
    method setFont (font : [`NSFont] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "setFont:")[make_pointer_from_object font]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "setFont:")[make_pointer_from_object font]) : unit)
    method setTabViewType (tabViewType : int) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "setTabViewType:")[make_int tabViewType]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "setTabViewType:")[make_int tabViewType]) : unit)
    method setAllowsTruncatedLabels (allowTruncatedLabels : bool) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "setAllowsTruncatedLabels:")[make_bool allowTruncatedLabels]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "setAllowsTruncatedLabels:")[make_bool allowTruncatedLabels]) : unit)
    method setDrawsBackground (flag : bool) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "setDrawsBackground:")[make_bool flag]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "setDrawsBackground:")[make_bool flag]) : unit)
    method setControlTint (controlTint : int) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "setControlTint:")[make_int controlTint]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "setControlTint:")[make_int controlTint]) : unit)
    method setControlSize (controlSize : int) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "setControlSize:")[make_int controlSize]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "setControlSize:")[make_int controlSize]) : unit)
    method addTabViewItem (tabViewItem : [`NSTabViewItem] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "addTabViewItem:")[make_pointer_from_object tabViewItem]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "addTabViewItem:")[make_pointer_from_object tabViewItem]) : unit)
    method insertTabViewItem  ~atIndex:(index : int ) (tabViewItem : [`NSTabViewItem] Objc.t) =
      let sel, args = (
        Objc.arg tabViewItem "insertTabViewItem" make_pointer_from_object
        ++ Objc.arg index "atIndex" make_int
      ) ([],[]) in
-       (get_unit (Objc.invoke Objc.tag_unit o (Selector.find_list sel) args) : unit)
+       (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find_list sel) args) : unit)
    method removeTabViewItem (tabViewItem : [`NSTabViewItem] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "removeTabViewItem:")[make_pointer_from_object tabViewItem]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "removeTabViewItem:")[make_pointer_from_object tabViewItem]) : unit)
    method setDelegate (anObject : [`NSObject] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "setDelegate:")[make_pointer_from_object anObject]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "setDelegate:")[make_pointer_from_object anObject]) : unit)
    method delegate =
-     (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find "delegate:")[]) : [`NSObject] Objc.nativeNSObject)
+     (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find "delegate:")[]) : [`NSObject] Objc.nativeNSObject)
 (*  UNSUPPORTED
    method tabViewItemAtPoint (point : (*NSPoint*) unsupported) =
-     (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find "tabViewItemAtPoint:")[(*NSPoint*) unsupported point]) : [`NSTabViewItem] Objc.nativeNSObject)
+     (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find "tabViewItemAtPoint:")[(*NSPoint*) unsupported point]) : [`NSTabViewItem] Objc.nativeNSObject)
 
 *)
 (*  UNSUPPORTED
    method contentRect =
-     ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported o (Selector.find "contentRect:")[]) : (*NSRect*) unsupported)
+     ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported repr (Selector.find "contentRect:")[]) : (*NSRect*) unsupported)
 
 *)
    method numberOfTabViewItems =
-     (get_int (Objc.invoke Objc.tag_int o (Selector.find "numberOfTabViewItems:")[]) : int)
+     (get_int (Objc.invoke Objc.tag_int repr (Selector.find "numberOfTabViewItems:")[]) : int)
    method indexOfTabViewItem (tabViewItem : [`NSTabViewItem] Objc.t) =
-     (get_int (Objc.invoke Objc.tag_int o (Selector.find "indexOfTabViewItem:")[make_pointer_from_object tabViewItem]) : int)
+     (get_int (Objc.invoke Objc.tag_int repr (Selector.find "indexOfTabViewItem:")[make_pointer_from_object tabViewItem]) : int)
    method tabViewItemAtIndex (index : int) =
-     (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find "tabViewItemAtIndex:")[make_int index]) : [`NSTabViewItem] Objc.nativeNSObject)
+     (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find "tabViewItemAtIndex:")[make_int index]) : [`NSTabViewItem] Objc.nativeNSObject)
    method indexOfTabViewItemWithIdentifier (identifier : [`NSObject] Objc.t) =
-     (get_int (Objc.invoke Objc.tag_int o (Selector.find "indexOfTabViewItemWithIdentifier:")[make_pointer_from_object identifier]) : int)
+     (get_int (Objc.invoke Objc.tag_int repr (Selector.find "indexOfTabViewItemWithIdentifier:")[make_pointer_from_object identifier]) : int)
 end
 (* Class object for NSObject *)
 let class_NSObject = object
-   val o = Classes.find "NSObject"
-   method _new = (Objc.objcnew o : [`NSObject] nativeNSObject)
+   val repr = Classes.find "NSObject"
+   method _new = (Objc.objcnew repr : [`NSObject] nativeNSObject)
+   method _alloc = (Objc.objcalloc repr : [`NSObject] nativeNSObject)
 (* methods for category NSTabViewDelegate *)
 end
 (* Encapsulation for native instance of NSObject *)
 class native_NSObject = fun (o : [`NSObject] nativeNSObject) -> object (self)
-   val o = o
-   method o = o
+   val repr = (Obj.magic o : [`NSObject] nativeNSObject)
+   method repr = repr
 (* methods for category NSTabViewDelegate *)
    method tabView  ?shouldSelectTabViewItem:(tabViewItem : [`NSTabViewItem] Objc.t option) (tabView : [`NSTabView] Objc.t) =
      let sel, args = (
        Objc.arg tabView "tabView" make_pointer_from_object
        ++ Objc.opt_arg tabViewItem "shouldSelectTabViewItem" make_pointer_from_object
      ) ([],[]) in
-       (get_bool (Objc.invoke Objc.tag_bool o (Selector.find_list sel) args) : bool)
+       (get_bool (Objc.invoke Objc.tag_bool repr (Selector.find_list sel) args) : bool)
    (* skipping selector tabView:willSelectTabViewItem *)
    (* skipping selector tabView:didSelectTabViewItem *)
    method tabViewDidChangeNumberOfTabViewItems (_TabView : [`NSTabView] Objc.t) =
-     (get_unit (Objc.invoke Objc.tag_unit o (Selector.find "tabViewDidChangeNumberOfTabViewItems:")[make_pointer_from_object _TabView]) : unit)
+     (get_unit (Objc.invoke Objc.tag_unit repr (Selector.find "tabViewDidChangeNumberOfTabViewItems:")[make_pointer_from_object _TabView]) : unit)
 end

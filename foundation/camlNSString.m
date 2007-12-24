@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,36 +9,6 @@ value caml_init_NSString(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSMutableString");
-   arg2 = caml_wrap_id([NSMutableString class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("insertString:atIndex:");
-   arg2 = caml_wrap_pointer(@selector(insertString:atIndex:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("deleteCharactersInRange:");
-   arg2 = caml_wrap_pointer(@selector(deleteCharactersInRange:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("appendString:");
-   arg2 = caml_wrap_pointer(@selector(appendString:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("appendFormat:");
-   arg2 = caml_wrap_pointer(@selector(appendFormat:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("setString:");
-   arg2 = caml_wrap_pointer(@selector(setString:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("initWithCapacity:");
-   arg2 = caml_wrap_pointer(@selector(initWithCapacity:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("stringWithCapacity:");
-   arg2 = caml_wrap_pointer(@selector(stringWithCapacity:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("replaceOccurrencesOfString:withString:options:range:");
-   arg2 = caml_wrap_pointer(@selector(replaceOccurrencesOfString:withString:options:range:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("replaceCharactersInRange:withString:");
-   arg2 = caml_wrap_pointer(@selector(replaceCharactersInRange:withString:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSString");
    arg2 = caml_wrap_id([NSString class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -364,6 +335,36 @@ value caml_init_NSString(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("characterAtIndex:");
    arg2 = caml_wrap_pointer(@selector(characterAtIndex:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSMutableString");
+   arg2 = caml_wrap_id([NSMutableString class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("insertString:atIndex:");
+   arg2 = caml_wrap_pointer(@selector(insertString:atIndex:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("deleteCharactersInRange:");
+   arg2 = caml_wrap_pointer(@selector(deleteCharactersInRange:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("appendString:");
+   arg2 = caml_wrap_pointer(@selector(appendString:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("appendFormat:");
+   arg2 = caml_wrap_pointer(@selector(appendFormat:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("setString:");
+   arg2 = caml_wrap_pointer(@selector(setString:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("initWithCapacity:");
+   arg2 = caml_wrap_pointer(@selector(initWithCapacity:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("stringWithCapacity:");
+   arg2 = caml_wrap_pointer(@selector(stringWithCapacity:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("replaceOccurrencesOfString:withString:options:range:");
+   arg2 = caml_wrap_pointer(@selector(replaceOccurrencesOfString:withString:options:range:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("replaceCharactersInRange:withString:");
+   arg2 = caml_wrap_pointer(@selector(replaceCharactersInRange:withString:));
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSSimpleCString");
    arg2 = caml_wrap_id([NSSimpleCString class]);

@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,15 +9,6 @@ value caml_init_NSError(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSObject");
-   arg2 = caml_wrap_id([NSObject class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:");
-   arg2 = caml_wrap_pointer(@selector(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("attemptRecoveryFromError:optionIndex:");
-   arg2 = caml_wrap_pointer(@selector(attemptRecoveryFromError:optionIndex:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSError");
    arg2 = caml_wrap_id([NSError class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -49,6 +41,15 @@ value caml_init_NSError(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("recoveryAttempter:");
    arg2 = caml_wrap_pointer(@selector(recoveryAttempter ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSObject");
+   arg2 = caml_wrap_id([NSObject class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:");
+   arg2 = caml_wrap_pointer(@selector(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("attemptRecoveryFromError:optionIndex:");
+   arg2 = caml_wrap_pointer(@selector(attemptRecoveryFromError:optionIndex:));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

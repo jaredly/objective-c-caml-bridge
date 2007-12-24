@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,21 +9,6 @@ value caml_init_NSFileHandle(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSPipe");
-   arg2 = caml_wrap_id([NSPipe class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("fileHandleForReading:");
-   arg2 = caml_wrap_pointer(@selector(fileHandleForReading ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("fileHandleForWriting:");
-   arg2 = caml_wrap_pointer(@selector(fileHandleForWriting ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("init:");
-   arg2 = caml_wrap_pointer(@selector(init ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("pipe:");
-   arg2 = caml_wrap_pointer(@selector(pipe ));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSFileHandle");
    arg2 = caml_wrap_id([NSFileHandle class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -118,6 +104,21 @@ value caml_init_NSFileHandle(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("closeFile:");
    arg2 = caml_wrap_pointer(@selector(closeFile ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSPipe");
+   arg2 = caml_wrap_id([NSPipe class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("fileHandleForReading:");
+   arg2 = caml_wrap_pointer(@selector(fileHandleForReading ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("fileHandleForWriting:");
+   arg2 = caml_wrap_pointer(@selector(fileHandleForWriting ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("init:");
+   arg2 = caml_wrap_pointer(@selector(init ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("pipe:");
+   arg2 = caml_wrap_pointer(@selector(pipe ));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

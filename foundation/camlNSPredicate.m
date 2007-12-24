@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,12 +9,6 @@ value caml_init_NSPredicate(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSMutableArray");
-   arg2 = caml_wrap_id([NSMutableArray class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("filterUsingPredicate:");
-   arg2 = caml_wrap_pointer(@selector(filterUsingPredicate:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSPredicate");
    arg2 = caml_wrap_id([NSPredicate class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -43,6 +38,12 @@ value caml_init_NSPredicate(value unit)
    caml_callback2(*register_class,arg1,arg2);
    arg1 = caml_copy_string("filteredArrayUsingPredicate:");
    arg2 = caml_wrap_pointer(@selector(filteredArrayUsingPredicate:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSMutableArray");
+   arg2 = caml_wrap_id([NSMutableArray class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("filterUsingPredicate:");
+   arg2 = caml_wrap_pointer(@selector(filterUsingPredicate:));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

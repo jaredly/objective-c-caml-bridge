@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,15 +9,6 @@ value caml_init_NSTextStorage(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSObject");
-   arg2 = caml_wrap_id([NSObject class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("textStorageWillProcessEditing:");
-   arg2 = caml_wrap_pointer(@selector(textStorageWillProcessEditing:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("textStorageDidProcessEditing:");
-   arg2 = caml_wrap_pointer(@selector(textStorageDidProcessEditing:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSTextStorage");
    arg2 = caml_wrap_id([NSTextStorage class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -58,6 +50,15 @@ value caml_init_NSTextStorage(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("delegate:");
    arg2 = caml_wrap_pointer(@selector(delegate ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSObject");
+   arg2 = caml_wrap_id([NSObject class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("textStorageWillProcessEditing:");
+   arg2 = caml_wrap_pointer(@selector(textStorageWillProcessEditing:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("textStorageDidProcessEditing:");
+   arg2 = caml_wrap_pointer(@selector(textStorageDidProcessEditing:));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,18 +9,6 @@ value caml_init_NSColorPanel(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSApplication");
-   arg2 = caml_wrap_id([NSApplication class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("orderFrontColorPanel:");
-   arg2 = caml_wrap_pointer(@selector(orderFrontColorPanel:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("NSObject");
-   arg2 = caml_wrap_id([NSObject class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("changeColor:");
-   arg2 = caml_wrap_pointer(@selector(changeColor:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSColorPanel");
    arg2 = caml_wrap_id([NSColorPanel class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -82,6 +71,18 @@ value caml_init_NSColorPanel(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("detachColorList:");
    arg2 = caml_wrap_pointer(@selector(detachColorList:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSApplication");
+   arg2 = caml_wrap_id([NSApplication class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("orderFrontColorPanel:");
+   arg2 = caml_wrap_pointer(@selector(orderFrontColorPanel:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSObject");
+   arg2 = caml_wrap_id([NSObject class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("changeColor:");
+   arg2 = caml_wrap_pointer(@selector(changeColor:));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,30 +9,6 @@ value caml_init_NSCalendarDate(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSDate");
-   arg2 = caml_wrap_id([NSDate class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("dateWithNaturalLanguageString:");
-   arg2 = caml_wrap_pointer(@selector(dateWithNaturalLanguageString:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("dateWithNaturalLanguageString:locale:");
-   arg2 = caml_wrap_pointer(@selector(dateWithNaturalLanguageString:locale:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("dateWithString:");
-   arg2 = caml_wrap_pointer(@selector(dateWithString:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("initWithString:");
-   arg2 = caml_wrap_pointer(@selector(initWithString:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("dateWithCalendarFormat:timeZone:");
-   arg2 = caml_wrap_pointer(@selector(dateWithCalendarFormat:timeZone:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("descriptionWithLocale:");
-   arg2 = caml_wrap_pointer(@selector(descriptionWithLocale:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("descriptionWithCalendarFormat:timeZone:locale:");
-   arg2 = caml_wrap_pointer(@selector(descriptionWithCalendarFormat:timeZone:locale:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSCalendarDate");
    arg2 = caml_wrap_id([NSCalendarDate class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -115,6 +92,30 @@ value caml_init_NSCalendarDate(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("descriptionWithCalendarFormat:locale:");
    arg2 = caml_wrap_pointer(@selector(descriptionWithCalendarFormat:locale:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSDate");
+   arg2 = caml_wrap_id([NSDate class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("dateWithNaturalLanguageString:");
+   arg2 = caml_wrap_pointer(@selector(dateWithNaturalLanguageString:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("dateWithNaturalLanguageString:locale:");
+   arg2 = caml_wrap_pointer(@selector(dateWithNaturalLanguageString:locale:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("dateWithString:");
+   arg2 = caml_wrap_pointer(@selector(dateWithString:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("initWithString:");
+   arg2 = caml_wrap_pointer(@selector(initWithString:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("dateWithCalendarFormat:timeZone:");
+   arg2 = caml_wrap_pointer(@selector(dateWithCalendarFormat:timeZone:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("descriptionWithLocale:");
+   arg2 = caml_wrap_pointer(@selector(descriptionWithLocale:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("descriptionWithCalendarFormat:timeZone:locale:");
+   arg2 = caml_wrap_pointer(@selector(descriptionWithCalendarFormat:timeZone:locale:));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

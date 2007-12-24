@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,18 +9,6 @@ value caml_init_NSException(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSAssertionHandler");
-   arg2 = caml_wrap_id([NSAssertionHandler class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("currentHandler:");
-   arg2 = caml_wrap_pointer(@selector(currentHandler ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("handleFailureInMethod:l_object:file:lineNumber:description:");
-   arg2 = caml_wrap_pointer(@selector(handleFailureInMethod:l_object:file:lineNumber:description:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("handleFailureInFunction:file:lineNumber:description:");
-   arg2 = caml_wrap_pointer(@selector(handleFailureInFunction:file:lineNumber:description:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSException");
    arg2 = caml_wrap_id([NSException class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -46,6 +35,18 @@ value caml_init_NSException(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("raise:");
    arg2 = caml_wrap_pointer(@selector(raise ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSAssertionHandler");
+   arg2 = caml_wrap_id([NSAssertionHandler class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("currentHandler:");
+   arg2 = caml_wrap_pointer(@selector(currentHandler ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("handleFailureInMethod:l_object:file:lineNumber:description:");
+   arg2 = caml_wrap_pointer(@selector(handleFailureInMethod:l_object:file:lineNumber:description:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("handleFailureInFunction:file:lineNumber:description:");
+   arg2 = caml_wrap_pointer(@selector(handleFailureInFunction:file:lineNumber:description:));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,18 +9,6 @@ value caml_init_NSKeyValueCoding(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSDictionary");
-   arg2 = caml_wrap_id([NSDictionary class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("valueForKey:");
-   arg2 = caml_wrap_pointer(@selector(valueForKey:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("NSMutableDictionary");
-   arg2 = caml_wrap_id([NSMutableDictionary class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("setValue:forKey:");
-   arg2 = caml_wrap_pointer(@selector(setValue:forKey:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSObject");
    arg2 = caml_wrap_id([NSObject class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -107,6 +96,18 @@ value caml_init_NSKeyValueCoding(value unit)
    arg1 = caml_copy_string("valueForKey:");
    arg2 = caml_wrap_pointer(@selector(valueForKey:));
    caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("setValue:forKey:");
+   arg2 = caml_wrap_pointer(@selector(setValue:forKey:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSDictionary");
+   arg2 = caml_wrap_id([NSDictionary class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("valueForKey:");
+   arg2 = caml_wrap_pointer(@selector(valueForKey:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSMutableDictionary");
+   arg2 = caml_wrap_id([NSMutableDictionary class]);
+   caml_callback2(*register_class,arg1,arg2);
    arg1 = caml_copy_string("setValue:forKey:");
    arg2 = caml_wrap_pointer(@selector(setValue:forKey:));
    caml_callback2(*register_selector, arg1, arg2);

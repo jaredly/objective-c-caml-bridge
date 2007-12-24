@@ -1,19 +1,23 @@
+(* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
+open NSObject
 open NSObject
 
 
 external init : unit -> unit = "caml_init_NSPropertyList"
 let _ = init()
+let make_NSObject_of_NSPropertyListSerialization (o : [`NSPropertyListSerialization] nativeNSObject) = (Obj.magic o : [`NSObject] nativeNSObject)
 (* Class object for NSPropertyListSerialization *)
 let class_NSPropertyListSerialization = object
-   val o = Classes.find "NSPropertyListSerialization"
-   method _new = (Objc.objcnew o : [`NSPropertyListSerialization] nativeNSObject)
+   val repr = Classes.find "NSPropertyListSerialization"
+   method _new = (Objc.objcnew repr : [`NSPropertyListSerialization] nativeNSObject)
+   method _alloc = (Objc.objcalloc repr : [`NSPropertyListSerialization] nativeNSObject)
    method propertyList  ~isValidForFormat:(format : int ) (plist : [`NSObject] Objc.t) =
      let sel, args = (
        Objc.arg plist "propertyList" make_pointer_from_object
        ++ Objc.arg format "isValidForFormat" make_int
      ) ([],[]) in
-       (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find_list sel) args) : [`NSPropertyListSerialization] Objc.nativeNSObject)
+       (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find_list sel) args) : [`NSPropertyListSerialization] Objc.nativeNSObject)
 (*  UNSUPPORTED
    method dataFromPropertyList  ~format:(format : int ) ~errorDescription:(errorString : (*pointer to pointer to NSString*) unsupported ) (plist : [`NSObject] Objc.t) =
      let sel, args = (
@@ -21,7 +25,7 @@ let class_NSPropertyListSerialization = object
        ++ Objc.arg format "format" make_int
        ++ Objc.arg errorString "errorDescription" (*pointer to pointer to NSString*) unsupported
      ) ([],[]) in
-       (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find_list sel) args) : [`NSData] Objc.nativeNSObject)
+       (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find_list sel) args) : [`NSData] Objc.nativeNSObject)
 
 *)
 (*  UNSUPPORTED
@@ -32,12 +36,11 @@ let class_NSPropertyListSerialization = object
        ++ Objc.arg format "format" make_pointer_from_object
        ++ Objc.arg errorString "errorDescription" (*pointer to pointer to NSString*) unsupported
      ) ([],[]) in
-       (get_pointer (Objc.invoke Objc.tag_pointer o (Selector.find_list sel) args) : [`NSPropertyListSerialization] Objc.nativeNSObject)
+       (get_pointer (Objc.invoke Objc.tag_pointer repr (Selector.find_list sel) args) : [`NSPropertyListSerialization] Objc.nativeNSObject)
 
 *)
 end
 (* Encapsulation for native instance of NSPropertyListSerialization *)
 class native_NSPropertyListSerialization = fun (o : [`NSPropertyListSerialization] nativeNSObject) -> object (self)
-   val o = o
-   method o = o
+   inherit native_NSObject (make_NSObject_of_NSPropertyListSerialization o) as super
 end

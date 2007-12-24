@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,6 +9,36 @@ value caml_init_NSURLDownload(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
+   arg1 = caml_copy_string("NSURLDownload");
+   arg2 = caml_wrap_id([NSURLDownload class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("canResumeDownloadDecodedWithEncodingMIMEType:");
+   arg2 = caml_wrap_pointer(@selector(canResumeDownloadDecodedWithEncodingMIMEType:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("initWithRequest:delegate:");
+   arg2 = caml_wrap_pointer(@selector(initWithRequest:delegate:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("initWithResumeData:delegate:path:");
+   arg2 = caml_wrap_pointer(@selector(initWithResumeData:delegate:path:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("cancel:");
+   arg2 = caml_wrap_pointer(@selector(cancel ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("setDestination:allowOverwrite:");
+   arg2 = caml_wrap_pointer(@selector(setDestination:allowOverwrite:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("request:");
+   arg2 = caml_wrap_pointer(@selector(request ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("resumeData:");
+   arg2 = caml_wrap_pointer(@selector(resumeData ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("setDeletesFileUponFailure:");
+   arg2 = caml_wrap_pointer(@selector(setDeletesFileUponFailure:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("deletesFileUponFailure:");
+   arg2 = caml_wrap_pointer(@selector(deletesFileUponFailure ));
+   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSObject");
    arg2 = caml_wrap_id([NSObject class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -46,36 +77,6 @@ value caml_init_NSURLDownload(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("download:didFailWithError:");
    arg2 = caml_wrap_pointer(@selector(download:didFailWithError:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("NSURLDownload");
-   arg2 = caml_wrap_id([NSURLDownload class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("canResumeDownloadDecodedWithEncodingMIMEType:");
-   arg2 = caml_wrap_pointer(@selector(canResumeDownloadDecodedWithEncodingMIMEType:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("initWithRequest:delegate:");
-   arg2 = caml_wrap_pointer(@selector(initWithRequest:delegate:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("initWithResumeData:delegate:path:");
-   arg2 = caml_wrap_pointer(@selector(initWithResumeData:delegate:path:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("cancel:");
-   arg2 = caml_wrap_pointer(@selector(cancel ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("setDestination:allowOverwrite:");
-   arg2 = caml_wrap_pointer(@selector(setDestination:allowOverwrite:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("request:");
-   arg2 = caml_wrap_pointer(@selector(request ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("resumeData:");
-   arg2 = caml_wrap_pointer(@selector(resumeData ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("setDeletesFileUponFailure:");
-   arg2 = caml_wrap_pointer(@selector(setDeletesFileUponFailure:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("deletesFileUponFailure:");
-   arg2 = caml_wrap_pointer(@selector(deletesFileUponFailure ));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

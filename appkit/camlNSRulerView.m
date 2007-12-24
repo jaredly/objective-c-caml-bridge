@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,39 +9,6 @@ value caml_init_NSRulerView(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSView");
-   arg2 = caml_wrap_id([NSView class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("rulerView:shouldMoveMarker:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:shouldMoveMarker:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:willMoveMarker:toLocation:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:willMoveMarker:toLocation:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:didMoveMarker:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:didMoveMarker:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:shouldRemoveMarker:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:shouldRemoveMarker:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:didRemoveMarker:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:didRemoveMarker:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:shouldAddMarker:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:shouldAddMarker:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:willAddMarker:atLocation:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:willAddMarker:atLocation:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:didAddMarker:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:didAddMarker:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:handleMouseDown:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:handleMouseDown:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("rulerView:willSetClientView:");
-   arg2 = caml_wrap_pointer(@selector(rulerView:willSetClientView:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSRulerView");
    arg2 = caml_wrap_id([NSRulerView class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -139,6 +107,39 @@ value caml_init_NSRulerView(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("isFlipped:");
    arg2 = caml_wrap_pointer(@selector(isFlipped ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSView");
+   arg2 = caml_wrap_id([NSView class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("rulerView:shouldMoveMarker:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:shouldMoveMarker:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:willMoveMarker:toLocation:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:willMoveMarker:toLocation:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:didMoveMarker:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:didMoveMarker:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:shouldRemoveMarker:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:shouldRemoveMarker:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:didRemoveMarker:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:didRemoveMarker:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:shouldAddMarker:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:shouldAddMarker:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:willAddMarker:atLocation:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:willAddMarker:atLocation:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:didAddMarker:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:didAddMarker:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:handleMouseDown:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:handleMouseDown:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("rulerView:willSetClientView:");
+   arg2 = caml_wrap_pointer(@selector(rulerView:willSetClientView:));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

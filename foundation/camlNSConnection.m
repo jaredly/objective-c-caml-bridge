@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,27 +9,6 @@ value caml_init_NSConnection(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSObject");
-   arg2 = caml_wrap_id([NSObject class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("connection:handleRequest:");
-   arg2 = caml_wrap_pointer(@selector(connection:handleRequest:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("makeNewConnection:sender:");
-   arg2 = caml_wrap_pointer(@selector(makeNewConnection:sender:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("connection:shouldMakeNewConnection:");
-   arg2 = caml_wrap_pointer(@selector(connection:shouldMakeNewConnection:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("authenticationDataForComponents:");
-   arg2 = caml_wrap_pointer(@selector(authenticationDataForComponents:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("authenticateComponents:withData:");
-   arg2 = caml_wrap_pointer(@selector(authenticateComponents:withData:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("createConversationForConnection:");
-   arg2 = caml_wrap_pointer(@selector(createConversationForConnection:));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSConnection");
    arg2 = caml_wrap_id([NSConnection class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -142,6 +122,27 @@ value caml_init_NSConnection(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("localObjects:");
    arg2 = caml_wrap_pointer(@selector(localObjects ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSObject");
+   arg2 = caml_wrap_id([NSObject class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("connection:handleRequest:");
+   arg2 = caml_wrap_pointer(@selector(connection:handleRequest:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("makeNewConnection:sender:");
+   arg2 = caml_wrap_pointer(@selector(makeNewConnection:sender:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("connection:shouldMakeNewConnection:");
+   arg2 = caml_wrap_pointer(@selector(connection:shouldMakeNewConnection:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("authenticationDataForComponents:");
+   arg2 = caml_wrap_pointer(@selector(authenticationDataForComponents:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("authenticateComponents:withData:");
+   arg2 = caml_wrap_pointer(@selector(authenticateComponents:withData:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("createConversationForConnection:");
+   arg2 = caml_wrap_pointer(@selector(createConversationForConnection:));
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSDistantObjectRequest");
    arg2 = caml_wrap_id([NSDistantObjectRequest class]);

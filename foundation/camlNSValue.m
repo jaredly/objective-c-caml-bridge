@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,6 +9,39 @@ value caml_init_NSValue(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
+   arg1 = caml_copy_string("NSValue");
+   arg2 = caml_wrap_id([NSValue class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("valueWithNonretainedObject:");
+   arg2 = caml_wrap_pointer(@selector(valueWithNonretainedObject:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("nonretainedObjectValue:");
+   arg2 = caml_wrap_pointer(@selector(nonretainedObjectValue ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("valueWithPointer:");
+   arg2 = caml_wrap_pointer(@selector(valueWithPointer:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("pointerValue:");
+   arg2 = caml_wrap_pointer(@selector(pointerValue ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("isEqualToValue:");
+   arg2 = caml_wrap_pointer(@selector(isEqualToValue:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("initWithBytes:objCType:");
+   arg2 = caml_wrap_pointer(@selector(initWithBytes:objCType:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("valueWithBytes:objCType:");
+   arg2 = caml_wrap_pointer(@selector(valueWithBytes:objCType:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("value:withObjCType:");
+   arg2 = caml_wrap_pointer(@selector(value:withObjCType:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("getValue:");
+   arg2 = caml_wrap_pointer(@selector(getValue:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("objCType:");
+   arg2 = caml_wrap_pointer(@selector(objCType ));
+   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSNumber");
    arg2 = caml_wrap_id([NSNumber class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -139,39 +173,6 @@ value caml_init_NSValue(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("descriptionWithLocale:");
    arg2 = caml_wrap_pointer(@selector(descriptionWithLocale:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("NSValue");
-   arg2 = caml_wrap_id([NSValue class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("valueWithNonretainedObject:");
-   arg2 = caml_wrap_pointer(@selector(valueWithNonretainedObject:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("nonretainedObjectValue:");
-   arg2 = caml_wrap_pointer(@selector(nonretainedObjectValue ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("valueWithPointer:");
-   arg2 = caml_wrap_pointer(@selector(valueWithPointer:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("pointerValue:");
-   arg2 = caml_wrap_pointer(@selector(pointerValue ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("isEqualToValue:");
-   arg2 = caml_wrap_pointer(@selector(isEqualToValue:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("initWithBytes:objCType:");
-   arg2 = caml_wrap_pointer(@selector(initWithBytes:objCType:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("valueWithBytes:objCType:");
-   arg2 = caml_wrap_pointer(@selector(valueWithBytes:objCType:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("value:withObjCType:");
-   arg2 = caml_wrap_pointer(@selector(value:withObjCType:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("getValue:");
-   arg2 = caml_wrap_pointer(@selector(getValue:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("objCType:");
-   arg2 = caml_wrap_pointer(@selector(objCType ));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

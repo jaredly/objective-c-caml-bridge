@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,27 +9,6 @@ value caml_init_NSOpenGL(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSOpenGLPixelBuffer");
-   arg2 = caml_wrap_id([NSOpenGLPixelBuffer class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:");
-   arg2 = caml_wrap_pointer(@selector(initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("pixelsWide:");
-   arg2 = caml_wrap_pointer(@selector(pixelsWide ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("pixelsHigh:");
-   arg2 = caml_wrap_pointer(@selector(pixelsHigh ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("textureTarget:");
-   arg2 = caml_wrap_pointer(@selector(textureTarget ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("textureInternalFormat:");
-   arg2 = caml_wrap_pointer(@selector(textureInternalFormat ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("textureMaxMipMapLevel:");
-   arg2 = caml_wrap_pointer(@selector(textureMaxMipMapLevel ));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSOpenGLPixelFormat");
    arg2 = caml_wrap_id([NSOpenGLPixelFormat class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -52,6 +32,27 @@ value caml_init_NSOpenGL(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("l_CGLPixelFormatObj:");
    arg2 = caml_wrap_pointer(@selector(l_CGLPixelFormatObj ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSOpenGLPixelBuffer");
+   arg2 = caml_wrap_id([NSOpenGLPixelBuffer class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:");
+   arg2 = caml_wrap_pointer(@selector(initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("pixelsWide:");
+   arg2 = caml_wrap_pointer(@selector(pixelsWide ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("pixelsHigh:");
+   arg2 = caml_wrap_pointer(@selector(pixelsHigh ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("textureTarget:");
+   arg2 = caml_wrap_pointer(@selector(textureTarget ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("textureInternalFormat:");
+   arg2 = caml_wrap_pointer(@selector(textureInternalFormat ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("textureMaxMipMapLevel:");
+   arg2 = caml_wrap_pointer(@selector(textureMaxMipMapLevel ));
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSOpenGLContext");
    arg2 = caml_wrap_id([NSOpenGLContext class]);

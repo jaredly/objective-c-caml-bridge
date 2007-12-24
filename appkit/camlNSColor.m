@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,18 +9,6 @@ value caml_init_NSColor(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("CIColor");
-   arg2 = caml_wrap_id([CIColor class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("initWithColor:");
-   arg2 = caml_wrap_pointer(@selector(initWithColor:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("NSCoder");
-   arg2 = caml_wrap_id([NSCoder class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("decodeNXColor:");
-   arg2 = caml_wrap_pointer(@selector(decodeNXColor ));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSColor");
    arg2 = caml_wrap_id([NSColor class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -322,6 +311,18 @@ value caml_init_NSColor(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("ignoresAlpha:");
    arg2 = caml_wrap_pointer(@selector(ignoresAlpha ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("CIColor");
+   arg2 = caml_wrap_id([CIColor class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("initWithColor:");
+   arg2 = caml_wrap_pointer(@selector(initWithColor:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSCoder");
+   arg2 = caml_wrap_id([NSCoder class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("decodeNXColor:");
+   arg2 = caml_wrap_pointer(@selector(decodeNXColor ));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

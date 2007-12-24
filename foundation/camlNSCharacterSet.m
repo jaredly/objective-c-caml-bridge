@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,30 +9,6 @@ value caml_init_NSCharacterSet(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
-   arg1 = caml_copy_string("NSMutableCharacterSet");
-   arg2 = caml_wrap_id([NSMutableCharacterSet class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("addCharactersInRange:");
-   arg2 = caml_wrap_pointer(@selector(addCharactersInRange:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("removeCharactersInRange:");
-   arg2 = caml_wrap_pointer(@selector(removeCharactersInRange:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("addCharactersInString:");
-   arg2 = caml_wrap_pointer(@selector(addCharactersInString:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("removeCharactersInString:");
-   arg2 = caml_wrap_pointer(@selector(removeCharactersInString:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("formUnionWithCharacterSet:");
-   arg2 = caml_wrap_pointer(@selector(formUnionWithCharacterSet:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("formIntersectionWithCharacterSet:");
-   arg2 = caml_wrap_pointer(@selector(formIntersectionWithCharacterSet:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("invert:");
-   arg2 = caml_wrap_pointer(@selector(invert ));
-   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSCharacterSet");
    arg2 = caml_wrap_id([NSCharacterSet class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -106,6 +83,30 @@ value caml_init_NSCharacterSet(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("hasMemberInPlane:");
    arg2 = caml_wrap_pointer(@selector(hasMemberInPlane:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("NSMutableCharacterSet");
+   arg2 = caml_wrap_id([NSMutableCharacterSet class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("addCharactersInRange:");
+   arg2 = caml_wrap_pointer(@selector(addCharactersInRange:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("removeCharactersInRange:");
+   arg2 = caml_wrap_pointer(@selector(removeCharactersInRange:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("addCharactersInString:");
+   arg2 = caml_wrap_pointer(@selector(addCharactersInString:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("removeCharactersInString:");
+   arg2 = caml_wrap_pointer(@selector(removeCharactersInString:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("formUnionWithCharacterSet:");
+   arg2 = caml_wrap_pointer(@selector(formUnionWithCharacterSet:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("formIntersectionWithCharacterSet:");
+   arg2 = caml_wrap_pointer(@selector(formIntersectionWithCharacterSet:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("invert:");
+   arg2 = caml_wrap_pointer(@selector(invert ));
    caml_callback2(*register_selector, arg1, arg2);
    CAMLreturn(Val_int(0));
 }

@@ -1,3 +1,4 @@
+// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD
 #include <caml/mlvalues.h>
 #include <caml/memory.h>
 #include <caml/callback.h>
@@ -8,6 +9,27 @@ value caml_init_NSParagraphStyle(value unit)
    CAMLlocal2(arg1, arg2);
    value *register_class = caml_named_value("register_class");
    value *register_selector = caml_named_value("register_selector");
+   arg1 = caml_copy_string("NSTextTab");
+   arg2 = caml_wrap_id([NSTextTab class]);
+   caml_callback2(*register_class,arg1,arg2);
+   arg1 = caml_copy_string("initWithTextAlignment:location:options:");
+   arg2 = caml_wrap_pointer(@selector(initWithTextAlignment:location:options:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("alignment:");
+   arg2 = caml_wrap_pointer(@selector(alignment ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("options:");
+   arg2 = caml_wrap_pointer(@selector(options ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("initWithType:location:");
+   arg2 = caml_wrap_pointer(@selector(initWithType:location:));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("location:");
+   arg2 = caml_wrap_pointer(@selector(location ));
+   caml_callback2(*register_selector, arg1, arg2);
+   arg1 = caml_copy_string("tabStopType:");
+   arg2 = caml_wrap_pointer(@selector(tabStopType ));
+   caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSParagraphStyle");
    arg2 = caml_wrap_id([NSParagraphStyle class]);
    caml_callback2(*register_class,arg1,arg2);
@@ -73,27 +95,6 @@ value caml_init_NSParagraphStyle(value unit)
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("headerLevel:");
    arg2 = caml_wrap_pointer(@selector(headerLevel ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("NSTextTab");
-   arg2 = caml_wrap_id([NSTextTab class]);
-   caml_callback2(*register_class,arg1,arg2);
-   arg1 = caml_copy_string("initWithTextAlignment:location:options:");
-   arg2 = caml_wrap_pointer(@selector(initWithTextAlignment:location:options:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("alignment:");
-   arg2 = caml_wrap_pointer(@selector(alignment ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("options:");
-   arg2 = caml_wrap_pointer(@selector(options ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("initWithType:location:");
-   arg2 = caml_wrap_pointer(@selector(initWithType:location:));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("location:");
-   arg2 = caml_wrap_pointer(@selector(location ));
-   caml_callback2(*register_selector, arg1, arg2);
-   arg1 = caml_copy_string("tabStopType:");
-   arg2 = caml_wrap_pointer(@selector(tabStopType ));
    caml_callback2(*register_selector, arg1, arg2);
    arg1 = caml_copy_string("NSMutableParagraphStyle");
    arg2 = caml_wrap_id([NSMutableParagraphStyle class]);
