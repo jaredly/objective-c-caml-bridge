@@ -66,7 +66,8 @@
 	ar cr $@ $^
 	ranlib $@
 
-# DIRS
+# Support for multiple subdirectories
+# Default to having only current dir
 DIRS+=.
 
 # Common targets
@@ -83,11 +84,9 @@ clean ::
 
 depend:: cleandepend $(GEN) .depend
 
-# YASL...
-# We want to do "ln -s foo.mlp foo.ml"
-# link = ln -s $(1) $(addsuffix .ml, $(basename $(1) .mlp))
-# map = $(foreach a, $(2), $(call $(1), $(a)))
-
+# My convention is to use .mlp for code involving stream parsers
+# This breaks camldepend who only understands .ml and .mli suffixes
+# So we create temporary symlinks during the depend stage
 .depend:: 
 	for i in $(foreach d, $(DIRS), $(wildcard $(d)/*.mlp));\
 	do \
@@ -105,9 +104,9 @@ cleandepend:
 	rm -f $(ml_files)
 
 
-doc:: $(wildcard *.ml) $(wildcard *.mli)
+doc:: $(foreach d, $(DIRS), $(wildcard $(d)/*.ml) $(wildcard $(d)/*.mli))
 	-mkdir html
-	$(CAMLDOC) -html -stars -hide Pervasives -I +threads -v -d html \
+	$(CAMLDOC) -html -stars -hide Pervasives $(INCS) -I +threads -v -d html \
 	$^
 
 # Using lowercase variable names, most people don't
