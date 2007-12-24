@@ -1,0 +1,12 @@
+#!/bin/bash
+# Pass in directory of files that we want to sort in linking order
+# e.g.
+# cmosort foundation
+d=$1
+cat .depend | \
+    sed -e :a -e '/\\$/N; s/\\\n//; ta' | \
+    grep .cmo | \
+    tr -d ':' | \
+    awk '{for (i=2;i<NF;i++) print $i, $1}' | \
+    grep "^$d/.*$d/" | \
+    /usr/bin/tsort
