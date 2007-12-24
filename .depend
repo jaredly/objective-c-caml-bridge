@@ -1,0 +1,1252 @@
+support/classes.cmo: support/objc.cmo 
+support/classes.cmx: support/objc.cmx 
+support/objc.cmo: support/selector.cmo 
+support/objc.cmx: support/selector.cmx 
+generator/btypes.cmo: generator/hardcoded.cmo generator/ast.cmo 
+generator/btypes.cmx: generator/hardcoded.cmx generator/ast.cmx 
+generator/debug.cmo: generator/debug.cmi 
+generator/debug.cmx: generator/debug.cmi 
+generator/enum.cmo: generator/utils.cmi 
+generator/enum.cmx: generator/utils.cmx 
+generator/gen_appkit.cmo: generator/tiger.cmo generator/generator.cmo \
+    generator/debug.cmi 
+generator/gen_appkit.cmx: generator/tiger.cmx generator/generator.cmx \
+    generator/debug.cmx 
+generator/gen_foundation.cmo: generator/tiger.cmo generator/generator.cmo \
+    generator/debug.cmi 
+generator/gen_foundation.cmx: generator/tiger.cmx generator/generator.cmx \
+    generator/debug.cmx 
+generator/generator.cmo: generator/utils.cmi generator/parser.cmo \
+    generator/ohash.cmi generator/lexobjc.cmo generator/hardcoded.cmo \
+    generator/enum.cmo generator/debug.cmi generator/btypes.cmo \
+    generator/ast.cmo 
+generator/generator.cmx: generator/utils.cmx generator/parser.cmx \
+    generator/ohash.cmx generator/lexobjc.cmx generator/hardcoded.cmx \
+    generator/enum.cmx generator/debug.cmx generator/btypes.cmx \
+    generator/ast.cmx 
+generator/hardcoded.cmo: generator/utils.cmi generator/ast.cmo 
+generator/hardcoded.cmx: generator/utils.cmx generator/ast.cmx 
+generator/ohash.cmo: generator/ohash.cmi 
+generator/ohash.cmx: generator/ohash.cmi 
+generator/parser.cmo: generator/ustream.cmo generator/parser_types.cmo \
+    generator/parser_enum.cmo generator/lexobjc.cmo generator/hardcoded.cmo \
+    generator/enum.cmo generator/debug.cmi generator/ast.cmo 
+generator/parser.cmx: generator/ustream.cmx generator/parser_types.cmx \
+    generator/parser_enum.cmx generator/lexobjc.cmx generator/hardcoded.cmx \
+    generator/enum.cmx generator/debug.cmx generator/ast.cmx 
+generator/parser_enum.cmo: generator/ustream.cmo generator/lexobjc.cmo \
+    generator/enum.cmo generator/debug.cmi generator/ast.cmo 
+generator/parser_enum.cmx: generator/ustream.cmx generator/lexobjc.cmx \
+    generator/enum.cmx generator/debug.cmx generator/ast.cmx 
+generator/parser_types.cmo: generator/ustream.cmo generator/lexobjc.cmo \
+    generator/hardcoded.cmo generator/ast.cmo 
+generator/parser_types.cmx: generator/ustream.cmx generator/lexobjc.cmx \
+    generator/hardcoded.cmx generator/ast.cmx 
+generator/test_generator.cmo: generator/generator.cmo generator/debug.cmi 
+generator/test_generator.cmx: generator/generator.cmx generator/debug.cmx 
+generator/test_lexer.cmo: generator/utils.cmi generator/tiger.cmo \
+    generator/lexobjc.cmo generator/debug.cmi 
+generator/test_lexer.cmx: generator/utils.cmx generator/tiger.cmx \
+    generator/lexobjc.cmx generator/debug.cmx 
+generator/test_parser.cmo: generator/utils.cmi generator/tiger.cmo \
+    generator/parser_types.cmo generator/parser.cmo generator/lexobjc.cmo \
+    generator/debug.cmi generator/ast.cmo 
+generator/test_parser.cmx: generator/utils.cmx generator/tiger.cmx \
+    generator/parser_types.cmx generator/parser.cmx generator/lexobjc.cmx \
+    generator/debug.cmx generator/ast.cmx 
+generator/ustream.cmo: generator/lexobjc.cmo generator/debug.cmi 
+generator/ustream.cmx: generator/lexobjc.cmx generator/debug.cmx 
+generator/utils.cmo: generator/ohash.cmi generator/debug.cmi \
+    generator/utils.cmi 
+generator/utils.cmx: generator/ohash.cmx generator/debug.cmx \
+    generator/utils.cmi 
+tests/t1.cmo: foundation/NSString.cmo 
+tests/t1.cmx: foundation/NSString.cmx 
+tests/t2.cmo: support/objc.cmo foundation/NSString.cmo \
+    foundation/NSCalendarDate.cmo generator/debug.cmi 
+tests/t2.cmx: support/objc.cmx foundation/NSString.cmx \
+    foundation/NSCalendarDate.cmx generator/debug.cmx 
+tests/t3.cmo: support/objc.cmo foundation/NSString.cmo \
+    appkit/NSSpeechSynthesizer.cmo generator/debug.cmi 
+tests/t3.cmx: support/objc.cmx foundation/NSString.cmx \
+    appkit/NSSpeechSynthesizer.cmx generator/debug.cmx 
+tests/t4.cmo: support/objc.cmo foundation/NSString.cmo foundation/NSError.cmo \
+    generator/debug.cmi 
+tests/t4.cmx: support/objc.cmx foundation/NSString.cmx foundation/NSError.cmx \
+    generator/debug.cmx 
+foundation/NSAffineTransform.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+foundation/NSAffineTransform.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+foundation/NSAppleEventDescriptor.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSAppleEventDescriptor.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSAppleEventManager.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSAppleEventManager.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSAppleScript.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSAppleScript.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSArchiver.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSCoder.cmo support/classes.cmo 
+foundation/NSArchiver.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSCoder.cmx support/classes.cmx 
+foundation/NSArray.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSArray.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSAttributedString.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSString.cmo foundation/NSObject.cmo \
+    foundation/NSDictionary.cmo support/classes.cmo 
+foundation/NSAttributedString.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSString.cmx foundation/NSObject.cmx \
+    foundation/NSDictionary.cmx support/classes.cmx 
+foundation/NSAutoreleasePool.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSAutoreleasePool.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSBundle.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSBundle.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSCalendar.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSCalendar.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSCalendarDate.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo support/classes.cmo 
+foundation/NSCalendarDate.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx support/classes.cmx 
+foundation/NSCharacterSet.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSString.cmo foundation/NSRange.cmo foundation/NSObject.cmo \
+    support/classes.cmo 
+foundation/NSCharacterSet.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSString.cmx foundation/NSRange.cmx foundation/NSObject.cmx \
+    support/classes.cmx 
+foundation/NSClassDescription.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSException.cmo support/classes.cmo 
+foundation/NSClassDescription.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSException.cmx support/classes.cmx 
+foundation/NSCoder.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSCoder.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSComparisonPredicate.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSPredicate.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSComparisonPredicate.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSPredicate.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSCompoundPredicate.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSPredicate.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSCompoundPredicate.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSPredicate.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSConnection.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo support/classes.cmo 
+foundation/NSConnection.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx support/classes.cmx 
+foundation/NSData.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSData.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSDate.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSDate.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSDateFormatter.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSFormatter.cmo support/classes.cmo 
+foundation/NSDateFormatter.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSFormatter.cmx support/classes.cmx 
+foundation/NSDebug.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSPort.cmo foundation/NSObject.cmo foundation/NSDate.cmo \
+    foundation/NSAutoreleasePool.cmo support/classes.cmo 
+foundation/NSDebug.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSPort.cmx foundation/NSObject.cmx foundation/NSDate.cmx \
+    foundation/NSAutoreleasePool.cmx support/classes.cmx 
+foundation/NSDecimal.cmo: support/objc.cmo foundation/NSObject.cmo \
+    foundation/NSObjCRuntime.cmo 
+foundation/NSDecimal.cmx: support/objc.cmx foundation/NSObject.cmx \
+    foundation/NSObjCRuntime.cmx 
+foundation/NSDecimalNumber.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSValue.cmo foundation/NSScanner.cmo foundation/NSObject.cmo \
+    foundation/NSDictionary.cmo foundation/NSDecimal.cmo support/classes.cmo 
+foundation/NSDecimalNumber.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSValue.cmx foundation/NSScanner.cmx foundation/NSObject.cmx \
+    foundation/NSDictionary.cmx foundation/NSDecimal.cmx support/classes.cmx 
+foundation/NSDictionary.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSDictionary.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSDistantObject.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSProxy.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSDistantObject.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSProxy.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSDistributedLock.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSDistributedLock.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSDistributedNotificationCenter.cmo: support/selector.cmo \
+    support/objc.cmo foundation/NSObject.cmo foundation/NSNotification.cmo \
+    support/classes.cmo 
+foundation/NSDistributedNotificationCenter.cmx: support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx foundation/NSNotification.cmx \
+    support/classes.cmx 
+foundation/NSEnumerator.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSEnumerator.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSError.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSError.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSException.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSException.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSExpression.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSExpression.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSFileHandle.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo foundation/NSArray.cmo \
+    support/classes.cmo 
+foundation/NSFileHandle.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx foundation/NSArray.cmx \
+    support/classes.cmx 
+foundation/NSFileManager.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSEnumerator.cmo \
+    foundation/NSDictionary.cmo support/classes.cmo 
+foundation/NSFileManager.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSEnumerator.cmx \
+    foundation/NSDictionary.cmx support/classes.cmx 
+foundation/NSFormatter.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSFormatter.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSGeometry.cmo: support/objc.cmo foundation/NSValue.cmo \
+    foundation/NSObject.cmo foundation/NSCoder.cmo support/classes.cmo 
+foundation/NSGeometry.cmx: support/objc.cmx foundation/NSValue.cmx \
+    foundation/NSObject.cmx foundation/NSCoder.cmx support/classes.cmx 
+foundation/NSHFSFileTypes.cmo: support/objc.cmo foundation/NSObject.cmo \
+    foundation/NSObjCRuntime.cmo 
+foundation/NSHFSFileTypes.cmx: support/objc.cmx foundation/NSObject.cmx \
+    foundation/NSObjCRuntime.cmx 
+foundation/NSHTTPCookie.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSHTTPCookie.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSHTTPCookieStorage.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSHTTPCookieStorage.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSHashTable.cmo: support/objc.cmo foundation/NSString.cmo \
+    foundation/NSObject.cmo foundation/NSArray.cmo 
+foundation/NSHashTable.cmx: support/objc.cmx foundation/NSString.cmx \
+    foundation/NSObject.cmx foundation/NSArray.cmx 
+foundation/NSHost.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSHost.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSIndexPath.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSIndexPath.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSJavaSetup.cmo: support/objc.cmo foundation/NSObject.cmo 
+foundation/NSJavaSetup.cmx: support/objc.cmx foundation/NSObject.cmx 
+foundation/NSKeyValueCoding.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSSet.cmo foundation/NSObject.cmo foundation/NSDictionary.cmo \
+    foundation/NSArray.cmo support/classes.cmo 
+foundation/NSKeyValueCoding.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSSet.cmx foundation/NSObject.cmx foundation/NSDictionary.cmx \
+    foundation/NSArray.cmx support/classes.cmx 
+foundation/NSKeyValueObserving.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSSet.cmo foundation/NSObject.cmo foundation/NSArray.cmo \
+    support/classes.cmo 
+foundation/NSKeyValueObserving.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSSet.cmx foundation/NSObject.cmx foundation/NSArray.cmx \
+    support/classes.cmx 
+foundation/NSKeyedArchiver.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSPropertyList.cmo foundation/NSObject.cmo \
+    foundation/NSGeometry.cmo foundation/NSCoder.cmo support/classes.cmo 
+foundation/NSKeyedArchiver.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSPropertyList.cmx foundation/NSObject.cmx \
+    foundation/NSGeometry.cmx foundation/NSCoder.cmx support/classes.cmx 
+foundation/NSLocale.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSLocale.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSLock.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSLock.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSMapTable.cmo: support/objc.cmo foundation/NSString.cmo \
+    foundation/NSObject.cmo foundation/NSArray.cmo 
+foundation/NSMapTable.cmx: support/objc.cmx foundation/NSString.cmx \
+    foundation/NSObject.cmx foundation/NSArray.cmx 
+foundation/NSMetadata.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo support/classes.cmo 
+foundation/NSMetadata.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx support/classes.cmx 
+foundation/NSMethodSignature.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSMethodSignature.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSNetServices.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo support/classes.cmo 
+foundation/NSNetServices.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx support/classes.cmx 
+foundation/NSNotification.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSNotification.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSNotificationQueue.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSNotificationQueue.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSNull.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSNull.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSNumberFormatter.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSFormatter.cmo support/classes.cmo 
+foundation/NSNumberFormatter.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSFormatter.cmx support/classes.cmx 
+foundation/NSObjCRuntime.cmo: support/objc.cmo 
+foundation/NSObjCRuntime.cmx: support/objc.cmx 
+foundation/NSObject.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSZone.cmo foundation/NSObjCRuntime.cmo support/classes.cmo 
+foundation/NSObject.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSZone.cmx foundation/NSObjCRuntime.cmx support/classes.cmx 
+foundation/NSObjectScripting.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSObjectScripting.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSPathUtilities.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSString.cmo foundation/NSObject.cmo foundation/NSArray.cmo \
+    support/classes.cmo 
+foundation/NSPathUtilities.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSString.cmx foundation/NSObject.cmx foundation/NSArray.cmx \
+    support/classes.cmx 
+foundation/NSPort.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSPort.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSPortCoder.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSCoder.cmo support/classes.cmo 
+foundation/NSPortCoder.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSCoder.cmx support/classes.cmx 
+foundation/NSPortMessage.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSPortMessage.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSPortNameServer.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSPortNameServer.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSPredicate.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSArray.cmo support/classes.cmo 
+foundation/NSPredicate.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSArray.cmx support/classes.cmx 
+foundation/NSProcessInfo.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSProcessInfo.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSPropertyList.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSPropertyList.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSProtocolChecker.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSProxy.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSProtocolChecker.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSProxy.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSProxy.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSProxy.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSRange.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSValue.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSRange.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSValue.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSRunLoop.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo support/classes.cmo 
+foundation/NSRunLoop.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx support/classes.cmx 
+foundation/NSScanner.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScanner.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSScriptClassDescription.cmo: support/selector.cmo \
+    support/objc.cmo foundation/NSObject.cmo \
+    foundation/NSClassDescription.cmo support/classes.cmo 
+foundation/NSScriptClassDescription.cmx: support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx \
+    foundation/NSClassDescription.cmx support/classes.cmx 
+foundation/NSScriptCoercionHandler.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScriptCoercionHandler.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSScriptCommand.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScriptCommand.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSScriptCommandDescription.cmo: support/selector.cmo \
+    support/objc.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScriptCommandDescription.cmx: support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSScriptExecutionContext.cmo: support/selector.cmo \
+    support/objc.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScriptExecutionContext.cmx: support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSScriptKeyValueCoding.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScriptKeyValueCoding.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSScriptObjectSpecifiers.cmo: support/selector.cmo \
+    support/objc.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScriptObjectSpecifiers.cmx: support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSScriptStandardSuiteCommands.cmo: support/selector.cmo \
+    support/objc.cmo foundation/NSScriptCommand.cmo foundation/NSObject.cmo \
+    support/classes.cmo 
+foundation/NSScriptStandardSuiteCommands.cmx: support/selector.cmx \
+    support/objc.cmx foundation/NSScriptCommand.cmx foundation/NSObject.cmx \
+    support/classes.cmx 
+foundation/NSScriptSuiteRegistry.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScriptSuiteRegistry.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSScriptWhoseTests.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSScriptWhoseTests.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSSet.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSSet.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSSortDescriptor.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSArray.cmo support/classes.cmo 
+foundation/NSSortDescriptor.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSArray.cmx support/classes.cmx 
+foundation/NSSpellServer.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSSpellServer.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSStream.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSStream.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSString.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSString.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSTask.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSTask.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSThread.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSThread.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSTimeZone.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSTimeZone.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSTimer.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo support/classes.cmo 
+foundation/NSTimer.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx support/classes.cmx 
+foundation/NSURL.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSURLHandle.cmo foundation/NSString.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURL.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSURLHandle.cmx foundation/NSString.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLAuthenticationChallenge.cmo: support/selector.cmo \
+    support/objc.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLAuthenticationChallenge.cmx: support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLCache.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLCache.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLConnection.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLConnection.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLCredential.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLCredential.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLCredentialStorage.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLCredentialStorage.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLDownload.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLDownload.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLError.cmo: support/objc.cmo foundation/NSObject.cmo 
+foundation/NSURLError.cmx: support/objc.cmx foundation/NSObject.cmx 
+foundation/NSURLHandle.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLHandle.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLProtectionSpace.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLProtectionSpace.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLProtocol.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSURLCache.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLProtocol.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSURLCache.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSURLRequest.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo support/classes.cmo 
+foundation/NSURLRequest.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx support/classes.cmx 
+foundation/NSURLResponse.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSURLResponse.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSUndoManager.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSUndoManager.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSUserDefaults.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSUserDefaults.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSValue.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSValue.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSValueTransformer.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSValueTransformer.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSXMLDTD.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSXMLNode.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSXMLDTD.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSXMLNode.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSXMLDTDNode.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSXMLNode.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSXMLDTDNode.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSXMLNode.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSXMLDocument.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSXMLNode.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSXMLDocument.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSXMLNode.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSXMLElement.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSXMLNode.cmo foundation/NSObject.cmo support/classes.cmo 
+foundation/NSXMLElement.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSXMLNode.cmx foundation/NSObject.cmx support/classes.cmx 
+foundation/NSXMLNode.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSXMLNodeOptions.cmo foundation/NSObject.cmo \
+    support/classes.cmo 
+foundation/NSXMLNode.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSXMLNodeOptions.cmx foundation/NSObject.cmx \
+    support/classes.cmx 
+foundation/NSXMLNodeOptions.cmo: support/objc.cmo foundation/NSObject.cmo 
+foundation/NSXMLNodeOptions.cmx: support/objc.cmx foundation/NSObject.cmx 
+foundation/NSXMLParser.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+foundation/NSXMLParser.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+foundation/NSZone.cmo: support/objc.cmo foundation/NSObjCRuntime.cmo 
+foundation/NSZone.cmx: support/objc.cmx foundation/NSObjCRuntime.cmx 
+appkit/AppKitDefines.cmo: support/objc.cmo foundation/NSObject.cmo 
+appkit/AppKitDefines.cmx: support/objc.cmx foundation/NSObject.cmx 
+appkit/AppKitErrors.cmo: support/objc.cmo foundation/NSObject.cmo 
+appkit/AppKitErrors.cmx: support/objc.cmx foundation/NSObject.cmx 
+appkit/NSAccessibility.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo appkit/NSErrors.cmo \
+    support/classes.cmo 
+appkit/NSAccessibility.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx appkit/NSErrors.cmx \
+    support/classes.cmx 
+appkit/NSActionCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSCell.cmo support/classes.cmo 
+appkit/NSActionCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSCell.cmx support/classes.cmx 
+appkit/NSAlert.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSGraphics.cmo support/classes.cmo 
+appkit/NSAlert.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSGraphics.cmx support/classes.cmx 
+appkit/NSAnimation.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSAnimation.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSAppleScriptExtensions.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSAppleScript.cmo support/classes.cmo 
+appkit/NSAppleScriptExtensions.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSAppleScript.cmx support/classes.cmx 
+appkit/NSApplication.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSResponder.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSApplication.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSResponder.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSApplicationScripting.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSApplication.cmo support/classes.cmo 
+appkit/NSApplicationScripting.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSApplication.cmx support/classes.cmx 
+appkit/NSBezierPath.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo appkit/NSFont.cmo \
+    support/classes.cmo 
+appkit/NSBezierPath.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx appkit/NSFont.cmx \
+    support/classes.cmx 
+appkit/NSBitmapImageRep.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSImageRep.cmo support/classes.cmo 
+appkit/NSBitmapImageRep.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSImageRep.cmx support/classes.cmx 
+appkit/NSBox.cmo: support/selector.cmo support/objc.cmo appkit/NSView.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSBox.cmx: support/selector.cmx support/objc.cmx appkit/NSView.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSBrowser.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSControl.cmo support/classes.cmo 
+appkit/NSBrowser.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSControl.cmx support/classes.cmx 
+appkit/NSBrowserCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSCell.cmo support/classes.cmo 
+appkit/NSBrowserCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSCell.cmx support/classes.cmx 
+appkit/NSButton.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSControl.cmo appkit/NSButtonCell.cmo \
+    support/classes.cmo 
+appkit/NSButton.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSControl.cmx appkit/NSButtonCell.cmx \
+    support/classes.cmx 
+appkit/NSButtonCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSActionCell.cmo support/classes.cmo 
+appkit/NSButtonCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSActionCell.cmx support/classes.cmx 
+appkit/NSCIImageRep.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSImageRep.cmo appkit/NSGraphics.cmo \
+    support/classes.cmo 
+appkit/NSCIImageRep.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSImageRep.cmx appkit/NSGraphics.cmx \
+    support/classes.cmx 
+appkit/NSCachedImageRep.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSImageRep.cmo appkit/NSGraphics.cmo \
+    support/classes.cmo 
+appkit/NSCachedImageRep.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSImageRep.cmx appkit/NSGraphics.cmx \
+    support/classes.cmx 
+appkit/NSCell.cmo: support/selector.cmo support/objc.cmo appkit/NSText.cmo \
+    appkit/NSParagraphStyle.cmo foundation/NSObject.cmo \
+    foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSCell.cmx: support/selector.cmx support/objc.cmx appkit/NSText.cmx \
+    appkit/NSParagraphStyle.cmx foundation/NSObject.cmx \
+    foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSClipView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSClipView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSColor.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo appkit/NSCell.cmo \
+    support/classes.cmo 
+appkit/NSColor.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx appkit/NSCell.cmx \
+    support/classes.cmx 
+appkit/NSColorList.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSColorList.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSColorPanel.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSPanel.cmo foundation/NSObject.cmo appkit/NSApplication.cmo \
+    support/classes.cmo 
+appkit/NSColorPanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSPanel.cmx foundation/NSObject.cmx appkit/NSApplication.cmx \
+    support/classes.cmx 
+appkit/NSColorPicker.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSColorPicking.cmo support/classes.cmo 
+appkit/NSColorPicker.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSColorPicking.cmx support/classes.cmx 
+appkit/NSColorPicking.cmo: support/objc.cmo foundation/NSObject.cmo 
+appkit/NSColorPicking.cmx: support/objc.cmx foundation/NSObject.cmx 
+appkit/NSColorSpace.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSColorSpace.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSColorWell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSControl.cmo support/classes.cmo 
+appkit/NSColorWell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSControl.cmx support/classes.cmx 
+appkit/NSComboBox.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTextField.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSComboBox.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTextField.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSComboBoxCell.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTextFieldCell.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSComboBoxCell.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTextFieldCell.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSControl.cmo: support/selector.cmo support/objc.cmo appkit/NSView.cmo \
+    appkit/NSText.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSControl.cmx: support/selector.cmx support/objc.cmx appkit/NSView.cmx \
+    appkit/NSText.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSController.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSKeyValueBinding.cmo support/classes.cmo 
+appkit/NSController.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSKeyValueBinding.cmx support/classes.cmx 
+appkit/NSCursor.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSCursor.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSCustomImageRep.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSImageRep.cmo support/classes.cmo 
+appkit/NSCustomImageRep.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSImageRep.cmx support/classes.cmx 
+appkit/NSDatePicker.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSDatePickerCell.cmo appkit/NSControl.cmo \
+    support/classes.cmo 
+appkit/NSDatePicker.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSDatePickerCell.cmx appkit/NSControl.cmx \
+    support/classes.cmx 
+appkit/NSDatePickerCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo appkit/NSActionCell.cmo \
+    support/classes.cmo 
+appkit/NSDatePickerCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx appkit/NSActionCell.cmx \
+    support/classes.cmx 
+appkit/NSDocument.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSUserInterfaceValidation.cmo foundation/NSObject.cmo \
+    appkit/NSNibDeclarations.cmo support/classes.cmo 
+appkit/NSDocument.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSUserInterfaceValidation.cmx foundation/NSObject.cmx \
+    appkit/NSNibDeclarations.cmx support/classes.cmx 
+appkit/NSDocumentController.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSUserInterfaceValidation.cmo foundation/NSObject.cmo \
+    appkit/NSNibDeclarations.cmo foundation/NSDate.cmo support/classes.cmo 
+appkit/NSDocumentController.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSUserInterfaceValidation.cmx foundation/NSObject.cmx \
+    appkit/NSNibDeclarations.cmx foundation/NSDate.cmx support/classes.cmx 
+appkit/NSDocumentScripting.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSDocument.cmo support/classes.cmo 
+appkit/NSDocumentScripting.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSDocument.cmx support/classes.cmx 
+appkit/NSDragging.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSDragging.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSDrawer.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSWindow.cmo appkit/NSResponder.cmo foundation/NSObject.cmo \
+    foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSDrawer.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSWindow.cmx appkit/NSResponder.cmx foundation/NSObject.cmx \
+    foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSEPSImageRep.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSImageRep.cmo support/classes.cmo 
+appkit/NSEPSImageRep.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSImageRep.cmx support/classes.cmx 
+appkit/NSErrors.cmo: support/objc.cmo foundation/NSObject.cmo 
+appkit/NSErrors.cmx: support/objc.cmx foundation/NSObject.cmx 
+appkit/NSEvent.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo foundation/NSDate.cmo \
+    support/classes.cmo 
+appkit/NSEvent.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx foundation/NSDate.cmx \
+    support/classes.cmx 
+appkit/NSFileWrapper.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSFileWrapper.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSFont.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSString.cmo foundation/NSObject.cmo appkit/NSCell.cmo \
+    support/classes.cmo 
+appkit/NSFont.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSString.cmx foundation/NSObject.cmx appkit/NSCell.cmx \
+    support/classes.cmx 
+appkit/NSFontDescriptor.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSFontDescriptor.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSFontManager.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSFontManager.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSFontPanel.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSPanel.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSFontPanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSPanel.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSForm.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSMatrix.cmo support/classes.cmo 
+appkit/NSForm.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSMatrix.cmx support/classes.cmx 
+appkit/NSFormCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSActionCell.cmo support/classes.cmo 
+appkit/NSFormCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSActionCell.cmx support/classes.cmx 
+appkit/NSGlyphGenerator.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSFont.cmo \
+    foundation/NSAttributedString.cmo support/classes.cmo 
+appkit/NSGlyphGenerator.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSFont.cmx \
+    foundation/NSAttributedString.cmx support/classes.cmx 
+appkit/NSGlyphInfo.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSString.cmo foundation/NSObject.cmo appkit/NSFont.cmo \
+    support/classes.cmo 
+appkit/NSGlyphInfo.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSString.cmx foundation/NSObject.cmx appkit/NSFont.cmx \
+    support/classes.cmx 
+appkit/NSGraphics.cmo: support/objc.cmo foundation/NSObject.cmo \
+    foundation/NSGeometry.cmo 
+appkit/NSGraphics.cmx: support/objc.cmx foundation/NSObject.cmx \
+    foundation/NSGeometry.cmx 
+appkit/NSGraphicsContext.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSGraphics.cmo foundation/NSGeometry.cmo \
+    support/classes.cmo 
+appkit/NSGraphicsContext.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSGraphics.cmx foundation/NSGeometry.cmx \
+    support/classes.cmx 
+appkit/NSHelpManager.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSMapTable.cmo \
+    foundation/NSGeometry.cmo foundation/NSBundle.cmo \
+    appkit/NSApplication.cmo support/classes.cmo 
+appkit/NSHelpManager.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSMapTable.cmx \
+    foundation/NSGeometry.cmx foundation/NSBundle.cmx \
+    appkit/NSApplication.cmx support/classes.cmx 
+appkit/NSImage.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSGraphics.cmo foundation/NSGeometry.cmo \
+    foundation/NSBundle.cmo appkit/NSBitmapImageRep.cmo support/classes.cmo 
+appkit/NSImage.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSGraphics.cmx foundation/NSGeometry.cmx \
+    foundation/NSBundle.cmx appkit/NSBitmapImageRep.cmx support/classes.cmx 
+appkit/NSImageCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSCell.cmo support/classes.cmo 
+appkit/NSImageCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSCell.cmx support/classes.cmx 
+appkit/NSImageRep.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSImageRep.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSImageView.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSImageCell.cmo appkit/NSControl.cmo \
+    support/classes.cmo 
+appkit/NSImageView.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSImageCell.cmx appkit/NSControl.cmx \
+    support/classes.cmx 
+appkit/NSInputManager.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo foundation/NSGeometry.cmo \
+    support/classes.cmo 
+appkit/NSInputManager.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx foundation/NSGeometry.cmx \
+    support/classes.cmx 
+appkit/NSInputServer.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo foundation/NSGeometry.cmo \
+    support/classes.cmo 
+appkit/NSInputServer.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx foundation/NSGeometry.cmx \
+    support/classes.cmx 
+appkit/NSInterfaceStyle.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSResponder.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSInterfaceStyle.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSResponder.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSKeyValueBinding.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSKeyValueBinding.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSLevelIndicator.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSLevelIndicatorCell.cmo \
+    appkit/NSControl.cmo support/classes.cmo 
+appkit/NSLevelIndicator.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSLevelIndicatorCell.cmx \
+    appkit/NSControl.cmx support/classes.cmx 
+appkit/NSLevelIndicatorCell.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSSliderCell.cmo foundation/NSObject.cmo appkit/NSActionCell.cmo \
+    support/classes.cmo 
+appkit/NSLevelIndicatorCell.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSSliderCell.cmx foundation/NSObject.cmx appkit/NSActionCell.cmx \
+    support/classes.cmx 
+appkit/NSMatrix.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSControl.cmo support/classes.cmo 
+appkit/NSMatrix.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSControl.cmx support/classes.cmx 
+appkit/NSMenu.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSMenuItem.cmo foundation/NSGeometry.cmo \
+    support/classes.cmo 
+appkit/NSMenu.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSMenuItem.cmx foundation/NSGeometry.cmx \
+    support/classes.cmx 
+appkit/NSMenuItem.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSUserInterfaceValidation.cmo foundation/NSObject.cmo \
+    support/classes.cmo 
+appkit/NSMenuItem.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSUserInterfaceValidation.cmx foundation/NSObject.cmx \
+    support/classes.cmx 
+appkit/NSMenuItemCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSMenuItem.cmo appkit/NSMenu.cmo \
+    appkit/NSButtonCell.cmo support/classes.cmo 
+appkit/NSMenuItemCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSMenuItem.cmx appkit/NSMenu.cmx \
+    appkit/NSButtonCell.cmx support/classes.cmx 
+appkit/NSMenuView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo appkit/NSMenuItemCell.cmo \
+    appkit/NSMenuItem.cmo appkit/NSMenu.cmo support/classes.cmo 
+appkit/NSMenuView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx appkit/NSMenuItemCell.cmx \
+    appkit/NSMenuItem.cmx appkit/NSMenu.cmx support/classes.cmx 
+appkit/NSMovie.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSMovie.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSMovieView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSMovieView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSNib.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSNib.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSNibConnector.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSNibConnector.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSNibControlConnector.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSNibConnector.cmo support/classes.cmo 
+appkit/NSNibControlConnector.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSNibConnector.cmx support/classes.cmx 
+appkit/NSNibDeclarations.cmo: support/objc.cmo foundation/NSObject.cmo 
+appkit/NSNibDeclarations.cmx: support/objc.cmx foundation/NSObject.cmx 
+appkit/NSNibLoading.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSBundle.cmo support/classes.cmo 
+appkit/NSNibLoading.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSBundle.cmx support/classes.cmx 
+appkit/NSNibOutletConnector.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSNibConnector.cmo support/classes.cmo 
+appkit/NSNibOutletConnector.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSNibConnector.cmx support/classes.cmx 
+appkit/NSOpenGL.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSOpenGL.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSOpenGLView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSOpenGLView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSOpenPanel.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSSavePanel.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSOpenPanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSSavePanel.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSOutlineView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTableView.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSOutlineView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTableView.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSPDFImageRep.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSImageRep.cmo support/classes.cmo 
+appkit/NSPDFImageRep.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSImageRep.cmx support/classes.cmx 
+appkit/NSPICTImageRep.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSImageRep.cmo support/classes.cmo 
+appkit/NSPICTImageRep.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSImageRep.cmx support/classes.cmx 
+appkit/NSPageLayout.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSPanel.cmo foundation/NSObject.cmo appkit/NSApplication.cmo \
+    support/classes.cmo 
+appkit/NSPageLayout.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSPanel.cmx foundation/NSObject.cmx appkit/NSApplication.cmx \
+    support/classes.cmx 
+appkit/NSPanel.cmo: support/selector.cmo support/objc.cmo appkit/NSWindow.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSPanel.cmx: support/selector.cmx support/objc.cmx appkit/NSWindow.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSParagraphStyle.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSText.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSParagraphStyle.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSText.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSPasteboard.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSURL.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSPasteboard.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSURL.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSPersistentDocument.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSDocument.cmo support/classes.cmo 
+appkit/NSPersistentDocument.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSDocument.cmx support/classes.cmx 
+appkit/NSPopUpButton.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSMenuItemCell.cmo appkit/NSMenuItem.cmo \
+    appkit/NSButton.cmo support/classes.cmo 
+appkit/NSPopUpButton.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSMenuItemCell.cmx appkit/NSMenuItem.cmx \
+    appkit/NSButton.cmx support/classes.cmx 
+appkit/NSPopUpButtonCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSMenuItemCell.cmo appkit/NSMenuItem.cmo \
+    support/classes.cmo 
+appkit/NSPopUpButtonCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSMenuItemCell.cmx appkit/NSMenuItem.cmx \
+    support/classes.cmx 
+appkit/NSPrintInfo.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSPrintInfo.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSPrintOperation.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSPrintOperation.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSPrintPanel.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSPrintPanel.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSPrinter.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSPrinter.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSProgressIndicator.cmo: support/objc.cmo appkit/NSView.cmo \
+    foundation/NSObject.cmo foundation/NSDate.cmo appkit/NSCell.cmo 
+appkit/NSProgressIndicator.cmx: support/objc.cmx appkit/NSView.cmx \
+    foundation/NSObject.cmx foundation/NSDate.cmx appkit/NSCell.cmx 
+appkit/NSQuickDrawView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSQuickDrawView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSResponder.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSResponder.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSRulerMarker.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSRulerMarker.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSRulerView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSRulerView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSSavePanel.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSPanel.cmo foundation/NSObject.cmo appkit/NSNibDeclarations.cmo \
+    support/classes.cmo 
+appkit/NSSavePanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSPanel.cmx foundation/NSObject.cmx appkit/NSNibDeclarations.cmx \
+    support/classes.cmx 
+appkit/NSScreen.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSGraphics.cmo foundation/NSGeometry.cmo \
+    support/classes.cmo 
+appkit/NSScreen.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSGraphics.cmx foundation/NSGeometry.cmx \
+    support/classes.cmx 
+appkit/NSScrollView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo foundation/NSDate.cmo \
+    support/classes.cmo 
+appkit/NSScrollView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx foundation/NSDate.cmx \
+    support/classes.cmx 
+appkit/NSScroller.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSControl.cmo appkit/NSCell.cmo \
+    support/classes.cmo 
+appkit/NSScroller.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSControl.cmx appkit/NSCell.cmx \
+    support/classes.cmx 
+appkit/NSSearchField.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTextField.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSSearchField.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTextField.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSSearchFieldCell.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTextFieldCell.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSSearchFieldCell.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTextFieldCell.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSSecureTextField.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTextFieldCell.cmo appkit/NSTextField.cmo foundation/NSObject.cmo \
+    support/classes.cmo 
+appkit/NSSecureTextField.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTextFieldCell.cmx appkit/NSTextField.cmx foundation/NSObject.cmx \
+    support/classes.cmx 
+appkit/NSSegmentedCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo appkit/NSActionCell.cmo \
+    support/classes.cmo 
+appkit/NSSegmentedCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx appkit/NSActionCell.cmx \
+    support/classes.cmx 
+appkit/NSSegmentedControl.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSControl.cmo support/classes.cmo 
+appkit/NSSegmentedControl.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSControl.cmx support/classes.cmx 
+appkit/NSShadow.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSShadow.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSSlider.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSSliderCell.cmo foundation/NSObject.cmo appkit/NSControl.cmo \
+    support/classes.cmo 
+appkit/NSSlider.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSSliderCell.cmx foundation/NSObject.cmx appkit/NSControl.cmx \
+    support/classes.cmx 
+appkit/NSSliderCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSActionCell.cmo support/classes.cmo 
+appkit/NSSliderCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSActionCell.cmx support/classes.cmx 
+appkit/NSSound.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSBundle.cmo support/classes.cmo 
+appkit/NSSound.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSBundle.cmx support/classes.cmx 
+appkit/NSSpeechRecognizer.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSSpeechRecognizer.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSSpeechSynthesizer.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSSpeechSynthesizer.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSSpellChecker.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSRange.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSSpellChecker.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSRange.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSSpellProtocol.cmo: support/objc.cmo foundation/NSObject.cmo 
+appkit/NSSpellProtocol.cmx: support/objc.cmx foundation/NSObject.cmx 
+appkit/NSSplitView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSSplitView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSStatusBar.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSStatusBar.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSStatusItem.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSStatusItem.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSStepper.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSControl.cmo support/classes.cmo 
+appkit/NSStepper.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSControl.cmx support/classes.cmx 
+appkit/NSStepperCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSActionCell.cmo support/classes.cmo 
+appkit/NSStepperCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSActionCell.cmx support/classes.cmx 
+appkit/NSStringDrawing.cmo: support/objc.cmo foundation/NSString.cmo \
+    foundation/NSObject.cmo foundation/NSAttributedString.cmo \
+    support/classes.cmo 
+appkit/NSStringDrawing.cmx: support/objc.cmx foundation/NSString.cmx \
+    foundation/NSObject.cmx foundation/NSAttributedString.cmx \
+    support/classes.cmx 
+appkit/NSTabView.cmo: support/selector.cmo support/objc.cmo appkit/NSView.cmo \
+    foundation/NSObject.cmo appkit/NSCell.cmo support/classes.cmo 
+appkit/NSTabView.cmx: support/selector.cmx support/objc.cmx appkit/NSView.cmx \
+    foundation/NSObject.cmx appkit/NSCell.cmx support/classes.cmx 
+appkit/NSTabViewItem.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo foundation/NSGeometry.cmo \
+    support/classes.cmo 
+appkit/NSTabViewItem.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx foundation/NSGeometry.cmx \
+    support/classes.cmx 
+appkit/NSTableColumn.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSTableColumn.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSTableHeaderCell.cmo: support/objc.cmo appkit/NSTextFieldCell.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSTableHeaderCell.cmx: support/objc.cmx appkit/NSTextFieldCell.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSTableHeaderView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSView.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSTableHeaderView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSView.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSTableView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSUserInterfaceValidation.cmo foundation/NSObject.cmo \
+    appkit/NSDragging.cmo appkit/NSControl.cmo support/classes.cmo 
+appkit/NSTableView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSUserInterfaceValidation.cmx foundation/NSObject.cmx \
+    appkit/NSDragging.cmx appkit/NSControl.cmx support/classes.cmx 
+appkit/NSText.cmo: support/selector.cmo support/objc.cmo appkit/NSView.cmo \
+    appkit/NSSpellProtocol.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSText.cmx: support/selector.cmx support/objc.cmx appkit/NSView.cmx \
+    appkit/NSSpellProtocol.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSTextAttachment.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSCell.cmo \
+    foundation/NSAttributedString.cmo support/classes.cmo 
+appkit/NSTextAttachment.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSCell.cmx \
+    foundation/NSAttributedString.cmx support/classes.cmx 
+appkit/NSTextContainer.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSTextContainer.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSTextField.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTextFieldCell.cmo foundation/NSObject.cmo appkit/NSControl.cmo \
+    support/classes.cmo 
+appkit/NSTextField.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTextFieldCell.cmx foundation/NSObject.cmx appkit/NSControl.cmx \
+    support/classes.cmx 
+appkit/NSTextFieldCell.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSActionCell.cmo support/classes.cmo 
+appkit/NSTextFieldCell.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSActionCell.cmx support/classes.cmx 
+appkit/NSTextList.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSTextList.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSTextStorage.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSAttributedString.cmo \
+    support/classes.cmo 
+appkit/NSTextStorage.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSAttributedString.cmx \
+    support/classes.cmx 
+appkit/NSTextStorageScripting.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTextStorage.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSTextStorageScripting.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTextStorage.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSTextTable.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSText.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSTextTable.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSText.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSTextView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSUserInterfaceValidation.cmo appkit/NSTextAttachment.cmo \
+    appkit/NSText.cmo foundation/NSObject.cmo appkit/NSInputManager.cmo \
+    appkit/NSDragging.cmo support/classes.cmo 
+appkit/NSTextView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSUserInterfaceValidation.cmx appkit/NSTextAttachment.cmx \
+    appkit/NSText.cmx foundation/NSObject.cmx appkit/NSInputManager.cmx \
+    appkit/NSDragging.cmx support/classes.cmx 
+appkit/NSTokenField.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTokenFieldCell.cmo appkit/NSTextField.cmo \
+    appkit/NSTextContainer.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSTokenField.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTokenFieldCell.cmx appkit/NSTextField.cmx \
+    appkit/NSTextContainer.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSTokenFieldCell.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSTextFieldCell.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSTokenFieldCell.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSTextFieldCell.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSToolbar.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo support/classes.cmo 
+appkit/NSToolbar.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx support/classes.cmx 
+appkit/NSToolbarItem.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSUserInterfaceValidation.cmo appkit/NSToolbar.cmo \
+    appkit/NSText.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSToolbarItem.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSUserInterfaceValidation.cmx appkit/NSToolbar.cmx \
+    appkit/NSText.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSUserDefaultsController.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo appkit/NSController.cmo support/classes.cmo 
+appkit/NSUserDefaultsController.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx appkit/NSController.cmx support/classes.cmx 
+appkit/NSUserInterfaceValidation.cmo: support/objc.cmo \
+    foundation/NSObject.cmo 
+appkit/NSUserInterfaceValidation.cmx: support/objc.cmx \
+    foundation/NSObject.cmx 
+appkit/NSView.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSResponder.cmo foundation/NSRange.cmo foundation/NSObject.cmo \
+    appkit/NSGraphics.cmo foundation/NSGeometry.cmo support/classes.cmo 
+appkit/NSView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSResponder.cmx foundation/NSRange.cmx foundation/NSObject.cmx \
+    appkit/NSGraphics.cmx foundation/NSGeometry.cmx support/classes.cmx 
+appkit/NSWindow.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSResponder.cmo foundation/NSObject.cmo appkit/NSGraphics.cmo \
+    foundation/NSGeometry.cmo foundation/NSDate.cmo support/classes.cmo 
+appkit/NSWindow.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSResponder.cmx foundation/NSObject.cmx appkit/NSGraphics.cmx \
+    foundation/NSGeometry.cmx foundation/NSDate.cmx support/classes.cmx 
+appkit/NSWindowController.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSResponder.cmo foundation/NSObject.cmo \
+    appkit/NSNibDeclarations.cmo support/classes.cmo 
+appkit/NSWindowController.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSResponder.cmx foundation/NSObject.cmx \
+    appkit/NSNibDeclarations.cmx support/classes.cmx 
+appkit/NSWindowScripting.cmo: support/selector.cmo support/objc.cmo \
+    appkit/NSWindow.cmo foundation/NSObject.cmo support/classes.cmo 
+appkit/NSWindowScripting.cmx: support/selector.cmx support/objc.cmx \
+    appkit/NSWindow.cmx foundation/NSObject.cmx support/classes.cmx 
+appkit/NSWorkspace.cmo: support/selector.cmo support/objc.cmo \
+    foundation/NSObject.cmo foundation/NSGeometry.cmo \
+    foundation/NSAppleEventDescriptor.cmo support/classes.cmo 
+appkit/NSWorkspace.cmx: support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/NSGeometry.cmx \
+    foundation/NSAppleEventDescriptor.cmx support/classes.cmx 
