@@ -4,13 +4,13 @@ gen_appkit: generator/tiger.cmo libgenerator.cma generator/gen_appkit.cmo
 
 APPKIT_LIB=$(wildcard appkit/*.ml)
 APPKIT_OBJS=$(APPKIT_LIB:.ml=.cmo)
-APPKIT_STUBS=$(wildcard appkit/*.m)
-APPKIT_C_OBJS=$(APPKIT_STUBS:.m=.o)
 
 APPKIT_SORTED_OBJS=$(shell utils/cmosort appkit)
 
-appkit.cma: $(APPKIT_SORTED_OBJS) $(APPKIT_C_OBJS)
+appkit.cma: $(APPKIT_SORTED_OBJS) support/camlappkit.o
 	$(MIXEDBYTELIB) -ccopt -g  -framework AppKit
+
+TARGET_LIBS+=appkit.cma
 
 $(eval $(call add_dir, appkit))
 

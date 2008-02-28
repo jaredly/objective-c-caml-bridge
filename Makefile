@@ -23,12 +23,14 @@ SAVED_SUFFIXES+=m
 SAVE=README TODO LICENSE \
      $(wildcard mk/Makefile.*) \
      $(wildcard tryouts/*.ml*) tryouts/Makefile \
-     $(wildcard tests/*.ml*)
+     $(wildcard tests/*.ml*) \
+     utils/cmosort
 
 # List  binaries here (make clean will remove them)
 BIN=test_lexer test_parser test_generator \
     gen_foundation gen_appkit \
-    tests/t?
+    tests/t? \
+    toposort	
 
 # List generated files here (make depend will generate them)
 GEN=generator/lexobjc.ml
@@ -40,11 +42,14 @@ GEN=generator/lexobjc.ml
 # For the generator
 GENERATOR_OBJ= \
 	generator/debug.cmo generator/ohash.cmo generator/utils.cmo \
+	generator/tsort.cmo \
 	generator/ustream.cmo generator/lexobjc.cmo \
 	generator/ast.cmo generator/hardcoded.cmo \
 	generator/enum.cmo generator/parser_types.cmo generator/parser_enum.cmo \
 	generator/parser.cmo generator/btypes.cmo  \
-	generator/generator.cmo
+	generator/writing.cmo \
+	generator/generator.cmo \
+	generator/dependencies.cmo
 
 # For runtime support
 SUPPORT_OBJ=support/classes.cmo support/selector.cmo support/objc.cmo 
@@ -56,9 +61,6 @@ all: 	libgenerator.cma \
 	tests
 
 
-TARGET_LIBS+=foundation.cma
-TARGET_LIBS+=appkit.cma
-
 libs: $(GENERATOR_OBJ) .depend  $(TARGET_LIBS)
 
 # Support library for the generator
@@ -67,13 +69,16 @@ libgenerator.cmxa: $(GENERATOR_OBJ:.cmo=.cmx)
 
 # Runtime library
 # Note: can't generate in support/, something gets broken w/ path of dll*.so
-bridgeocamlobjc.cma: $(SUPPORT_OBJ) support/camlinvoke.o support/camlselectors.o
+bridgeocamlobjc.cma: $(SUPPORT_OBJ) support/camlinvoke.o support/camlselectors.o support/camlclasses.o
 	$(MIXEDBYTELIB) -ccopt -g -framework Foundation -lobjc
 
 # Generated code
 GENLIB=$(FOUNDATION_LIB) $(APPKIT_LIB)
 GENOBJ=$(FOUNDATION_OBJS) $(APPKIT_OBJS)
 $(GENLIB)::generator/generator.ml
+
+toposort: generator/debug.cmo generator/tsort.cmo generator/tsort_main.cmo
+	$(BYTELINK)
 
 compiler_tests: test_lexer test_parser test_generator
 
@@ -86,7 +91,14 @@ test_parser: generator/tiger.cmo libgenerator.cma generator/test_parser.cmo
 test_generator: generator/tiger.cmo libgenerator.cma generator/test_generator.cmo
 	$(BYTELINK) && ./$@ 2> generator.log || mv $@ $@.debug
 
-tests: tests/t1 tests/t2 tests/t3 tests/t4
+tests: tests/t0 tests/t1 tests/t2 tests/t3 tests/t4 toptest
+
+toptest: libgenerator.cma
+	$(TOPLINK)
+
+
+tests/t0: bridgeocamlobjc.cma 	generator/debug.cmo  tests/t0.cmo
+	$(BYTELINK) && ./tests/t0
 
 tests/t1: bridgeocamlobjc.cma foundation.cma tests/t1.cmo
 	$(BYTELINK) && ./tests/t1
@@ -95,7 +107,7 @@ tests/t2: generator/debug.cmo bridgeocamlobjc.cma foundation.cma tests/t2.cmo
 	$(BYTELINK) && ./tests/t2
 
 tests/t3: generator/debug.cmo bridgeocamlobjc.cma foundation.cma appkit.cma tests/t3.cmo
-	$(BYTELINK) && ./tests/t3 foo
+	$(BYTELINK) -ccopt "-framework AppKit" && ./tests/t3 foo
 
 tests/t4: generator/debug.cmo bridgeocamlobjc.cma foundation.cma tests/t4.cmo
 	$(BYTELINK) && ./tests/t4 tests/lorem.txt

@@ -1,21 +1,23 @@
 #define CAML_NAME_SPACE
-#include <caml/callback.h>
+#include <caml/mlvalues.h>
+#include <caml/alloc.h>
 #include <caml/memory.h>
+#include <caml/custom.h>
+#include <caml/fail.h>
+#include <caml/callback.h>
 
-#import <Foundation/NSAutoreleasePool.h>
+#include <objc/objc-runtime.h>
 
-static NSAutoreleasePool *arp =nil;
+extern value caml_wrap_pointer (void *x);
 
-value caml_init_default(value unit)
+value caml_find_selector (value s)
 {
-  CAMLparam0();
-  value *register_selector = caml_named_value("register_selector");
-
-  // This could go elsewhere? Looks like it should be thread based
-  if (nil == arp) {
-    arp = [[NSAutoreleasePool alloc] init];
-  }
-
-  caml_callback2(*register_selector, caml_copy_string("new:"), (value)@selector(new:));
-  CAMLreturn(Val_int(0));
+  CAMLparam1(s);
+  SEL sel = sel_getUid(String_val(s));
+  CAMLreturn(caml_wrap_pointer(sel));
 }
+
+
+// Local Variables:
+// mode: objc
+// End:

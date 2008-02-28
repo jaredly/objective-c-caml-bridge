@@ -1,23 +1,9 @@
 open Printf
 open Utils
 open Ast
-open Parser
 open Btypes
 
 let dlvl=20
-
-(* Filtering out some constructs for now *)
-let rec filtered_stream lexer n =
-  match Lexobjc.objc_dot_h lexer with
-    | Lexobjc.EOF -> None
-    | Lexobjc.Preproc s -> filtered_stream lexer (succ n)
-    | Lexobjc.Comment s -> filtered_stream lexer (succ n)
-    | t -> Some t
-
-let from_channel ic =
-  let lexer = Lexing.from_channel ic in
-  let token_stream = Stream.from (filtered_stream lexer) in
-  Parser.dot_h token_stream
 
 (* Filter out: variable number of args (can't use NSInvocation for this) *)
 let has_vararg (_,_,sels) =
@@ -64,6 +50,7 @@ class ['a, 'b] unique_selectors n = object (self)
     let first = fst (List.hd k) in
       try
 	let _ = firsts#find first in
+	  Debug.f "Can't add selector: already one with first component %s" first;
 	  false (* can't add, already have one w/ that first sel *)
       with
 	| Not_found ->
@@ -98,91 +85,113 @@ let trim_methods il =
       cm#iter (trim_selector cmc);
       (cmc, imc)
 
+
 (* compile a method *)
-let compile_method classname uniqueh trimh ow ((kind, ret_type, selectors) : method_declaration) = 
-  try
-    let sels = abstract_selector selectors in
-    let optargs = trimh#find sels in  (* check if it's allowed *)
-      ow#ml_defer; (* methods with unsupported type conversion or other "unsupported" features will be commented out *)
-      (* filtering out methods with same sets of arguments but different return types *)
-      begin
-	let name = List.hd sels in
-	  try
-	    let _ = uniqueh#find name in
-	      ow#ml "(* unsupported: already have a method with that name compiled *)\n"
-	  with
-	    | Not_found -> uniqueh#add name true
-      end;
-      (* filtering out one-offs that we know are broken *)
-      begin
-	if Hardcoded.optout (classname, List.map fst sels) then ow#ml "(* unsupported: breaks compilation somewhere *)\n"
-      end;
-      begin match selectors with
-	| [sel, None] -> (* one selector, no named args *)
-	    kprintf (ow#mltab 2) "method %s =\n" (Hardcoded.rename_method sel);
-	    kprintf (ow#mltab 4) "(" ; native2caml ow#ml ret_type;
-	    kprintf ow#ml " (Objc.invoke %s repr (Selector.find \"%s:\")[])" (Btypes.tag ret_type) sel;
-	    kprintf ow#ml " : ";
-	    Btypes.ret_type ow#ml ret_type;
-	    kprintf ow#ml ")\n";
-	    ()
-
-	| [sel, Some(argt, argn, false)] -> (* one selector w/ named arg *)
-	    kprintf (ow#mltab 2) "method %s " (Hardcoded.rename_method sel);
-	    Btypes.typed_expr ow#ml argt argn;
-	    kprintf ow#ml " =\n";
-	    kprintf (ow#mltab 4) "(" ; native2caml ow#ml ret_type;
-	    kprintf ow#ml " (Objc.invoke %s repr (Selector.find \"%s:\")[%s %s])" 
-	      (Btypes.tag ret_type) sel (caml2native argt) argn;
-	    kprintf ow#ml " : ";
-	    Btypes.ret_type ow#ml ret_type;
-	    kprintf ow#ml ")\n";
-	    ()
-
-	| (sel, Some (argt, argn, false))::rest ->
-	    (* method name is first selector *)
-	    kprintf (ow#mltab 2) "method %s " (Hardcoded.rename_method sel);
-	    (* all other selectors are assumed to be optional args *)
-	    List.iter2 (fun is_needed a ->
-	      match a with
-		| (sel, Some(argt, argn, false)) -> 
-		    kprintf ow#ml " %c%s:(%s : " (if is_needed then '~' else '?') sel argn;
-		    Btypes.arg_type ow#ml argt;
-		    kprintf ow#ml " %s)" (if is_needed then "" else "option")
-		| _ -> assert false (* TBD *)
-		       ) optargs rest;
+let compile_method ml is_class classname uniqueh trimh ((kind, ret_type, selectors) : method_declaration) = 
+  let target = if is_class then "c" else "self#repr" in
+    try
+      let sels = abstract_selector selectors in
+      let optargs = trimh#find sels in  (* check if it's allowed *)
+	(* methods with unsupported type conversion or other "unsupported" features get commented out *)
+	ml#defer; 
+	(* filtering out methods with same sets of arguments but different return types *)
+	begin
+	  let name = List.hd sels in
+	    try
+	      let _ = uniqueh#find name in
+		ml#w "(* unsupported: already have a method with that name compiled *)\n"
+	    with
+	      | Not_found -> uniqueh#add name true
+	end;
+	(* filtering out one-offs that we know are broken *)
+	begin
+	  if Hardcoded.optout (classname, List.map fst sels) 
+	  then ml#w "(* unsupported: breaks compilation somewhere *)\n"
+	end;
+	(* Compile a method *)
+	begin match selectors with
+	  | [sel, None] -> (* one selector, no named args *)
+	      begin if is_class then
+		  kprintf ml#w "let %s () =\n" (Hardcoded.rename_method sel)
+		else 
+		  kprintf (ml#tab 2) "method %s =\n" (Hardcoded.rename_method sel)
+	      end;
+	      kprintf (ml#tab 4) "(" ; 
+	      Btypes.native2caml is_class classname ml#w ret_type;
+	      kprintf ml#w " (Objc.invoke %s %s (Selector.find \"%s\")[])\n" 
+		(Btypes.tag ret_type) target sel;
+	      kprintf (ml#tab 6) " : ";
+	      Btypes.ret_type ml#w ret_type;
+	      kprintf ml#w ")\n";
+	      ()
+		
+	  | [sel, Some(argt, argn, false)] -> (* one selector w/ named arg *)
+	      begin if is_class then
+		  kprintf ml#w "let %s " (Hardcoded.rename_method sel)
+		  else
+		  kprintf (ml#tab 2) "method %s " (Hardcoded.rename_method sel)
+	      end;
+	      Btypes.typed_expr ml#w argt argn;
+	      kprintf ml#w " =\n";
+	      kprintf (ml#tab 4) "(" ; 
+	      Btypes.native2caml is_class classname ml#w ret_type;
+	      kprintf ml#w " (Objc.invoke %s %s (Selector.find \"%s:\")\n" 
+		(Btypes.tag ret_type) target sel;
+	      kprintf (ml#tab 6) "[%s %s])" (caml2native argt) argn;
+	      kprintf ml#w " : ";
+	      Btypes.ret_type ml#w ret_type;
+	      kprintf ml#w ")\n";
+	      ()
+		
+	  | (sel, Some (argt, argn, false))::rest ->
+	      (* method name is first selector *)
+	      begin if is_class then
+		  kprintf ml#w "let %s " (Hardcoded.rename_method sel)
+		  else
+		  kprintf (ml#tab 2) "method %s " (Hardcoded.rename_method sel)
+	      end;
+	      (* all other selectors are assumed to be optional args *)
+	      List.iter2 (fun is_needed a ->
+		match a with
+		  | (sel, Some(argt, argn, false)) -> 
+		      kprintf ml#w " %c%s:(%s : " (if is_needed then '~' else '?') sel argn;
+		      Btypes.arg_type ml#w argt;
+		      kprintf ml#w " %s)" (if is_needed then "" else "option")
+		  | _ -> assert false (* TBD *)
+			 ) optargs rest;
+	      
+	      (* name of first selector argument *)
+	      kprintf ml#w " ";
+	      Btypes.typed_expr ml#w argt argn;
+	      kprintf ml#w " =\n";
+	      (* building the selector and argument list *)
+	      kprintf (ml#tab 4) "let sel, args = (\n";
+	      kprintf (ml#tab 6) "Objc.arg %s \"%s\" %s\n" argn sel (caml2native argt);
+	      List.iter2 (fun is_needed a ->
+		match a with
+		  | (sel, Some(argt, argn, false)) ->
+		      kprintf (ml#tab 6) "++ Objc.%s %s \"%s\" %s\n" 
+			(if is_needed then "arg" else "opt_arg") 
+			argn sel (caml2native argt)
+		  | _ -> assert false
+			 ) optargs rest ;
+	      kprintf (ml#tab 4) ") ([],[]) in\n";
+	      kprintf (ml#tab 6) "(";
+	      Btypes.native2caml is_class classname ml#w ret_type;
+	      kprintf ml#w " (Objc.invoke %s %s (Selector.find_list sel) args)\n" 
+		(Btypes.tag ret_type) target;
+	      kprintf (ml#tab 6) " : ";
+	    Btypes.ret_type ml#w ret_type;
+	    kprintf ml#w ")\n"
+	  | _ -> assert false
+	end;
+	ml#flush
+    with
+      | Not_found -> 
+	  kprintf (ml#tab 2) "(* skipping selector %s *)\n" 
+	    (String.concat ":" (List.map fst selectors))
 	    
-	    (* name of first selector argument *)
-	    kprintf ow#ml " ";
-	    Btypes.typed_expr ow#ml argt argn;
-	    kprintf ow#ml " =\n";
-	    (* building the selector and argument list *)
-	    kprintf (ow#mltab 4) "let sel, args = (\n";
-	    kprintf (ow#mltab 6) "Objc.arg %s \"%s\" %s\n" argn sel (caml2native argt);
-	    List.iter2 (fun is_needed a ->
-	      match a with
-		| (sel, Some(argt, argn, false)) ->
-		    kprintf (ow#mltab 6) "++ Objc.%s %s \"%s\" %s\n" 
-		      (if is_needed then "arg" else "opt_arg") 
-		      argn sel (caml2native argt)
-		| _ -> assert false
-		       ) optargs rest ;
-	    kprintf (ow#mltab 4) ") ([],[]) in\n";
-	    kprintf (ow#mltab 6) "(";
-	    native2caml ow#ml ret_type;
-	    kprintf ow#ml " (Objc.invoke %s repr (Selector.find_list sel) args)" (Btypes.tag ret_type);
-	    kprintf ow#ml " : ";
-	    Btypes.ret_type ow#ml ret_type;
-	    kprintf ow#ml ")\n"
-	| _ -> assert false
-      end;
-      ow#ml_flush
-  with
-    | Not_found -> 
-	kprintf (ow#mltab 2) "(* skipping selector %s *)\n" 
-	  (String.concat ":" (List.map fst selectors))
-
-let handle_phrase todo = function
+let compile_phrase todo = function
   | Comment s -> () (* filtered out at lexing level for now *)
   | Interface (name, i) -> todo#add_interface name i
   | Import i -> todo#add_import i
@@ -195,251 +204,169 @@ let handle_phrase todo = function
 let is_class_method = function
   | (ClassMethod, _ , _) -> true
   | (InstanceMethod, _ ,_) -> false
+
 let is_instance_method m = not (is_class_method m)
 
 (* When a class method has a return type (id), it must be (?)
- * the same as the class type
+ * the same as the class type. It's mostly true with instance methods as well, but
+ * not always - NSArray would be the typicall counter-example.
+ * TBD: we could try to hardcode this: anything with "init" in the method name
+ * would use the convention that (id) is the class type.
  *)
-let fix_class_return_type name = function
-  | ClassMethod, NamedType id, sels -> ClassMethod, Pointer (false, NamedType name), sels
-  | m -> m
+let fix_class_return_type name m = 
+  match m with
+    | ClassMethod, NamedType "id", sels -> 
+	ClassMethod, Pointer (false, NamedType name), sels
+    | m -> m
 
-(* All categories for a name are merged into one class;
- * Obviously this is limited to categories declared within the same
- * file, so not all of the Objective-C allowed use-cases are supported 
- *)
-let compile_interface ow name il = 
-  (* legal coercions *)
-  List.iter (function 
-    | Ast.ClassInterface (Some parent), _,_,_ ->
-	kprintf ow#ml "let make_%s_of_%s (o : [`%s] nativeNSObject) = (Obj.magic o : [`%s] nativeNSObject)\n"
-	  parent name name parent
-    | _ -> ())
-    il;
+let only_category = List.for_all (function Ast.CategoryInterface _, _,_,_ -> true | _ -> false) 
 
-  (* register the class object *)
-  kprintf (ow#ctab 2) "arg1 = caml_copy_string(\"%s\");\n" name;
-  kprintf (ow#ctab 2) "arg2 = caml_wrap_id([%s class]);\n" name; 
-  kprintf (ow#ctab 2) "caml_callback2(*register_class,arg1,arg2);\n";
-  (* the class methods *)
-  kprintf ow#ml "(* Class object for %s *)\n" name;
-  kprintf ow#ml "let class_%s = object\n" name;
-  kprintf (ow#mltab 2) "val repr = Classes.find \"%s\"\n" name;
-  kprintf (ow#mltab 2) "method _new = (Objc.objcnew repr : [`%s] nativeNSObject)\n" name;
-  kprintf (ow#mltab 2) "method _alloc = (Objc.objcalloc repr : [`%s] nativeNSObject)\n" name;
-
-  (* register all selectors *)
-  List.iter (function (_,_,_,methods) ->
-    List.iter (function (k , _, selectors) ->
-      let sels = List.map fst selectors in
-      let selname = String.concat ":" sels in
-	kprintf (ow#ctab 2) "arg1 = caml_copy_string(\"%s:\");\n" selname;
-	(* it's a little bit unclear what @selector expects *)
-	kprintf (ow#ctab 2) "arg2 = caml_wrap_pointer(@selector(%s%c));\n" selname 
-	  (match selectors with [x,None] -> ' ' | _ -> ':'); 
-  	kprintf (ow#ctab 2) "caml_callback2(*register_selector, arg1, arg2);\n"
-	      )
-      methods)
-    il;
-  
+(* name is the interface name
+   il is a list of interfaces - some are categories, some not
+   Here are the pieces that are generated for NSFoo
+   - coercion to parent:            make_NSParent_of_NSFoo
+   - native instance encapsulation: class n = fun id -> object ... end
+   - native class encapsulation:    let c = object ... end
+*)
+let compile_interface cycles ow name il = 
   (* Determine which methods to compile *)  
   let cm,im = trim_methods il in
   let ucm, uim = new Ohash.t 53, new Ohash.t 53 in (* used for enforcing unicity of method names *)
-  List.iter (function
-    | Ast.ClassInterface parent, protos, decls, methods ->
-	List.iter (compile_method name ucm cm ow) 
-	  (List.map (fix_class_return_type name) (List.filter (fun m -> is_class_method m && not (has_vararg m)) methods))
-    | Ast.CategoryInterface cat, protos, decls, methods ->
-	kprintf ow#ml "(* methods for category %s *)\n" cat;
-	List.iter (compile_method name ucm cm ow) 
-	  (List.map (fix_class_return_type name) (List.filter (fun m -> is_class_method m && not (has_vararg m)) methods))
-	    ) il;
-  kprintf ow#ml "end\n";
+    (* Doing two passes to get everything in the proper order *)
+    List.iter (function
+      | Ast.ClassInterface parent, protos, decls, methods ->
+	  (fun ml ->
+	    kprintf ml#w "(* Encapsulation of methods for native instance of %s *)\n" name;
+	    kprintf ml#w "class virtual methods = object (self)\n";
+	    kprintf (ml#tab 2) "method virtual repr : [`%s] Objc.id\n" name;
+	    List.iter (compile_method ml false name uim im) 
+	      (List.filter (fun m -> is_instance_method m && not (has_vararg m)) methods);
+	    kprintf ml#w "end\n")
+	    (ow#get ("im_" ^ name ^ ".ml"));
 
-  (* the instance methods *)
-  kprintf ow#ml "(* Encapsulation for native instance of %s *)\n" name;
-  kprintf ow#ml "class native_%s = fun (o : [`%s] nativeNSObject) -> object (self)\n" name name;
-  let has_repr = ref false in
-  List.iter (function
-    | Ast.ClassInterface (Some parent), _, _ ,_  ->
-	has_repr := true; (* from parent *)
-	kprintf (ow#mltab 2) "inherit native_%s (make_%s_of_%s o) as super\n" parent parent name
-    | Ast.ClassInterface None, _, _, _ -> 
-	has_repr := true;
-	kprintf (ow#mltab 2) "val repr = (Obj.magic o : [`NSObject] nativeNSObject)\n";
-	kprintf (ow#mltab 2) "method repr = repr\n";
-    | _ -> ()
-	    )
+      | Ast.CategoryInterface cat, protos, decls, methods ->
+	  (* note: the same category name can be used for different classes *)
+	  (fun ml ->
+	    kprintf ml#w "(* instance methods for category %s of %s *)\n" cat name;
+	    kprintf ml#w "class virtual methods_%s = object (self)\n" name;
+	    kprintf (ml#tab 2) "method virtual repr : [`%s] Objc.id\n" name;
+	    List.iter (compile_method ml false name uim im) 
+	      (List.filter (fun m -> is_instance_method m && not (has_vararg m)) methods);
+	    kprintf ml#w "end\n")
+	    (ow#get ("cati_" ^ cat ^ ".ml"));
+	      ) 
     il;
-    if not !has_repr then begin
-	kprintf (ow#mltab 2) "val repr = (Obj.magic o : [`NSObject] nativeNSObject)\n";
-	kprintf (ow#mltab 2) "method repr = repr\n";
-      end;
-  List.iter (function
-    | Ast.ClassInterface parent, protos, decls, methods ->
-	List.iter (compile_method name uim im ow) 
-	  (List.filter (fun m -> is_instance_method m && not (has_vararg m)) methods)
-    | Ast.CategoryInterface cat, protos, decls, methods ->
-	kprintf ow#ml "(* methods for category %s *)\n" cat;
-	List.iter (compile_method name uim im ow) 
-	  (List.filter (fun m -> is_instance_method m && not (has_vararg m)) methods)
-	    ) il;
-  kprintf ow#ml "end\n"
 
+    (* wrap up into one class with all instance methods *)
+    (fun ml ->
+      kprintf ml#w "class t = fun (r :[`%s] id) -> object\n" name;
+      List.iter (function
+	| Ast.ClassInterface parent, protos, decls, methods ->
+	    kprintf (ml#tab 2) "inherit Im_%s.methods\n" name;
+	| Ast.CategoryInterface cat, protos, decls, methods ->
+	    kprintf (ml#tab 2) "inherit Cati_%s.methods_%s\n" cat name;
+		) il;
+      kprintf (ml#tab 2) "method repr = r\n";
+      kprintf ml#w "end\n\n")
+      (ow#get (name ^ ".ml"));
+
+    (fun ml -> 
+      kprintf ml#w "(* Class object for %s *)\n" name;
+      kprintf ml#w "let c = Classes.find \"%s\"\n" name;
+      kprintf ml#w "let _new()= (Objc.objcnew c : [`%s] id)\n" name;
+      kprintf ml#w "let alloc() = (Objc.objcalloc c : [`%s] id)\n" name;
+    ) (ow#get (name ^ ".ml"));
+
+    List.iter (function
+      | Ast.ClassInterface parent, protos, decls, methods ->
+	  (fun ml -> 
+	    List.iter (compile_method ml true name ucm cm) 
+	      (List.map (fix_class_return_type name) 
+		  (List.filter (fun m -> is_class_method m && not (has_vararg m)) methods));
+	  )
+	    (ow#get (name ^ ".ml"));
+
+      | Ast.CategoryInterface cat, protos, decls, methods ->
+	  (fun ml ->
+	    kprintf ml#w "(* class methods for category %s of %s *)\n" cat name;
+	    List.iter (compile_method ml true name ucm cm) 
+	      (List.map (fix_class_return_type name) 
+		  (List.filter (fun m -> is_class_method m && not (has_vararg m)) methods);
+	      ))
+	    (ow#get (name ^ ".ml"));
+	      )
+      il;
+
+(*
+	kprintf coercions#w 
+	  "let make_%s_of_%s (o : [`%s] id) = (Obj.magic o : [`%s] id)\n"
+	  parent name name parent
+*)
+    ()
+      
+
+(*
 let compile_import ow s =
   (* some hard coded voodoo on names *)
-  let m = Filename.chop_suffix (Filename.basename s) ".h" in
+  let m = Writing.base s in
     begin match m with
       | s when String.length m > 2 && String.sub m 0 2 = "NS" ->
-	  kprintf ow#ml "open %s\n" m
+	  kprintf "open %s\n" m
       | _ -> ()
     end
+*)
 
+let compile_phrases todo = List.iter (compile_phrase todo)
 
-let handle_phrases todo = List.iter (handle_phrase todo)
-
-(* we want to generate phrases, but be able to easily comment them out if we detect something
- * in the output
- *)
-let deferred oc (c_start, c_end) = object (self)
-  val buffer = Buffer.create 256
-  val mutable defer_mode = false
-  method output_string s =
-    if defer_mode then Buffer.add_string buffer s
-    else output_string oc s
-  method output_char c =
-    if defer_mode then Buffer.add_char buffer c
-    else output_char oc c
-  method defer = defer_mode <- true
-
-  val r = Str.regexp_string "unsupported"
-
-  method flush = 
-    let finally() = defer_mode <- false; Buffer.clear buffer in
-    let s = Buffer.contents buffer in 
-      try 
-	let _ = Str.search_forward r s 0 in
-	  output_string oc c_start;
-	  output_string oc s;
-	  output_string oc c_end;
-	  finally()
-      with
-	| Not_found -> 
-	    output_string oc s;
-	    finally()
-
-  method close =
-    close_out oc
-
-end
-
-
-let default_out_dir = ref "./lib"
-let outfiles ?(out_dir = !default_out_dir)  f = 
-  let base = Filename.chop_suffix (Filename.basename f) ".h" in
-  let f_ml = Filename.concat out_dir (base ^ ".ml")
-  and f_m = Filename.concat out_dir ("caml" ^ base ^ ".m")
-  in
-  let oc_ml = open_out f_ml
-  and oc_m = open_out f_m
-  in object (self)
-    val d_ml = deferred oc_ml ("(*  UNSUPPORTED\n", "\n*)\n")
-    val d_m = deferred oc_m ("/* UNSUPPORTED\n", "\n*/\n")
-    method ml s = d_ml#output_string s
-    method c s = d_m#output_string s
-    method mltab lvl s =
-      for i = 0 to lvl do d_ml#output_char ' ' done;
-      self#ml s
-    method ctab lvl s = 
-      for i = 0 to lvl do d_m#output_char ' ' done;
-      self#c s
-    method close = d_ml#close; d_m#close
-
-    method ml_defer = d_ml#defer
-    method ml_flush = d_ml#flush
-  end
-
-let preludes ow todo f =
-  let base = Filename.chop_suffix (Filename.basename f) ".h" in
-    kprintf ow#c "// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD\n";
-    kprintf ow#c "#include <caml/mlvalues.h>\n";
-    kprintf ow#c "#include <caml/memory.h>\n";
-    kprintf ow#c "#include <caml/callback.h>\n";
-    kprintf ow#c "#import <%s>\n" f;
-
-    kprintf ow#ml "(* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)\n";
-    kprintf ow#ml "open Objc\n";
-    todo#compile_imports base ow;
-
-    kprintf ow#c "value caml_init_%s(value unit)\n" base;
-    kprintf ow#c "{\n";
-    kprintf (ow#ctab 2) "CAMLparam0();\n";
-    kprintf (ow#ctab 2) "CAMLlocal2(arg1, arg2);\n";
-    kprintf (ow#ctab 2) "value *register_class = caml_named_value(\"register_class\");\n";
-    kprintf (ow#ctab 2) "value *register_selector = caml_named_value(\"register_selector\");\n";
-
-    kprintf ow#ml "\n\n";
-    kprintf ow#ml "external init : unit -> unit = \"caml_init_%s\"\n" base;
-    kprintf ow#ml "let _ = init()\n"
-
-
-let postludes ow f =    
-  kprintf (ow#ctab 2) "CAMLreturn(Val_int(0));\n";
-  kprintf ow#c "}\n"
-
-
-  
-
-let todo() = object
+(* the todo object collects information at the parsing stage,
+   and drives the compilation for a given header
+*)
+let todo header = object
   val classes = new Ohash.autoinit (fun _ -> ref[]) 499
+  val categories = new Ohash.t 499
   val mutable compile_order = []
   val imports = ref []
 
   method add_interface name i =
-    compile_order <- name :: compile_order;
-    Utils.add_hd i (classes#find name)
+    match i with 
+      | CategoryInterface _, _,_,_ ->
+	  if name = header then
+	    Utils.add_hd i (classes#find name)
+	  else 
+	    categories#add name i
+      | ClassInterface _, _,_,_ ->
+	  compile_order <- name :: compile_order;
+	  Utils.add_hd i (classes#find name)
   method add_import s =
     Utils.add_hd s imports
 
-  (* adding implicit import of NSObject.h for all files
-   * because some of them only get in transitively, which
-   * we don't support
-   *)
-  method compile_imports base ow = 
-    let imports = 
-      if (( base = "NSObject") || (base = "NSZone")
-      || (base = "NSObjCRuntime")) then
-	List.rev !imports 
-      else
-	"NSObject.h"::List.rev !imports
-    in
-      List.iter (compile_import ow) imports
-
-  method compile ow =
+  method compile_imports base ow = ()
+  method compile cycles ow =
     ignore (List.fold_left (fun compiled name ->
       if StringSet.mem name compiled then compiled
-      else begin
-	  compile_interface ow name !(classes#find name);
-	  StringSet.add name compiled
-	end
-	)
-      StringSet.empty (List.rev compile_order)
-	   )
+      else 
+	(* all interfaces for that name *)
+	let il = !(classes#find name) in
+	  if only_category il then begin
+	      Debug.f "COMPILE SKIPPING %s for now" name;
+	      compiled (* TBD *)
+	    end else begin
+		compile_interface cycles ow name il;
+		StringSet.add name compiled
+	    end)
+	       StringSet.empty (List.rev compile_order));
+    (* TBD: now compile the categories *)
 end
-
-let compile_file ?out_dir f =
+  
+let compile_file cycles ow f =
   Debug.f ~lvl:dlvl "Parsing: %s" f;
   try
     Utils.with_in_channel (open_in f) 
       (fun ic -> 
-	let ow = outfiles ?out_dir f 
-	and todo = todo() in
-	  handle_phrases todo (from_channel ic);
-	  preludes ow todo f;
-	  Enum.dump ow;
-	  todo#compile ow;
-	  postludes ow f;
-	  ow#close
+	let todo = todo (Writing.base f) in
+	  compile_phrases todo (Parser.from_channel ic);
+	  Enum.dump ((ow#get ((Writing.base f) ^ ".ml"))#w);
+	  todo#compile cycles ow
       )
   with
     | End_of_file -> ()

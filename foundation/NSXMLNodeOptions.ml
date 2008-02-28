@@ -1,10 +1,6 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
-open NSObject
 
-
-external init : unit -> unit = "caml_init_NSXMLNodeOptions"
-let _ = init()
 (* ENUMS *)
 let _NSXMLNodeOptionsNone = 0L
 let _NSXMLNodeIsCDATA = 1L

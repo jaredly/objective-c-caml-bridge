@@ -10,6 +10,7 @@
 #import <Foundation/NSInvocation.h>
 #import <Foundation/NSError.h>
 #import <Foundation/NSRange.h>
+#import <Foundation/NSAutoreleasePool.h>
 #import <Foundation/Foundation.h>
 
 /*
@@ -284,6 +285,19 @@ value caml_invoke(value rtag, value o, value sel, value args)
   CAMLreturn(taggedval);
 }
 
+
+static NSAutoreleasePool *arp =nil;
+
+value caml_init_default(value unit)
+{
+  CAMLparam0();
+
+  // This could go elsewhere? Looks like it should be thread based
+  if (nil == arp) {
+    arp = [[NSAutoreleasePool alloc] init];
+  }
+  CAMLreturn(Val_int(0));
+}
 
 // Local Variables:
 // mode: objc

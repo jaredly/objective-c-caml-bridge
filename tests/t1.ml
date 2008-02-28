@@ -11,8 +11,7 @@ open NSString
 *)
 
 let f1 s = 
-  let ns = class_NSString#stringWithCString s in
-  let os = new native_NSString ns in
+  let os = NSString.stringWithCString s in
   let n = os#length in
     assert (n = String.length s)
 

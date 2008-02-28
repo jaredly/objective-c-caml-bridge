@@ -39,16 +39,17 @@ let eval = function
  *)
 let enums = ref ([] : (string * int64 option) list list)
 let add x = Utils.add_hd x enums
-let dump ow =
+let reset() = enums := []
+let dump w =
   match !enums with 
     | [] -> ()
     | l -> 
-	kprintf ow#ml "(* ENUMS *)\n";
+	kprintf w "(* ENUMS *)\n";
 	List.iter (List.iter (function 
-	  | (s, Some v) -> kprintf ow#ml "let _%s = %LdL\n" s v
-	  | (s, None) -> kprintf ow#ml "(* let_%s = ?? *)\n" s
+	  | (s, Some v) -> kprintf w "let _%s = %LdL\n" s v
+	  | (s, None) -> kprintf w "(* let_%s = ?? *)\n" s
 			     )) 
 	  (List.rev l);
-	kprintf ow#ml "\n\n";
-	enums := []
+	kprintf w "\n\n";
+	reset()
 

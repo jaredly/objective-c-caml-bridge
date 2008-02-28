@@ -75,7 +75,7 @@ let foundation =
 "NSPropertyList.h";
 "NSProtocolChecker.h";
 "NSProxy.h";
-"NSRange.h";
+(*"NSRange.h"; nothing to compile - has to be encoded by hand *)
 "NSRunLoop.h";
 "NSScanner.h";
 "NSScriptClassDescription.h";
@@ -220,7 +220,7 @@ let appkit =
       "NSOutlineView.h";
       "NSPDFImageRep.h";
       "NSPICTImageRep.h";
-      "NSPageLayout.h";
+(*      "NSPageLayout.h"; #ifdef gives 2 definitions of it *)
       "NSPanel.h";
       "NSParagraphStyle.h";
       "NSPasteboard.h";

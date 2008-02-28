@@ -1161,3 +1161,16 @@ and __ocaml_lex_import_rec lexbuf __ocaml_lex_state =
 
 ;;
 
+# 117 "generator/lexobjc.mll"
+ 
+
+(* Filtering out some constructs for now *)
+let rec filtered_stream lexer n =
+  match objc_dot_h lexer with
+    | EOF -> None
+    | Preproc s -> filtered_stream lexer (succ n)
+    | Comment s -> filtered_stream lexer (succ n)
+    | t -> Some t
+
+
+# 1177 "generator/lexobjc.ml"

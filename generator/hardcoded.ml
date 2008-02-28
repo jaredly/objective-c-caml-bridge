@@ -40,8 +40,8 @@ let add_enum e = enums := StringSet.add e !enums
 let type_synonym = function
   | NamedType "NSComparisonResult" -> NamedType "int"
   | NamedType "Boolean" -> NamedType "BOOL"
-  | NamedType "OSType" -> NamedType "int" (* 4-char codes - needs Int64 *)
-  | NamedType "SInt32" | NamedType "int32_t" -> NamedType "int64" (* guessing *)
+  | NamedType "OSType" -> NamedType "int64" (* 4-char codes - needs Int64 *)
+  | NamedType "SInt32" | NamedType "int32_t" | NamedType "UInt32" -> NamedType "int64" (* guessing *)
   | NamedType "int64_t" -> NamedType "int64" (* guessing *)
   | NamedType "AEEventID" | NamedType "AEEventClass" | NamedType "AETransactionID" 
   | NamedType "AEKeyword" | NamedType "AEReturnID" -> NamedType "int64"

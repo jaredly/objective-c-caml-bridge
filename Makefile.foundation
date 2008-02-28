@@ -1,18 +1,22 @@
 # Foundation framework
+
+foundation/shared.ml:: gen_foundation
+
 gen_foundation: generator/tiger.cmo libgenerator.cma generator/gen_foundation.cmo
 	$(BYTELINK) && ./$@ 2> gen_foundation.log || mv $@ $@.debug
 
 FOUNDATION_LIB=$(wildcard foundation/*.ml)
 FOUNDATION_OBJS=$(FOUNDATION_LIB:.ml=.cmo)
-FOUNDATION_STUBS=$(wildcard foundation/*.m)
-FOUNDATION_C_OBJS=$(FOUNDATION_STUBS:.m=.o)
 
 # Can't forget the -framework options to make the linker happy later
 # cmosort uses the .depend to gather names of .cmo
 FOUNDATION_SORTED_OBJS=$(shell utils/cmosort foundation) 
 
-foundation.cma:: $(FOUNDATION_SORTED_OBJS) $(FOUNDATION_C_OBJS)
-	$(MIXEDBYTELIB) -ccopt -g -framework Foundation
+foundation.cma:: $(FOUNDATION_SORTED_OBJS)
+
+#	$(MIXEDBYTELIB) -ccopt -g -framework Foundation -lobjc
+
+TARGET_LIBS+=foundation.cma
 
 $(eval $(call add_dir, foundation))
 

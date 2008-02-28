@@ -3,7 +3,7 @@ open Ast
 
 (* Bridge for types *)
 
-(* For obvious conversions we use the name of an OCaml type, and some
+(* For "obvious" conversions we use the name of an OCaml type, and some
  * simple naming conventions such as tag_foo and make_foo
  *)
 let simple_converts = function
@@ -44,7 +44,7 @@ let tag (t : Ast.c_type) =
 	  | _ -> sprintf "(*%s*) Objc.tag_unsupported" (string_of_c_type t)
 
 (* How do you convert a native object into its OCaml equivalent *)
-let native2caml w (t : Ast.c_type) = 
+let native2caml is_class current_module w (t : Ast.c_type) = 
   let t = Hardcoded.type_synonym t in
   try
     let ts = simple_converts t in 
@@ -54,11 +54,16 @@ let native2caml w (t : Ast.c_type) =
 	match t with
 	  | NamedType "NSRange" -> kprintf w "get_range"
 	  | NamedType "id" -> kprintf w "get_pointer"
-	  | Pointer (_, NamedType s) -> kprintf w "get_pointer"
+	  | Pointer (_, NamedType s) -> 
+		(* This creates so many recursive dependencies that 
+		   I can't get anything done. *)
+	      if is_class && s = current_module then kprintf w "new t (get_pointer"
+	      else kprintf w "(get_pointer"
 	  | _ -> kprintf w "(*%s*) unsupported" (string_of_c_type t)
 
 (* How do you convert an OCaml object into an ffi object *)
 let caml2native t = 
+  let t = Hardcoded.type_synonym t in
   try
     sprintf "make_%s" (simple_converts t)
   with
@@ -72,6 +77,7 @@ let caml2native t =
 
 (* Annotate an expression with a type *)	      
 let typed_expr w t n =
+  let t = Hardcoded.type_synonym t in
   try
     let ts = simple_converts t in
       kprintf w "(%s : %s)" n ts
@@ -85,6 +91,7 @@ let typed_expr w t n =
 
 (* Write the type of an argument (in method definitions) *)
 let arg_type w t =
+  let t = Hardcoded.type_synonym t in
   try
     let ts = simple_converts t in
       kprintf w "%s" ts
@@ -98,6 +105,7 @@ let arg_type w t =
 	  | _ -> kprintf w "(*%s*) unsupported" (string_of_c_type t)
 
 let ret_type w t =
+  let t = Hardcoded.type_synonym t in
   try
     let ts = simple_converts t in
       kprintf w "%s" ts
@@ -105,6 +113,23 @@ let ret_type w t =
     | Not_found -> 
 	match t with
 	  | NamedType "NSRange" -> kprintf w "(int * int)"
-	  | NamedType "id" -> kprintf w "[`NSObject] Objc.nativeNSObject"
-	  | Pointer (_ , NamedType s) -> kprintf w "[`%s] Objc.nativeNSObject" s
+	  | NamedType "id" -> kprintf w "[`NSObject] Objc.id"
+	  | Pointer (_ , NamedType s) -> kprintf w "[`%s] Objc.id)" s
 	  | _ -> kprintf w "(*%s*) unsupported" (string_of_c_type t)
+
+
+let is_simple t =
+  try 
+    let _ = simple_converts t in true 
+  with
+    | Not_found -> false
+
+let rec deps t = 
+  let t = Hardcoded.type_synonym t in
+    if is_simple t then None
+    else match t with
+      | NamedType "NSRange" -> None (* hardcoded *)
+      | NamedType "id" -> None (* dynamically typed *)
+      | Pointer (_, t) -> deps t
+      | NamedType s -> Some s
+      | _ -> None

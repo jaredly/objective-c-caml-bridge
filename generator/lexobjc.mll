@@ -113,3 +113,15 @@ and import = parse
 	let l = Lexing.lexeme lexbuf in 
 	  Import (String.sub l 1 (String.length l - 2))
       }
+
+{
+
+(* Filtering out some constructs for now *)
+let rec filtered_stream lexer n =
+  match objc_dot_h lexer with
+    | EOF -> None
+    | Preproc s -> filtered_stream lexer (succ n)
+    | Comment s -> filtered_stream lexer (succ n)
+    | t -> Some t
+
+}

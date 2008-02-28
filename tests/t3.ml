@@ -1,11 +1,12 @@
 open NSString
 open NSSpeechSynthesizer
 
-let ns_of_string (s : string) = new native_NSString (class_NSString#stringWithCString s)
+let ns_of_string (s : string) = NSString.stringWithCString s
+
+let () = Objc.debug_invoke true
 
 let simple = 
-  let o_ss = class_NSSpeechSynthesizer#_new in (* default voice *)
-  let ss = new native_NSSpeechSynthesizer o_ss in
+  let ss = new NSSpeechSynthesizer.t (NSSpeechSynthesizer._new()) in (* default voice *)
     (fun s ->
 	if ss#isSpeaking then (Debug.f "still speaking, stopping"; ss#stopSpeaking);
 	Debug.f "start speaking";
@@ -15,4 +16,5 @@ let simple =
 
 
 let () = 
-  Arg.parse [] simple "Say something"
+  Arg.parse [] simple "Say something";
+  Unix.sleep 5

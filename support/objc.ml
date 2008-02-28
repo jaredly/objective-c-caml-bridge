@@ -1,7 +1,7 @@
 (* Types and runtime support*)
 
 (* NSObject *)
-type 'a nativeNSObject
+type 'a id
 
 (* this allows compiling things that we don't know how to support yet *)
 type unsupported 
@@ -27,23 +27,23 @@ type 'a ffi =
     | NSRange of int * int (* location and length *)
 
 (* when an argument NSError ** is set to non-nil *)
-exception NSError of [`NSError] nativeNSObject
+exception NSError of [`NSError] id
 
 (* Object encapsulated in a class w/ some methods *)
-type 'a t = < repr : [`NSObject] nativeNSObject >
+type 'a t = < repr : 'a id >
 
 (* argument is assumed to be a class object *)
-external objcnew : 'a nativeNSObject -> 'b nativeNSObject = "caml_message_new"
-external objcalloc : 'a nativeNSObject -> 'b nativeNSObject = "caml_message_alloc"
+external objcnew : 'a id -> 'b id = "caml_message_new"
+external objcalloc : 'a id -> 'b id = "caml_message_alloc"
 
 (* arguments: tag for return value injection, target, selector, argument list *)
-external invoke : int -> 'a nativeNSObject -> Selector.t -> 'b ffi list -> 'c ffi = "caml_invoke"
+external invoke : int -> 'a id -> Selector.t -> 'b ffi list -> 'c ffi = "caml_invoke"
 external debug_invoke : bool -> unit = "caml_debug_invoke"
 
 (* some usual inits *)
 external init : unit -> unit = "caml_init_default"
 let () = 
-  let () = Callback.register_exception "NSError" (NSError (Obj.magic "foo" : [`NSError] nativeNSObject)) in
+  let () = Callback.register_exception "NSError" (NSError (Obj.magic "foo" : [`NSError] id)) in
     init() (* MUST DO THIS HERE - it sets the "new:" selector used below *)
 
 (* tag values *)
@@ -69,8 +69,8 @@ let make_int64 i = Int64 i
 let make_float d = Double d
 let make_string s = String s
 let make_pointer p = Pointer p
-let forget_type (x : 'a nativeNSObject) = (Obj.magic x : [`NSObject] nativeNSObject)
-let make_pointer_from_object (o : 'a t) = Pointer (o#repr)
+let forget_type (x : 'a id) = (Obj.magic x : [`NSObject] id)
+let make_pointer_from_object (o : 'a t) = Pointer (forget_type o#repr)
 let make_selector s = Selector s
 let make_error b = NSErrorArg b
 let make_range (loc, len) = NSRange (loc, len)

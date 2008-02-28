@@ -10,6 +10,9 @@ let dlvl = 30
 http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/index.html?http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Articles/chapter_6_section_2.html#//apple_ref/doc/uid/TP30001163-CH15-BAJJABHJ
 *)
 
+(* attempt to parse the typedef of enums, because we need the equivalency of the type to int/int64
+ * and we'd like the values too; skip all other typedefs
+ *)
 let typedef = parser
   | [< e = enum; name = ident; 'Keyword ";" ?? "; expected" >] -> 
       Hardcoded.add_enum name;
@@ -18,15 +21,16 @@ let typedef = parser
 
 (* category interface or class interface *)
 let rec interface_kind = parser 
-  | [< 'Keyword "("; 'Ident i; 'Keyword ")"; >]  -> Ast.CategoryInterface i
-  | [< super = opt superclass_name; >] -> Ast.ClassInterface super
-
-and superclass_name = parser
-  | [< 'Keyword ":"; 'Ident name ?? "identifier expected" >] -> name
+  | [< 'Keyword "("; 
+       'Ident i ?? "category name expected"; 
+       'Keyword ")" ?? ") expected"; >]  -> Ast.CategoryInterface i
+  | [< super = opt (parser
+      | [< 'Keyword ":"; 'Ident name ?? "super class identifier expected" >] -> name)
+    >] -> Ast.ClassInterface super
 
 and class_or_category_interface = parser
     [< kind = interface_kind;
-       protos = opt protocol_reference_list ?? "[ <p1,p2,...> ] expected";
+       protos = opt protocol_reference_list ?? "protocol list [ <p1,p2,...> ] expected";
        variables = opt (parser [< 'Keyword "{";
 				  variables = list_of declarations ?? "declaration list expected"; 
 				  'Keyword "}" ?? "} expected" 
@@ -34,13 +38,15 @@ and class_or_category_interface = parser
        methods = list_of decl_method ?? "list of methods expected";
        'Keyword "@end" ?? "@end expected";
     >] -> 
-      Debug.f ~lvl:dlvl "class_or_category_interface";
+      (match kind with 
+	| Ast.CategoryInterface _ -> Debug.f ~lvl:dlvl "category interface"
+	| Ast.ClassInterface _ -> Debug.f ~lvl:dlvl "class interface");
       (kind, deopt protos, deopt variables, methods)
 
 and protocol = parser
     [< 'Ident p; 
        ps = opt protocol_reference_list;
-       methods = list_of decl_method; 
+       methods = list_of decl_method ?? "method declarations expected"; 
        'Keyword "@end" ?? "@end expected" >] -> 
       Ast.Protocol (p, deopt ps, methods)
 
@@ -83,8 +89,6 @@ and declarations = parser
 
 and decl_method = parser
   | [< 'Keyword "typedef"; x = typedef; ss >] -> 
-      (* still want to parse it to get type equivalence when possible *)
-      Debug.f ~lvl:dlvl "skipped typedef in decl_method";
       begin match x with
 	| Ast.Ignore -> ()
 	| Ast.Enum l -> Enum.add l
@@ -97,10 +101,6 @@ and decl_method = parser
 	| _ -> assert false
       end;
       decl_method ss
-(*
-  | [< 'Keyword "enum"; _ = skip_to 0 ";"; ss >] -> 
-	Debug.f ~lvl:dlvl "skipped enum in decl_method";
-*)
   | [< m = method_scope; 
        return_type = opt (parser [< 'Keyword "("; 
 				    pq = opt protocol_qualifier; 
@@ -128,8 +128,9 @@ and selector = parser
 			    vararg = opt (parser [<'Keyword ","; 
 						   'Keyword "...">] -> true)
 			 >] -> 
-	 deopt_type arg_type, Hardcoded.safe_ident arg_name, match vararg with Some t -> true | _ -> false)
-       ?? "optional argument expected";
+	 deopt_type arg_type, 
+	 Hardcoded.safe_ident arg_name, match vararg with Some t -> true | _ -> false)
+	?? "optional argument expected";
     >] ->
       Debug.f ~lvl:dlvl "sel: %s" selector_name;
       if selector_name.[0] >= 'A' && selector_name.[0] <= 'Z' then
@@ -176,7 +177,6 @@ let rec dot_h_phrase = parser
       Debug.f ~lvl:dlvl "skipping APPKIT_EXTERN";
       Ast.Ignore
   | [< 'Keyword "typedef"; t = typedef >] -> t
-(*  | [< 'Keyword "enum"; _ = skip_to 0 ";" ?? "skipping to ;"; ss >] -> dot_h_phrase ss *)
   | [< x = enum; 'Keyword ";" >] -> 
       begin match x with 
 	| Ast.Enum l -> Enum.add l
@@ -188,3 +188,9 @@ let rec dot_h_phrase = parser
       Ast.Ignore
 
 let dot_h = list_of dot_h_phrase
+
+let from_channel ic =
+  let lexer = Lexing.from_channel ic in
+  let token_stream = Stream.from (Lexobjc.filtered_stream lexer) in
+  dot_h token_stream
+

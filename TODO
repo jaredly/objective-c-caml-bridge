@@ -1,25 +1,42 @@
+- bug with no argument selectors (shouldn't have a ":" in the selector name)
+- compile categories separately if different from the main class of the .h (e.g. NSObject cats)
+
+- Handling recursive compilation
+class native_X = fun id -> object ... end
+and native_Y = fun id -> object ... end
+...
+module NSFoo = struct
+ let c = object ... end
+ class t = object inherit native_NSFoo inherit NSObject end
+end
+	- Very good, but it does not compile...
+	- ? look into more precise dependency data, e.g. between classes only (and not class objects?)
+	- ? compiles better if we remove inheritance on NSObject.
+	- we can do multiple inh later - wrapping will be incomplete though 
+	(doesn't generate the proper classes)
+	- transitive closure on dependencies of classes going to "share"
+	- would it be easire to cut the dependencies all together??
+	
+
+
 Next:
-  * testing: NSError **, NSRange
-  * enum values
   * better naming convention? (NSFoo.nsclass for default?)
   * nil as valid object of any type.
   * better string/NSString passing?
-  * inheritance w/ coercion
   * dynamic type checking of arguments? (using @encode and such)
   * includes from CoreFoundation
   * NSAffineTransform and NSAttributedString are defined both in Foundation and AppKit...
   * casts:
     	  NSComparisonResult: enum, builtin at low level
-	  SEL: we have it already
 	  NSTimeInverval
 	  Class: we should have it too?
 	  NSExpressionType
-	  NSRange: need to hardcode
 	  NSDecimal? 20 bytes, not a class
 	  NSPoint, NSSize, NSRect
   
 ----------------------------------------------------------------------
 DONE
+  * testing: NSError **, NSRange
   DONE * types/injections are wrong for args - need to think that through
   DONE  * group categories into class def
   * factoring of opt args
@@ -36,3 +53,12 @@ DONE
   * why do we crash with the dynamically linked version (wrong option to camlmklib - use -framework instead 
   of -ccopt -framework
   * return type of class constructor
+  * bogus class generation when only categories: no, can't do much cleaning about this
+  * inheritance w/ coercion
+    		generated coercion is easy
+		inheritance?
+			inherit (P_of_C o) as super
+			but what with the "o" method?
+
+  * sorting of .cmo (using cmosort)
+  * debug the dependency graph (ARGS incorrect - no deps, RET incorrect NSObject/NSMethodSignature not reflected)
