@@ -1,4 +1,6 @@
 CAMLSTDLIB:=$(shell ocamlc -where)
+# This can be overwritten by the user Makefile
+DEPEND_FILE=.depend
 
 CPPFLAGS=-I$(CAMLSTDLIB)
 # Always use camlp4 extensions

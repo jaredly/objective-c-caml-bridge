@@ -16,5 +16,5 @@ uninstall::
 
 
 help::
-	@echo "make install      #Installs as ocamlfind package $(PACKAGE)"
-	@echo "make uninstall    #Uninstalls as ocamlfind package $(PACKAGE)"
+	@echo "make install      # Installs as ocamlfind package $(PACKAGE)"
+	@echo "make uninstall    # Uninstalls as ocamlfind package $(PACKAGE)"

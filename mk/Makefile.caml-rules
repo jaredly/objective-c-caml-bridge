@@ -81,13 +81,12 @@ clean ::
 	rm -f $(GEN) $(BIN)
 
 # Dependencies
-
-depend:: cleandepend $(GEN) .depend
+depend:: cleandepend $(GEN) $(DEPEND_FILE)
 
 # My convention is to use .mlp for code involving stream parsers
 # This breaks camldepend who only understands .ml and .mli suffixes
 # So we create temporary symlinks during the depend stage
-.depend:: 
+$(DEPEND_FILE):: 
 	for i in $(foreach d, $(DIRS), $(wildcard $(d)/*.mlp));\
 	do \
 	   t=`dirname $$i`/`basename $$i .mlp`.ml; \
@@ -95,12 +94,12 @@ depend:: cleandepend $(GEN) .depend
         done
 	for d in $(DIRS); \
 	do \
-	   $(CAMLDEP) $(PP) $(DEPFLAGS) $$d/*.ml $$d/*.mli >> .depend; \
+	   $(CAMLDEP) $(PP) $(DEPFLAGS) $$d/*.ml $$d/*.mli >> $(DEPEND_FILE); \
 	done
 	rm -f $(patsubst %.mlp,%.ml,$(foreach d, $(DIRS), $(wildcard $(d)/*.mlp)))
 
 cleandepend:
-	rm -f .depend
+	rm -f $(DEPEND_FILE)
 	rm -f $(ml_files)
 
 
@@ -130,7 +129,7 @@ save:
 	chmod 400 saves/*
 
 help::
-	@echo "make depend       # generates GEN=$(GEN) and .depend"
+	@echo "make depend       # generates GEN=$(GEN) and depend file $(DEPEND_FILE)"
 	@echo "make cleandepend  # removes generated files GEN=$(GEN)"
 	@echo "make doc          # produces HTML documentation in ./html/"
 	@echo "make save         # makes a backup of common source files and $(SAVE)"

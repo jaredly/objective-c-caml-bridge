@@ -1,0 +1,1092 @@
+support/classes.cmo: support/objc.cmi support/classes.cmi 
+support/classes.cmx: support/objc.cmx support/classes.cmi 
+support/objc.cmo: support/selector.cmo support/objc.cmi 
+support/objc.cmx: support/selector.cmx support/objc.cmi 
+support/classes.cmi: support/objc.cmi 
+support/objc.cmi: support/selector.cmo 
+appkit/AppKitDefines.cmo: support/objc.cmi 
+appkit/AppKitDefines.cmx: support/objc.cmx 
+appkit/AppKitErrors.cmo: support/objc.cmi 
+appkit/AppKitErrors.cmx: support/objc.cmx 
+appkit/NSAccessibility.cmo: support/objc.cmi 
+appkit/NSAccessibility.cmx: support/objc.cmx 
+appkit/NSActionCell.cmo: support/objc.cmi appkit/im_NSActionCell.cmo \
+    support/classes.cmi 
+appkit/NSActionCell.cmx: support/objc.cmx appkit/im_NSActionCell.cmx \
+    support/classes.cmx 
+appkit/NSAlert.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSAlert.cmo support/classes.cmi 
+appkit/NSAlert.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSAlert.cmx support/classes.cmx 
+appkit/NSAnimation.cmo: support/objc.cmi appkit/im_NSAnimation.cmo \
+    support/classes.cmi 
+appkit/NSAnimation.cmx: support/objc.cmx appkit/im_NSAnimation.cmx \
+    support/classes.cmx 
+appkit/NSAppleScriptExtensions.cmo: support/objc.cmi 
+appkit/NSAppleScriptExtensions.cmx: support/objc.cmx 
+appkit/NSApplication.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSApplication.cmo support/classes.cmi \
+    appkit/cati_NSWindowsMenu.cmo appkit/cati_NSWindowsExtensions.cmo \
+    appkit/cati_NSStandardAboutPanel.cmo appkit/cati_NSServicesMenu.cmo \
+    appkit/cati_NSServicesHandling.cmo appkit/cati_NSScripting.cmo \
+    appkit/cati_NSColorPanel.cmo appkit/cati_NSApplicationHelpExtension.cmo 
+appkit/NSApplication.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSApplication.cmx support/classes.cmx \
+    appkit/cati_NSWindowsMenu.cmx appkit/cati_NSWindowsExtensions.cmx \
+    appkit/cati_NSStandardAboutPanel.cmx appkit/cati_NSServicesMenu.cmx \
+    appkit/cati_NSServicesHandling.cmx appkit/cati_NSScripting.cmx \
+    appkit/cati_NSColorPanel.cmx appkit/cati_NSApplicationHelpExtension.cmx 
+appkit/NSApplicationScripting.cmo: support/objc.cmi 
+appkit/NSApplicationScripting.cmx: support/objc.cmx 
+appkit/NSBezierPath.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSBezierPath.cmo support/classes.cmi 
+appkit/NSBezierPath.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSBezierPath.cmx support/classes.cmx 
+appkit/NSBitmapImageRep.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSBitmapImageRep.cmo support/classes.cmi \
+    appkit/cati_NSWindowsExtensions.cmo \
+    appkit/cati_NSBitmapImageFileTypeExtensions.cmo 
+appkit/NSBitmapImageRep.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSBitmapImageRep.cmx support/classes.cmx \
+    appkit/cati_NSWindowsExtensions.cmx \
+    appkit/cati_NSBitmapImageFileTypeExtensions.cmx 
+appkit/NSBox.cmo: support/objc.cmi appkit/im_NSBox.cmo support/classes.cmi \
+    appkit/cati_NSKeyboardUI.cmo 
+appkit/NSBox.cmx: support/objc.cmx appkit/im_NSBox.cmx support/classes.cmx \
+    appkit/cati_NSKeyboardUI.cmx 
+appkit/NSBrowser.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSBrowser.cmo support/classes.cmi 
+appkit/NSBrowser.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSBrowser.cmx support/classes.cmx 
+appkit/NSBrowserCell.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSBrowserCell.cmo support/classes.cmi 
+appkit/NSBrowserCell.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSBrowserCell.cmx support/classes.cmx 
+appkit/NSButton.cmo: support/objc.cmi appkit/im_NSButton.cmo \
+    support/classes.cmi appkit/cati_NSKeyboardUI.cmo \
+    appkit/cati_NSButtonSoundExtensions.cmo \
+    appkit/cati_NSButtonMixedState.cmo appkit/cati_NSButtonBorder.cmo \
+    appkit/cati_NSButtonBezelStyles.cmo \
+    appkit/cati_NSButtonAttributedStringMethods.cmo 
+appkit/NSButton.cmx: support/objc.cmx appkit/im_NSButton.cmx \
+    support/classes.cmx appkit/cati_NSKeyboardUI.cmx \
+    appkit/cati_NSButtonSoundExtensions.cmx \
+    appkit/cati_NSButtonMixedState.cmx appkit/cati_NSButtonBorder.cmx \
+    appkit/cati_NSButtonBezelStyles.cmx \
+    appkit/cati_NSButtonAttributedStringMethods.cmx 
+appkit/NSButtonCell.cmo: support/objc.cmi appkit/im_NSButtonCell.cmo \
+    support/classes.cmi appkit/cati_NSKeyboardUI.cmo \
+    appkit/cati_NSButtonCellSoundExtensions.cmo \
+    appkit/cati_NSButtonCellExtensions.cmo \
+    appkit/cati_NSButtonCellBezelStyles.cmo \
+    appkit/cati_NSButtonCellAttributedStringMethods.cmo 
+appkit/NSButtonCell.cmx: support/objc.cmx appkit/im_NSButtonCell.cmx \
+    support/classes.cmx appkit/cati_NSKeyboardUI.cmx \
+    appkit/cati_NSButtonCellSoundExtensions.cmx \
+    appkit/cati_NSButtonCellExtensions.cmx \
+    appkit/cati_NSButtonCellBezelStyles.cmx \
+    appkit/cati_NSButtonCellAttributedStringMethods.cmx 
+appkit/NSCIImageRep.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSCIImageRep.cmo support/classes.cmi 
+appkit/NSCIImageRep.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSCIImageRep.cmx support/classes.cmx 
+appkit/NSCachedImageRep.cmo: support/objc.cmi appkit/im_NSCachedImageRep.cmo \
+    support/classes.cmi 
+appkit/NSCachedImageRep.cmx: support/objc.cmx appkit/im_NSCachedImageRep.cmx \
+    support/classes.cmx 
+appkit/NSCell.cmo: support/selector.cmo support/objc.cmi appkit/im_NSCell.cmo \
+    support/classes.cmi appkit/cati_NSKeyboardUI.cmo \
+    appkit/cati_NSCellMixedState.cmo \
+    appkit/cati_NSCellAttributedStringMethods.cmo 
+appkit/NSCell.cmx: support/selector.cmx support/objc.cmx appkit/im_NSCell.cmx \
+    support/classes.cmx appkit/cati_NSKeyboardUI.cmx \
+    appkit/cati_NSCellMixedState.cmx \
+    appkit/cati_NSCellAttributedStringMethods.cmx 
+appkit/NSClipView.cmo: support/objc.cmi appkit/im_NSClipView.cmo \
+    support/classes.cmi 
+appkit/NSClipView.cmx: support/objc.cmx appkit/im_NSClipView.cmx \
+    support/classes.cmx 
+appkit/NSColor.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSColor.cmo support/classes.cmi \
+    appkit/cati_NSQuartzCoreAdditions.cmo 
+appkit/NSColor.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSColor.cmx support/classes.cmx \
+    appkit/cati_NSQuartzCoreAdditions.cmx 
+appkit/NSColorList.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSColorList.cmo support/classes.cmi 
+appkit/NSColorList.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSColorList.cmx support/classes.cmx 
+appkit/NSColorPanel.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSColorPanel.cmo support/classes.cmi 
+appkit/NSColorPanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSColorPanel.cmx support/classes.cmx 
+appkit/NSColorPicker.cmo: support/objc.cmi appkit/im_NSColorPicker.cmo \
+    support/classes.cmi 
+appkit/NSColorPicker.cmx: support/objc.cmx appkit/im_NSColorPicker.cmx \
+    support/classes.cmx 
+appkit/NSColorPicking.cmo: support/objc.cmi 
+appkit/NSColorPicking.cmx: support/objc.cmx 
+appkit/NSColorSpace.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSColorSpace.cmo support/classes.cmi 
+appkit/NSColorSpace.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSColorSpace.cmx support/classes.cmx 
+appkit/NSColorWell.cmo: support/objc.cmi appkit/im_NSColorWell.cmo \
+    support/classes.cmi 
+appkit/NSColorWell.cmx: support/objc.cmx appkit/im_NSColorWell.cmx \
+    support/classes.cmx 
+appkit/NSComboBox.cmo: support/objc.cmi appkit/im_NSComboBox.cmo \
+    support/classes.cmi 
+appkit/NSComboBox.cmx: support/objc.cmx appkit/im_NSComboBox.cmx \
+    support/classes.cmx 
+appkit/NSComboBoxCell.cmo: support/objc.cmi appkit/im_NSComboBoxCell.cmo \
+    support/classes.cmi 
+appkit/NSComboBoxCell.cmx: support/objc.cmx appkit/im_NSComboBoxCell.cmx \
+    support/classes.cmx 
+appkit/NSControl.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSControl.cmo support/classes.cmi appkit/cati_NSKeyboardUI.cmo \
+    appkit/cati_NSControlAttributedStringMethods.cmo 
+appkit/NSControl.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSControl.cmx support/classes.cmx appkit/cati_NSKeyboardUI.cmx \
+    appkit/cati_NSControlAttributedStringMethods.cmx 
+appkit/NSController.cmo: support/objc.cmi appkit/im_NSController.cmo \
+    support/classes.cmi 
+appkit/NSController.cmx: support/objc.cmx appkit/im_NSController.cmx \
+    support/classes.cmx 
+appkit/NSCursor.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSCursor.cmo support/classes.cmi 
+appkit/NSCursor.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSCursor.cmx support/classes.cmx 
+appkit/NSCustomImageRep.cmo: support/objc.cmi appkit/im_NSCustomImageRep.cmo \
+    support/classes.cmi 
+appkit/NSCustomImageRep.cmx: support/objc.cmx appkit/im_NSCustomImageRep.cmx \
+    support/classes.cmx 
+appkit/NSDatePicker.cmo: support/objc.cmi appkit/im_NSDatePicker.cmo \
+    support/classes.cmi 
+appkit/NSDatePicker.cmx: support/objc.cmx appkit/im_NSDatePicker.cmx \
+    support/classes.cmx 
+appkit/NSDatePickerCell.cmo: support/objc.cmi appkit/im_NSDatePickerCell.cmo \
+    support/classes.cmi 
+appkit/NSDatePickerCell.cmx: support/objc.cmx appkit/im_NSDatePickerCell.cmx \
+    support/classes.cmx 
+appkit/NSDocument.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSDocument.cmo support/classes.cmi appkit/cati_NSScripting.cmo \
+    appkit/cati_NSDeprecated.cmo 
+appkit/NSDocument.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSDocument.cmx support/classes.cmx appkit/cati_NSScripting.cmx \
+    appkit/cati_NSDeprecated.cmx 
+appkit/NSDocumentController.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSDocumentController.cmo support/classes.cmi \
+    appkit/cati_NSDeprecated.cmo 
+appkit/NSDocumentController.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSDocumentController.cmx support/classes.cmx \
+    appkit/cati_NSDeprecated.cmx 
+appkit/NSDocumentScripting.cmo: support/objc.cmi 
+appkit/NSDocumentScripting.cmx: support/objc.cmx 
+appkit/NSDragging.cmo: support/objc.cmi 
+appkit/NSDragging.cmx: support/objc.cmx 
+appkit/NSDrawer.cmo: support/objc.cmi appkit/im_NSDrawer.cmo \
+    support/classes.cmi 
+appkit/NSDrawer.cmx: support/objc.cmx appkit/im_NSDrawer.cmx \
+    support/classes.cmx 
+appkit/NSEPSImageRep.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSEPSImageRep.cmo support/classes.cmi 
+appkit/NSEPSImageRep.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSEPSImageRep.cmx support/classes.cmx 
+appkit/NSErrors.cmo: support/objc.cmi 
+appkit/NSErrors.cmx: support/objc.cmx 
+appkit/NSEvent.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSEvent.cmo support/classes.cmi 
+appkit/NSEvent.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSEvent.cmx support/classes.cmx 
+appkit/NSFileWrapper.cmo: support/objc.cmi appkit/im_NSFileWrapper.cmo \
+    support/classes.cmi 
+appkit/NSFileWrapper.cmx: support/objc.cmx appkit/im_NSFileWrapper.cmx \
+    support/classes.cmx 
+appkit/NSFont.cmo: support/selector.cmo support/objc.cmi appkit/im_NSFont.cmo \
+    support/classes.cmi appkit/cati_NSFontDeprecated.cmo 
+appkit/NSFont.cmx: support/selector.cmx support/objc.cmx appkit/im_NSFont.cmx \
+    support/classes.cmx appkit/cati_NSFontDeprecated.cmx 
+appkit/NSFontDescriptor.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSFontDescriptor.cmo support/classes.cmi 
+appkit/NSFontDescriptor.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSFontDescriptor.cmx support/classes.cmx 
+appkit/NSFontManager.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSFontManager.cmo support/classes.cmi \
+    appkit/cati_NSFontManagerMenuActionMethods.cmo 
+appkit/NSFontManager.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSFontManager.cmx support/classes.cmx \
+    appkit/cati_NSFontManagerMenuActionMethods.cmx 
+appkit/NSFontPanel.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSFontPanel.cmo support/classes.cmi 
+appkit/NSFontPanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSFontPanel.cmx support/classes.cmx 
+appkit/NSForm.cmo: support/objc.cmi appkit/im_NSForm.cmo support/classes.cmi 
+appkit/NSForm.cmx: support/objc.cmx appkit/im_NSForm.cmx support/classes.cmx 
+appkit/NSFormCell.cmo: support/objc.cmi appkit/im_NSFormCell.cmo \
+    support/classes.cmi appkit/cati_NSKeyboardUI.cmo \
+    appkit/cati_NSFormCellAttributedStringMethods.cmo 
+appkit/NSFormCell.cmx: support/objc.cmx appkit/im_NSFormCell.cmx \
+    support/classes.cmx appkit/cati_NSKeyboardUI.cmx \
+    appkit/cati_NSFormCellAttributedStringMethods.cmx 
+appkit/NSGlyphGenerator.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSGlyphGenerator.cmo support/classes.cmi 
+appkit/NSGlyphGenerator.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSGlyphGenerator.cmx support/classes.cmx 
+appkit/NSGlyphInfo.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSGlyphInfo.cmo support/classes.cmi 
+appkit/NSGlyphInfo.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSGlyphInfo.cmx support/classes.cmx 
+appkit/NSGraphics.cmo: support/objc.cmi 
+appkit/NSGraphics.cmx: support/objc.cmx 
+appkit/NSGraphicsContext.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSGraphicsContext.cmo support/classes.cmi \
+    appkit/cati_NSQuartzCoreAdditions.cmo \
+    appkit/cati_NSGraphicsContext_RenderingOptions.cmo 
+appkit/NSGraphicsContext.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSGraphicsContext.cmx support/classes.cmx \
+    appkit/cati_NSQuartzCoreAdditions.cmx \
+    appkit/cati_NSGraphicsContext_RenderingOptions.cmx 
+appkit/NSHelpManager.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSHelpManager.cmo support/classes.cmi 
+appkit/NSHelpManager.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSHelpManager.cmx support/classes.cmx 
+appkit/NSImage.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSImage.cmo support/classes.cmi \
+    appkit/cati_NSWindowsExtensions.cmo 
+appkit/NSImage.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSImage.cmx support/classes.cmx \
+    appkit/cati_NSWindowsExtensions.cmx 
+appkit/NSImageCell.cmo: support/objc.cmi appkit/im_NSImageCell.cmo \
+    support/classes.cmi 
+appkit/NSImageCell.cmx: support/objc.cmx appkit/im_NSImageCell.cmx \
+    support/classes.cmx 
+appkit/NSImageRep.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSImageRep.cmo support/classes.cmi 
+appkit/NSImageRep.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSImageRep.cmx support/classes.cmx 
+appkit/NSImageView.cmo: support/objc.cmi appkit/im_NSImageView.cmo \
+    support/classes.cmi 
+appkit/NSImageView.cmx: support/objc.cmx appkit/im_NSImageView.cmx \
+    support/classes.cmx 
+appkit/NSInputManager.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSInputManager.cmo support/classes.cmi 
+appkit/NSInputManager.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSInputManager.cmx support/classes.cmx 
+appkit/NSInputServer.cmo: support/objc.cmi appkit/im_NSInputServer.cmo \
+    support/classes.cmi 
+appkit/NSInputServer.cmx: support/objc.cmx appkit/im_NSInputServer.cmx \
+    support/classes.cmx 
+appkit/NSInterfaceStyle.cmo: support/objc.cmi 
+appkit/NSInterfaceStyle.cmx: support/objc.cmx 
+appkit/NSKeyValueBinding.cmo: support/objc.cmi 
+appkit/NSKeyValueBinding.cmx: support/objc.cmx 
+appkit/NSLevelIndicator.cmo: support/objc.cmi appkit/im_NSLevelIndicator.cmo \
+    support/classes.cmi 
+appkit/NSLevelIndicator.cmx: support/objc.cmx appkit/im_NSLevelIndicator.cmx \
+    support/classes.cmx 
+appkit/NSLevelIndicatorCell.cmo: support/objc.cmi \
+    appkit/im_NSLevelIndicatorCell.cmo support/classes.cmi 
+appkit/NSLevelIndicatorCell.cmx: support/objc.cmx \
+    appkit/im_NSLevelIndicatorCell.cmx support/classes.cmx 
+appkit/NSMatrix.cmo: support/objc.cmi appkit/im_NSMatrix.cmo \
+    support/classes.cmi appkit/cati_NSKeyboardUI.cmo 
+appkit/NSMatrix.cmx: support/objc.cmx appkit/im_NSMatrix.cmx \
+    support/classes.cmx appkit/cati_NSKeyboardUI.cmx 
+appkit/NSMenu.cmo: support/selector.cmo support/objc.cmi appkit/im_NSMenu.cmo \
+    support/classes.cmi appkit/cati_NSSubmenuAction.cmo 
+appkit/NSMenu.cmx: support/selector.cmx support/objc.cmx appkit/im_NSMenu.cmx \
+    support/classes.cmx appkit/cati_NSSubmenuAction.cmx 
+appkit/NSMenuItem.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSMenuItem.cmo support/classes.cmi 
+appkit/NSMenuItem.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSMenuItem.cmx support/classes.cmx 
+appkit/NSMenuItemCell.cmo: support/objc.cmi appkit/im_NSMenuItemCell.cmo \
+    support/classes.cmi 
+appkit/NSMenuItemCell.cmx: support/objc.cmx appkit/im_NSMenuItemCell.cmx \
+    support/classes.cmx 
+appkit/NSMenuView.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSMenuView.cmo support/classes.cmi 
+appkit/NSMenuView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSMenuView.cmx support/classes.cmx 
+appkit/NSMovie.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSMovie.cmo support/classes.cmi 
+appkit/NSMovie.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSMovie.cmx support/classes.cmx 
+appkit/NSMovieView.cmo: support/objc.cmi appkit/im_NSMovieView.cmo \
+    support/classes.cmi 
+appkit/NSMovieView.cmx: support/objc.cmx appkit/im_NSMovieView.cmx \
+    support/classes.cmx 
+appkit/NSMutableParagraphStyle.cmo: support/objc.cmi \
+    appkit/im_NSMutableParagraphStyle.cmo support/classes.cmi 
+appkit/NSMutableParagraphStyle.cmx: support/objc.cmx \
+    appkit/im_NSMutableParagraphStyle.cmx support/classes.cmx 
+appkit/NSNib.cmo: support/objc.cmi appkit/im_NSNib.cmo support/classes.cmi 
+appkit/NSNib.cmx: support/objc.cmx appkit/im_NSNib.cmx support/classes.cmx 
+appkit/NSNibConnector.cmo: support/objc.cmi appkit/im_NSNibConnector.cmo \
+    support/classes.cmi 
+appkit/NSNibConnector.cmx: support/objc.cmx appkit/im_NSNibConnector.cmx \
+    support/classes.cmx 
+appkit/NSNibControlConnector.cmo: support/objc.cmi \
+    appkit/im_NSNibControlConnector.cmo support/classes.cmi 
+appkit/NSNibControlConnector.cmx: support/objc.cmx \
+    appkit/im_NSNibControlConnector.cmx support/classes.cmx 
+appkit/NSNibDeclarations.cmo: support/objc.cmi 
+appkit/NSNibDeclarations.cmx: support/objc.cmx 
+appkit/NSNibLoading.cmo: support/objc.cmi 
+appkit/NSNibLoading.cmx: support/objc.cmx 
+appkit/NSNibOutletConnector.cmo: support/objc.cmi \
+    appkit/im_NSNibOutletConnector.cmo support/classes.cmi 
+appkit/NSNibOutletConnector.cmx: support/objc.cmx \
+    appkit/im_NSNibOutletConnector.cmx support/classes.cmx 
+appkit/NSOpenGL.cmo: support/objc.cmi 
+appkit/NSOpenGL.cmx: support/objc.cmx 
+appkit/NSOpenGLContext.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSOpenGLContext.cmo support/classes.cmi 
+appkit/NSOpenGLContext.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSOpenGLContext.cmx support/classes.cmx 
+appkit/NSOpenGLPixelBuffer.cmo: support/objc.cmi \
+    appkit/im_NSOpenGLPixelBuffer.cmo support/classes.cmi 
+appkit/NSOpenGLPixelBuffer.cmx: support/objc.cmx \
+    appkit/im_NSOpenGLPixelBuffer.cmx support/classes.cmx 
+appkit/NSOpenGLPixelFormat.cmo: support/objc.cmi \
+    appkit/im_NSOpenGLPixelFormat.cmo support/classes.cmi 
+appkit/NSOpenGLPixelFormat.cmx: support/objc.cmx \
+    appkit/im_NSOpenGLPixelFormat.cmx support/classes.cmx 
+appkit/NSOpenGLView.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSOpenGLView.cmo support/classes.cmi 
+appkit/NSOpenGLView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSOpenGLView.cmx support/classes.cmx 
+appkit/NSOpenPanel.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSOpenPanel.cmo support/classes.cmi \
+    appkit/cati_NSOpenPanelRuntime.cmo 
+appkit/NSOpenPanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSOpenPanel.cmx support/classes.cmx \
+    appkit/cati_NSOpenPanelRuntime.cmx 
+appkit/NSOutlineView.cmo: support/objc.cmi appkit/im_NSOutlineView.cmo \
+    support/classes.cmi 
+appkit/NSOutlineView.cmx: support/objc.cmx appkit/im_NSOutlineView.cmx \
+    support/classes.cmx 
+appkit/NSPDFImageRep.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSPDFImageRep.cmo support/classes.cmi 
+appkit/NSPDFImageRep.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSPDFImageRep.cmx support/classes.cmx 
+appkit/NSPICTImageRep.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSPICTImageRep.cmo support/classes.cmi 
+appkit/NSPICTImageRep.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSPICTImageRep.cmx support/classes.cmx 
+appkit/NSPanel.cmo: support/objc.cmi appkit/im_NSPanel.cmo \
+    support/classes.cmi 
+appkit/NSPanel.cmx: support/objc.cmx appkit/im_NSPanel.cmx \
+    support/classes.cmx 
+appkit/NSParagraphStyle.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSParagraphStyle.cmo support/classes.cmi 
+appkit/NSParagraphStyle.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSParagraphStyle.cmx support/classes.cmx 
+appkit/NSPasteboard.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSPasteboard.cmo support/classes.cmi \
+    appkit/cati_NSFileContents.cmo 
+appkit/NSPasteboard.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSPasteboard.cmx support/classes.cmx \
+    appkit/cati_NSFileContents.cmx 
+appkit/NSPersistentDocument.cmo: support/objc.cmi \
+    appkit/im_NSPersistentDocument.cmo support/classes.cmi 
+appkit/NSPersistentDocument.cmx: support/objc.cmx \
+    appkit/im_NSPersistentDocument.cmx support/classes.cmx 
+appkit/NSPopUpButton.cmo: support/objc.cmi appkit/im_NSPopUpButton.cmo \
+    support/classes.cmi 
+appkit/NSPopUpButton.cmx: support/objc.cmx appkit/im_NSPopUpButton.cmx \
+    support/classes.cmx 
+appkit/NSPopUpButtonCell.cmo: support/objc.cmi \
+    appkit/im_NSPopUpButtonCell.cmo support/classes.cmi 
+appkit/NSPopUpButtonCell.cmx: support/objc.cmx \
+    appkit/im_NSPopUpButtonCell.cmx support/classes.cmx 
+appkit/NSPrintInfo.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSPrintInfo.cmo support/classes.cmi 
+appkit/NSPrintInfo.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSPrintInfo.cmx support/classes.cmx 
+appkit/NSPrintOperation.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSPrintOperation.cmo support/classes.cmi \
+    appkit/cati_NSDeprecated.cmo 
+appkit/NSPrintOperation.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSPrintOperation.cmx support/classes.cmx \
+    appkit/cati_NSDeprecated.cmx 
+appkit/NSPrintPanel.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSPrintPanel.cmo support/classes.cmi 
+appkit/NSPrintPanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSPrintPanel.cmx support/classes.cmx 
+appkit/NSPrinter.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSPrinter.cmo support/classes.cmi 
+appkit/NSPrinter.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSPrinter.cmx support/classes.cmx 
+appkit/NSProgressIndicator.cmo: support/objc.cmi 
+appkit/NSProgressIndicator.cmx: support/objc.cmx 
+appkit/NSQuickDrawView.cmo: support/objc.cmi appkit/im_NSQuickDrawView.cmo \
+    support/classes.cmi 
+appkit/NSQuickDrawView.cmx: support/objc.cmx appkit/im_NSQuickDrawView.cmx \
+    support/classes.cmx 
+appkit/NSResponder.cmo: support/objc.cmi appkit/im_NSResponder.cmo \
+    support/classes.cmi appkit/cati_NSUndoSupport.cmo \
+    appkit/cati_NSStandardKeyBindingMethods.cmo appkit/cati_NSKeyboardUI.cmo \
+    appkit/cati_NSInterfaceStyle.cmo appkit/cati_NSErrorPresentation.cmo 
+appkit/NSResponder.cmx: support/objc.cmx appkit/im_NSResponder.cmx \
+    support/classes.cmx appkit/cati_NSUndoSupport.cmx \
+    appkit/cati_NSStandardKeyBindingMethods.cmx appkit/cati_NSKeyboardUI.cmx \
+    appkit/cati_NSInterfaceStyle.cmx appkit/cati_NSErrorPresentation.cmx 
+appkit/NSRulerMarker.cmo: support/objc.cmi appkit/im_NSRulerMarker.cmo \
+    support/classes.cmi 
+appkit/NSRulerMarker.cmx: support/objc.cmx appkit/im_NSRulerMarker.cmx \
+    support/classes.cmx 
+appkit/NSRulerView.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSRulerView.cmo support/classes.cmi 
+appkit/NSRulerView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSRulerView.cmx support/classes.cmx 
+appkit/NSSavePanel.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSSavePanel.cmo support/classes.cmi \
+    appkit/cati_NSSavePanelRuntime.cmo 
+appkit/NSSavePanel.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSSavePanel.cmx support/classes.cmx \
+    appkit/cati_NSSavePanelRuntime.cmx 
+appkit/NSScreen.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSScreen.cmo support/classes.cmi 
+appkit/NSScreen.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSScreen.cmx support/classes.cmx 
+appkit/NSScrollView.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSScrollView.cmo support/classes.cmi \
+    appkit/cati_NSRulerSupport.cmo 
+appkit/NSScrollView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSScrollView.cmx support/classes.cmx \
+    appkit/cati_NSRulerSupport.cmx 
+appkit/NSScroller.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSScroller.cmo support/classes.cmi 
+appkit/NSScroller.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSScroller.cmx support/classes.cmx 
+appkit/NSSearchField.cmo: support/objc.cmi appkit/im_NSSearchField.cmo \
+    support/classes.cmi 
+appkit/NSSearchField.cmx: support/objc.cmx appkit/im_NSSearchField.cmx \
+    support/classes.cmx 
+appkit/NSSearchFieldCell.cmo: support/objc.cmi \
+    appkit/im_NSSearchFieldCell.cmo support/classes.cmi 
+appkit/NSSearchFieldCell.cmx: support/objc.cmx \
+    appkit/im_NSSearchFieldCell.cmx support/classes.cmx 
+appkit/NSSecureTextField.cmo: support/objc.cmi \
+    appkit/im_NSSecureTextField.cmo support/classes.cmi 
+appkit/NSSecureTextField.cmx: support/objc.cmx \
+    appkit/im_NSSecureTextField.cmx support/classes.cmx 
+appkit/NSSecureTextFieldCell.cmo: support/objc.cmi \
+    appkit/im_NSSecureTextFieldCell.cmo support/classes.cmi 
+appkit/NSSecureTextFieldCell.cmx: support/objc.cmx \
+    appkit/im_NSSecureTextFieldCell.cmx support/classes.cmx 
+appkit/NSSegmentedCell.cmo: support/objc.cmi appkit/im_NSSegmentedCell.cmo \
+    support/classes.cmi 
+appkit/NSSegmentedCell.cmx: support/objc.cmx appkit/im_NSSegmentedCell.cmx \
+    support/classes.cmx 
+appkit/NSSegmentedControl.cmo: support/objc.cmi \
+    appkit/im_NSSegmentedControl.cmo support/classes.cmi 
+appkit/NSSegmentedControl.cmx: support/objc.cmx \
+    appkit/im_NSSegmentedControl.cmx support/classes.cmx 
+appkit/NSShadow.cmo: support/objc.cmi appkit/im_NSShadow.cmo \
+    support/classes.cmi 
+appkit/NSShadow.cmx: support/objc.cmx appkit/im_NSShadow.cmx \
+    support/classes.cmx 
+appkit/NSSlider.cmo: support/objc.cmi appkit/im_NSSlider.cmo \
+    support/classes.cmi appkit/cati_NSTickMarkSupport.cmo 
+appkit/NSSlider.cmx: support/objc.cmx appkit/im_NSSlider.cmx \
+    support/classes.cmx appkit/cati_NSTickMarkSupport.cmx 
+appkit/NSSliderCell.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSSliderCell.cmo support/classes.cmi \
+    appkit/cati_NSTickMarkSupport.cmo 
+appkit/NSSliderCell.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSSliderCell.cmx support/classes.cmx \
+    appkit/cati_NSTickMarkSupport.cmx 
+appkit/NSSound.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSSound.cmo support/classes.cmi 
+appkit/NSSound.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSSound.cmx support/classes.cmx 
+appkit/NSSpeechRecognizer.cmo: support/objc.cmi \
+    appkit/im_NSSpeechRecognizer.cmo support/classes.cmi 
+appkit/NSSpeechRecognizer.cmx: support/objc.cmx \
+    appkit/im_NSSpeechRecognizer.cmx support/classes.cmx 
+appkit/NSSpeechSynthesizer.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSSpeechSynthesizer.cmo support/classes.cmi 
+appkit/NSSpeechSynthesizer.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSSpeechSynthesizer.cmx support/classes.cmx 
+appkit/NSSpellChecker.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSSpellChecker.cmo support/classes.cmi 
+appkit/NSSpellChecker.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSSpellChecker.cmx support/classes.cmx 
+appkit/NSSpellProtocol.cmo: support/objc.cmi 
+appkit/NSSpellProtocol.cmx: support/objc.cmx 
+appkit/NSSplitView.cmo: support/objc.cmi appkit/im_NSSplitView.cmo \
+    support/classes.cmi 
+appkit/NSSplitView.cmx: support/objc.cmx appkit/im_NSSplitView.cmx \
+    support/classes.cmx 
+appkit/NSStatusBar.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSStatusBar.cmo support/classes.cmi 
+appkit/NSStatusBar.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSStatusBar.cmx support/classes.cmx 
+appkit/NSStatusItem.cmo: support/objc.cmi appkit/im_NSStatusItem.cmo \
+    support/classes.cmi appkit/cati_NSStatusItemView.cmo \
+    appkit/cati_NSStatusItemCommon.cmo 
+appkit/NSStatusItem.cmx: support/objc.cmx appkit/im_NSStatusItem.cmx \
+    support/classes.cmx appkit/cati_NSStatusItemView.cmx \
+    appkit/cati_NSStatusItemCommon.cmx 
+appkit/NSStepper.cmo: support/objc.cmi appkit/im_NSStepper.cmo \
+    support/classes.cmi 
+appkit/NSStepper.cmx: support/objc.cmx appkit/im_NSStepper.cmx \
+    support/classes.cmx 
+appkit/NSStepperCell.cmo: support/objc.cmi appkit/im_NSStepperCell.cmo \
+    support/classes.cmi 
+appkit/NSStepperCell.cmx: support/objc.cmx appkit/im_NSStepperCell.cmx \
+    support/classes.cmx 
+appkit/NSStringDrawing.cmo: support/objc.cmi 
+appkit/NSStringDrawing.cmx: support/objc.cmx 
+appkit/NSTabView.cmo: support/objc.cmi appkit/im_NSTabView.cmo \
+    support/classes.cmi 
+appkit/NSTabView.cmx: support/objc.cmx appkit/im_NSTabView.cmx \
+    support/classes.cmx 
+appkit/NSTabViewItem.cmo: support/objc.cmi appkit/im_NSTabViewItem.cmo \
+    support/classes.cmi 
+appkit/NSTabViewItem.cmx: support/objc.cmx appkit/im_NSTabViewItem.cmx \
+    support/classes.cmx 
+appkit/NSTableColumn.cmo: support/objc.cmi appkit/im_NSTableColumn.cmo \
+    support/classes.cmi 
+appkit/NSTableColumn.cmx: support/objc.cmx appkit/im_NSTableColumn.cmx \
+    support/classes.cmx 
+appkit/NSTableHeaderCell.cmo: support/objc.cmi \
+    appkit/im_NSTableHeaderCell.cmo support/classes.cmi 
+appkit/NSTableHeaderCell.cmx: support/objc.cmx \
+    appkit/im_NSTableHeaderCell.cmx support/classes.cmx 
+appkit/NSTableHeaderView.cmo: support/objc.cmi \
+    appkit/im_NSTableHeaderView.cmo support/classes.cmi 
+appkit/NSTableHeaderView.cmx: support/objc.cmx \
+    appkit/im_NSTableHeaderView.cmx support/classes.cmx 
+appkit/NSTableView.cmo: support/objc.cmi appkit/im_NSTableView.cmo \
+    support/classes.cmi 
+appkit/NSTableView.cmx: support/objc.cmx appkit/im_NSTableView.cmx \
+    support/classes.cmx 
+appkit/NSText.cmo: support/objc.cmi appkit/im_NSText.cmo support/classes.cmi 
+appkit/NSText.cmx: support/objc.cmx appkit/im_NSText.cmx support/classes.cmx 
+appkit/NSTextAttachment.cmo: support/objc.cmi appkit/im_NSTextAttachment.cmo \
+    support/classes.cmi 
+appkit/NSTextAttachment.cmx: support/objc.cmx appkit/im_NSTextAttachment.cmx \
+    support/classes.cmx 
+appkit/NSTextAttachmentCell.cmo: support/objc.cmi \
+    appkit/im_NSTextAttachmentCell.cmo support/classes.cmi 
+appkit/NSTextAttachmentCell.cmx: support/objc.cmx \
+    appkit/im_NSTextAttachmentCell.cmx support/classes.cmx 
+appkit/NSTextBlock.cmo: support/objc.cmi appkit/im_NSTextBlock.cmo \
+    support/classes.cmi 
+appkit/NSTextBlock.cmx: support/objc.cmx appkit/im_NSTextBlock.cmx \
+    support/classes.cmx 
+appkit/NSTextContainer.cmo: support/objc.cmi appkit/im_NSTextContainer.cmo \
+    support/classes.cmi 
+appkit/NSTextContainer.cmx: support/objc.cmx appkit/im_NSTextContainer.cmx \
+    support/classes.cmx 
+appkit/NSTextField.cmo: support/objc.cmi appkit/im_NSTextField.cmo \
+    support/classes.cmi appkit/cati_NSTextFieldAttributedStringMethods.cmo \
+    appkit/cati_NSKeyboardUI.cmo 
+appkit/NSTextField.cmx: support/objc.cmx appkit/im_NSTextField.cmx \
+    support/classes.cmx appkit/cati_NSTextFieldAttributedStringMethods.cmx \
+    appkit/cati_NSKeyboardUI.cmx 
+appkit/NSTextFieldCell.cmo: support/objc.cmi appkit/im_NSTextFieldCell.cmo \
+    support/classes.cmi 
+appkit/NSTextFieldCell.cmx: support/objc.cmx appkit/im_NSTextFieldCell.cmx \
+    support/classes.cmx 
+appkit/NSTextList.cmo: support/objc.cmi appkit/im_NSTextList.cmo \
+    support/classes.cmi 
+appkit/NSTextList.cmx: support/objc.cmx appkit/im_NSTextList.cmx \
+    support/classes.cmx 
+appkit/NSTextStorage.cmo: support/objc.cmi appkit/im_NSTextStorage.cmo \
+    support/classes.cmi appkit/cati_Scripting.cmo 
+appkit/NSTextStorage.cmx: support/objc.cmx appkit/im_NSTextStorage.cmx \
+    support/classes.cmx appkit/cati_Scripting.cmx 
+appkit/NSTextStorageScripting.cmo: support/objc.cmi 
+appkit/NSTextStorageScripting.cmx: support/objc.cmx 
+appkit/NSTextTab.cmo: support/objc.cmi appkit/im_NSTextTab.cmo \
+    support/classes.cmi 
+appkit/NSTextTab.cmx: support/objc.cmx appkit/im_NSTextTab.cmx \
+    support/classes.cmx 
+appkit/NSTextTable.cmo: support/objc.cmi appkit/im_NSTextTable.cmo \
+    support/classes.cmi 
+appkit/NSTextTable.cmx: support/objc.cmx appkit/im_NSTextTable.cmx \
+    support/classes.cmx 
+appkit/NSTextTableBlock.cmo: support/objc.cmi appkit/im_NSTextTableBlock.cmo \
+    support/classes.cmi 
+appkit/NSTextTableBlock.cmx: support/objc.cmx appkit/im_NSTextTableBlock.cmx \
+    support/classes.cmx 
+appkit/NSTextView.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSTextView.cmo support/classes.cmi appkit/cati_NSSharing.cmo \
+    appkit/cati_NSPasteboard.cmo appkit/cati_NSDragging.cmo \
+    appkit/cati_NSCompletion.cmo 
+appkit/NSTextView.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSTextView.cmx support/classes.cmx appkit/cati_NSSharing.cmx \
+    appkit/cati_NSPasteboard.cmx appkit/cati_NSDragging.cmx \
+    appkit/cati_NSCompletion.cmx 
+appkit/NSTokenField.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSTokenField.cmo support/classes.cmi 
+appkit/NSTokenField.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSTokenField.cmx support/classes.cmx 
+appkit/NSTokenFieldCell.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSTokenFieldCell.cmo support/classes.cmi 
+appkit/NSTokenFieldCell.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSTokenFieldCell.cmx support/classes.cmx 
+appkit/NSToolbar.cmo: support/objc.cmi appkit/im_NSToolbar.cmo \
+    support/classes.cmi 
+appkit/NSToolbar.cmx: support/objc.cmx appkit/im_NSToolbar.cmx \
+    support/classes.cmx 
+appkit/NSToolbarItem.cmo: support/objc.cmi appkit/im_NSToolbarItem.cmo \
+    support/classes.cmi 
+appkit/NSToolbarItem.cmx: support/objc.cmx appkit/im_NSToolbarItem.cmx \
+    support/classes.cmx 
+appkit/NSUserDefaultsController.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSUserDefaultsController.cmo support/classes.cmi 
+appkit/NSUserDefaultsController.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSUserDefaultsController.cmx support/classes.cmx 
+appkit/NSUserInterfaceValidation.cmo: support/objc.cmi 
+appkit/NSUserInterfaceValidation.cmx: support/objc.cmx 
+appkit/NSView.cmo: support/selector.cmo support/objc.cmi appkit/im_NSView.cmo \
+    support/classes.cmi appkit/cati_NSRulerMarkerClientViewDelegation.cmo \
+    appkit/cati_NSPrinting.cmo appkit/cati_NSKeyboardUI.cmo \
+    appkit/cati_NSDrag.cmo appkit/cati_NSClipViewSuperview.cmo 
+appkit/NSView.cmx: support/selector.cmx support/objc.cmx appkit/im_NSView.cmx \
+    support/classes.cmx appkit/cati_NSRulerMarkerClientViewDelegation.cmx \
+    appkit/cati_NSPrinting.cmx appkit/cati_NSKeyboardUI.cmx \
+    appkit/cati_NSDrag.cmx appkit/cati_NSClipViewSuperview.cmx 
+appkit/NSViewAnimation.cmo: support/objc.cmi appkit/im_NSViewAnimation.cmo \
+    support/classes.cmi 
+appkit/NSViewAnimation.cmx: support/objc.cmx appkit/im_NSViewAnimation.cmx \
+    support/classes.cmx 
+appkit/NSWindow.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSWindow.cmo support/classes.cmi \
+    appkit/cati_NSWindowsExtensions.cmo appkit/cati_NSToolbarSupport.cmo \
+    appkit/cati_NSScripting.cmo appkit/cati_NSKeyboardUI.cmo \
+    appkit/cati_NSDrag.cmo appkit/cati_NSCarbonExtensions.cmo \
+    appkit/cati_Drawers.cmo 
+appkit/NSWindow.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSWindow.cmx support/classes.cmx \
+    appkit/cati_NSWindowsExtensions.cmx appkit/cati_NSToolbarSupport.cmx \
+    appkit/cati_NSScripting.cmx appkit/cati_NSKeyboardUI.cmx \
+    appkit/cati_NSDrag.cmx appkit/cati_NSCarbonExtensions.cmx \
+    appkit/cati_Drawers.cmx 
+appkit/NSWindowController.cmo: support/objc.cmi \
+    appkit/im_NSWindowController.cmo support/classes.cmi 
+appkit/NSWindowController.cmx: support/objc.cmx \
+    appkit/im_NSWindowController.cmx support/classes.cmx 
+appkit/NSWindowScripting.cmo: support/objc.cmi 
+appkit/NSWindowScripting.cmx: support/objc.cmx 
+appkit/NSWorkspace.cmo: support/selector.cmo support/objc.cmi \
+    appkit/im_NSWorkspace.cmo support/classes.cmi 
+appkit/NSWorkspace.cmx: support/selector.cmx support/objc.cmx \
+    appkit/im_NSWorkspace.cmx support/classes.cmx 
+appkit/cati_Drawers.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_Drawers.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSApplicationHelpExtension.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSApplicationHelpExtension.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSBitmapImageFileTypeExtensions.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSBitmapImageFileTypeExtensions.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSButtonAttributedStringMethods.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSButtonAttributedStringMethods.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSButtonBezelStyles.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSButtonBezelStyles.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSButtonBorder.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSButtonBorder.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSButtonCellAttributedStringMethods.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSButtonCellAttributedStringMethods.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSButtonCellBezelStyles.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSButtonCellBezelStyles.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSButtonCellExtensions.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSButtonCellExtensions.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSButtonCellSoundExtensions.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSButtonCellSoundExtensions.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSButtonMixedState.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSButtonMixedState.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSButtonSoundExtensions.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSButtonSoundExtensions.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSCarbonExtensions.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSCarbonExtensions.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSCellAttributedStringMethods.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSCellAttributedStringMethods.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSCellMixedState.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSCellMixedState.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSClipViewSuperview.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSClipViewSuperview.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSColorPanel.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSColorPanel.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSCompletion.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSCompletion.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSControlAttributedStringMethods.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSControlAttributedStringMethods.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSDeprecated.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSDeprecated.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSDrag.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSDrag.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSDragging.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSDragging.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSErrorPresentation.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSErrorPresentation.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSFileContents.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSFileContents.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSFontDeprecated.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSFontDeprecated.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSFontManagerMenuActionMethods.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSFontManagerMenuActionMethods.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSFormCellAttributedStringMethods.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSFormCellAttributedStringMethods.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSGraphicsContext_RenderingOptions.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSGraphicsContext_RenderingOptions.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSInterfaceStyle.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSInterfaceStyle.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSKeyboardUI.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSKeyboardUI.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSOpenPanelRuntime.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSOpenPanelRuntime.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSPasteboard.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSPasteboard.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSPrinting.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSPrinting.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSQuartzCoreAdditions.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSQuartzCoreAdditions.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSRulerMarkerClientViewDelegation.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSRulerMarkerClientViewDelegation.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSRulerSupport.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSRulerSupport.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSSavePanelRuntime.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSSavePanelRuntime.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSScripting.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSScripting.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSServicesHandling.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSServicesHandling.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSServicesMenu.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSServicesMenu.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSSharing.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSSharing.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSStandardAboutPanel.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSStandardAboutPanel.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSStandardKeyBindingMethods.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSStandardKeyBindingMethods.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSStatusItemCommon.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSStatusItemCommon.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSStatusItemView.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSStatusItemView.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSSubmenuAction.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSSubmenuAction.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSTextFieldAttributedStringMethods.cmo: support/selector.cmo \
+    support/objc.cmi 
+appkit/cati_NSTextFieldAttributedStringMethods.cmx: support/selector.cmx \
+    support/objc.cmx 
+appkit/cati_NSTickMarkSupport.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSTickMarkSupport.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSToolbarSupport.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSToolbarSupport.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSUndoSupport.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSUndoSupport.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSWindowsExtensions.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSWindowsExtensions.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_NSWindowsMenu.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_NSWindowsMenu.cmx: support/selector.cmx support/objc.cmx 
+appkit/cati_Scripting.cmo: support/selector.cmo support/objc.cmi 
+appkit/cati_Scripting.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSActionCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSActionCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSAlert.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSAlert.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSAnimation.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSAnimation.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSApplication.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSApplication.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSBezierPath.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSBezierPath.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSBitmapImageRep.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSBitmapImageRep.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSBox.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSBox.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSBrowser.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSBrowser.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSBrowserCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSBrowserCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSButton.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSButton.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSButtonCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSButtonCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSCIImageRep.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSCIImageRep.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSCachedImageRep.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSCachedImageRep.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSClipView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSClipView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSColor.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSColor.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSColorList.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSColorList.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSColorPanel.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSColorPanel.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSColorPicker.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSColorPicker.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSColorSpace.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSColorSpace.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSColorWell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSColorWell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSComboBox.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSComboBox.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSComboBoxCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSComboBoxCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSControl.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSControl.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSController.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSController.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSCursor.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSCursor.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSCustomImageRep.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSCustomImageRep.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSDatePicker.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSDatePicker.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSDatePickerCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSDatePickerCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSDocument.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSDocument.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSDocumentController.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSDocumentController.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSDrawer.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSDrawer.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSEPSImageRep.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSEPSImageRep.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSEvent.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSEvent.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSFileWrapper.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSFileWrapper.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSFont.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSFont.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSFontDescriptor.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSFontDescriptor.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSFontManager.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSFontManager.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSFontPanel.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSFontPanel.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSForm.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSForm.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSFormCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSFormCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSGlyphGenerator.cmo: support/objc.cmi 
+appkit/im_NSGlyphGenerator.cmx: support/objc.cmx 
+appkit/im_NSGlyphInfo.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSGlyphInfo.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSGraphicsContext.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSGraphicsContext.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSHelpManager.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSHelpManager.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSImage.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSImage.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSImageCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSImageCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSImageRep.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSImageRep.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSImageView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSImageView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSInputManager.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSInputManager.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSInputServer.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSInputServer.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSLevelIndicator.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSLevelIndicator.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSLevelIndicatorCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSLevelIndicatorCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSMatrix.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSMatrix.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSMenu.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSMenu.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSMenuItem.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSMenuItem.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSMenuItemCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSMenuItemCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSMenuView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSMenuView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSMovie.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSMovie.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSMovieView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSMovieView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSMutableParagraphStyle.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSMutableParagraphStyle.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSNib.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSNib.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSNibConnector.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSNibConnector.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSNibControlConnector.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSNibControlConnector.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSNibOutletConnector.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSNibOutletConnector.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSOpenGLContext.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSOpenGLContext.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSOpenGLPixelBuffer.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSOpenGLPixelBuffer.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSOpenGLPixelFormat.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSOpenGLPixelFormat.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSOpenGLView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSOpenGLView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSOpenPanel.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSOpenPanel.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSOutlineView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSOutlineView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPDFImageRep.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPDFImageRep.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPICTImageRep.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPICTImageRep.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPanel.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPanel.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSParagraphStyle.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSParagraphStyle.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPasteboard.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPasteboard.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPersistentDocument.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPersistentDocument.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPopUpButton.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPopUpButton.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPopUpButtonCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPopUpButtonCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPrintInfo.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPrintInfo.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPrintOperation.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPrintOperation.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPrintPanel.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPrintPanel.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSPrinter.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSPrinter.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSQuickDrawView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSQuickDrawView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSResponder.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSResponder.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSRulerMarker.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSRulerMarker.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSRulerView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSRulerView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSavePanel.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSavePanel.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSScreen.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSScreen.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSScrollView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSScrollView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSScroller.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSScroller.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSearchField.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSearchField.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSearchFieldCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSearchFieldCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSecureTextField.cmo: support/objc.cmi 
+appkit/im_NSSecureTextField.cmx: support/objc.cmx 
+appkit/im_NSSecureTextFieldCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSecureTextFieldCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSegmentedCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSegmentedCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSegmentedControl.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSegmentedControl.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSShadow.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSShadow.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSlider.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSlider.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSliderCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSliderCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSound.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSound.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSpeechRecognizer.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSpeechRecognizer.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSpeechSynthesizer.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSpeechSynthesizer.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSpellChecker.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSpellChecker.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSSplitView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSSplitView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSStatusBar.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSStatusBar.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSStatusItem.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSStatusItem.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSStepper.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSStepper.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSStepperCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSStepperCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTabView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTabView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTabViewItem.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTabViewItem.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTableColumn.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTableColumn.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTableHeaderCell.cmo: support/objc.cmi 
+appkit/im_NSTableHeaderCell.cmx: support/objc.cmx 
+appkit/im_NSTableHeaderView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTableHeaderView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTableView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTableView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSText.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSText.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextAttachment.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextAttachment.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextAttachmentCell.cmo: support/objc.cmi 
+appkit/im_NSTextAttachmentCell.cmx: support/objc.cmx 
+appkit/im_NSTextBlock.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextBlock.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextContainer.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextContainer.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextField.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextField.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextFieldCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextFieldCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextList.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextList.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextStorage.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextStorage.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextTab.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextTab.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextTable.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextTable.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextTableBlock.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextTableBlock.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTextView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTextView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTokenField.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTokenField.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSTokenFieldCell.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSTokenFieldCell.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSToolbar.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSToolbar.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSToolbarItem.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSToolbarItem.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSUserDefaultsController.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSUserDefaultsController.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSView.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSView.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSViewAnimation.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSViewAnimation.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSWindow.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSWindow.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSWindowController.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSWindowController.cmx: support/selector.cmx support/objc.cmx 
+appkit/im_NSWorkspace.cmo: support/selector.cmo support/objc.cmi 
+appkit/im_NSWorkspace.cmx: support/selector.cmx support/objc.cmx 

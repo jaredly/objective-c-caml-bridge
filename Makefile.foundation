@@ -1,16 +1,36 @@
 # Foundation framework
+include mk/Makefile.caml-config
 
-foundation/shared.ml:: gen_foundation
+# This tells ocamlfind what packages we depend on
+R=
 
-gen_foundation: generator/tiger.cmo libgenerator.cma generator/gen_foundation.cmo
-	$(BYTELINK) && ./$@ 2> gen_foundation.log || mv $@ $@.debug
+# Extra flags for compilation and linking
+INCS=
+COMPFLAGS += $(INCS) -g
+LINKFLAGS += $(INCS) -g
+DEPFLAGS +=  $(INCS)
+CAMLCFLAGS += -g
+
+# This adds the directories for depend generation, includes, linking, snapshot save, clean
+$(eval $(call add_dir, support))
+
+# Backup support
+# Add files that need to be backed up when doing "make save". Standard .ml* source
+# files and C source files (.c, .h), Makefile will be saved by default
+SAVED_SUFFIXES+=m
+SAVE= $(wildcard mk/Makefile.*) \
+      utils/cmosort
+
+DEPEND_FILE:=.depend.foundation
+
+all: foundation.cma
 
 FOUNDATION_LIB=$(wildcard foundation/*.ml)
 FOUNDATION_OBJS=$(FOUNDATION_LIB:.ml=.cmo)
 
 # Can't forget the -framework options to make the linker happy later
 # cmosort uses the .depend to gather names of .cmo
-FOUNDATION_SORTED_OBJS=$(shell utils/cmosort foundation) 
+FOUNDATION_SORTED_OBJS=$(shell utils/cmosort -d $(DEPEND_FILE) foundation) 
 
 foundation.cma:: $(FOUNDATION_SORTED_OBJS)
 
@@ -19,6 +39,12 @@ foundation.cma:: $(FOUNDATION_SORTED_OBJS)
 TARGET_LIBS+=foundation.cma
 
 $(eval $(call add_dir, foundation))
+
+# These includes provide you with all the default rules
+-include $(DEPEND_FILE)
+include mk/Makefile.caml-common
+include mk/Makefile.caml-findlib
+include mk/Makefile.caml-rules
 
 # Local Variables:
 # mode: Makefile

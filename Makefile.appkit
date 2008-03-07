@@ -1,11 +1,34 @@
-# AppKit framework
-gen_appkit: generator/tiger.cmo libgenerator.cma generator/gen_appkit.cmo
-	$(BYTELINK) && ./$@ 2> gen_appkit.log || mv $@ $@.debug
+# Foundation framework
+include mk/Makefile.caml-config
+
+# This tells ocamlfind what packages we depend on
+R=
+
+# Extra flags for compilation and linking
+INCS=
+COMPFLAGS += $(INCS) -g
+LINKFLAGS += $(INCS) -g
+DEPFLAGS +=  $(INCS)
+CAMLCFLAGS += -g
+
+# This adds the directories for depend generation, includes, linking, snapshot save, clean
+$(eval $(call add_dir, support))
+
+# Backup support
+# Add files that need to be backed up when doing "make save". Standard .ml* source
+# files and C source files (.c, .h), Makefile will be saved by default
+SAVED_SUFFIXES+=m
+SAVE= $(wildcard mk/Makefile.*) \
+      utils/cmosort
+
+DEPEND_FILE:=.depend.appkit
+
+all: appkit.cma 
 
 APPKIT_LIB=$(wildcard appkit/*.ml)
 APPKIT_OBJS=$(APPKIT_LIB:.ml=.cmo)
 
-APPKIT_SORTED_OBJS=$(shell utils/cmosort appkit)
+APPKIT_SORTED_OBJS=$(shell utils/cmosort -d $(DEPEND_FILE) appkit)
 
 appkit.cma: $(APPKIT_SORTED_OBJS) support/camlappkit.o
 	$(MIXEDBYTELIB) -ccopt -g  -framework AppKit
@@ -13,6 +36,12 @@ appkit.cma: $(APPKIT_SORTED_OBJS) support/camlappkit.o
 TARGET_LIBS+=appkit.cma
 
 $(eval $(call add_dir, appkit))
+
+# These includes provide you with all the default rules
+-include $(DEPEND_FILE)
+include mk/Makefile.caml-common
+include mk/Makefile.caml-findlib
+include mk/Makefile.caml-rules
 
 # Local Variables:
 # mode: Makefile

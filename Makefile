@@ -61,6 +61,19 @@ all: 	libgenerator.cma \
 	tests
 
 
+
+foundation:
+	make -f Makefile.foundation
+
+appkit:
+	make -f Makefile.appkit
+
+help::
+	@echo "make foundation # compiles stubs for foundation framework"
+	@echo "make appkit     # compiles stubs for appkit framework"
+
+.DUMMY: foundation appkit 
+
 libs: $(GENERATOR_OBJ) .depend  $(TARGET_LIBS)
 
 # Support library for the generator
@@ -72,10 +85,13 @@ libgenerator.cmxa: $(GENERATOR_OBJ:.cmo=.cmx)
 bridgeocamlobjc.cma: $(SUPPORT_OBJ) support/camlinvoke.o support/camlselectors.o support/camlclasses.o
 	$(MIXEDBYTELIB) -ccopt -g -framework Foundation -lobjc
 
-# Generated code
-GENLIB=$(FOUNDATION_LIB) $(APPKIT_LIB)
-GENOBJ=$(FOUNDATION_OBJS) $(APPKIT_OBJS)
-$(GENLIB)::generator/generator.ml
+# Foundation framework stubs
+gen_foundation: generator/tiger.cmo libgenerator.cma generator/gen_foundation.cmo
+	$(BYTELINK) && ./$@ 2> gen_foundation.log || mv $@ $@.debug
+
+# AppKit framework stubs
+gen_appkit: generator/tiger.cmo libgenerator.cma generator/gen_appkit.cmo
+	$(BYTELINK) && ./$@ 2> gen_appkit.log || mv $@ $@.debug
 
 toposort: generator/debug.cmo generator/tsort.cmo generator/tsort_main.cmo
 	$(BYTELINK)
@@ -91,30 +107,8 @@ test_parser: generator/tiger.cmo libgenerator.cma generator/test_parser.cmo
 test_generator: generator/tiger.cmo libgenerator.cma generator/test_generator.cmo
 	$(BYTELINK) && ./$@ 2> generator.log || mv $@ $@.debug
 
-tests: tests/t0 tests/t1 tests/t2 tests/t3 tests/t4 toptest
-
 toptest: libgenerator.cma
 	$(TOPLINK)
-
-
-tests/t0: bridgeocamlobjc.cma 	generator/debug.cmo  tests/t0.cmo
-	$(BYTELINK) && ./tests/t0
-
-tests/t1: bridgeocamlobjc.cma foundation.cma tests/t1.cmo
-	$(BYTELINK) && ./tests/t1
-
-tests/t2: generator/debug.cmo bridgeocamlobjc.cma foundation.cma tests/t2.cmo
-	$(BYTELINK) && ./tests/t2
-
-tests/t3: generator/debug.cmo bridgeocamlobjc.cma foundation.cma appkit.cma tests/t3.cmo
-	$(BYTELINK) -ccopt "-framework AppKit" && ./tests/t3 foo
-
-tests/t4: generator/debug.cmo bridgeocamlobjc.cma foundation.cma tests/t4.cmo
-	$(BYTELINK) && ./tests/t4 tests/lorem.txt
-
-# would like to use define and eval, but so painful to debug...
-include Makefile.foundation
-include Makefile.appkit
 
 # These includes provide you with all the default rules
 -include .depend

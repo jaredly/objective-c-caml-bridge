@@ -1,12 +1,20 @@
 #!/bin/bash
 # Pass in directory of files that we want to sort in linking order
 # e.g.
-# cmosort foundation
-d=$1
-cat .depend | \
+# cmosort [-d dependfile] foundation
+depend=.depend
+while :; 
+do
+    case "$1" in
+	"-d") shift; depend=$1; shift;;
+	"") break;;
+	*) d=$1; shift;;
+    esac
+done
+cat $depend | \
     sed -e :a -e '/\\$/N; s/\\\n//; ta' | \
     grep .cmo | \
     tr -d ':' | \
-    awk '{for (i=1;i<NF;i++) print $i, $1}' | \
+    awk '{for (i=1;i<=NF;i++) print $i, $1}' | \
     grep "^$d/.*$d/" | \
     /usr/bin/tsort

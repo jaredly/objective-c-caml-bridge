@@ -1,0 +1,66 @@
+include mk/Makefile.caml-config
+
+# This for ocamlfind
+R=unix,str
+
+# Extra flags for compilation and linking
+INCS=
+COMPFLAGS += $(INCS) -g
+LINKFLAGS += $(INCS) -g
+DEPFLAGS +=  $(INCS)
+CAMLCFLAGS += -g
+
+# This adds the directories for depend generation, includes, linking, snapshot save, clean
+$(eval $(call add_dir, support))
+$(eval $(call add_dir, generator))
+$(eval $(call add_dir, tests))
+$(eval $(call add_dir, foundation))
+$(eval $(call add_dir, appkit))
+
+# Backup support
+# Add files that need to be backed up when doing "make save". Standard .ml* source
+# files and C source files (.c, .h), Makefile will be saved by default
+SAVED_SUFFIXES+=m
+SAVE=Makefile.tests \
+     $(wildcard tests/*.ml*) \
+     tests/lorem.txt
+
+# List  binaries here (make clean will remove them)
+BIN= tests/t?
+
+# ADDTHIS is meant to be added at the command line level
+# For example, to print types for a .ml that doesn't have a .mli yet, use
+# make ADDTHIS=-i -W foo.ml 
+
+# Unit tests for runtime stubs
+
+all: tests/t0 tests/t1 tests/t2 tests/t3 tests/t4 ocamlcocoa
+
+ocamlcocoa: bridgeocamlobjc.cma foundation.cma appkit.cma
+	$(TOPLINK)
+
+tests/t0: bridgeocamlobjc.cma 	generator/debug.cmo  tests/t0.cmo
+	$(BYTELINK) && ./tests/t0
+
+tests/t1: bridgeocamlobjc.cma foundation.cma tests/t1.cmo
+	$(BYTELINK) && ./tests/t1
+
+tests/t2: generator/debug.cmo bridgeocamlobjc.cma foundation.cma tests/t2.cmo
+	$(BYTELINK) && ./tests/t2
+
+tests/t3: generator/debug.cmo bridgeocamlobjc.cma foundation.cma appkit.cma tests/t3.cmo
+	$(BYTELINK) -ccopt "-framework AppKit" && ./tests/t3 foo
+
+tests/t4: generator/debug.cmo bridgeocamlobjc.cma foundation.cma tests/t4.cmo
+	$(BYTELINK) && ./tests/t4 tests/lorem.txt
+
+# These includes provide you with all the default rules
+-include .depend
+include mk/Makefile.caml-common
+include mk/Makefile.caml-findlib
+include mk/Makefile.caml-rules
+
+
+# Local Variables:
+# mode: Makefile
+# End:
