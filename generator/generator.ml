@@ -219,7 +219,7 @@ let fix_class_return_type name m =
 	ClassMethod, Pointer (false, NamedType name), sels
     | m -> m
 
-let only_category = List.for_all (function Ast.CategoryInterface _, _,_,_ -> true | _ -> false) 
+let only_category l = List.for_all (function Ast.CategoryInterface _, _,_,_ -> true | _ -> false) l
 
 (* name is the interface name
    il is a list of interfaces - some are categories, some not
@@ -321,7 +321,7 @@ let compile_phrases todo = List.iter (compile_phrase todo)
 (* the todo object collects information at the parsing stage,
    and drives the compilation for a given header
 *)
-let todo header = object
+let todo () = object
   val classes = new Ohash.autoinit (fun _ -> ref[]) 499
   val categories = new Ohash.t 499
   val mutable compile_order = []
@@ -330,10 +330,12 @@ let todo header = object
   method add_interface name i =
     match i with 
       | CategoryInterface _, _,_,_ ->
-	  if name = header then
+	  Utils.add_hd i (classes#find name)
+(*	  if name = header then
 	    Utils.add_hd i (classes#find name)
 	  else 
 	    categories#add name i
+*)
       | ClassInterface _, _,_,_ ->
 	  compile_order <- name :: compile_order;
 	  Utils.add_hd i (classes#find name)
@@ -358,15 +360,15 @@ let todo header = object
     (* TBD: now compile the categories *)
 end
   
-let compile_file cycles ow f =
+let compile_file cycles ow todo f =
   Debug.f ~lvl:dlvl "Parsing: %s" f;
   try
     Utils.with_in_channel (open_in f) 
       (fun ic -> 
-	let todo = todo (Writing.base f) in
+	let base = Writing.base f in
 	  compile_phrases todo (Parser.from_channel ic);
-	  Enum.dump ((ow#get ((Writing.base f) ^ ".ml"))#w);
-	  todo#compile cycles ow
+	  Enum.dump ((ow#get (base ^ ".ml"))#w);
+(*	  todo#compile cycles ow *)
       )
   with
     | End_of_file -> ()

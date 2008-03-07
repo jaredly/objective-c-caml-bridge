@@ -4,12 +4,13 @@ let () =
   let ow = Writing.ow ~out_dir:"./foundation/" "Foundation" in
   let had_cli_arg = ref false 
   and deps_only = ref false
+  and todo = Generator.todo()
   in
     Arg.parse ["-d", Arg.Set deps_only, "Dependencies only"]
       (fun s ->
 	let f = Filename.concat Tiger.foundation_directory s in
 	  had_cli_arg := true;
-	  Generator.compile_file [] ow f)
+	  Generator.compile_file [] ow todo f)
       "Bridge";
     if not !had_cli_arg then begin
 	(* First pass: compute dependencies *)
@@ -23,7 +24,9 @@ let () =
 	    cycles;
 	  (* Second pass: generate per-class code *)
 	  if not !deps_only then begin
-		List.iter (Generator.compile_file (List.concat cycles) ow) Tiger.foundation;
+		List.iter (Generator.compile_file (List.concat cycles) ow todo) Tiger.foundation;
+	      todo#compile cycles ow
+
 	    end
       end;
     ow#flush
