@@ -6,6 +6,8 @@
 #include <caml/fail.h>
 #include <caml/callback.h>
 
+#include "camlobjc.h"
+
 #import <Foundation/NSMethodSignature.h>
 #import <Foundation/NSInvocation.h>
 #import <Foundation/NSError.h>
@@ -17,29 +19,12 @@
 http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSInvocation_Class/Reference/Reference.html
 */
 // Tag_val(obj)
-enum {
-  // No tag for Unit, since there is only a construct without an argument
-  tagBool = 0,
-  tagChar = 1,
-  tagInt = 2,
-  tagInt64 = 3,
-  tagDouble = 4,
-  tagString = 5,
-  tagPointer = 6,
-  tagSelector = 7,
-  tagNSErrorArg = 8,
-  tagNSRange = 9,
-};
-
 /*
  * As recommended, (void *) or any malloc-ed entity should be wrapped in 
  * a finalized object. In addition, the refcounting convention in MacOSX
  * requires us to "retain" all returned objects if we want to keep them 
  * around.
  */
-
-// Access the id from the Val
-#define Camlid_val(x)  (*((id *) Data_custom_val(x)))
 
 // Finalizer
 static void finalize_camlid(value v)
@@ -78,8 +63,6 @@ static struct custom_operations caml_pointer_ops = {
   custom_serialize_default,   // this should probably be NSCoder of some sort
   custom_deserialize_default
 };
-
-#define Caml_pointer_val(x)  (*((void **) Data_custom_val(x)))
 
 value caml_wrap_pointer (void *x)
 {

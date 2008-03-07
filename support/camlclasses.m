@@ -8,7 +8,7 @@
 
 #include <objc/objc-runtime.h>
 
-extern value caml_wrap_id (id x);
+#include "camlobjc.h"
 
 value caml_find_class (value s)
 {
