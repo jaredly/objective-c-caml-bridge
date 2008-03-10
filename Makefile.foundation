@@ -48,4 +48,5 @@ include mk/Makefile.caml-rules
 
 # Local Variables:
 # mode: Makefile
+# compile-command: "make -f Makefile.foundation"
 # End:
