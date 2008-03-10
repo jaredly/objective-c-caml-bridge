@@ -15,7 +15,7 @@ type 'a ffi =
   | NSErrorArg of bool
   | NSRange of int * int
 exception NSError of [ `NSError ] id
-type 'a t = < repr : 'a id >
+type 'a t = < repr : [`NSObject] id >
 external objcnew : 'a id -> 'b id = "caml_message_new"
 external objcalloc : 'a id -> 'b id = "caml_message_alloc"
 external invoke : int -> 'a id -> Selector.t -> 'b ffi list -> 'c ffi = "caml_invoke"

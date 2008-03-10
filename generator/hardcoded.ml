@@ -121,7 +121,13 @@ let optout_methods =
       ("NSTextView", ["setSelectedRange"; "affinity"; "stillSelecting"]);
       ("NSTextView", ["setAlignment"; "range"]);
       ("NSTextView", ["setBaseWritingDirection"; "range"]);
-      ("NSToolbarItem", ["toolbar"]);
+      ("NSToolbarItem", ["toolbar"]); 
+      (* broken inheritance overrides *)
+      ("NSScriptCoercionHandler", ["coerceValue"; "toClass"]);
+      ("NSRunLoop", ["performSelector"; "target"; "argument"; "order"; "modes"]);
+      ("NSObject", ["l_URL"; "resourceDataDidBecomeAvailable"]);
+      ("NSSet", ["setValue"; "forKey"]);
+      ("NSNotificationCenter", ["removeObserver"; "name"; "l_object"]);
     ] DescSet.empty
 
 

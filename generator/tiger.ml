@@ -25,7 +25,7 @@ let foundation =
 "NSData.h";
 "NSDate.h";
 "NSDateFormatter.h";
-"NSDebug.h";
+"NSDebug.h"; 
 "NSDecimal.h";
 "NSDecimalNumber.h";
 "NSDictionary.h";
@@ -48,7 +48,7 @@ let foundation =
 "NSIndexPath.h";
 (* "NSIndexSet.h"; TBD, has struct & other stuff in protected *)
 (* "NSInvocation.h"; not sure this makes sense to parse since we have invoke *)
-"NSJavaSetup.h";
+(* "NSJavaSetup.h"; nothing useful *)
 "NSKeyValueCoding.h";
 "NSKeyValueObserving.h";
 "NSKeyedArchiver.h";

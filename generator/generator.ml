@@ -238,7 +238,7 @@ let compile_interface cycles ow name il =
 	  (fun ml ->
 	    kprintf ml#w "(* Encapsulation of methods for native instance of %s *)\n" name;
 	    kprintf ml#w "class virtual methods = object (self)\n";
-	    kprintf (ml#tab 2) "method virtual repr : [`%s] Objc.id\n" name;
+	    kprintf (ml#tab 2) "method virtual repr : [`NSObject] Objc.id\n";
 	    List.iter (compile_method ml false name uim im) 
 	      (List.filter (fun m -> is_instance_method m && not (has_vararg m)) methods);
 	    kprintf ml#w "end\n")
@@ -249,7 +249,7 @@ let compile_interface cycles ow name il =
 	  (fun ml ->
 	    kprintf ml#w "(* instance methods for category %s of %s *)\n" cat name;
 	    kprintf ml#w "class virtual methods_%s = object (self)\n" name;
-	    kprintf (ml#tab 2) "method virtual repr : [`%s] Objc.id\n" name;
+	    kprintf (ml#tab 2) "method virtual repr : [`NSObject] Objc.id\n";
 	    List.iter (compile_method ml false name uim im) 
 	      (List.filter (fun m -> is_instance_method m && not (has_vararg m)) methods);
 	    kprintf ml#w "end\n")
@@ -259,17 +259,34 @@ let compile_interface cycles ow name il =
 
     (* wrap up into one class with all instance methods *)
     (fun ml ->
-      kprintf ml#w "class t = fun (r :[`%s] id) -> object\n" name;
+      kprintf ml#w "class virtual methods = object\n";
       List.iter (function
 	| Ast.ClassInterface parent, protos, decls, methods ->
 	    kprintf (ml#tab 2) "inherit Im_%s.methods\n" name;
 	| Ast.CategoryInterface cat, protos, decls, methods ->
 	    kprintf (ml#tab 2) "inherit Cati_%s.methods_%s\n" cat name;
 		) il;
-      kprintf (ml#tab 2) "method repr = r\n";
       kprintf ml#w "end\n\n")
       (ow#get (name ^ ".ml"));
 
+    (fun ml ->
+      kprintf ml#w "class t = fun (r :[`%s] id) -> object\n" name;
+      List.iter (function
+	| Ast.ClassInterface parent, protos, decls, methods ->
+	    kprintf (ml#tab 2) "inherit methods\n";
+	    begin match parent with
+	      | None -> ()
+	      | Some x -> 
+		  kprintf (ml#tab 2) "inherit %s.methods\n" x
+	    end
+	| Ast.CategoryInterface cat, protos, decls, methods ->
+	    ()
+		) il;
+      kprintf (ml#tab 2) "method repr = Objc.forget_type r \n";
+      kprintf (ml#tab 2) "method typed_repr = r\n";
+      kprintf ml#w "end\n\n")
+      (ow#get (name ^ ".ml"));
+      
     (fun ml -> 
       kprintf ml#w "(* Class object for %s *)\n" name;
       kprintf ml#w "let c = Classes.find \"%s\"\n" name;
