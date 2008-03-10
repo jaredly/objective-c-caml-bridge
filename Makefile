@@ -52,7 +52,7 @@ GENERATOR_OBJ= \
 	generator/dependencies.cmo
 
 # For runtime support
-SUPPORT_OBJ=support/classes.cmo support/selector.cmo support/objc.cmo 
+SUPPORT_OBJ=support/classes.cmo support/selector.cmo support/objc.cmo support/kvc.cmo
 
 all: 	libgenerator.cma \
 	bridgeocamlobjc.cma \
@@ -82,7 +82,11 @@ libgenerator.cmxa: $(GENERATOR_OBJ:.cmo=.cmx)
 
 # Runtime library
 # Note: can't generate in support/, something gets broken w/ path of dll*.so
-bridgeocamlobjc.cma: $(SUPPORT_OBJ) support/camlinvoke.o support/camlselectors.o support/camlclasses.o
+bridgeocamlobjc.cma: $(SUPPORT_OBJ) \
+	support/camlinvoke.o \
+	support/camlselectors.o \
+	support/camlclasses.o \
+	support/camlkvc.o
 	$(MIXEDBYTELIB) -ccopt -g -framework Foundation -lobjc
 
 # Foundation framework stubs
