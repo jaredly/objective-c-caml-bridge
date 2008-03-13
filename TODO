@@ -1,26 +1,21 @@
-- bug with no argument selectors (shouldn't have a ":" in the selector name)
-- compile categories separately if different from the main class of the .h (e.g. NSObject cats)
+- doover for method naming convention
+  The whole idea of using labelled args for multiple variations of ObjC messages doesn't work
+  very well - it only supports the case where some arguments can be omitted. Unfortunately,
+  the various Cocoa API make use of overloading quite a bit (e.g. same primary selector foo: 
+  with multiple different secondary selectors, foo:a: foo:b: foo:c:d).
+  Instead, we're going to be dump and if the selector is foo:a:, then the method name in OCaml
+  will be foo_a_.
 
-- Handling recursive compilation
-class native_X = fun id -> object ... end
-and native_Y = fun id -> object ... end
-...
-module NSFoo = struct
- let c = object ... end
- class t = object inherit native_NSFoo inherit NSObject end
-end
-	- Very good, but it does not compile...
-	- ? look into more precise dependency data, e.g. between classes only (and not class objects?)
-	- ? compiles better if we remove inheritance on NSObject.
-	- we can do multiple inh later - wrapping will be incomplete though 
-	(doesn't generate the proper classes)
-	- transitive closure on dependencies of classes going to "share"
-	- would it be easire to cut the dependencies all together??
-	
+- support for instance variables
+  	  KVC? 
+	  [target setValue:v forKey:@"fieldname"];
 
+- calls from ObjC to OCaml
+  	inspect invocation
+	build array of values
+	invoke callback
 
 Next:
-  * better naming convention? (NSFoo.nsclass for default?)
   * nil as valid object of any type.
   * better string/NSString passing?
   * dynamic type checking of arguments? (using @encode and such)
@@ -62,3 +57,24 @@ DONE
 
   * sorting of .cmo (using cmosort)
   * debug the dependency graph (ARGS incorrect - no deps, RET incorrect NSObject/NSMethodSignature not reflected)
+- bug with no argument selectors (shouldn't have a ":" in the selector name)
+- compile categories separately if different from the main class of the .h (e.g. NSObject cats)
+- Handling recursive compilation
+class native_X = fun id -> object ... end
+and native_Y = fun id -> object ... end
+...
+module NSFoo = struct
+ let c = object ... end
+ class t = object inherit native_NSFoo inherit NSObject end
+end
+	- Very good, but it does not compile...
+	- ? look into more precise dependency data, e.g. between classes only (and not class objects?)
+	- ? compiles better if we remove inheritance on NSObject.
+	- we can do multiple inh later - wrapping will be incomplete though 
+	(doesn't generate the proper classes)
+	- transitive closure on dependencies of classes going to "share"
+	- would it be easire to cut the dependencies all together??
+
+- separate out Makefiles for foundation/appkit (some duplicate naming)
+- inheritance
+	

@@ -122,11 +122,12 @@ save: Makefile \
       $(foreach s, $(SAVED_SUFFIXES), $(foreach d, $(DIRS), $(wildcard $(d)/*.$(s)))) \
       $(SAVE)
 
+SAVE_TAR=$(savename)-save-$(shell date +%Y%m%d-%H%M).tgz
 save:
 	-mkdir saves
-	tar zcvf saves/$(savename)-save-$(shell date +%Y%m%d-%H%M).tgz -C ..\
-	   $(addprefix $(thisdir)/,$^)
-	chmod 400 saves/*
+	tar zcvf saves/$(SAVE_TAR) -C .. $(addprefix $(thisdir)/,$^)
+	chmod 400 saves/$(SAVE_TAR)
+	@echo "Created snapshot in saves/$(SAVE_TAR)"
 
 help::
 	@echo "make depend       # generates GEN=$(GEN) and depend file $(DEPEND_FILE)"

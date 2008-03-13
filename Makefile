@@ -21,6 +21,7 @@ $(eval $(call add_dir, tests))
 # files and C source files (.c, .h), Makefile will be saved by default
 SAVED_SUFFIXES+=m
 SAVE=README TODO LICENSE \
+     Makefile.foundation Makefile.appkit \
      $(wildcard mk/Makefile.*) \
      $(wildcard tryouts/*.ml*) tryouts/Makefile \
      $(wildcard tests/*.ml*) \
