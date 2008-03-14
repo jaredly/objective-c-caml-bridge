@@ -13,6 +13,8 @@ CAMLCFLAGS += -g
 
 # This adds the directories for depend generation, includes, linking, snapshot save, clean
 $(eval $(call add_dir, support))
+# Need foundation due to inheritance on NSObject - breaks some other stuff though
+$(eval $(call add_dir, foundation))
 
 # Backup support
 # Add files that need to be backed up when doing "make save". Standard .ml* source
