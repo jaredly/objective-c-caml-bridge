@@ -12,6 +12,7 @@
 #import <Foundation/NSInvocation.h>
 #import <Foundation/NSError.h>
 #import <Foundation/NSRange.h>
+#import <Foundation/NSGeometry.h>
 #import <Foundation/NSAutoreleasePool.h>
 #import <Foundation/Foundation.h>
 
@@ -171,6 +172,19 @@ value caml_invoke(value rtag, value o, value sel, value args)
 	  { NSRange r; r.location = Int_val(Field(a, 0)); r.length = Int_val(Field(a, 1));
 	    [inv setArgument:&r atIndex:i];}
 	  break;
+	case tagNSPoint:
+	  { NSPoint p = NSMakePoint(Double_val(Field(a, 0)), Double_val(Field(a, 1)));
+	    [inv setArgument:&p atIndex:i];}
+	  break;
+	case tagNSSize:
+	  { NSSize s = NSMakeSize(Double_val(Field(a, 0)), Double_val(Field(a, 1)));
+	    [inv setArgument:&s atIndex:i];}
+	  break;
+	case tagNSRect:
+	  { NSRect r = NSMakeRect(Double_val(Field(a, 0)), Double_val(Field(a, 1)),
+				  Double_val(Field(a, 2)), Double_val(Field(a, 3)));
+	    [inv setArgument:&r atIndex:i];}
+	  break;
 	default: 
 	  NSLog(@"class: %@ selector: %s rtag: %d #args: %d", [c description], sel_getName(selector), Int_val(rtag), k-2);
 	  caml_invalid_argument("unsupported argument type");
@@ -253,6 +267,29 @@ value caml_invoke(value rtag, value o, value sel, value args)
 	taggedval = caml_alloc(2, Int_val(rtag));
 	Store_field(taggedval, 0, Val_int(r.location));
 	Store_field(taggedval, 1, Val_int(r.length));
+      }
+      break;
+    case tagNSPoint:
+      { NSPoint p = *(NSPoint *)buffer;
+	taggedval = caml_alloc(2, Int_val(rtag));
+	Store_field(taggedval, 0, caml_copy_double(p.x));
+	Store_field(taggedval, 1, caml_copy_double(p.y));
+      }
+      break;
+    case tagNSSize:
+      { NSSize s = *(NSSize *)buffer;
+	taggedval = caml_alloc(2, Int_val(rtag));
+	Store_field(taggedval, 0, caml_copy_double(s.width));
+	Store_field(taggedval, 1, caml_copy_double(s.height));
+      }
+      break;
+    case tagNSRect:
+      { NSRect r = *(NSRect *)buffer;
+	taggedval = caml_alloc(4, Int_val(rtag));
+	Store_field(taggedval, 0, caml_copy_double(r.origin.x));
+	Store_field(taggedval, 1, caml_copy_double(r.origin.y));
+	Store_field(taggedval, 2, caml_copy_double(r.size.width));
+	Store_field(taggedval, 3, caml_copy_double(r.size.height));
       }
       break;
     default:

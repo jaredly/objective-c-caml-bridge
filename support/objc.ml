@@ -25,6 +25,10 @@ type 'a ffi =
     | NSErrorArg of bool (* for  NSError ** arguments; true means that we want to raise an exception if 
 			    the field gets set to non-nil by the method *)
     | NSRange of int * int (* location and length *)
+    (* from NSGeometry.h *)
+    | NSPoint of float * float
+    | NSSize of float * float
+    | NSRect of float * float * float * float (* x,y,w,h *)
 
 (* when an argument NSError ** is set to non-nil *)
 exception NSError of [`NSError] id
@@ -58,6 +62,9 @@ let tag_pointer = Obj.tag (Obj.repr (Pointer Unit))
 let tag_selector = Obj.tag (Obj.repr (Selector (Selector.find "new:")))
 let tag_error = (Obj.tag (Obj.repr (NSErrorArg true)))
 let tag_nsrange = (Obj.tag (Obj.repr (NSRange (0,0))))
+let tag_nspoint = (Obj.tag (Obj.repr (NSPoint (0.,0.))))
+let tag_nssize = (Obj.tag (Obj.repr (NSSize (0.,0.))))
+let tag_nsrect = (Obj.tag (Obj.repr (NSRect (0.,0.,0.,0.))))
 let tag_unsupported = -1
 
 (* injections from ocaml types to ffi: use this to build argument lists *)
@@ -70,10 +77,14 @@ let make_float d = Double d
 let make_string s = String s
 let make_pointer p = Pointer p
 let forget_type (x : 'a id) = (Obj.magic x : [`NSObject] id)
+let cast (x : 'a id) = (Obj.magic x : 'b id)
 let make_pointer_from_object (o : 'a t) = Pointer (o#repr)
 let make_selector s = Selector s
 let make_error b = NSErrorArg b
 let make_range (loc, len) = NSRange (loc, len)
+let make_point (x,y) = NSPoint (x,y)
+let make_size (x,y) = NSSize (x,y)
+let make_rect ((x,y),(w,h)) = NSRect (x,y,w,h)
 
 (* projections from ffi to ocaml type: use this to get result of method *)
 let get_unit = function
@@ -105,6 +116,15 @@ let get_selector = function
   | _ -> assert false
 let get_range = function
   | NSRange (loc, len) -> loc, len
+  | _ -> assert false
+let get_point = function
+  | NSPoint(x,y) -> x,y
+  | _ -> assert false
+let get_size = function
+  | NSSize (w,h) -> w,h
+  | _ -> assert false
+let get_rect = function
+  | NSRect (x,y,w,h) -> (x,y), (w,h)
   | _ -> assert false
 
 (* helpers for arg list building - makes nice syntax *)

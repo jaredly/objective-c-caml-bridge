@@ -10,6 +10,9 @@ enum {
   tagSelector = 7,
   tagNSErrorArg = 8,
   tagNSRange = 9,
+  tagNSPoint = 10,
+  tagNSSize= 11,
+  tagNSRect = 12 ,
 };
 
 #define Camlid_val(x)  (*((id *) Data_custom_val(x)))
