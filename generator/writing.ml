@@ -15,6 +15,7 @@ class abstract_buffer = object
   method output_string s = Buffer.add_string b s
   method output_char c = Buffer.add_char b c
   method write (w : string -> unit) = w (Buffer.contents b)
+  method length = Buffer.length b
 end
 
 (* we want to generate code, and be able to easily comment it out 
@@ -47,6 +48,7 @@ class deferred r (c_start, c_end) oc = object (self)
 	    finally()
 
   method write (w : string -> unit) = (oc#write w : unit)
+  method length = (oc#length : int)
 end
 
 class virtual formatter = object (self)
@@ -68,7 +70,7 @@ class ml_deferred framework header aio = object (self)
   inherit deferred r_unsupported ("(*  UNSUPPORTED\n", "\n*)\n")  aio
   inherit formatter
   method prelude (w : string -> unit) = 
-    let base = Filename.chop_suffix header ".ml" in
+(*    let base = Filename.chop_suffix header ".ml" in *)
     kprintf w "(* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)\n";
     kprintf w "open Objc\n";
     kprintf w "\n";
@@ -87,15 +89,19 @@ let ow ?(out_dir = !default_out_dir) framework =
       else 
 	assert false)
       123
+
+    method category_prefix = framework ^ "_cati_"
     method get = modbuffers#find
       
     method flush = modbuffers#iter (fun k b ->
-      Debug.f "Flushing buffer %s" k;
-      let oc = open_out (Filename.concat out_dir k) in
-      let w = output_string oc in
-	b#prelude w;
-	b#write w;
-	b#postlude w;
-	close_out oc)
+      if b#length > 0 then begin
+	  Debug.f "Flushing buffer %s" k;
+	  let oc = open_out (Filename.concat out_dir k) in
+	  let w = output_string oc in
+	    b#prelude w;
+	    b#write w;
+	    b#postlude w;
+	    close_out oc
+	end)
   end in
     o

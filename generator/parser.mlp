@@ -135,7 +135,7 @@ and selector = parser
       Debug.f ~lvl:dlvl "sel: %s" selector_name;
       if selector_name.[0] >= 'A' && selector_name.[0] <= 'Z' then
 	Debug.f ~lvl:dlvl "WARNING: UPPERCASE %s" selector_name;
-      (Hardcoded.safe_selector selector_name, arg)
+      (selector_name, arg)
 
 and protocol_qualifier = parser
   | [< 'Ident "inout" >] -> "inout"

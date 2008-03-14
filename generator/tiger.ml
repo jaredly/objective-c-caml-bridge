@@ -75,7 +75,7 @@ let foundation =
 "NSPropertyList.h";
 "NSProtocolChecker.h";
 "NSProxy.h";
-(*"NSRange.h"; nothing to compile - has to be encoded by hand *)
+"NSRange.h"; (* compile for NSValueRangeExtensions category *)
 "NSRunLoop.h";
 "NSScanner.h";
 "NSScriptClassDescription.h";

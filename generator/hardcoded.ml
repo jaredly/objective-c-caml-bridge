@@ -2,6 +2,25 @@
 open Utils
 open Ast
 
+(* sanitize idents that collide with OCaml keywords *)
+let safe_prefix p = function
+  | "object" -> p ^ "object"
+  | "method" -> p ^ "method"
+  | "type" -> p ^ "type"
+  | "exception" -> p ^ "exception"
+  | "sig" -> p ^ "sig"
+  | "to" -> p ^ "to"
+  | "in" -> p ^ "in"
+  | "end" -> p ^ "end"
+  | "with" -> p ^ "with"
+  | "parser" -> p ^ "parser"
+  | "val" -> p ^ "val"
+  | "" -> ""
+  | s when s.[0] >= 'A' && s.[0] <= 'Z' -> p ^ s 
+  | s -> s
+
+let safe_ident = safe_prefix "_"
+
 (* method names that aren't compatible with OCaml syntax *)
 let rename_method = function
   | "AMSymbol" -> "getAMSymbol"
@@ -28,7 +47,7 @@ let rename_method = function
       "mime" ^ String.sub s 4  (String.length s - 4)
   | s when String.length s >= 4 && String.sub s 0 4 = "HTTP" ->
       "http" ^ String.sub s 4  (String.length s - 4)
-  | s -> s
+  | s -> safe_prefix "_" s
 
 (* Globally maintained set of declared enum typedefs 
  * If we see the tyoe later we'll map it to int64
@@ -48,87 +67,41 @@ let type_synonym = function
   | NamedType "Class" -> NamedType "id" (*?*)
   | NamedType "NSTimeInterval" -> NamedType "double"
   | NamedType "NSStringEncoding" -> NamedType "int64" (* unsigned, really *)
+  | NamedType "NSWindowDepth" -> NamedType "int" (* NSGraphics.h *)
   | NamedType s when StringSet.mem s !enums -> NamedType "int"
   | Pointer (_, NamedType "char") -> NamedType "string"
   | Pointer (_, Qualified ("const", NamedType "char")) -> NamedType "string"
   | t -> t
 
-(* sanitize idents that collide with OCaml keywords *)
-let safe_prefix p = function
-  | "object" -> p ^ "object"
-  | "method" -> p ^ "method"
-  | "type" -> p ^ "type"
-  | "exception" -> p ^ "exception"
-  | "sig" -> p ^ "sig"
-  | "to" -> p ^ "to"
-  | "in" -> p ^ "in"
-  | "end" -> p ^ "end"
-  | "with" -> p ^ "with"
-  | "parser" -> p ^ "parser"
-  | "val" -> p ^ "val"
-  | "" -> ""
-  | s when s.[0] >= 'A' && s.[0] <= 'Z' -> p ^ s 
-  | s -> s
-
-let safe_ident = safe_prefix "_"
 (* TBD: selector mapping needs to be updated for this *)
-let safe_selector = safe_prefix "l_"
+let safe_selector x = x (* safe_prefix "l_" *)
 
 (* one-offs: some methods can't be compiled due to 
  * weaknesses in our approch to methods/arg naming
  * Instead of writing lots of code (which is hard
  * anyway due to ObjC categories distributed over
  * many files), we just opt out to compile some 
- * specific methods.
+ * specific interfaces or methods.
  * Ugly, yes, ok.
  *)
 
+let optout_interfaces = 
+  List.fold_right StringSet.add [
+      "NSNumberFormatterCompatibility";
+      "NSDeprecated";
+    ] StringSet.empty
+let optout_interface x =
+  StringSet.mem x optout_interfaces
+  
 module DescSet = Set.Make(struct type t = string * string list let compare = compare end)
 let optout_methods =
   List.fold_right DescSet.add [
-      ("NSArchiver", ["encodeConditionalObject"]);
-      ("NSDistantObjectRequest", ["connection"]);
-      ("NSDistributedNotificationCenter", ["addObserver";"selector";"name";"l_object";"suspensionBehavior"]);
-      ("NSDistributedNotificationCenter", ["removeObserver";"name";"l_object"]);
-      ("NSDistributedNotificationCenter", ["postNotificationName"; "l_object"; "userInfo"; "deliverImmediately"]);
-      ("NSCountedSet", ["initWithSet"]);
-      ("NSSocketPortNameServer", ["portForName";"host";"nameServerPortNumber"]);
-      ("NSSocketPortNameServer", ["registerPort"; "name"; "nameServerPortNumber"]);
-      ("NSIndexSpecifier", ["initWithContainerClassDescription";"containerSpecifier";"key";"index"]);
-      ("NSNameSpecifier", ["initWithContainerClassDescription";"containerSpecifier";"key";"name"]);
-      ("NSRangeSpecifier", ["initWithContainerClassDescription"; "containerSpecifier"; "key"; "startSpecifier"; "endSpecifier"]);
-      ("NSRelativeSpecifier", ["initWithContainerClassDescription"; "containerSpecifier"; "key"; "relativePosition"; "baseSpecifier"]);
-      ("NSUniqueIDSpecifier", ["initWithContainerClassDescription"; "containerSpecifier"; "key"; "uniqueID"]);
-      ("NSWhoseSpecifier", ["initWithContainerClassDescription"; "containerSpecifier"; "key"; "test"]);
-      ("NSText", ["copy"]);
-      ("NSMovieView", ["copy"]);
-      ("NSOpenPanel", ["beginSheetForDirectory";"file";"types";"modalForWindow";"modalDelegate";"didEndSelector";"contextInfo"]);
-      ("NSOpenPanel", ["runModalForDirectory"; "file"; "types"]);
-      ("NSControl", ["setNeedsDisplay"]);
-      ("NSPersistentDocument", ["writeToURL"; "ofType"; "forSaveOperation"; "originalContentsURL"; "error"]);
-      ("NSPersistentDocument", ["readFromURL"; "ofType"; "error"]);
-      ("NSBrowser", ["sendAction"]);
-      ("NSMatrix", ["sendAction"; "l_to"; "forAllCells"]);
-      ("NSMatrix", ["setToolTip"; "forCell"]);
-      ("NSPopUpButtonCell", ["initTextCell"; "pullsDown"]);
-      ("NSScroller", ["setFloatValue"; "knobProportion"]);
-      ("NSSegmentedCell", ["setImage"; "forSegment"]);
-      ("NSSegmentedCell", ["setEnabled"; "forSegment"]);
-      ("NSSegmentedCell", ["setMenu"; "forSegment"]);
-      ("NSSegmentedCell", ["setTag"; "forSegment"]);
-      ("NSSegmentedControl", ["setMenu"; "forSegment"]);
-      ("NSSegmentedControl", ["setEnabled"; "forSegment"]);
-      ("NSTextView", ["setSelectedRange"; "affinity"; "stillSelecting"]);
-      ("NSTextView", ["setAlignment"; "range"]);
-      ("NSTextView", ["setBaseWritingDirection"; "range"]);
-      ("NSToolbarItem", ["toolbar"]); 
-      (* broken inheritance overrides *)
-      ("NSScriptCoercionHandler", ["coerceValue"; "toClass"]);
-      ("NSRunLoop", ["performSelector"; "target"; "argument"; "order"; "modes"]);
-      ("NSObject", ["l_URL"; "resourceDataDidBecomeAvailable"]);
-      ("NSSet", ["setValue"; "forKey"]);
-      ("NSNotificationCenter", ["removeObserver"; "name"; "l_object"]);
+      "NSWorkspace", ["noteFileSystemChanged"]; (* 2 conflicting versions *)
+      "NSDrawer", ["open"]; (* 2 conflicting versions *)
+      "NSDrawer", ["close"]; (* 2 conflicting versions *)
+      "NSControl", ["setNeedsDisplay"];
+      "NSSliderCell", ["drawKnob"];
+      "NSFormCell", ["titleWidth"];
     ] DescSet.empty
 
-
-let optout x = DescSet.mem x optout_methods
+let optout_method x = DescSet.mem x optout_methods
