@@ -53,7 +53,8 @@ GENERATOR_OBJ= \
 	generator/dependencies.cmo
 
 # For runtime support
-SUPPORT_OBJ=support/classes.cmo support/selector.cmo support/objc.cmo support/kvc.cmo
+SUPPORT_OBJ=support/classes.cmo support/selector.cmo support/objc.cmo support/kvc.cmo \
+	support/NSRange.cmo support/NSSize.cmo support/NSPoint.cmo support/NSRect.cmo 
 
 all: 	libgenerator.cma \
 	bridgeocamlobjc.cma \
