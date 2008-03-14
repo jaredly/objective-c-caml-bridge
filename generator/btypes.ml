@@ -39,6 +39,9 @@ let tag (t : Ast.c_type) =
     | Not_found -> 
 	match t with
 	  | NamedType "NSRange" -> "Objc.tag_nsrange"
+	  | NamedType "NSPoint" -> "Objc.tag_nspoint"
+	  | NamedType "NSSize" -> "Objc.tag_nssize"
+	  | NamedType "NSRect" -> "Objc.tag_nsrect"
 	  | NamedType "id" -> "Objc.tag_pointer"
 	  | Pointer (_, NamedType s) -> "Objc.tag_pointer"
 	  | _ -> sprintf "(*%s*) Objc.tag_unsupported" (string_of_c_type t)
@@ -53,6 +56,9 @@ let native2caml is_class current_module w (t : Ast.c_type) =
     | Not_found ->
 	match t with
 	  | NamedType "NSRange" -> kprintf w "get_range"
+	  | NamedType "NSPoint" -> kprintf w "get_point"
+	  | NamedType "NSSize" -> kprintf w "get_size"
+	  | NamedType "NSRect" -> kprintf w "get_rect"
 	  | NamedType "id" -> kprintf w "get_pointer"
 	  | Pointer (_, NamedType s) -> 
 		(* This creates so many recursive dependencies that 
@@ -70,6 +76,9 @@ let caml2native t =
     | Not_found ->
 	match t with
 	  | NamedType "NSRange" -> "make_range"
+	  | NamedType "NSPoint" -> "make_point"
+	  | NamedType "NSSize" -> "make_size"
+	  | NamedType "NSRect" -> "make_rect"
 	  | NamedType "id" -> "make_pointer_from_object"
 	  | Pointer (_ , NamedType s) -> "make_pointer_from_object"
 	  | Pointer (_, Pointer (_, NamedType "NSError")) -> "make_error"
@@ -84,7 +93,10 @@ let typed_expr w t n =
   with
     | Not_found -> 
 	match t with
-	  | NamedType "NSRange" -> kprintf w "(%s : int * int)" n
+	  | NamedType "NSRange" -> kprintf w "(%s : NSRange.t)" n
+	  | NamedType "NSPoint" -> kprintf w "(%s : NSPoint.t)" n
+	  | NamedType "NSSize" -> kprintf w "(%s : NSSize.t)" n
+	  | NamedType "NSRect" -> kprintf w "(%s : NSRect.t)" n
 	  | NamedType "id" -> kprintf w "(%s : [`NSObject] Objc.t)" n
 	  | Pointer (_ , NamedType s) -> kprintf w "(%s : [`%s] Objc.t)" n s
 	  | _ -> kprintf w "(%s : (*%s*) unsupported)" n (string_of_c_type t)
@@ -98,7 +110,10 @@ let arg_type w t =
   with
     | Not_found -> 
 	match t with
-	  | NamedType "NSRange" -> kprintf w "(int * int)"
+	  | NamedType "NSRange" -> kprintf w "NSRange.t"
+	  | NamedType "NSPoint" -> kprintf w "NSPoint.t"
+	  | NamedType "NSSize" -> kprintf w "NSSize.t"
+	  | NamedType "NSRect" -> kprintf w "NSRect.t"
 	  | NamedType "id" -> kprintf w "[`NSObject] Objc.t"
 	  | Pointer (_, Pointer (_, NamedType "NSError")) -> kprintf w "bool"
 	  | Pointer (_ , NamedType s) -> kprintf w "[`%s] Objc.t" s
@@ -112,7 +127,10 @@ let ret_type w t =
   with
     | Not_found -> 
 	match t with
-	  | NamedType "NSRange" -> kprintf w "(int * int)"
+	  | NamedType "NSRange" -> kprintf w "NSRange.t"
+	  | NamedType "NSPoint" -> kprintf w "NSPoint.t"
+	  | NamedType "NSSize" -> kprintf w "NSSize.t"
+	  | NamedType "NSRect" -> kprintf w "NSRect.t"
 	  | NamedType "id" -> kprintf w "[`NSObject] Objc.id"
 	  | Pointer (_ , NamedType s) -> kprintf w "[`%s] Objc.id)" s
 	  | _ -> kprintf w "(*%s*) unsupported" (string_of_c_type t)
@@ -129,6 +147,9 @@ let rec deps t =
     if is_simple t then None
     else match t with
       | NamedType "NSRange" -> None (* hardcoded *)
+      | NamedType "NSPoint" -> None (* hardcoded *)
+      | NamedType "NSSize" -> None (* hardcoded *)
+      | NamedType "NSRect" -> None (* hardcoded *)
       | NamedType "id" -> None (* dynamically typed *)
       | Pointer (_, t) -> deps t
       | NamedType s -> Some s
