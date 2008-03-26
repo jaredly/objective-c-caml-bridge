@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextAttachment *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextAttachment] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithFileWrapper (fileWrapper : [`NSFileWrapper] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithFileWrapper:")
       [make_pointer_from_object fileWrapper]) : [`NSObject] Objc.id)

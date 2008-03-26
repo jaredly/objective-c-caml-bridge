@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSCalendarDate *)
 class virtual methods = object (self)
-  method virtual repr : [`NSCalendarDate] Objc.id
-  method initWithYear  ~month:(month : int ) ~day:(day : int ) ~hour:(hour : int ) ~minute:(minute : int ) ~second:(second : int ) ~timeZone:(aTimeZone : [`NSTimeZone] Objc.t ) (year : int) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithYear_month_day_hour_minute_second_timeZone  (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int) (aTimeZone : [`NSTimeZone] Objc.t) =
     let sel, args = (
       Objc.arg year "initWithYear" make_int
       ++ Objc.arg month "month" make_int
@@ -16,13 +16,21 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  (* skipping selector initWithString *)
-  (* skipping selector initWithString:calendarFormat *)
-  method initWithString  ?calendarFormat:(format : [`NSString] Objc.t option) ?locale:(dict : [`NSDictionary] Objc.t option) (description : [`NSString] Objc.t) =
+  method initWithString (description : [`NSString] Objc.t) =
+    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithString:")
+      [make_pointer_from_object description]) : [`NSObject] Objc.id)
+  method initWithString_calendarFormat  (description : [`NSString] Objc.t) (format : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg description "initWithString" make_pointer_from_object
-      ++ Objc.opt_arg format "calendarFormat" make_pointer_from_object
-      ++ Objc.opt_arg dict "locale" make_pointer_from_object
+      ++ Objc.arg format "calendarFormat" make_pointer_from_object
+    ) ([],[]) in
+      (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSObject] Objc.id)
+  method initWithString_calendarFormat_locale  (description : [`NSString] Objc.t) (format : [`NSString] Objc.t) (dict : [`NSDictionary] Objc.t) =
+    let sel, args = (
+      Objc.arg description "initWithString" make_pointer_from_object
+      ++ Objc.arg format "calendarFormat" make_pointer_from_object
+      ++ Objc.arg dict "locale" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
@@ -65,7 +73,7 @@ class virtual methods = object (self)
   method secondOfMinute =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "secondOfMinute")[])
        : int)
-  method dateByAddingYears  ~months:(month : int ) ~days:(day : int ) ~hours:(hour : int ) ~minutes:(minute : int ) ~seconds:(second : int ) (year : int) =
+  method dateByAddingYears_months_days_hours_minutes_seconds  (year : int) (month : int) (day : int) (hour : int) (minute : int) (second : int) =
     let sel, args = (
       Objc.arg year "dateByAddingYears" make_int
       ++ Objc.arg month "months" make_int
@@ -76,7 +84,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSCalendarDate] Objc.id))
-  method years  ~months:(mop : [`int] Objc.t ) ~days:(dp : [`int] Objc.t ) ~hours:(hp : [`int] Objc.t ) ~minutes:(mip : [`int] Objc.t ) ~seconds:(sp : [`int] Objc.t ) ~sinceDate:(date : [`NSCalendarDate] Objc.t ) (yp : [`int] Objc.t) =
+  method years_months_days_hours_minutes_seconds_sinceDate  (yp : [`int] Objc.t) (mop : [`int] Objc.t) (dp : [`int] Objc.t) (hp : [`int] Objc.t) (mip : [`int] Objc.t) (sp : [`int] Objc.t) (date : [`NSCalendarDate] Objc.t) =
     let sel, args = (
       Objc.arg yp "years" make_pointer_from_object
       ++ Objc.arg mop "months" make_pointer_from_object
@@ -94,11 +102,13 @@ class virtual methods = object (self)
   method descriptionWithLocale (locale : [`NSDictionary] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "descriptionWithLocale:")
       [make_pointer_from_object locale]) : [`NSString] Objc.id))
-  (* skipping selector descriptionWithCalendarFormat *)
-  method descriptionWithCalendarFormat  ?locale:(locale : [`NSDictionary] Objc.t option) (format : [`NSString] Objc.t) =
+  method descriptionWithCalendarFormat (format : [`NSString] Objc.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "descriptionWithCalendarFormat:")
+      [make_pointer_from_object format]) : [`NSString] Objc.id))
+  method descriptionWithCalendarFormat_locale  (format : [`NSString] Objc.t) (locale : [`NSDictionary] Objc.t) =
     let sel, args = (
       Objc.arg format "descriptionWithCalendarFormat" make_pointer_from_object
-      ++ Objc.opt_arg locale "locale" make_pointer_from_object
+      ++ Objc.arg locale "locale" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSString] Objc.id))

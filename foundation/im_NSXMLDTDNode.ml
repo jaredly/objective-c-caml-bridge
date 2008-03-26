@@ -3,15 +3,15 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSXMLDTDNode *)
 class virtual methods = object (self)
-  method virtual repr : [`NSXMLDTDNode] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithXMLString (string : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithXMLString:")
       [make_pointer_from_object string]) : [`NSObject] Objc.id)
   method setDTDKind (kind : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDTDKind:")
       [make_int kind]) : unit)
-  method l_DTDKind =
-    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "l_DTDKind")[])
+  method dtdKind =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "DTDKind")[])
        : int)
   method isExternal =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isExternal")[])

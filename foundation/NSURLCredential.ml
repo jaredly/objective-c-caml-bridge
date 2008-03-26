@@ -1,16 +1,22 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSURLCredential] id) -> object
+class virtual methods = object
   inherit Im_NSURLCredential.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSURLCredential] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSURLCredential *)
 let c = Classes.find "NSURLCredential"
 let _new()= (Objc.objcnew c : [`NSURLCredential] id)
 let alloc() = (Objc.objcalloc c : [`NSURLCredential] id)
-let credentialWithUser  ~password:(password : [`NSString] Objc.t ) ~persistence:(persistence : int ) (user : [`NSString] Objc.t) =
+let credentialWithUser_password_persistence  (user : [`NSString] Objc.t) (password : [`NSString] Objc.t) (persistence : int) =
     let sel, args = (
       Objc.arg user "credentialWithUser" make_pointer_from_object
       ++ Objc.arg password "password" make_pointer_from_object

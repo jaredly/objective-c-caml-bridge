@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSAnimation *)
 class virtual methods = object (self)
-  method virtual repr : [`NSAnimation] Objc.id
-  method initWithDuration  ~animationCurve:(animationCurve : int ) (duration : float) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithDuration_animationCurve  (duration : float) (animationCurve : int) =
     let sel, args = (
       Objc.arg duration "initWithDuration" make_float
       ++ Objc.arg animationCurve "animationCurve" make_int
@@ -84,7 +84,7 @@ class virtual methods = object (self)
 
 *)
 (*  UNSUPPORTED
-  method startWhenAnimation  ~reachesProgress:(startProgress : (*NSAnimationProgress*) unsupported ) (animation : [`NSAnimation] Objc.t) =
+  method startWhenAnimation_reachesProgress  (animation : [`NSAnimation] Objc.t) (startProgress : (*NSAnimationProgress*) unsupported) =
     let sel, args = (
       Objc.arg animation "startWhenAnimation" make_pointer_from_object
       ++ Objc.arg startProgress "reachesProgress" (*NSAnimationProgress*) unsupported
@@ -94,7 +94,7 @@ class virtual methods = object (self)
 
 *)
 (*  UNSUPPORTED
-  method stopWhenAnimation  ~reachesProgress:(stopProgress : (*NSAnimationProgress*) unsupported ) (animation : [`NSAnimation] Objc.t) =
+  method stopWhenAnimation_reachesProgress  (animation : [`NSAnimation] Objc.t) (stopProgress : (*NSAnimationProgress*) unsupported) =
     let sel, args = (
       Objc.arg animation "stopWhenAnimation" make_pointer_from_object
       ++ Objc.arg stopProgress "reachesProgress" (*NSAnimationProgress*) unsupported

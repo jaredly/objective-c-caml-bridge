@@ -3,11 +3,11 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMutableCharacterSet *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMutableCharacterSet] Objc.id
-  method addCharactersInRange (aRange : int * int) =
+  method virtual repr : [`NSObject] Objc.id
+  method addCharactersInRange (aRange : NSRange.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addCharactersInRange:")
       [make_range aRange]) : unit)
-  method removeCharactersInRange (aRange : int * int) =
+  method removeCharactersInRange (aRange : NSRange.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "removeCharactersInRange:")
       [make_range aRange]) : unit)
   method addCharactersInString (aString : [`NSString] Objc.t) =

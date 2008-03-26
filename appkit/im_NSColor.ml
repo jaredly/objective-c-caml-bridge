@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSColor *)
 class virtual methods = object (self)
-  method virtual repr : [`NSColor] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method highlightWithLevel (_val : float) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "highlightWithLevel:")
       [make_float _val]) : [`NSColor] Objc.id))
@@ -22,18 +22,20 @@ class virtual methods = object (self)
   method colorSpaceName =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "colorSpaceName")[])
        : [`NSString] Objc.id))
-  (* skipping selector colorUsingColorSpaceName *)
-  method colorUsingColorSpaceName  ?device:(deviceDescription : [`NSDictionary] Objc.t option) (colorSpace : [`NSString] Objc.t) =
+  method colorUsingColorSpaceName (colorSpace : [`NSString] Objc.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "colorUsingColorSpaceName:")
+      [make_pointer_from_object colorSpace]) : [`NSColor] Objc.id))
+  method colorUsingColorSpaceName_device  (colorSpace : [`NSString] Objc.t) (deviceDescription : [`NSDictionary] Objc.t) =
     let sel, args = (
       Objc.arg colorSpace "colorUsingColorSpaceName" make_pointer_from_object
-      ++ Objc.opt_arg deviceDescription "device" make_pointer_from_object
+      ++ Objc.arg deviceDescription "device" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
   method colorUsingColorSpace (space : [`NSColorSpace] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "colorUsingColorSpace:")
       [make_pointer_from_object space]) : [`NSColor] Objc.id))
-  method blendedColorWithFraction  ~ofColor:(color : [`NSColor] Objc.t ) (fraction : float) =
+  method blendedColorWithFraction_ofColor  (fraction : float) (color : [`NSColor] Objc.t) =
     let sel, args = (
       Objc.arg fraction "blendedColorWithFraction" make_float
       ++ Objc.arg color "ofColor" make_pointer_from_object
@@ -64,7 +66,7 @@ class virtual methods = object (self)
   method blueComponent =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "blueComponent")[])
        : float)
-  method getRed  ~green:(green : [`float] Objc.t ) ~blue:(blue : [`float] Objc.t ) ~alpha:(alpha : [`float] Objc.t ) (red : [`float] Objc.t) =
+  method getRed_green_blue_alpha  (red : [`float] Objc.t) (green : [`float] Objc.t) (blue : [`float] Objc.t) (alpha : [`float] Objc.t) =
     let sel, args = (
       Objc.arg red "getRed" make_pointer_from_object
       ++ Objc.arg green "green" make_pointer_from_object
@@ -82,7 +84,7 @@ class virtual methods = object (self)
   method brightnessComponent =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "brightnessComponent")[])
        : float)
-  method getHue  ~saturation:(saturation : [`float] Objc.t ) ~brightness:(brightness : [`float] Objc.t ) ~alpha:(alpha : [`float] Objc.t ) (hue : [`float] Objc.t) =
+  method getHue_saturation_brightness_alpha  (hue : [`float] Objc.t) (saturation : [`float] Objc.t) (brightness : [`float] Objc.t) (alpha : [`float] Objc.t) =
     let sel, args = (
       Objc.arg hue "getHue" make_pointer_from_object
       ++ Objc.arg saturation "saturation" make_pointer_from_object
@@ -94,7 +96,7 @@ class virtual methods = object (self)
   method whiteComponent =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "whiteComponent")[])
        : float)
-  method getWhite  ~alpha:(alpha : [`float] Objc.t ) (white : [`float] Objc.t) =
+  method getWhite_alpha  (white : [`float] Objc.t) (alpha : [`float] Objc.t) =
     let sel, args = (
       Objc.arg white "getWhite" make_pointer_from_object
       ++ Objc.arg alpha "alpha" make_pointer_from_object
@@ -113,7 +115,7 @@ class virtual methods = object (self)
   method blackComponent =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "blackComponent")[])
        : float)
-  method getCyan  ~magenta:(magenta : [`float] Objc.t ) ~yellow:(yellow : [`float] Objc.t ) ~black:(black : [`float] Objc.t ) ~alpha:(alpha : [`float] Objc.t ) (cyan : [`float] Objc.t) =
+  method getCyan_magenta_yellow_black_alpha  (cyan : [`float] Objc.t) (magenta : [`float] Objc.t) (yellow : [`float] Objc.t) (black : [`float] Objc.t) (alpha : [`float] Objc.t) =
     let sel, args = (
       Objc.arg cyan "getCyan" make_pointer_from_object
       ++ Objc.arg magenta "magenta" make_pointer_from_object
@@ -141,10 +143,7 @@ class virtual methods = object (self)
   method patternImage =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "patternImage")[])
        : [`NSImage] Objc.id))
-(*  UNSUPPORTED
-  method drawSwatchInRect (rect : (*NSRect*) unsupported) =
+  method drawSwatchInRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawSwatchInRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
+      [make_rect rect]) : unit)
 end

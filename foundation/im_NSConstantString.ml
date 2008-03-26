@@ -3,5 +3,5 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSConstantString *)
 class virtual methods = object (self)
-  method virtual repr : [`NSConstantString] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 end

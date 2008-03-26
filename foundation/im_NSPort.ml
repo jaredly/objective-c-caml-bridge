@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPort *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPort] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method invalidate =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "invalidate")[])
        : unit)
@@ -16,14 +16,14 @@ class virtual methods = object (self)
   method delegate =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "delegate")[])
        : [`NSObject] Objc.id)
-  method scheduleInRunLoop  ~forMode:(mode : [`NSString] Objc.t ) (runLoop : [`NSRunLoop] Objc.t) =
+  method scheduleInRunLoop_forMode  (runLoop : [`NSRunLoop] Objc.t) (mode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg runLoop "scheduleInRunLoop" make_pointer_from_object
       ++ Objc.arg mode "forMode" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method removeFromRunLoop  ~forMode:(mode : [`NSString] Objc.t ) (runLoop : [`NSRunLoop] Objc.t) =
+  method removeFromRunLoop_forMode  (runLoop : [`NSRunLoop] Objc.t) (mode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg runLoop "removeFromRunLoop" make_pointer_from_object
       ++ Objc.arg mode "forMode" make_pointer_from_object
@@ -33,8 +33,16 @@ class virtual methods = object (self)
   method reservedSpaceLength =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "reservedSpaceLength")[])
        : int)
-  (* skipping selector sendBeforeDate:components:from:reserved *)
-  method sendBeforeDate  ~msgid:(msgID : int ) ~components:(components : [`NSMutableArray] Objc.t ) ~from:(receivePort : [`NSPort] Objc.t ) ~reserved:(headerSpaceReserved : int ) (limitDate : [`NSDate] Objc.t) =
+  method sendBeforeDate_components_from_reserved  (limitDate : [`NSDate] Objc.t) (components : [`NSMutableArray] Objc.t) (receivePort : [`NSPort] Objc.t) (headerSpaceReserved : int) =
+    let sel, args = (
+      Objc.arg limitDate "sendBeforeDate" make_pointer_from_object
+      ++ Objc.arg components "components" make_pointer_from_object
+      ++ Objc.arg receivePort "from" make_pointer_from_object
+      ++ Objc.arg headerSpaceReserved "reserved" make_int
+    ) ([],[]) in
+      (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
+       : bool)
+  method sendBeforeDate_msgid_components_from_reserved  (limitDate : [`NSDate] Objc.t) (msgID : int) (components : [`NSMutableArray] Objc.t) (receivePort : [`NSPort] Objc.t) (headerSpaceReserved : int) =
     let sel, args = (
       Objc.arg limitDate "sendBeforeDate" make_pointer_from_object
       ++ Objc.arg msgID "msgid" make_int
@@ -44,7 +52,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method addConnection  ~toRunLoop:(runLoop : [`NSRunLoop] Objc.t ) ~forMode:(mode : [`NSString] Objc.t ) (conn : [`NSConnection] Objc.t) =
+  method addConnection_toRunLoop_forMode  (conn : [`NSConnection] Objc.t) (runLoop : [`NSRunLoop] Objc.t) (mode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg conn "addConnection" make_pointer_from_object
       ++ Objc.arg runLoop "toRunLoop" make_pointer_from_object
@@ -52,7 +60,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method removeConnection  ~fromRunLoop:(runLoop : [`NSRunLoop] Objc.t ) ~forMode:(mode : [`NSString] Objc.t ) (conn : [`NSConnection] Objc.t) =
+  method removeConnection_fromRunLoop_forMode  (conn : [`NSConnection] Objc.t) (runLoop : [`NSRunLoop] Objc.t) (mode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg conn "removeConnection" make_pointer_from_object
       ++ Objc.arg runLoop "fromRunLoop" make_pointer_from_object

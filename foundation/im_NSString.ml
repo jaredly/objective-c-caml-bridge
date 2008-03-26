@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSString *)
 class virtual methods = object (self)
-  method virtual repr : [`NSString] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method length =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "length")[])
        : int)

@@ -6,10 +6,16 @@ open Objc
 (* let_NSFileHandlingPanelOKButton = ?? *)
 
 
-class t = fun (r :[`NSSavePanel] id) -> object
-  inherit Cati_NSSavePanelRuntime.methods_NSSavePanel
+class virtual methods = object
+  inherit AppKit_cati_NSSavePanelRuntime.methods_NSSavePanel
   inherit Im_NSSavePanel.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSSavePanel] id) -> object
+  inherit methods
+  inherit NSPanel.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSSavePanel *)

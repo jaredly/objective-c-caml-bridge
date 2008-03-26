@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSActionCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSActionCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method controlView =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "controlView")[])
        : [`NSView] Objc.id))
@@ -13,12 +13,9 @@ class virtual methods = object (self)
   method setFont (fontObj : [`NSFont] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFont:")
       [make_pointer_from_object fontObj]) : unit)
-(*  UNSUPPORTED
-  method setAlignment (mode : (*NSTextAlignment*) unsupported) =
+  method setAlignment (mode : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAlignment:")
-      [(*NSTextAlignment*) unsupported mode]) : unit)
-
-*)
+      [make_int mode]) : unit)
   method setBordered (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBordered:")
       [make_bool flag]) : unit)
@@ -28,7 +25,7 @@ class virtual methods = object (self)
   method setEnabled (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setEnabled:")
       [make_bool flag]) : unit)
-  method setFloatingPointFormat  ~left:(leftDigits : int ) ~right:(rightDigits : int ) (autoRange : bool) =
+  method setFloatingPointFormat_left_right  (autoRange : bool) (leftDigits : int) (rightDigits : int) =
     let sel, args = (
       Objc.arg autoRange "setFloatingPointFormat" make_bool
       ++ Objc.arg leftDigits "left" make_int

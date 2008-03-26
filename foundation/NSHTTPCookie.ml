@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSHTTPCookie] id) -> object
+class virtual methods = object
   inherit Im_NSHTTPCookie.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSHTTPCookie] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSHTTPCookie *)
@@ -16,7 +22,7 @@ let cookieWithProperties (properties : [`NSDictionary] Objc.t) =
 let requestHeaderFieldsWithCookies (cookies : [`NSArray] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "requestHeaderFieldsWithCookies:")
       [make_pointer_from_object cookies]) : [`NSDictionary] Objc.id))
-let cookiesWithResponseHeaderFields  ~forURL:(_URL : [`NSURL] Objc.t ) (headerFields : [`NSDictionary] Objc.t) =
+let cookiesWithResponseHeaderFields_forURL  (headerFields : [`NSDictionary] Objc.t) (_URL : [`NSURL] Objc.t) =
     let sel, args = (
       Objc.arg headerFields "cookiesWithResponseHeaderFields" make_pointer_from_object
       ++ Objc.arg _URL "forURL" make_pointer_from_object

@@ -3,13 +3,10 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextContainer *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextContainer] Objc.id
-(*  UNSUPPORTED
-  method initWithContainerSize (size : (*NSSize*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithContainerSize (size : NSSize.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithContainerSize:")
-      [(*NSSize*) unsupported size]) : [`NSObject] Objc.id)
-
-*)
+      [make_size size]) : [`NSObject] Objc.id)
   method layoutManager =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "layoutManager")[])
        : [`NSLayoutManager] Objc.id))
@@ -37,18 +34,12 @@ class virtual methods = object (self)
   method heightTracksTextView =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "heightTracksTextView")[])
        : bool)
-(*  UNSUPPORTED
-  method setContainerSize (size : (*NSSize*) unsupported) =
+  method setContainerSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContainerSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size size]) : unit)
   method containerSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "containerSize")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "containerSize")[])
+       : NSSize.t)
   method setLineFragmentPadding (pad : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setLineFragmentPadding:")
       [make_float pad]) : unit)
@@ -56,24 +47,21 @@ class virtual methods = object (self)
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "lineFragmentPadding")[])
        : float)
 (*  UNSUPPORTED
-  method lineFragmentRectForProposedRect  ~sweepDirection:(sweepDirection : int ) ~movementDirection:(movementDirection : int ) ~remainingRect:(remainingRect : (*NSRectPointer*) unsupported ) (proposedRect : (*NSRect*) unsupported) =
+  method lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect  (proposedRect : NSRect.t) (sweepDirection : int) (movementDirection : int) (remainingRect : (*NSRectPointer*) unsupported) =
     let sel, args = (
-      Objc.arg proposedRect "lineFragmentRectForProposedRect" (*NSRect*) unsupported
+      Objc.arg proposedRect "lineFragmentRectForProposedRect" make_rect
       ++ Objc.arg sweepDirection "sweepDirection" make_int
       ++ Objc.arg movementDirection "movementDirection" make_int
       ++ Objc.arg remainingRect "remainingRect" (*NSRectPointer*) unsupported
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
 
 *)
   method isSimpleRectangularTextContainer =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isSimpleRectangularTextContainer")[])
        : bool)
-(*  UNSUPPORTED
-  method containsPoint (point : (*NSPoint*) unsupported) =
+  method containsPoint (point : NSPoint.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "containsPoint:")
-      [(*NSPoint*) unsupported point]) : bool)
-
-*)
+      [make_point point]) : bool)
 end

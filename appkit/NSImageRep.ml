@@ -5,9 +5,15 @@ open Objc
 let _NSImageRepMatchesDevice = 0L
 
 
-class t = fun (r :[`NSImageRep] id) -> object
+class virtual methods = object
   inherit Im_NSImageRep.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSImageRep] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSImageRep *)

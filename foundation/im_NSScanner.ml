@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSScanner *)
 class virtual methods = object (self)
-  method virtual repr : [`NSScanner] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method string =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "string")[])
        : [`NSString] Objc.id))

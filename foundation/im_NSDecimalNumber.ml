@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDecimalNumber *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDecimalNumber] Objc.id
-  method initWithMantissa  ~exponent:(exponent : int ) ~isNegative:(flag : bool ) (mantissa : int64) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithMantissa_exponent_isNegative  (mantissa : int64) (exponent : int) (flag : bool) =
     let sel, args = (
       Objc.arg mantissa "initWithMantissa" make_int64
       ++ Objc.arg exponent "exponent" make_int
@@ -18,11 +18,13 @@ class virtual methods = object (self)
       [(*NSDecimal*) unsupported dcm]) : [`NSObject] Objc.id)
 
 *)
-  (* skipping selector initWithString *)
-  method initWithString  ?locale:(locale : [`NSDictionary] Objc.t option) (numberValue : [`NSString] Objc.t) =
+  method initWithString (numberValue : [`NSString] Objc.t) =
+    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithString:")
+      [make_pointer_from_object numberValue]) : [`NSObject] Objc.id)
+  method initWithString_locale  (numberValue : [`NSString] Objc.t) (locale : [`NSDictionary] Objc.t) =
     let sel, args = (
       Objc.arg numberValue "initWithString" make_pointer_from_object
-      ++ Objc.opt_arg locale "locale" make_pointer_from_object
+      ++ Objc.arg locale "locale" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
@@ -35,51 +37,63 @@ class virtual methods = object (self)
        : (*NSDecimal*) unsupported)
 
 *)
-  (* skipping selector decimalNumberByAdding *)
-  method decimalNumberByAdding  ?withBehavior:(behavior : [`NSObject] Objc.t option) (decimalNumber : [`NSDecimalNumber] Objc.t) =
+  method decimalNumberByAdding (decimalNumber : [`NSDecimalNumber] Objc.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "decimalNumberByAdding:")
+      [make_pointer_from_object decimalNumber]) : [`NSDecimalNumber] Objc.id))
+  method decimalNumberByAdding_withBehavior  (decimalNumber : [`NSDecimalNumber] Objc.t) (behavior : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg decimalNumber "decimalNumberByAdding" make_pointer_from_object
-      ++ Objc.opt_arg behavior "withBehavior" make_pointer_from_object
+      ++ Objc.arg behavior "withBehavior" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSDecimalNumber] Objc.id))
-  (* skipping selector decimalNumberBySubtracting *)
-  method decimalNumberBySubtracting  ?withBehavior:(behavior : [`NSObject] Objc.t option) (decimalNumber : [`NSDecimalNumber] Objc.t) =
+  method decimalNumberBySubtracting (decimalNumber : [`NSDecimalNumber] Objc.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "decimalNumberBySubtracting:")
+      [make_pointer_from_object decimalNumber]) : [`NSDecimalNumber] Objc.id))
+  method decimalNumberBySubtracting_withBehavior  (decimalNumber : [`NSDecimalNumber] Objc.t) (behavior : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg decimalNumber "decimalNumberBySubtracting" make_pointer_from_object
-      ++ Objc.opt_arg behavior "withBehavior" make_pointer_from_object
+      ++ Objc.arg behavior "withBehavior" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSDecimalNumber] Objc.id))
-  (* skipping selector decimalNumberByMultiplyingBy *)
-  method decimalNumberByMultiplyingBy  ?withBehavior:(behavior : [`NSObject] Objc.t option) (decimalNumber : [`NSDecimalNumber] Objc.t) =
+  method decimalNumberByMultiplyingBy (decimalNumber : [`NSDecimalNumber] Objc.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "decimalNumberByMultiplyingBy:")
+      [make_pointer_from_object decimalNumber]) : [`NSDecimalNumber] Objc.id))
+  method decimalNumberByMultiplyingBy_withBehavior  (decimalNumber : [`NSDecimalNumber] Objc.t) (behavior : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg decimalNumber "decimalNumberByMultiplyingBy" make_pointer_from_object
-      ++ Objc.opt_arg behavior "withBehavior" make_pointer_from_object
+      ++ Objc.arg behavior "withBehavior" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSDecimalNumber] Objc.id))
-  (* skipping selector decimalNumberByDividingBy *)
-  method decimalNumberByDividingBy  ?withBehavior:(behavior : [`NSObject] Objc.t option) (decimalNumber : [`NSDecimalNumber] Objc.t) =
+  method decimalNumberByDividingBy (decimalNumber : [`NSDecimalNumber] Objc.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "decimalNumberByDividingBy:")
+      [make_pointer_from_object decimalNumber]) : [`NSDecimalNumber] Objc.id))
+  method decimalNumberByDividingBy_withBehavior  (decimalNumber : [`NSDecimalNumber] Objc.t) (behavior : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg decimalNumber "decimalNumberByDividingBy" make_pointer_from_object
-      ++ Objc.opt_arg behavior "withBehavior" make_pointer_from_object
+      ++ Objc.arg behavior "withBehavior" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSDecimalNumber] Objc.id))
-  (* skipping selector decimalNumberByRaisingToPower *)
-  method decimalNumberByRaisingToPower  ?withBehavior:(behavior : [`NSObject] Objc.t option) (power : int) =
+  method decimalNumberByRaisingToPower (power : int) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "decimalNumberByRaisingToPower:")
+      [make_int power]) : [`NSDecimalNumber] Objc.id))
+  method decimalNumberByRaisingToPower_withBehavior  (power : int) (behavior : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg power "decimalNumberByRaisingToPower" make_int
-      ++ Objc.opt_arg behavior "withBehavior" make_pointer_from_object
+      ++ Objc.arg behavior "withBehavior" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSDecimalNumber] Objc.id))
-  (* skipping selector decimalNumberByMultiplyingByPowerOf10 *)
-  method decimalNumberByMultiplyingByPowerOf10  ?withBehavior:(behavior : [`NSObject] Objc.t option) (power : int) =
+  method decimalNumberByMultiplyingByPowerOf10 (power : int) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "decimalNumberByMultiplyingByPowerOf10:")
+      [make_int power]) : [`NSDecimalNumber] Objc.id))
+  method decimalNumberByMultiplyingByPowerOf10_withBehavior  (power : int) (behavior : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg power "decimalNumberByMultiplyingByPowerOf10" make_int
-      ++ Objc.opt_arg behavior "withBehavior" make_pointer_from_object
+      ++ Objc.arg behavior "withBehavior" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSDecimalNumber] Objc.id))

@@ -1,16 +1,22 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSPortCoder] id) -> object
+class virtual methods = object
   inherit Im_NSPortCoder.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSPortCoder] id) -> object
+  inherit methods
+  inherit NSCoder.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSPortCoder *)
 let c = Classes.find "NSPortCoder"
 let _new()= (Objc.objcnew c : [`NSPortCoder] id)
 let alloc() = (Objc.objcalloc c : [`NSPortCoder] id)
-let portCoderWithReceivePort  ~sendPort:(sndPort : [`NSPort] Objc.t ) ~components:(comps : [`NSArray] Objc.t ) (rcvPort : [`NSPort] Objc.t) =
+let portCoderWithReceivePort_sendPort_components  (rcvPort : [`NSPort] Objc.t) (sndPort : [`NSPort] Objc.t) (comps : [`NSArray] Objc.t) =
     let sel, args = (
       Objc.arg rcvPort "portCoderWithReceivePort" make_pointer_from_object
       ++ Objc.arg sndPort "sendPort" make_pointer_from_object

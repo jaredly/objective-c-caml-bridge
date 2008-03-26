@@ -3,5 +3,5 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSExistsCommand *)
 class virtual methods = object (self)
-  method virtual repr : [`NSExistsCommand] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 end

@@ -3,16 +3,13 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSScroller *)
 class virtual methods = object (self)
-  method virtual repr : [`NSScroller] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method drawParts =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawParts")[])
        : unit)
-(*  UNSUPPORTED
   method rectForPart (partCode : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "rectForPart:")
-      [make_int partCode]) : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "rectForPart:")
+      [make_int partCode]) : NSRect.t)
   method checkSpaceForParts =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "checkSpaceForParts")[])
        : unit)
@@ -37,7 +34,7 @@ class virtual methods = object (self)
   method controlSize =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "controlSize")[])
        : int)
-  method drawArrow  ~highlight:(flag : bool ) (whichArrow : int) =
+  method drawArrow_highlight  (whichArrow : int) (flag : bool) =
     let sel, args = (
       Objc.arg whichArrow "drawArrow" make_int
       ++ Objc.arg flag "highlight" make_bool
@@ -50,12 +47,9 @@ class virtual methods = object (self)
   method highlight (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "highlight:")
       [make_bool flag]) : unit)
-(*  UNSUPPORTED
-  method testPart (thePoint : (*NSPoint*) unsupported) =
+  method testPart (thePoint : NSPoint.t) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "testPart:")
-      [(*NSPoint*) unsupported thePoint]) : int)
-
-*)
+      [make_point thePoint]) : int)
   method trackKnob (theEvent : [`NSEvent] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "trackKnob:")
       [make_pointer_from_object theEvent]) : unit)
@@ -65,17 +59,13 @@ class virtual methods = object (self)
   method hitPart =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "hitPart")[])
        : int)
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
-  method setFloatValue  ~knobProportion:(percent : float ) (aFloat : float) =
+  method setFloatValue_knobProportion  (aFloat : float) (percent : float) =
     let sel, args = (
       Objc.arg aFloat "setFloatValue" make_float
       ++ Objc.arg percent "knobProportion" make_float
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method knobProportion =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "knobProportion")[])
        : float)

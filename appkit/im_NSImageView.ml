@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSImageView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSImageView] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method image =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "image")[])
        : [`NSImage] Objc.id))

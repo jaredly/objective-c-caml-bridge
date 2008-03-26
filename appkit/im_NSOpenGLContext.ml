@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSOpenGLContext *)
 class virtual methods = object (self)
-  method virtual repr : [`NSOpenGLContext] Objc.id
-  method initWithFormat  ~shareContext:(share : [`NSOpenGLContext] Objc.t ) (format : [`NSOpenGLPixelFormat] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithFormat_shareContext  (format : [`NSOpenGLPixelFormat] Objc.t) (share : [`NSOpenGLContext] Objc.t) =
     let sel, args = (
       Objc.arg format "initWithFormat" make_pointer_from_object
       ++ Objc.arg share "shareContext" make_pointer_from_object
@@ -20,7 +20,7 @@ class virtual methods = object (self)
   method setFullScreen =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFullScreen")[])
        : unit)
-  method setOffScreen  ~width:(width : int64 ) ~height:(height : int64 ) ~rowbytes:(rowbytes : int64 ) (baseaddr : [`void] Objc.t) =
+  method setOffScreen_width_height_rowbytes  (baseaddr : [`void] Objc.t) (width : int64) (height : int64) (rowbytes : int64) =
     let sel, args = (
       Objc.arg baseaddr "setOffScreen" make_pointer_from_object
       ++ Objc.arg width "width" make_int64
@@ -41,7 +41,7 @@ class virtual methods = object (self)
   method makeCurrentContext =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "makeCurrentContext")[])
        : unit)
-  method copyAttributesFromContext  ~withMask:(mask : int64 ) (context : [`NSOpenGLContext] Objc.t) =
+  method copyAttributesFromContext_withMask  (context : [`NSOpenGLContext] Objc.t) (mask : int64) =
     let sel, args = (
       Objc.arg context "copyAttributesFromContext" make_pointer_from_object
       ++ Objc.arg mask "withMask" make_int64
@@ -49,7 +49,7 @@ class virtual methods = object (self)
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
 (*  UNSUPPORTED
-  method setValues  ~forParameter:(param : int ) (vals : (*pointer to const long int*) unsupported) =
+  method setValues_forParameter  (vals : (*pointer to const long int*) unsupported) (param : int) =
     let sel, args = (
       Objc.arg vals "setValues" (*pointer to const long int*) unsupported
       ++ Objc.arg param "forParameter" make_int
@@ -59,7 +59,7 @@ class virtual methods = object (self)
 
 *)
 (*  UNSUPPORTED
-  method getValues  ~forParameter:(param : int ) (vals : (*pointer to long int*) unsupported) =
+  method getValues_forParameter  (vals : (*pointer to long int*) unsupported) (param : int) =
     let sel, args = (
       Objc.arg vals "getValues" (*pointer to long int*) unsupported
       ++ Objc.arg param "forParameter" make_int
@@ -74,7 +74,7 @@ class virtual methods = object (self)
   method currentVirtualScreen =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "currentVirtualScreen")[])
        : int)
-  method createTexture  ~fromView:(view : [`NSView] Objc.t ) ~internalFormat:(format : int64 ) (target : int64) =
+  method createTexture_fromView_internalFormat  (target : int64) (view : [`NSView] Objc.t) (format : int64) =
     let sel, args = (
       Objc.arg target "createTexture" make_int64
       ++ Objc.arg view "fromView" make_pointer_from_object
@@ -82,10 +82,10 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method l_CGLContextObj =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_CGLContextObj")[])
+  method _CGLContextObj =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "CGLContextObj")[])
        : [`void] Objc.id))
-  method setPixelBuffer  ~cubeMapFace:(face : int64 ) ~mipMapLevel:(level : int64 ) ~currentVirtualScreen:(screen : int ) (pixelBuffer : [`NSOpenGLPixelBuffer] Objc.t) =
+  method setPixelBuffer_cubeMapFace_mipMapLevel_currentVirtualScreen  (pixelBuffer : [`NSOpenGLPixelBuffer] Objc.t) (face : int64) (level : int64) (screen : int) =
     let sel, args = (
       Objc.arg pixelBuffer "setPixelBuffer" make_pointer_from_object
       ++ Objc.arg face "cubeMapFace" make_int64
@@ -103,7 +103,7 @@ class virtual methods = object (self)
   method pixelBufferMipMapLevel =
     (get_int64 (Objc.invoke Objc.tag_int64 self#repr (Selector.find "pixelBufferMipMapLevel")[])
        : int64)
-  method setTextureImageToPixelBuffer  ~colorBuffer:(source : int64 ) (pixelBuffer : [`NSOpenGLPixelBuffer] Objc.t) =
+  method setTextureImageToPixelBuffer_colorBuffer  (pixelBuffer : [`NSOpenGLPixelBuffer] Objc.t) (source : int64) =
     let sel, args = (
       Objc.arg pixelBuffer "setTextureImageToPixelBuffer" make_pointer_from_object
       ++ Objc.arg source "colorBuffer" make_int64

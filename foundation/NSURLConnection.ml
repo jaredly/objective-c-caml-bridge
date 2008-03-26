@@ -1,10 +1,16 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSURLConnection] id) -> object
-  inherit Cati_NSURLConnectionSynchronousLoading.methods_NSURLConnection
+class virtual methods = object
+  inherit Foundation_cati_NSURLConnectionSynchronousLoading.methods_NSURLConnection
   inherit Im_NSURLConnection.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSURLConnection] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSURLConnection *)
@@ -13,7 +19,7 @@ let _new()= (Objc.objcnew c : [`NSURLConnection] id)
 let alloc() = (Objc.objcalloc c : [`NSURLConnection] id)
 (* class methods for category NSURLConnectionSynchronousLoading of NSURLConnection *)
 (*  UNSUPPORTED
-let sendSynchronousRequest  ~returningResponse:(response : (*pointer to pointer to NSURLResponse*) unsupported ) ~error:(error : bool ) (request : [`NSURLRequest] Objc.t) =
+let sendSynchronousRequest_returningResponse_error  (request : [`NSURLRequest] Objc.t) (response : (*pointer to pointer to NSURLResponse*) unsupported) (error : bool) =
     let sel, args = (
       Objc.arg request "sendSynchronousRequest" make_pointer_from_object
       ++ Objc.arg response "returningResponse" (*pointer to pointer to NSURLResponse*) unsupported
@@ -26,7 +32,7 @@ let sendSynchronousRequest  ~returningResponse:(response : (*pointer to pointer 
 let canHandleRequest (request : [`NSURLRequest] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool c (Selector.find "canHandleRequest:")
       [make_pointer_from_object request]) : bool)
-let connectionWithRequest  ~delegate:(delegate : [`NSObject] Objc.t ) (request : [`NSURLRequest] Objc.t) =
+let connectionWithRequest_delegate  (request : [`NSURLRequest] Objc.t) (delegate : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg request "connectionWithRequest" make_pointer_from_object
       ++ Objc.arg delegate "delegate" make_pointer_from_object

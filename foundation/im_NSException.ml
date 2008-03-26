@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSException *)
 class virtual methods = object (self)
-  method virtual repr : [`NSException] Objc.id
-  method initWithName  ~reason:(aReason : [`NSString] Objc.t ) ~userInfo:(aUserInfo : [`NSDictionary] Objc.t ) (aName : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithName_reason_userInfo  (aName : [`NSString] Objc.t) (aReason : [`NSString] Objc.t) (aUserInfo : [`NSDictionary] Objc.t) =
     let sel, args = (
       Objc.arg aName "initWithName" make_pointer_from_object
       ++ Objc.arg aReason "reason" make_pointer_from_object

@@ -3,14 +3,14 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSFontPanel *)
 class virtual methods = object (self)
-  method virtual repr : [`NSFontPanel] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method accessoryView =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "accessoryView")[])
        : [`NSView] Objc.id))
   method setAccessoryView (aView : [`NSView] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAccessoryView:")
       [make_pointer_from_object aView]) : unit)
-  method setPanelFont  ~isMultiple:(flag : bool ) (fontObj : [`NSFont] Objc.t) =
+  method setPanelFont_isMultiple  (fontObj : [`NSFont] Objc.t) (flag : bool) =
     let sel, args = (
       Objc.arg fontObj "setPanelFont" make_pointer_from_object
       ++ Objc.arg flag "isMultiple" make_bool

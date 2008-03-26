@@ -3,14 +3,14 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextBlock *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextBlock] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method init =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "init")[])
        : [`NSObject] Objc.id)
-  method setValue  ~l_type:(_type : int ) ~forDimension:(dimension : int ) (_val : float) =
+  method setValue_type_forDimension  (_val : float) (_type : int) (dimension : int) =
     let sel, args = (
       Objc.arg _val "setValue" make_float
-      ++ Objc.arg _type "l_type" make_int
+      ++ Objc.arg _type "type" make_int
       ++ Objc.arg dimension "forDimension" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
@@ -21,10 +21,10 @@ class virtual methods = object (self)
   method valueTypeForDimension (dimension : int) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "valueTypeForDimension:")
       [make_int dimension]) : int)
-  method setContentWidth  ~l_type:(_type : int ) (_val : float) =
+  method setContentWidth_type  (_val : float) (_type : int) =
     let sel, args = (
       Objc.arg _val "setContentWidth" make_float
-      ++ Objc.arg _type "l_type" make_int
+      ++ Objc.arg _type "type" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
@@ -35,20 +35,27 @@ class virtual methods = object (self)
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "contentWidthValueType")[])
        : int)
 (*  UNSUPPORTED
-  method setWidth  ~l_type:(_type : int ) ~forLayer:(layer : int ) ?edge:(edge : (*NSRectEdge*) unsupported option) (_val : float) =
+  method setWidth_type_forLayer_edge  (_val : float) (_type : int) (layer : int) (edge : (*NSRectEdge*) unsupported) =
     let sel, args = (
       Objc.arg _val "setWidth" make_float
-      ++ Objc.arg _type "l_type" make_int
+      ++ Objc.arg _type "type" make_int
       ++ Objc.arg layer "forLayer" make_int
-      ++ Objc.opt_arg edge "edge" (*NSRectEdge*) unsupported
+      ++ Objc.arg edge "edge" (*NSRectEdge*) unsupported
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
 
 *)
-  (* skipping selector setWidth:l_type:forLayer *)
+  method setWidth_type_forLayer  (_val : float) (_type : int) (layer : int) =
+    let sel, args = (
+      Objc.arg _val "setWidth" make_float
+      ++ Objc.arg _type "type" make_int
+      ++ Objc.arg layer "forLayer" make_int
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
 (*  UNSUPPORTED
-  method widthForLayer  ~edge:(edge : (*NSRectEdge*) unsupported ) (layer : int) =
+  method widthForLayer_edge  (layer : int) (edge : (*NSRectEdge*) unsupported) =
     let sel, args = (
       Objc.arg layer "widthForLayer" make_int
       ++ Objc.arg edge "edge" (*NSRectEdge*) unsupported
@@ -58,7 +65,7 @@ class virtual methods = object (self)
 
 *)
 (*  UNSUPPORTED
-  method widthValueTypeForLayer  ~edge:(edge : (*NSRectEdge*) unsupported ) (layer : int) =
+  method widthValueTypeForLayer_edge  (layer : int) (edge : (*NSRectEdge*) unsupported) =
     let sel, args = (
       Objc.arg layer "widthValueTypeForLayer" make_int
       ++ Objc.arg edge "edge" (*NSRectEdge*) unsupported
@@ -80,56 +87,49 @@ class virtual methods = object (self)
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "backgroundColor")[])
        : [`NSColor] Objc.id))
 (*  UNSUPPORTED
-  method setBorderColor  ?forEdge:(edge : (*NSRectEdge*) unsupported option) (color : [`NSColor] Objc.t) =
+  method setBorderColor_forEdge  (color : [`NSColor] Objc.t) (edge : (*NSRectEdge*) unsupported) =
     let sel, args = (
       Objc.arg color "setBorderColor" make_pointer_from_object
-      ++ Objc.opt_arg edge "forEdge" (*NSRectEdge*) unsupported
+      ++ Objc.arg edge "forEdge" (*NSRectEdge*) unsupported
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
 
 *)
-  (* skipping selector setBorderColor *)
+  method setBorderColor (color : [`NSColor] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBorderColor:")
+      [make_pointer_from_object color]) : unit)
 (*  UNSUPPORTED
   method borderColorForEdge (edge : (*NSRectEdge*) unsupported) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "borderColorForEdge:")
       [(*NSRectEdge*) unsupported edge]) : [`NSColor] Objc.id))
 
 *)
-(*  UNSUPPORTED
-  method rectForLayoutAtPoint  ~inRect:(rect : (*NSRect*) unsupported ) ~textContainer:(textContainer : [`NSTextContainer] Objc.t ) ~characterRange:(charRange : (int * int) ) (startingPoint : (*NSPoint*) unsupported) =
+  method rectForLayoutAtPoint_inRect_textContainer_characterRange  (startingPoint : NSPoint.t) (rect : NSRect.t) (textContainer : [`NSTextContainer] Objc.t) (charRange : NSRange.t) =
     let sel, args = (
-      Objc.arg startingPoint "rectForLayoutAtPoint" (*NSPoint*) unsupported
-      ++ Objc.arg rect "inRect" (*NSRect*) unsupported
+      Objc.arg startingPoint "rectForLayoutAtPoint" make_point
+      ++ Objc.arg rect "inRect" make_rect
       ++ Objc.arg textContainer "textContainer" make_pointer_from_object
       ++ Objc.arg charRange "characterRange" make_range
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method boundsRectForContentRect  ~inRect:(rect : (*NSRect*) unsupported ) ~textContainer:(textContainer : [`NSTextContainer] Objc.t ) ~characterRange:(charRange : (int * int) ) (contentRect : (*NSRect*) unsupported) =
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method boundsRectForContentRect_inRect_textContainer_characterRange  (contentRect : NSRect.t) (rect : NSRect.t) (textContainer : [`NSTextContainer] Objc.t) (charRange : NSRange.t) =
     let sel, args = (
-      Objc.arg contentRect "boundsRectForContentRect" (*NSRect*) unsupported
-      ++ Objc.arg rect "inRect" (*NSRect*) unsupported
+      Objc.arg contentRect "boundsRectForContentRect" make_rect
+      ++ Objc.arg rect "inRect" make_rect
       ++ Objc.arg textContainer "textContainer" make_pointer_from_object
       ++ Objc.arg charRange "characterRange" make_range
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method drawBackgroundWithFrame  ~inView:(controlView : [`NSView] Objc.t ) ~characterRange:(charRange : (int * int) ) ~layoutManager:(layoutManager : [`NSLayoutManager] Objc.t ) (frameRect : (*NSRect*) unsupported) =
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method drawBackgroundWithFrame_inView_characterRange_layoutManager  (frameRect : NSRect.t) (controlView : [`NSView] Objc.t) (charRange : NSRange.t) (layoutManager : [`NSLayoutManager] Objc.t) =
     let sel, args = (
-      Objc.arg frameRect "drawBackgroundWithFrame" (*NSRect*) unsupported
+      Objc.arg frameRect "drawBackgroundWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
       ++ Objc.arg charRange "characterRange" make_range
       ++ Objc.arg layoutManager "layoutManager" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
 end

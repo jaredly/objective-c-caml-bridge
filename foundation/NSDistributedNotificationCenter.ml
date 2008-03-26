@@ -6,9 +6,15 @@ let _NSNotificationDeliverImmediately = 1L
 let _NSNotificationPostToAllSessions = 2L
 
 
-class t = fun (r :[`NSDistributedNotificationCenter] id) -> object
+class virtual methods = object
   inherit Im_NSDistributedNotificationCenter.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSDistributedNotificationCenter] id) -> object
+  inherit methods
+  inherit NSNotificationCenter.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSDistributedNotificationCenter *)

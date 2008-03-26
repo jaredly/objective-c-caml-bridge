@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSOutlineView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSOutlineView] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setOutlineTableColumn (outlineTableColumn : [`NSTableColumn] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setOutlineTableColumn:")
       [make_pointer_from_object outlineTableColumn]) : unit)
@@ -13,30 +13,36 @@ class virtual methods = object (self)
   method isExpandable (item : [`NSObject] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isExpandable:")
       [make_pointer_from_object item]) : bool)
-  method expandItem  ?expandChildren:(expandChildren : bool option) (item : [`NSObject] Objc.t) =
+  method expandItem_expandChildren  (item : [`NSObject] Objc.t) (expandChildren : bool) =
     let sel, args = (
       Objc.arg item "expandItem" make_pointer_from_object
-      ++ Objc.opt_arg expandChildren "expandChildren" make_bool
+      ++ Objc.arg expandChildren "expandChildren" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  (* skipping selector expandItem *)
-  method collapseItem  ?collapseChildren:(collapseChildren : bool option) (item : [`NSObject] Objc.t) =
+  method expandItem (item : [`NSObject] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "expandItem:")
+      [make_pointer_from_object item]) : unit)
+  method collapseItem_collapseChildren  (item : [`NSObject] Objc.t) (collapseChildren : bool) =
     let sel, args = (
       Objc.arg item "collapseItem" make_pointer_from_object
-      ++ Objc.opt_arg collapseChildren "collapseChildren" make_bool
+      ++ Objc.arg collapseChildren "collapseChildren" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  (* skipping selector collapseItem *)
-  method reloadItem  ?reloadChildren:(reloadChildren : bool option) (item : [`NSObject] Objc.t) =
+  method collapseItem (item : [`NSObject] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "collapseItem:")
+      [make_pointer_from_object item]) : unit)
+  method reloadItem_reloadChildren  (item : [`NSObject] Objc.t) (reloadChildren : bool) =
     let sel, args = (
       Objc.arg item "reloadItem" make_pointer_from_object
-      ++ Objc.opt_arg reloadChildren "reloadChildren" make_bool
+      ++ Objc.arg reloadChildren "reloadChildren" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  (* skipping selector reloadItem *)
+  method reloadItem (item : [`NSObject] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "reloadItem:")
+      [make_pointer_from_object item]) : unit)
   method itemAtRow (row : int) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "itemAtRow:")
       [make_int row]) : [`NSObject] Objc.id)
@@ -70,7 +76,7 @@ class virtual methods = object (self)
   method autoresizesOutlineColumn =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "autoresizesOutlineColumn")[])
        : bool)
-  method setDropItem  ~dropChildIndex:(index : int ) (item : [`NSObject] Objc.t) =
+  method setDropItem_dropChildIndex  (item : [`NSObject] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg item "setDropItem" make_pointer_from_object
       ++ Objc.arg index "dropChildIndex" make_int

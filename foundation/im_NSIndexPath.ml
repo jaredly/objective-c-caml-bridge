@@ -3,12 +3,12 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSIndexPath *)
 class virtual methods = object (self)
-  method virtual repr : [`NSIndexPath] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithIndex (index : int) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithIndex:")
       [make_int index]) : [`NSObject] Objc.id)
 (*  UNSUPPORTED
-  method initWithIndexes  ~length:(length : int ) (indexes : (*pointer to unsigned int*) unsupported) =
+  method initWithIndexes_length  (indexes : (*pointer to unsigned int*) unsupported) (length : int) =
     let sel, args = (
       Objc.arg indexes "initWithIndexes" (*pointer to unsigned int*) unsupported
       ++ Objc.arg length "length" make_int

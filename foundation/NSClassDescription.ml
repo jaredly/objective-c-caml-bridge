@@ -1,16 +1,22 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSClassDescription] id) -> object
+class virtual methods = object
   inherit Im_NSClassDescription.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSClassDescription] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSClassDescription *)
 let c = Classes.find "NSClassDescription"
 let _new()= (Objc.objcnew c : [`NSClassDescription] id)
 let alloc() = (Objc.objcalloc c : [`NSClassDescription] id)
-let registerClassDescription  ~forClass:(aClass : [`NSObject] Objc.t ) (description : [`NSClassDescription] Objc.t) =
+let registerClassDescription_forClass  (description : [`NSClassDescription] Objc.t) (aClass : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg description "registerClassDescription" make_pointer_from_object
       ++ Objc.arg aClass "forClass" make_pointer_from_object

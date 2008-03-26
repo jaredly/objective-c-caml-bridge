@@ -3,19 +3,13 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTokenField *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTokenField] Objc.id
-(*  UNSUPPORTED
-  method setTokenStyle (style : (*NSTokenStyle*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method setTokenStyle (style : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTokenStyle:")
-      [(*NSTokenStyle*) unsupported style]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_int style]) : unit)
   method tokenStyle =
-    ((*NSTokenStyle*) unsupported (Objc.invoke (*NSTokenStyle*) Objc.tag_unsupported self#repr (Selector.find "tokenStyle")[])
-       : (*NSTokenStyle*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "tokenStyle")[])
+       : int)
   method setCompletionDelay (delay : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setCompletionDelay:")
       [make_float delay]) : unit)

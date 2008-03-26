@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSliderCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSliderCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method minValue =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "minValue")[])
        : float)
@@ -55,35 +55,33 @@ class virtual methods = object (self)
   method knobThickness =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "knobThickness")[])
        : float)
-(*  UNSUPPORTED
   method knobRectFlipped (flipped : bool) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "knobRectFlipped:")
-      [make_bool flipped]) : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "knobRectFlipped:")
+      [make_bool flipped]) : NSRect.t)
 (*  UNSUPPORTED
-  method drawKnob (knobRect : (*NSRect*) unsupported) =
+(* unsupported: breaks compilation somewhere *)
+  method drawKnob (knobRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawKnob:")
-      [(*NSRect*) unsupported knobRect]) : unit)
+      [make_rect knobRect]) : unit)
 
 *)
-  (* skipping selector drawKnob *)
 (*  UNSUPPORTED
-  method drawBarInside  ~flipped:(flipped : bool ) (aRect : (*NSRect*) unsupported) =
+(* unsupported: breaks compilation somewhere *)
+  method drawKnob =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawKnob")[])
+       : unit)
+
+*)
+  method drawBarInside_flipped  (aRect : NSRect.t) (flipped : bool) =
     let sel, args = (
-      Objc.arg aRect "drawBarInside" (*NSRect*) unsupported
+      Objc.arg aRect "drawBarInside" make_rect
       ++ Objc.arg flipped "flipped" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
   method trackRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "trackRect")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "trackRect")[])
+       : NSRect.t)
   method setSliderType (sliderType : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setSliderType:")
       [make_int sliderType]) : unit)

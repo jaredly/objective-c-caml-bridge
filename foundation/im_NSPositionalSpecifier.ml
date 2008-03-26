@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPositionalSpecifier *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPositionalSpecifier] Objc.id
-  method initWithPosition  ~objectSpecifier:(specifier : [`NSScriptObjectSpecifier] Objc.t ) (position : int) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithPosition_objectSpecifier  (position : int) (specifier : [`NSScriptObjectSpecifier] Objc.t) =
     let sel, args = (
       Objc.arg position "initWithPosition" make_int
       ++ Objc.arg specifier "objectSpecifier" make_pointer_from_object

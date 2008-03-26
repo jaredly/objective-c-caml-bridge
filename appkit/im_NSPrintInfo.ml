@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPrintInfo *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPrintInfo] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithDictionary (attributes : [`NSDictionary] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithDictionary:")
       [make_pointer_from_object attributes]) : [`NSObject] Objc.id)
@@ -13,24 +13,18 @@ class virtual methods = object (self)
   method setPaperName (name : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setPaperName:")
       [make_pointer_from_object name]) : unit)
-(*  UNSUPPORTED
-  method setPaperSize (size : (*NSSize*) unsupported) =
+  method setPaperSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setPaperSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
+      [make_size size]) : unit)
   method setOrientation (orientation : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setOrientation:")
       [make_int orientation]) : unit)
   method paperName =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "paperName")[])
        : [`NSString] Objc.id))
-(*  UNSUPPORTED
   method paperSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "paperSize")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "paperSize")[])
+       : NSSize.t)
   method orientation =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "orientation")[])
        : int)
@@ -97,12 +91,9 @@ class virtual methods = object (self)
   method setUpPrintOperationDefaultValues =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setUpPrintOperationDefaultValues")[])
        : unit)
-(*  UNSUPPORTED
   method imageablePageBounds =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "imageablePageBounds")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "imageablePageBounds")[])
+       : NSRect.t)
   method localizedPaperName =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "localizedPaperName")[])
        : [`NSString] Objc.id))

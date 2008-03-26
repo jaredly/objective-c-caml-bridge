@@ -5,9 +5,15 @@ open Objc
 let _NSOpenStepUnicodeReservedBase = 62464L
 
 
-class t = fun (r :[`NSCharacterSet] id) -> object
+class virtual methods = object
   inherit Im_NSCharacterSet.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSCharacterSet] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSCharacterSet *)
@@ -56,7 +62,7 @@ let capitalizedLetterCharacterSet () =
 let symbolCharacterSet () =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "symbolCharacterSet")[])
        : [`NSCharacterSet] Objc.id))
-let characterSetWithRange (aRange : int * int) =
+let characterSetWithRange (aRange : NSRange.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "characterSetWithRange:")
       [make_range aRange]) : [`NSCharacterSet] Objc.id))
 let characterSetWithCharactersInString (aString : [`NSString] Objc.t) =

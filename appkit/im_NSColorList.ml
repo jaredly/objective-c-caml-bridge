@@ -3,26 +3,28 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSColorList *)
 class virtual methods = object (self)
-  method virtual repr : [`NSColorList] Objc.id
-  (* skipping selector initWithName *)
-  method initWithName  ?fromFile:(path : [`NSString] Objc.t option) (name : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithName (name : [`NSString] Objc.t) =
+    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithName:")
+      [make_pointer_from_object name]) : [`NSObject] Objc.id)
+  method initWithName_fromFile  (name : [`NSString] Objc.t) (path : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg name "initWithName" make_pointer_from_object
-      ++ Objc.opt_arg path "fromFile" make_pointer_from_object
+      ++ Objc.arg path "fromFile" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
   method name =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "name")[])
        : [`NSString] Objc.id))
-  method setColor  ~forKey:(key : [`NSString] Objc.t ) (color : [`NSColor] Objc.t) =
+  method setColor_forKey  (color : [`NSColor] Objc.t) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg color "setColor" make_pointer_from_object
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method insertColor  ~key:(key : [`NSString] Objc.t ) ~atIndex:(loc : int ) (color : [`NSColor] Objc.t) =
+  method insertColor_key_atIndex  (color : [`NSColor] Objc.t) (key : [`NSString] Objc.t) (loc : int) =
     let sel, args = (
       Objc.arg color "insertColor" make_pointer_from_object
       ++ Objc.arg key "key" make_pointer_from_object

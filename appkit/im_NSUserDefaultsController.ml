@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSUserDefaultsController *)
 class virtual methods = object (self)
-  method virtual repr : [`NSUserDefaultsController] Objc.id
-  method initWithDefaults  ~initialValues:(initialValues : [`NSDictionary] Objc.t ) (defaults : [`NSUserDefaults] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithDefaults_initialValues  (defaults : [`NSUserDefaults] Objc.t) (initialValues : [`NSDictionary] Objc.t) =
     let sel, args = (
       Objc.arg defaults "initWithDefaults" make_pointer_from_object
       ++ Objc.arg initialValues "initialValues" make_pointer_from_object

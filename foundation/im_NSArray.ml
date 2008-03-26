@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSArray *)
 class virtual methods = object (self)
-  method virtual repr : [`NSArray] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method count =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "count")[])
        : int)

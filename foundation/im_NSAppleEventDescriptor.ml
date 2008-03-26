@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSAppleEventDescriptor *)
 class virtual methods = object (self)
-  method virtual repr : [`NSAppleEventDescriptor] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 (*  UNSUPPORTED
   method initWithAEDescNoCopy (aeDesc : (*pointer to const AEDesc*) unsupported) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithAEDescNoCopy:")
@@ -11,7 +11,7 @@ class virtual methods = object (self)
 
 *)
 (*  UNSUPPORTED
-  method initWithDescriptorType  ~bytes:(bytes : (*pointer to const void*) unsupported ) ~length:(byteCount : int ) (descriptorType : (*DescType*) unsupported) =
+  method initWithDescriptorType_bytes_length  (descriptorType : (*DescType*) unsupported) (bytes : (*pointer to const void*) unsupported) (byteCount : int) =
     let sel, args = (
       Objc.arg descriptorType "initWithDescriptorType" (*DescType*) unsupported
       ++ Objc.arg bytes "bytes" (*pointer to const void*) unsupported
@@ -21,8 +21,17 @@ class virtual methods = object (self)
        : [`NSObject] Objc.id)
 
 *)
-  (* skipping selector initWithDescriptorType:data *)
-  method initWithEventClass  ~eventID:(eventID : int64 ) ~targetDescriptor:(targetDescriptor : [`NSAppleEventDescriptor] Objc.t ) ~returnID:(returnID : int64 ) ~transactionID:(transactionID : int64 ) (eventClass : int64) =
+(*  UNSUPPORTED
+  method initWithDescriptorType_data  (descriptorType : (*DescType*) unsupported) (data : [`NSData] Objc.t) =
+    let sel, args = (
+      Objc.arg descriptorType "initWithDescriptorType" (*DescType*) unsupported
+      ++ Objc.arg data "data" make_pointer_from_object
+    ) ([],[]) in
+      (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSObject] Objc.id)
+
+*)
+  method initWithEventClass_eventID_targetDescriptor_returnID_transactionID  (eventClass : int64) (eventID : int64) (targetDescriptor : [`NSAppleEventDescriptor] Objc.t) (returnID : int64) (transactionID : int64) =
     let sel, args = (
       Objc.arg eventClass "initWithEventClass" make_int64
       ++ Objc.arg eventID "eventID" make_int64
@@ -80,7 +89,7 @@ class virtual methods = object (self)
   method transactionID =
     (get_int64 (Objc.invoke Objc.tag_int64 self#repr (Selector.find "transactionID")[])
        : int64)
-  method setParamDescriptor  ~forKeyword:(keyword : int64 ) (descriptor : [`NSAppleEventDescriptor] Objc.t) =
+  method setParamDescriptor_forKeyword  (descriptor : [`NSAppleEventDescriptor] Objc.t) (keyword : int64) =
     let sel, args = (
       Objc.arg descriptor "setParamDescriptor" make_pointer_from_object
       ++ Objc.arg keyword "forKeyword" make_int64
@@ -93,7 +102,7 @@ class virtual methods = object (self)
   method removeParamDescriptorWithKeyword (keyword : int64) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "removeParamDescriptorWithKeyword:")
       [make_int64 keyword]) : unit)
-  method setAttributeDescriptor  ~forKeyword:(keyword : int64 ) (descriptor : [`NSAppleEventDescriptor] Objc.t) =
+  method setAttributeDescriptor_forKeyword  (descriptor : [`NSAppleEventDescriptor] Objc.t) (keyword : int64) =
     let sel, args = (
       Objc.arg descriptor "setAttributeDescriptor" make_pointer_from_object
       ++ Objc.arg keyword "forKeyword" make_int64
@@ -106,7 +115,7 @@ class virtual methods = object (self)
   method numberOfItems =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "numberOfItems")[])
        : int)
-  method insertDescriptor  ~atIndex:(index : int64 ) (descriptor : [`NSAppleEventDescriptor] Objc.t) =
+  method insertDescriptor_atIndex  (descriptor : [`NSAppleEventDescriptor] Objc.t) (index : int64) =
     let sel, args = (
       Objc.arg descriptor "insertDescriptor" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int64
@@ -122,7 +131,7 @@ class virtual methods = object (self)
   method removeDecriptorAtIndex (index : int64) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "removeDecriptorAtIndex:")
       [make_int64 index]) : unit)
-  method setDescriptor  ~forKeyword:(keyword : int64 ) (descriptor : [`NSAppleEventDescriptor] Objc.t) =
+  method setDescriptor_forKeyword  (descriptor : [`NSAppleEventDescriptor] Objc.t) (keyword : int64) =
     let sel, args = (
       Objc.arg descriptor "setDescriptor" make_pointer_from_object
       ++ Objc.arg keyword "forKeyword" make_int64

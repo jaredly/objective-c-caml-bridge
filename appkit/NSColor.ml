@@ -1,10 +1,16 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSColor] id) -> object
-  inherit Cati_NSQuartzCoreAdditions.methods_NSColor
+class virtual methods = object
+  inherit AppKit_cati_NSQuartzCoreAdditions.methods_NSColor
   inherit Im_NSColor.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSColor] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSColor *)
@@ -15,14 +21,14 @@ let alloc() = (Objc.objcalloc c : [`NSColor] id)
 let colorWithCIColor (color : [`CIColor] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "colorWithCIColor:")
       [make_pointer_from_object color]) : [`NSColor] Objc.id))
-let colorWithCalibratedWhite  ~alpha:(alpha : float ) (white : float) =
+let colorWithCalibratedWhite_alpha  (white : float) (alpha : float) =
     let sel, args = (
       Objc.arg white "colorWithCalibratedWhite" make_float
       ++ Objc.arg alpha "alpha" make_float
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
-let colorWithCalibratedHue  ~saturation:(saturation : float ) ~brightness:(brightness : float ) ~alpha:(alpha : float ) (hue : float) =
+let colorWithCalibratedHue_saturation_brightness_alpha  (hue : float) (saturation : float) (brightness : float) (alpha : float) =
     let sel, args = (
       Objc.arg hue "colorWithCalibratedHue" make_float
       ++ Objc.arg saturation "saturation" make_float
@@ -31,7 +37,7 @@ let colorWithCalibratedHue  ~saturation:(saturation : float ) ~brightness:(brigh
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
-let colorWithCalibratedRed  ~green:(green : float ) ~blue:(blue : float ) ~alpha:(alpha : float ) (red : float) =
+let colorWithCalibratedRed_green_blue_alpha  (red : float) (green : float) (blue : float) (alpha : float) =
     let sel, args = (
       Objc.arg red "colorWithCalibratedRed" make_float
       ++ Objc.arg green "green" make_float
@@ -40,14 +46,14 @@ let colorWithCalibratedRed  ~green:(green : float ) ~blue:(blue : float ) ~alpha
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
-let colorWithDeviceWhite  ~alpha:(alpha : float ) (white : float) =
+let colorWithDeviceWhite_alpha  (white : float) (alpha : float) =
     let sel, args = (
       Objc.arg white "colorWithDeviceWhite" make_float
       ++ Objc.arg alpha "alpha" make_float
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
-let colorWithDeviceHue  ~saturation:(saturation : float ) ~brightness:(brightness : float ) ~alpha:(alpha : float ) (hue : float) =
+let colorWithDeviceHue_saturation_brightness_alpha  (hue : float) (saturation : float) (brightness : float) (alpha : float) =
     let sel, args = (
       Objc.arg hue "colorWithDeviceHue" make_float
       ++ Objc.arg saturation "saturation" make_float
@@ -56,7 +62,7 @@ let colorWithDeviceHue  ~saturation:(saturation : float ) ~brightness:(brightnes
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
-let colorWithDeviceRed  ~green:(green : float ) ~blue:(blue : float ) ~alpha:(alpha : float ) (red : float) =
+let colorWithDeviceRed_green_blue_alpha  (red : float) (green : float) (blue : float) (alpha : float) =
     let sel, args = (
       Objc.arg red "colorWithDeviceRed" make_float
       ++ Objc.arg green "green" make_float
@@ -65,7 +71,7 @@ let colorWithDeviceRed  ~green:(green : float ) ~blue:(blue : float ) ~alpha:(al
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
-let colorWithDeviceCyan  ~magenta:(magenta : float ) ~yellow:(yellow : float ) ~black:(black : float ) ~alpha:(alpha : float ) (cyan : float) =
+let colorWithDeviceCyan_magenta_yellow_black_alpha  (cyan : float) (magenta : float) (yellow : float) (black : float) (alpha : float) =
     let sel, args = (
       Objc.arg cyan "colorWithDeviceCyan" make_float
       ++ Objc.arg magenta "magenta" make_float
@@ -75,7 +81,7 @@ let colorWithDeviceCyan  ~magenta:(magenta : float ) ~yellow:(yellow : float ) ~
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
-let colorWithCatalogName  ~colorName:(colorName : [`NSString] Objc.t ) (listName : [`NSString] Objc.t) =
+let colorWithCatalogName_colorName  (listName : [`NSString] Objc.t) (colorName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg listName "colorWithCatalogName" make_pointer_from_object
       ++ Objc.arg colorName "colorName" make_pointer_from_object
@@ -83,7 +89,7 @@ let colorWithCatalogName  ~colorName:(colorName : [`NSString] Objc.t ) (listName
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
 (*  UNSUPPORTED
-let colorWithColorSpace  ~components:(components : (*pointer to const float*) unsupported ) ~count:(numberOfComponents : int ) (space : [`NSColorSpace] Objc.t) =
+let colorWithColorSpace_components_count  (space : [`NSColorSpace] Objc.t) (components : (*pointer to const float*) unsupported) (numberOfComponents : int) =
     let sel, args = (
       Objc.arg space "colorWithColorSpace" make_pointer_from_object
       ++ Objc.arg components "components" (*pointer to const float*) unsupported

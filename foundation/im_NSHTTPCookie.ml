@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSHTTPCookie *)
 class virtual methods = object (self)
-  method virtual repr : [`NSHTTPCookie] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithProperties (properties : [`NSDictionary] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithProperties:")
       [make_pointer_from_object properties]) : [`NSObject] Objc.id)

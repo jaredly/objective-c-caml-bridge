@@ -3,17 +3,25 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSXMLElement *)
 class virtual methods = object (self)
-  method virtual repr : [`NSXMLElement] Objc.id
-  (* skipping selector initWithName *)
-  method initWithName  ?l_URI:(_URI : [`NSString] Objc.t option) (name : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithName (name : [`NSString] Objc.t) =
+    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithName:")
+      [make_pointer_from_object name]) : [`NSObject] Objc.id)
+  method initWithName_URI  (name : [`NSString] Objc.t) (_URI : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg name "initWithName" make_pointer_from_object
-      ++ Objc.opt_arg _URI "l_URI" make_pointer_from_object
+      ++ Objc.arg _URI "URI" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  (* skipping selector initWithName:stringValue *)
-  method initWithXMLString  ~error:(error : bool ) (string : [`NSString] Objc.t) =
+  method initWithName_stringValue  (name : [`NSString] Objc.t) (string : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg name "initWithName" make_pointer_from_object
+      ++ Objc.arg string "stringValue" make_pointer_from_object
+    ) ([],[]) in
+      (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSObject] Objc.id)
+  method initWithXMLString_error  (string : [`NSString] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg string "initWithXMLString" make_pointer_from_object
       ++ Objc.arg error "error" make_error
@@ -23,10 +31,10 @@ class virtual methods = object (self)
   method elementsForName (name : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "elementsForName:")
       [make_pointer_from_object name]) : [`NSArray] Objc.id))
-  method elementsForLocalName  ~l_URI:(_URI : [`NSString] Objc.t ) (localName : [`NSString] Objc.t) =
+  method elementsForLocalName_URI  (localName : [`NSString] Objc.t) (_URI : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg localName "elementsForLocalName" make_pointer_from_object
-      ++ Objc.arg _URI "l_URI" make_pointer_from_object
+      ++ Objc.arg _URI "URI" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSArray] Objc.id))
@@ -48,10 +56,10 @@ class virtual methods = object (self)
   method attributeForName (name : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "attributeForName:")
       [make_pointer_from_object name]) : [`NSXMLNode] Objc.id))
-  method attributeForLocalName  ~l_URI:(_URI : [`NSString] Objc.t ) (localName : [`NSString] Objc.t) =
+  method attributeForLocalName_URI  (localName : [`NSString] Objc.t) (_URI : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg localName "attributeForLocalName" make_pointer_from_object
-      ++ Objc.arg _URI "l_URI" make_pointer_from_object
+      ++ Objc.arg _URI "URI" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSXMLNode] Objc.id))
@@ -76,14 +84,14 @@ class virtual methods = object (self)
   method resolvePrefixForNamespaceURI (namespaceURI : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "resolvePrefixForNamespaceURI:")
       [make_pointer_from_object namespaceURI]) : [`NSString] Objc.id))
-  method insertChild  ~atIndex:(index : int ) (child : [`NSXMLNode] Objc.t) =
+  method insertChild_atIndex  (child : [`NSXMLNode] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg child "insertChild" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method insertChildren  ~atIndex:(index : int ) (children : [`NSArray] Objc.t) =
+  method insertChildren_atIndex  (children : [`NSArray] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg children "insertChildren" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
@@ -99,7 +107,7 @@ class virtual methods = object (self)
   method addChild (child : [`NSXMLNode] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addChild:")
       [make_pointer_from_object child]) : unit)
-  method replaceChildAtIndex  ~withNode:(node : [`NSXMLNode] Objc.t ) (index : int) =
+  method replaceChildAtIndex_withNode  (index : int) (node : [`NSXMLNode] Objc.t) =
     let sel, args = (
       Objc.arg index "replaceChildAtIndex" make_int
       ++ Objc.arg node "withNode" make_pointer_from_object

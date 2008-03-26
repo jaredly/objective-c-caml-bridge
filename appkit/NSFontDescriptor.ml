@@ -12,9 +12,15 @@ let _NSFontVerticalTrait = 2048L
 let _NSFontUIOptimizedTrait = 4096L
 
 
-class t = fun (r :[`NSFontDescriptor] id) -> object
+class virtual methods = object
   inherit Im_NSFontDescriptor.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSFontDescriptor] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSFontDescriptor *)
@@ -24,11 +30,17 @@ let alloc() = (Objc.objcalloc c : [`NSFontDescriptor] id)
 let fontDescriptorWithFontAttributes (attributes : [`NSDictionary] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "fontDescriptorWithFontAttributes:")
       [make_pointer_from_object attributes]) : [`NSFontDescriptor] Objc.id))
-let fontDescriptorWithName  ~size:(size : float ) (fontName : [`NSString] Objc.t) =
+let fontDescriptorWithName_size  (fontName : [`NSString] Objc.t) (size : float) =
     let sel, args = (
       Objc.arg fontName "fontDescriptorWithName" make_pointer_from_object
       ++ Objc.arg size "size" make_float
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSFontDescriptor] Objc.id))
-  (* skipping selector fontDescriptorWithName:matrix *)
+let fontDescriptorWithName_matrix  (fontName : [`NSString] Objc.t) (matrix : [`NSAffineTransform] Objc.t) =
+    let sel, args = (
+      Objc.arg fontName "fontDescriptorWithName" make_pointer_from_object
+      ++ Objc.arg matrix "matrix" make_pointer_from_object
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSFontDescriptor] Objc.id))

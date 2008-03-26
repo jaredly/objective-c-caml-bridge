@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTableHeaderView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTableHeaderView] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setTableView (tableView : [`NSTableView] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTableView:")
       [make_pointer_from_object tableView]) : unit)
@@ -19,16 +19,10 @@ class virtual methods = object (self)
   method resizedColumn =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "resizedColumn")[])
        : int)
-(*  UNSUPPORTED
   method headerRectOfColumn (column : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "headerRectOfColumn:")
-      [make_int column]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method columnAtPoint (point : (*NSPoint*) unsupported) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "headerRectOfColumn:")
+      [make_int column]) : NSRect.t)
+  method columnAtPoint (point : NSPoint.t) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "columnAtPoint:")
-      [(*NSPoint*) unsupported point]) : int)
-
-*)
+      [make_point point]) : int)
 end

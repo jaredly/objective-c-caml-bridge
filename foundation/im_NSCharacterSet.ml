@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSCharacterSet *)
 class virtual methods = object (self)
-  method virtual repr : [`NSCharacterSet] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 (*  UNSUPPORTED
   method characterIsMember (aCharacter : (*unichar*) unsupported) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "characterIsMember:")

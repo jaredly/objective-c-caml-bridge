@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSLogicalTest *)
 class virtual methods = object (self)
-  method virtual repr : [`NSLogicalTest] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initAndTestWithTests (subTests : [`NSArray] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initAndTestWithTests:")
       [make_pointer_from_object subTests]) : [`NSObject] Objc.id)

@@ -3,5 +3,5 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSecureTextField *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSecureTextField] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 end

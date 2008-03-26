@@ -3,22 +3,30 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMatrix *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMatrix] Objc.id
-  (* skipping selector initWithFrame *)
-(*  UNSUPPORTED
-  method initWithFrame  ?mode:(aMode : int option) ?prototype:(aCell : [`NSCell] Objc.t option) ?numberOfRows:(rowsHigh : int option) ?numberOfColumns:(colsWide : int option) (frameRect : (*NSRect*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithFrame (frameRect : NSRect.t) =
+    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithFrame:")
+      [make_rect frameRect]) : [`NSObject] Objc.id)
+  method initWithFrame_mode_prototype_numberOfRows_numberOfColumns  (frameRect : NSRect.t) (aMode : int) (aCell : [`NSCell] Objc.t) (rowsHigh : int) (colsWide : int) =
     let sel, args = (
-      Objc.arg frameRect "initWithFrame" (*NSRect*) unsupported
-      ++ Objc.opt_arg aMode "mode" make_int
-      ++ Objc.opt_arg aCell "prototype" make_pointer_from_object
-      ++ Objc.opt_arg rowsHigh "numberOfRows" make_int
-      ++ Objc.opt_arg colsWide "numberOfColumns" make_int
+      Objc.arg frameRect "initWithFrame" make_rect
+      ++ Objc.arg aMode "mode" make_int
+      ++ Objc.arg aCell "prototype" make_pointer_from_object
+      ++ Objc.arg rowsHigh "numberOfRows" make_int
+      ++ Objc.arg colsWide "numberOfColumns" make_int
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
-  (* skipping selector initWithFrame:mode:cellClass:numberOfRows:numberOfColumns *)
+  method initWithFrame_mode_cellClass_numberOfRows_numberOfColumns  (frameRect : NSRect.t) (aMode : int) (factoryId : [`NSObject] Objc.t) (rowsHigh : int) (colsWide : int) =
+    let sel, args = (
+      Objc.arg frameRect "initWithFrame" make_rect
+      ++ Objc.arg aMode "mode" make_int
+      ++ Objc.arg factoryId "cellClass" make_pointer_from_object
+      ++ Objc.arg rowsHigh "numberOfRows" make_int
+      ++ Objc.arg colsWide "numberOfColumns" make_int
+    ) ([],[]) in
+      (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSObject] Objc.id)
   method setCellClass (factoryId : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setCellClass:")
       [make_pointer_from_object factoryId]) : unit)
@@ -31,7 +39,7 @@ class virtual methods = object (self)
   method setPrototype (aCell : [`NSCell] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setPrototype:")
       [make_pointer_from_object aCell]) : unit)
-  method makeCellAtRow  ~column:(col : int ) (row : int) =
+  method makeCellAtRow_column  (row : int) (col : int) =
     let sel, args = (
       Objc.arg row "makeCellAtRow" make_int
       ++ Objc.arg col "column" make_int
@@ -50,18 +58,14 @@ class virtual methods = object (self)
   method allowsEmptySelection =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "allowsEmptySelection")[])
        : bool)
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
-  method sendAction  ~l_to:(anObject : [`NSObject] Objc.t ) ~forAllCells:(flag : bool ) (aSelector : selector) =
+  method sendAction_to_forAllCells  (aSelector : selector) (anObject : [`NSObject] Objc.t) (flag : bool) =
     let sel, args = (
       Objc.arg aSelector "sendAction" make_selector
-      ++ Objc.arg anObject "l_to" make_pointer_from_object
+      ++ Objc.arg anObject "to" make_pointer_from_object
       ++ Objc.arg flag "forAllCells" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method cells =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "cells")[])
        : [`NSArray] Objc.id))
@@ -69,7 +73,7 @@ class virtual methods = object (self)
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "sortUsingSelector:")
       [make_selector comparator]) : unit)
 (*  UNSUPPORTED
-  method sortUsingFunction  ~context:(context : [`void] Objc.t ) (compare : (*id->id->pointer to void->int*) unsupported) =
+  method sortUsingFunction_context  (compare : (*id->id->pointer to void->int*) unsupported) (context : [`void] Objc.t) =
     let sel, args = (
       Objc.arg compare "sortUsingFunction" (*id->id->pointer to void->int*) unsupported
       ++ Objc.arg context "context" make_pointer_from_object
@@ -96,10 +100,10 @@ class virtual methods = object (self)
   method isSelectionByRect =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isSelectionByRect")[])
        : bool)
-  method setSelectionFrom  ~l_to:(endPos : int ) ~anchor:(anchorPos : int ) ~highlight:(lit : bool ) (startPos : int) =
+  method setSelectionFrom_to_anchor_highlight  (startPos : int) (endPos : int) (anchorPos : int) (lit : bool) =
     let sel, args = (
       Objc.arg startPos "setSelectionFrom" make_int
-      ++ Objc.arg endPos "l_to" make_int
+      ++ Objc.arg endPos "to" make_int
       ++ Objc.arg anchorPos "anchor" make_int
       ++ Objc.arg lit "highlight" make_bool
     ) ([],[]) in
@@ -111,7 +115,7 @@ class virtual methods = object (self)
   method deselectAllCells =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "deselectAllCells")[])
        : unit)
-  method selectCellAtRow  ~column:(col : int ) (row : int) =
+  method selectCellAtRow_column  (row : int) (col : int) =
     let sel, args = (
       Objc.arg row "selectCellAtRow" make_int
       ++ Objc.arg col "column" make_int
@@ -124,30 +128,18 @@ class virtual methods = object (self)
   method selectCellWithTag (anInt : int) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "selectCellWithTag:")
       [make_int anInt]) : bool)
-(*  UNSUPPORTED
   method cellSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "cellSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setCellSize (aSize : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "cellSize")[])
+       : NSSize.t)
+  method setCellSize (aSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setCellSize:")
-      [(*NSSize*) unsupported aSize]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size aSize]) : unit)
   method intercellSpacing =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "intercellSpacing")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setIntercellSpacing (aSize : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "intercellSpacing")[])
+       : NSSize.t)
+  method setIntercellSpacing (aSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setIntercellSpacing:")
-      [(*NSSize*) unsupported aSize]) : unit)
-
-*)
+      [make_size aSize]) : unit)
   method setScrollable (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setScrollable:")
       [make_bool flag]) : unit)
@@ -175,7 +167,7 @@ class virtual methods = object (self)
   method drawsBackground =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "drawsBackground")[])
        : bool)
-  method setState  ~atRow:(row : int ) ~column:(col : int ) (value : int) =
+  method setState_atRow_column  (value : int) (row : int) (col : int) =
     let sel, args = (
       Objc.arg value "setState" make_int
       ++ Objc.arg row "atRow" make_int
@@ -183,7 +175,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method getNumberOfRows  ~columns:(colCount : [`int] Objc.t ) (rowCount : [`int] Objc.t) =
+  method getNumberOfRows_columns  (rowCount : [`int] Objc.t) (colCount : [`int] Objc.t) =
     let sel, args = (
       Objc.arg rowCount "getNumberOfRows" make_pointer_from_object
       ++ Objc.arg colCount "columns" make_pointer_from_object
@@ -196,24 +188,21 @@ class virtual methods = object (self)
   method numberOfColumns =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "numberOfColumns")[])
        : int)
-  method cellAtRow  ~column:(col : int ) (row : int) =
+  method cellAtRow_column  (row : int) (col : int) =
     let sel, args = (
       Objc.arg row "cellAtRow" make_int
       ++ Objc.arg col "column" make_int
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-(*  UNSUPPORTED
-  method cellFrameAtRow  ~column:(col : int ) (row : int) =
+  method cellFrameAtRow_column  (row : int) (col : int) =
     let sel, args = (
       Objc.arg row "cellFrameAtRow" make_int
       ++ Objc.arg col "column" make_int
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
-  method getRow  ~column:(col : [`int] Objc.t ) ~ofCell:(aCell : [`NSCell] Objc.t ) (row : [`int] Objc.t) =
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method getRow_column_ofCell  (row : [`int] Objc.t) (col : [`int] Objc.t) (aCell : [`NSCell] Objc.t) =
     let sel, args = (
       Objc.arg row "getRow" make_pointer_from_object
       ++ Objc.arg col "column" make_pointer_from_object
@@ -221,15 +210,22 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  (* skipping selector getRow:column:forPoint *)
-  method renewRows  ~columns:(newCols : int ) (newRows : int) =
+  method getRow_column_forPoint  (row : [`int] Objc.t) (col : [`int] Objc.t) (aPoint : NSPoint.t) =
+    let sel, args = (
+      Objc.arg row "getRow" make_pointer_from_object
+      ++ Objc.arg col "column" make_pointer_from_object
+      ++ Objc.arg aPoint "forPoint" make_point
+    ) ([],[]) in
+      (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
+       : bool)
+  method renewRows_columns  (newRows : int) (newCols : int) =
     let sel, args = (
       Objc.arg newRows "renewRows" make_int
       ++ Objc.arg newCols "columns" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method putCell  ~atRow:(row : int ) ~column:(col : int ) (newCell : [`NSCell] Objc.t) =
+  method putCell_atRow_column  (newCell : [`NSCell] Objc.t) (row : int) (col : int) =
     let sel, args = (
       Objc.arg newCell "putCell" make_pointer_from_object
       ++ Objc.arg row "atRow" make_int
@@ -243,11 +239,13 @@ class virtual methods = object (self)
   method addRowWithCells (newCells : [`NSArray] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addRowWithCells:")
       [make_pointer_from_object newCells]) : unit)
-  (* skipping selector insertRow *)
-  method insertRow  ?withCells:(newCells : [`NSArray] Objc.t option) (row : int) =
+  method insertRow (row : int) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "insertRow:")
+      [make_int row]) : unit)
+  method insertRow_withCells  (row : int) (newCells : [`NSArray] Objc.t) =
     let sel, args = (
       Objc.arg row "insertRow" make_int
-      ++ Objc.opt_arg newCells "withCells" make_pointer_from_object
+      ++ Objc.arg newCells "withCells" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
@@ -260,11 +258,13 @@ class virtual methods = object (self)
   method addColumnWithCells (newCells : [`NSArray] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addColumnWithCells:")
       [make_pointer_from_object newCells]) : unit)
-  (* skipping selector insertColumn *)
-  method insertColumn  ?withCells:(newCells : [`NSArray] Objc.t option) (column : int) =
+  method insertColumn (column : int) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "insertColumn:")
+      [make_int column]) : unit)
+  method insertColumn_withCells  (column : int) (newCells : [`NSArray] Objc.t) =
     let sel, args = (
       Objc.arg column "insertColumn" make_int
-      ++ Objc.opt_arg newCells "withCells" make_pointer_from_object
+      ++ Objc.arg newCells "withCells" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
@@ -292,14 +292,14 @@ class virtual methods = object (self)
   method setValidateSize (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setValidateSize:")
       [make_bool flag]) : unit)
-  method drawCellAtRow  ~column:(col : int ) (row : int) =
+  method drawCellAtRow_column  (row : int) (col : int) =
     let sel, args = (
       Objc.arg row "drawCellAtRow" make_int
       ++ Objc.arg col "column" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method highlightCell  ~atRow:(row : int ) ~column:(col : int ) (flag : bool) =
+  method highlightCell_atRow_column  (flag : bool) (row : int) (col : int) =
     let sel, args = (
       Objc.arg flag "highlightCell" make_bool
       ++ Objc.arg row "atRow" make_int
@@ -313,7 +313,7 @@ class virtual methods = object (self)
   method isAutoscroll =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isAutoscroll")[])
        : bool)
-  method scrollCellToVisibleAtRow  ~column:(col : int ) (row : int) =
+  method scrollCellToVisibleAtRow_column  (row : int) (col : int) =
     let sel, args = (
       Objc.arg row "scrollCellToVisibleAtRow" make_int
       ++ Objc.arg col "column" make_int
@@ -329,7 +329,9 @@ class virtual methods = object (self)
   method performKeyEquivalent (theEvent : [`NSEvent] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "performKeyEquivalent:")
       [make_pointer_from_object theEvent]) : bool)
-  (* skipping selector sendAction *)
+  method sendAction =
+    (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "sendAction")[])
+       : bool)
   method sendDoubleAction =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "sendDoubleAction")[])
        : unit)
@@ -357,7 +359,7 @@ class virtual methods = object (self)
   method selectText (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "selectText:")
       [make_pointer_from_object sender]) : unit)
-  method selectTextAtRow  ~column:(col : int ) (row : int) =
+  method selectTextAtRow_column  (row : int) (col : int) =
     let sel, args = (
       Objc.arg row "selectTextAtRow" make_int
       ++ Objc.arg col "column" make_int
@@ -370,17 +372,13 @@ class virtual methods = object (self)
   method resetCursorRects =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "resetCursorRects")[])
        : unit)
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
-  method setToolTip  ~forCell:(cell : [`NSCell] Objc.t ) (toolTipString : [`NSString] Objc.t) =
+  method setToolTip_forCell  (toolTipString : [`NSString] Objc.t) (cell : [`NSCell] Objc.t) =
     let sel, args = (
       Objc.arg toolTipString "setToolTip" make_pointer_from_object
       ++ Objc.arg cell "forCell" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method toolTipForCell (cell : [`NSCell] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "toolTipForCell:")
       [make_pointer_from_object cell]) : [`NSString] Objc.id))

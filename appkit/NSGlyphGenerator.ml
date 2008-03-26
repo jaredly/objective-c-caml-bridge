@@ -7,9 +7,15 @@ let _NSShowInvisibleGlyphs = 2L
 let _NSWantsBidiLevels = 4L
 
 
-class t = fun (r :[`NSGlyphGenerator] id) -> object
+class virtual methods = object
   inherit Im_NSGlyphGenerator.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSGlyphGenerator] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSGlyphGenerator *)

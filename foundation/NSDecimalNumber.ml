@@ -1,16 +1,22 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSDecimalNumber] id) -> object
+class virtual methods = object
   inherit Im_NSDecimalNumber.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSDecimalNumber] id) -> object
+  inherit methods
+  inherit NSNumber.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSDecimalNumber *)
 let c = Classes.find "NSDecimalNumber"
 let _new()= (Objc.objcnew c : [`NSDecimalNumber] id)
 let alloc() = (Objc.objcalloc c : [`NSDecimalNumber] id)
-let decimalNumberWithMantissa  ~exponent:(exponent : int ) ~isNegative:(flag : bool ) (mantissa : int64) =
+let decimalNumberWithMantissa_exponent_isNegative  (mantissa : int64) (exponent : int) (flag : bool) =
     let sel, args = (
       Objc.arg mantissa "decimalNumberWithMantissa" make_int64
       ++ Objc.arg exponent "exponent" make_int
@@ -24,11 +30,13 @@ let decimalNumberWithDecimal (dcm : (*NSDecimal*) unsupported) =
       [(*NSDecimal*) unsupported dcm]) : [`NSDecimalNumber] Objc.id))
 
 *)
-  (* skipping selector decimalNumberWithString *)
-let decimalNumberWithString  ?locale:(locale : [`NSDictionary] Objc.t option) (numberValue : [`NSString] Objc.t) =
+let decimalNumberWithString (numberValue : [`NSString] Objc.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "decimalNumberWithString:")
+      [make_pointer_from_object numberValue]) : [`NSDecimalNumber] Objc.id))
+let decimalNumberWithString_locale  (numberValue : [`NSString] Objc.t) (locale : [`NSDictionary] Objc.t) =
     let sel, args = (
       Objc.arg numberValue "decimalNumberWithString" make_pointer_from_object
-      ++ Objc.opt_arg locale "locale" make_pointer_from_object
+      ++ Objc.arg locale "locale" make_pointer_from_object
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSDecimalNumber] Objc.id))

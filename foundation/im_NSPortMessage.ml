@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPortMessage *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPortMessage] Objc.id
-  method initWithSendPort  ~receivePort:(replyPort : [`NSPort] Objc.t ) ~components:(components : [`NSArray] Objc.t ) (sendPort : [`NSPort] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithSendPort_receivePort_components  (sendPort : [`NSPort] Objc.t) (replyPort : [`NSPort] Objc.t) (components : [`NSArray] Objc.t) =
     let sel, args = (
       Objc.arg sendPort "initWithSendPort" make_pointer_from_object
       ++ Objc.arg replyPort "receivePort" make_pointer_from_object

@@ -3,19 +3,13 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDatePicker *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDatePicker] Objc.id
-(*  UNSUPPORTED
+  method virtual repr : [`NSObject] Objc.id
   method datePickerStyle =
-    ((*NSDatePickerStyle*) unsupported (Objc.invoke (*NSDatePickerStyle*) Objc.tag_unsupported self#repr (Selector.find "datePickerStyle")[])
-       : (*NSDatePickerStyle*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setDatePickerStyle (newStyle : (*NSDatePickerStyle*) unsupported) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "datePickerStyle")[])
+       : int)
+  method setDatePickerStyle (newStyle : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDatePickerStyle:")
-      [(*NSDatePickerStyle*) unsupported newStyle]) : unit)
-
-*)
+      [make_int newStyle]) : unit)
   method isBezeled =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isBezeled")[])
        : bool)
@@ -46,18 +40,12 @@ class virtual methods = object (self)
   method setTextColor (color : [`NSColor] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTextColor:")
       [make_pointer_from_object color]) : unit)
-(*  UNSUPPORTED
   method datePickerMode =
-    ((*NSDatePickerMode*) unsupported (Objc.invoke (*NSDatePickerMode*) Objc.tag_unsupported self#repr (Selector.find "datePickerMode")[])
-       : (*NSDatePickerMode*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setDatePickerMode (newMode : (*NSDatePickerMode*) unsupported) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "datePickerMode")[])
+       : int)
+  method setDatePickerMode (newMode : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDatePickerMode:")
-      [(*NSDatePickerMode*) unsupported newMode]) : unit)
-
-*)
+      [make_int newMode]) : unit)
 (*  UNSUPPORTED
   method datePickerElements =
     ((*NSDatePickerElementFlags*) unsupported (Objc.invoke (*NSDatePickerElementFlags*) Objc.tag_unsupported self#repr (Selector.find "datePickerElements")[])

@@ -3,9 +3,9 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSOutputStream *)
 class virtual methods = object (self)
-  method virtual repr : [`NSOutputStream] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 (*  UNSUPPORTED
-  method write  ~maxLength:(len : int ) (buffer : (*pointer to const uint8_t*) unsupported) =
+  method write_maxLength  (buffer : (*pointer to const uint8_t*) unsupported) (len : int) =
     let sel, args = (
       Objc.arg buffer "write" (*pointer to const uint8_t*) unsupported
       ++ Objc.arg len "maxLength" make_int

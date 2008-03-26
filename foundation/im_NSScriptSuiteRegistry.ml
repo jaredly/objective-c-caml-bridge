@@ -3,11 +3,11 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSScriptSuiteRegistry *)
 class virtual methods = object (self)
-  method virtual repr : [`NSScriptSuiteRegistry] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method loadSuitesFromBundle (bundle : [`NSBundle] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "loadSuitesFromBundle:")
       [make_pointer_from_object bundle]) : unit)
-  method loadSuiteWithDictionary  ~fromBundle:(bundle : [`NSBundle] Objc.t ) (suiteDeclaration : [`NSDictionary] Objc.t) =
+  method loadSuiteWithDictionary_fromBundle  (suiteDeclaration : [`NSDictionary] Objc.t) (bundle : [`NSBundle] Objc.t) =
     let sel, args = (
       Objc.arg suiteDeclaration "loadSuiteWithDictionary" make_pointer_from_object
       ++ Objc.arg bundle "fromBundle" make_pointer_from_object
@@ -41,7 +41,7 @@ class virtual methods = object (self)
   method classDescriptionWithAppleEventCode (appleEventCode : int64) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "classDescriptionWithAppleEventCode:")
       [make_int64 appleEventCode]) : [`NSScriptClassDescription] Objc.id))
-  method commandDescriptionWithAppleEventClass  ~andAppleEventCode:(appleEventIDCode : int64 ) (appleEventClassCode : int64) =
+  method commandDescriptionWithAppleEventClass_andAppleEventCode  (appleEventClassCode : int64) (appleEventIDCode : int64) =
     let sel, args = (
       Objc.arg appleEventClassCode "commandDescriptionWithAppleEventClass" make_int64
       ++ Objc.arg appleEventIDCode "andAppleEventCode" make_int64

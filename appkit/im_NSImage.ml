@@ -3,13 +3,10 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSImage *)
 class virtual methods = object (self)
-  method virtual repr : [`NSImage] Objc.id
-(*  UNSUPPORTED
-  method initWithSize (aSize : (*NSSize*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithSize (aSize : NSSize.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithSize:")
-      [(*NSSize*) unsupported aSize]) : [`NSObject] Objc.id)
-
-*)
+      [make_size aSize]) : [`NSObject] Objc.id)
   method initWithData (data : [`NSData] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithData:")
       [make_pointer_from_object data]) : [`NSObject] Objc.id)
@@ -28,18 +25,12 @@ class virtual methods = object (self)
   method initWithPasteboard (pasteboard : [`NSPasteboard] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithPasteboard:")
       [make_pointer_from_object pasteboard]) : [`NSObject] Objc.id)
-(*  UNSUPPORTED
-  method setSize (aSize : (*NSSize*) unsupported) =
+  method setSize (aSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setSize:")
-      [(*NSSize*) unsupported aSize]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size aSize]) : unit)
   method size =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "size")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "size")[])
+       : NSSize.t)
   method setName (string : [`NSString] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "setName:")
       [make_pointer_from_object string]) : bool)
@@ -94,76 +85,87 @@ class virtual methods = object (self)
   method matchesOnMultipleResolution =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "matchesOnMultipleResolution")[])
        : bool)
-  (* skipping selector dissolveToPoint:fraction *)
-(*  UNSUPPORTED
-  method dissolveToPoint  ~fromRect:(rect : (*NSRect*) unsupported ) ~fraction:(aFloat : float ) (point : (*NSPoint*) unsupported) =
+  method dissolveToPoint_fraction  (point : NSPoint.t) (aFloat : float) =
     let sel, args = (
-      Objc.arg point "dissolveToPoint" (*NSPoint*) unsupported
-      ++ Objc.arg rect "fromRect" (*NSRect*) unsupported
+      Objc.arg point "dissolveToPoint" make_point
       ++ Objc.arg aFloat "fraction" make_float
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-  (* skipping selector compositeToPoint:operation *)
-  (* skipping selector compositeToPoint:fromRect:operation *)
-  (* skipping selector compositeToPoint:operation:fraction *)
-(*  UNSUPPORTED
-  method compositeToPoint  ?fromRect:(rect : (*NSRect*) unsupported option) ?operation:(op : int option) ?fraction:(delta : float option) (point : (*NSPoint*) unsupported) =
+  method dissolveToPoint_fromRect_fraction  (point : NSPoint.t) (rect : NSRect.t) (aFloat : float) =
     let sel, args = (
-      Objc.arg point "compositeToPoint" (*NSPoint*) unsupported
-      ++ Objc.opt_arg rect "fromRect" (*NSRect*) unsupported
-      ++ Objc.opt_arg op "operation" make_int
-      ++ Objc.opt_arg delta "fraction" make_float
+      Objc.arg point "dissolveToPoint" make_point
+      ++ Objc.arg rect "fromRect" make_rect
+      ++ Objc.arg aFloat "fraction" make_float
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawAtPoint  ~fromRect:(fromRect : (*NSRect*) unsupported ) ~operation:(op : int ) ~fraction:(delta : float ) (point : (*NSPoint*) unsupported) =
+  method compositeToPoint_operation  (point : NSPoint.t) (op : int) =
     let sel, args = (
-      Objc.arg point "drawAtPoint" (*NSPoint*) unsupported
-      ++ Objc.arg fromRect "fromRect" (*NSRect*) unsupported
+      Objc.arg point "compositeToPoint" make_point
+      ++ Objc.arg op "operation" make_int
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
+  method compositeToPoint_fromRect_operation  (point : NSPoint.t) (rect : NSRect.t) (op : int) =
+    let sel, args = (
+      Objc.arg point "compositeToPoint" make_point
+      ++ Objc.arg rect "fromRect" make_rect
+      ++ Objc.arg op "operation" make_int
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
+  method compositeToPoint_operation_fraction  (point : NSPoint.t) (op : int) (delta : float) =
+    let sel, args = (
+      Objc.arg point "compositeToPoint" make_point
       ++ Objc.arg op "operation" make_int
       ++ Objc.arg delta "fraction" make_float
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawInRect  ~fromRect:(fromRect : (*NSRect*) unsupported ) ~operation:(op : int ) ~fraction:(delta : float ) (rect : (*NSRect*) unsupported) =
+  method compositeToPoint_fromRect_operation_fraction  (point : NSPoint.t) (rect : NSRect.t) (op : int) (delta : float) =
     let sel, args = (
-      Objc.arg rect "drawInRect" (*NSRect*) unsupported
-      ++ Objc.arg fromRect "fromRect" (*NSRect*) unsupported
+      Objc.arg point "compositeToPoint" make_point
+      ++ Objc.arg rect "fromRect" make_rect
       ++ Objc.arg op "operation" make_int
       ++ Objc.arg delta "fraction" make_float
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawRepresentation  ~inRect:(rect : (*NSRect*) unsupported ) (imageRep : [`NSImageRep] Objc.t) =
+  method drawAtPoint_fromRect_operation_fraction  (point : NSPoint.t) (fromRect : NSRect.t) (op : int) (delta : float) =
+    let sel, args = (
+      Objc.arg point "drawAtPoint" make_point
+      ++ Objc.arg fromRect "fromRect" make_rect
+      ++ Objc.arg op "operation" make_int
+      ++ Objc.arg delta "fraction" make_float
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
+  method drawInRect_fromRect_operation_fraction  (rect : NSRect.t) (fromRect : NSRect.t) (op : int) (delta : float) =
+    let sel, args = (
+      Objc.arg rect "drawInRect" make_rect
+      ++ Objc.arg fromRect "fromRect" make_rect
+      ++ Objc.arg op "operation" make_int
+      ++ Objc.arg delta "fraction" make_float
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
+  method drawRepresentation_inRect  (imageRep : [`NSImageRep] Objc.t) (rect : NSRect.t) =
     let sel, args = (
       Objc.arg imageRep "drawRepresentation" make_pointer_from_object
-      ++ Objc.arg rect "inRect" (*NSRect*) unsupported
+      ++ Objc.arg rect "inRect" make_rect
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-
-*)
   method recache =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "recache")[])
        : unit)
-  method l_TIFFRepresentation =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_TIFFRepresentation")[])
+  method _TIFFRepresentation =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "TIFFRepresentation")[])
        : [`NSData] Objc.id))
-  method l_TIFFRepresentationUsingCompression  ~factor:(aFloat : float ) (comp : int) =
+  method _TIFFRepresentationUsingCompression_factor  (comp : int) (aFloat : float) =
     let sel, args = (
-      Objc.arg comp "l_TIFFRepresentationUsingCompression" make_int
+      Objc.arg comp "TIFFRepresentationUsingCompression" make_int
       ++ Objc.arg aFloat "factor" make_float
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)

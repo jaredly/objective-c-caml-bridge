@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSNumber *)
 class virtual methods = object (self)
-  method virtual repr : [`NSNumber] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method charValue =
     (get_char (Objc.invoke Objc.tag_char self#repr (Selector.find "charValue")[])
        : char)

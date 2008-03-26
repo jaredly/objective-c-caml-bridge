@@ -16,12 +16,18 @@ let _NSChangeGrayCellMask = 4L
 let _NSChangeBackgroundCellMask = 8L
 
 
-class t = fun (r :[`NSCell] id) -> object
-  inherit Cati_NSCellMixedState.methods_NSCell
-  inherit Cati_NSCellAttributedStringMethods.methods_NSCell
-  inherit Cati_NSKeyboardUI.methods_NSCell
+class virtual methods = object
+  inherit AppKit_cati_NSCellMixedState.methods_NSCell
+  inherit AppKit_cati_NSCellAttributedStringMethods.methods_NSCell
+  inherit AppKit_cati_NSKeyboardUI.methods_NSCell
   inherit Im_NSCell.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSCell] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSCell *)
@@ -31,12 +37,9 @@ let alloc() = (Objc.objcalloc c : [`NSCell] id)
 (* class methods for category NSCellMixedState of NSCell *)
 (* class methods for category NSCellAttributedStringMethods of NSCell *)
 (* class methods for category NSKeyboardUI of NSCell *)
-(*  UNSUPPORTED
 let defaultFocusRingType () =
-    ((*NSFocusRingType*) unsupported (Objc.invoke (*NSFocusRingType*) Objc.tag_unsupported c (Selector.find "defaultFocusRingType")[])
-       : (*NSFocusRingType*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int c (Selector.find "defaultFocusRingType")[])
+       : int)
 let prefersTrackingUntilMouseUp () =
     (get_bool (Objc.invoke Objc.tag_bool c (Selector.find "prefersTrackingUntilMouseUp")[])
        : bool)

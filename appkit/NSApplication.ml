@@ -13,22 +13,34 @@ let _NSApplicationDelegateReplyCancel = 1L
 let _NSApplicationDelegateReplyFailure = 2L
 
 
-class t = fun (r :[`NSApplication] id) -> object
-  inherit Cati_NSWindowsExtensions.methods_NSApplication
-  inherit Cati_NSStandardAboutPanel.methods_NSApplication
-  inherit Cati_NSServicesHandling.methods_NSApplication
-  inherit Cati_NSServicesMenu.methods_NSApplication
-  inherit Cati_NSWindowsMenu.methods_NSApplication
+class virtual methods = object
+  inherit AppKit_cati_NSApplicationHelpExtension.methods_NSApplication
+  inherit AppKit_cati_NSColorPanel.methods_NSApplication
+  inherit AppKit_cati_NSScripting.methods_NSApplication
+  inherit AppKit_cati_NSWindowsExtensions.methods_NSApplication
+  inherit AppKit_cati_NSStandardAboutPanel.methods_NSApplication
+  inherit AppKit_cati_NSServicesHandling.methods_NSApplication
+  inherit AppKit_cati_NSServicesMenu.methods_NSApplication
+  inherit AppKit_cati_NSWindowsMenu.methods_NSApplication
   inherit Im_NSApplication.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSApplication] id) -> object
+  inherit methods
+  inherit NSResponder.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSApplication *)
 let c = Classes.find "NSApplication"
 let _new()= (Objc.objcnew c : [`NSApplication] id)
 let alloc() = (Objc.objcalloc c : [`NSApplication] id)
+(* class methods for category NSApplicationHelpExtension of NSApplication *)
+(* class methods for category NSColorPanel of NSApplication *)
+(* class methods for category NSScripting of NSApplication *)
 (* class methods for category NSWindowsExtensions of NSApplication *)
-let setApplicationHandle  ~previousHandle:(_PrevInstance : [`void] Objc.t ) ~commandLine:(cmdLine : [`NSString] Objc.t ) ~show:(cmdShow : int ) (hInstance : [`void] Objc.t) =
+let setApplicationHandle_previousHandle_commandLine_show  (hInstance : [`void] Objc.t) (_PrevInstance : [`void] Objc.t) (cmdLine : [`NSString] Objc.t) (cmdShow : int) =
     let sel, args = (
       Objc.arg hInstance "setApplicationHandle" make_pointer_from_object
       ++ Objc.arg _PrevInstance "previousHandle" make_pointer_from_object
@@ -47,7 +59,7 @@ let useRunningCopyOfApplication () =
 let sharedApplication () =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "sharedApplication")[])
        : [`NSApplication] Objc.id))
-let detachDrawingThread  ~toTarget:(target : [`NSObject] Objc.t ) ~withObject:(argument : [`NSObject] Objc.t ) (selector : selector) =
+let detachDrawingThread_toTarget_withObject  (selector : selector) (target : [`NSObject] Objc.t) (argument : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg selector "detachDrawingThread" make_selector
       ++ Objc.arg target "toTarget" make_pointer_from_object

@@ -1,12 +1,18 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSLocale] id) -> object
-  inherit Cati_NSLocaleGeneralInfo.methods_NSLocale
-  inherit Cati_NSLocaleCreation.methods_NSLocale
-  inherit Cati_NSExtendedLocale.methods_NSLocale
+class virtual methods = object
+  inherit Foundation_cati_NSLocaleGeneralInfo.methods_NSLocale
+  inherit Foundation_cati_NSLocaleCreation.methods_NSLocale
+  inherit Foundation_cati_NSExtendedLocale.methods_NSLocale
   inherit Im_NSLocale.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSLocale] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSLocale *)
@@ -17,14 +23,14 @@ let alloc() = (Objc.objcalloc c : [`NSLocale] id)
 let availableLocaleIdentifiers () =
     ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "availableLocaleIdentifiers")[])
        : [`NSArray] Objc.id))
-let l_ISOLanguageCodes () =
-    ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "l_ISOLanguageCodes")[])
+let isoLanguageCodes () =
+    ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "ISOLanguageCodes")[])
        : [`NSArray] Objc.id))
-let l_ISOCountryCodes () =
-    ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "l_ISOCountryCodes")[])
+let isoCountryCodes () =
+    ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "ISOCountryCodes")[])
        : [`NSArray] Objc.id))
-let l_ISOCurrencyCodes () =
-    ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "l_ISOCurrencyCodes")[])
+let isoCurrencyCodes () =
+    ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "ISOCurrencyCodes")[])
        : [`NSArray] Objc.id))
 let componentsFromLocaleIdentifier (string : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "componentsFromLocaleIdentifier:")

@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSColorPicker *)
 class virtual methods = object (self)
-  method virtual repr : [`NSColorPicker] Objc.id
-  method initWithPickerMask  ~colorPanel:(owningColorPanel : [`NSColorPanel] Objc.t ) (mask : int) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithPickerMask_colorPanel  (mask : int) (owningColorPanel : [`NSColorPanel] Objc.t) =
     let sel, args = (
       Objc.arg mask "initWithPickerMask" make_int
       ++ Objc.arg owningColorPanel "colorPanel" make_pointer_from_object
@@ -17,10 +17,10 @@ class virtual methods = object (self)
   method provideNewButtonImage =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "provideNewButtonImage")[])
        : [`NSImage] Objc.id))
-  method insertNewButtonImage  ~l_in:(buttonCell : [`NSButtonCell] Objc.t ) (newButtonImage : [`NSImage] Objc.t) =
+  method insertNewButtonImage_in  (newButtonImage : [`NSImage] Objc.t) (buttonCell : [`NSButtonCell] Objc.t) =
     let sel, args = (
       Objc.arg newButtonImage "insertNewButtonImage" make_pointer_from_object
-      ++ Objc.arg buttonCell "l_in" make_pointer_from_object
+      ++ Objc.arg buttonCell "in" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)

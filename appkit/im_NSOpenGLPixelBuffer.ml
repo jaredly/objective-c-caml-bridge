@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSOpenGLPixelBuffer *)
 class virtual methods = object (self)
-  method virtual repr : [`NSOpenGLPixelBuffer] Objc.id
-  method initWithTextureTarget  ~textureInternalFormat:(format : int64 ) ~textureMaxMipMapLevel:(maxLevel : int64 ) ~pixelsWide:(pixelsWide : int ) ~pixelsHigh:(pixelsHigh : int ) (target : int64) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithTextureTarget_textureInternalFormat_textureMaxMipMapLevel_pixelsWide_pixelsHigh  (target : int64) (format : int64) (maxLevel : int64) (pixelsWide : int) (pixelsHigh : int) =
     let sel, args = (
       Objc.arg target "initWithTextureTarget" make_int64
       ++ Objc.arg format "textureInternalFormat" make_int64

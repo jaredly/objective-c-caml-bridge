@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSXMLNode] id) -> object
+class virtual methods = object
   inherit Im_NSXMLNode.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSXMLNode] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSXMLNode *)
@@ -16,34 +22,54 @@ let document () =
 let documentWithRootElement (element : [`NSXMLElement] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "documentWithRootElement:")
       [make_pointer_from_object element]) : [`NSXMLNode] Objc.id))
-  (* skipping selector elementWithName *)
-  (* skipping selector elementWithName:l_URI *)
-  (* skipping selector elementWithName:stringValue *)
-let elementWithName  ?children:(children : [`NSArray] Objc.t option) ?attributes:(attributes : [`NSArray] Objc.t option) (name : [`NSString] Objc.t) =
+let elementWithName (name : [`NSString] Objc.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "elementWithName:")
+      [make_pointer_from_object name]) : [`NSXMLNode] Objc.id))
+let elementWithName_URI  (name : [`NSString] Objc.t) (_URI : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg name "elementWithName" make_pointer_from_object
-      ++ Objc.opt_arg children "children" make_pointer_from_object
-      ++ Objc.opt_arg attributes "attributes" make_pointer_from_object
+      ++ Objc.arg _URI "URI" make_pointer_from_object
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSXMLNode] Objc.id))
-  (* skipping selector attributeWithName:stringValue *)
-let attributeWithName  ~l_URI:(_URI : [`NSString] Objc.t ) ~stringValue:(stringValue : [`NSString] Objc.t ) (name : [`NSString] Objc.t) =
+let elementWithName_stringValue  (name : [`NSString] Objc.t) (string : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg name "elementWithName" make_pointer_from_object
+      ++ Objc.arg string "stringValue" make_pointer_from_object
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSXMLNode] Objc.id))
+let elementWithName_children_attributes  (name : [`NSString] Objc.t) (children : [`NSArray] Objc.t) (attributes : [`NSArray] Objc.t) =
+    let sel, args = (
+      Objc.arg name "elementWithName" make_pointer_from_object
+      ++ Objc.arg children "children" make_pointer_from_object
+      ++ Objc.arg attributes "attributes" make_pointer_from_object
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSXMLNode] Objc.id))
+let attributeWithName_stringValue  (name : [`NSString] Objc.t) (stringValue : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg name "attributeWithName" make_pointer_from_object
-      ++ Objc.arg _URI "l_URI" make_pointer_from_object
       ++ Objc.arg stringValue "stringValue" make_pointer_from_object
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSXMLNode] Objc.id))
-let namespaceWithName  ~stringValue:(stringValue : [`NSString] Objc.t ) (name : [`NSString] Objc.t) =
+let attributeWithName_URI_stringValue  (name : [`NSString] Objc.t) (_URI : [`NSString] Objc.t) (stringValue : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg name "attributeWithName" make_pointer_from_object
+      ++ Objc.arg _URI "URI" make_pointer_from_object
+      ++ Objc.arg stringValue "stringValue" make_pointer_from_object
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSXMLNode] Objc.id))
+let namespaceWithName_stringValue  (name : [`NSString] Objc.t) (stringValue : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg name "namespaceWithName" make_pointer_from_object
       ++ Objc.arg stringValue "stringValue" make_pointer_from_object
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSXMLNode] Objc.id))
-let processingInstructionWithName  ~stringValue:(stringValue : [`NSString] Objc.t ) (name : [`NSString] Objc.t) =
+let processingInstructionWithName_stringValue  (name : [`NSString] Objc.t) (stringValue : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg name "processingInstructionWithName" make_pointer_from_object
       ++ Objc.arg stringValue "stringValue" make_pointer_from_object
@@ -56,8 +82,8 @@ let commentWithStringValue (stringValue : [`NSString] Objc.t) =
 let textWithStringValue (stringValue : [`NSString] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "textWithStringValue:")
       [make_pointer_from_object stringValue]) : [`NSXMLNode] Objc.id))
-let l_DTDNodeWithXMLString (string : [`NSString] Objc.t) =
-    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "l_DTDNodeWithXMLString:")
+let dtdNodeWithXMLString (string : [`NSString] Objc.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "DTDNodeWithXMLString:")
       [make_pointer_from_object string]) : [`NSXMLNode] Objc.id))
 let localNameForName (name : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "localNameForName:")

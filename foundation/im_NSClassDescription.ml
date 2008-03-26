@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSClassDescription *)
 class virtual methods = object (self)
-  method virtual repr : [`NSClassDescription] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method attributeKeys =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "attributeKeys")[])
        : [`NSArray] Objc.id))

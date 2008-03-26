@@ -3,11 +3,11 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDateFormatter *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDateFormatter] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method init =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "init")[])
        : [`NSObject] Objc.id)
-  method getObjectValue  ~forString:(string : [`NSString] Objc.t ) ~range:(rangep : [`NSRange] Objc.t ) ~error:(error : bool ) (obj : [`id] Objc.t) =
+  method getObjectValue_forString_range_error  (obj : [`id] Objc.t) (string : [`NSString] Objc.t) (rangep : [`NSRange] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg obj "getObjectValue" make_pointer_from_object
       ++ Objc.arg string "forString" make_pointer_from_object
@@ -118,14 +118,14 @@ class virtual methods = object (self)
   method setShortWeekdaySymbols (array : [`NSArray] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setShortWeekdaySymbols:")
       [make_pointer_from_object array]) : unit)
-  method l_AMSymbol =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_AMSymbol")[])
+  method getAMSymbol =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "AMSymbol")[])
        : [`NSString] Objc.id))
   method setAMSymbol (string : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAMSymbol:")
       [make_pointer_from_object string]) : unit)
-  method l_PMSymbol =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_PMSymbol")[])
+  method getPMSymbol =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "PMSymbol")[])
        : [`NSString] Objc.id))
   method setPMSymbol (string : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setPMSymbol:")

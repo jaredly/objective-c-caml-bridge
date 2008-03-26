@@ -3,17 +3,14 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPopUpButton *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPopUpButton] Objc.id
-(*  UNSUPPORTED
-  method initWithFrame  ~pullsDown:(flag : bool ) (buttonFrame : (*NSRect*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithFrame_pullsDown  (buttonFrame : NSRect.t) (flag : bool) =
     let sel, args = (
-      Objc.arg buttonFrame "initWithFrame" (*NSRect*) unsupported
+      Objc.arg buttonFrame "initWithFrame" make_rect
       ++ Objc.arg flag "pullsDown" make_bool
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
   method setMenu (menu : [`NSMenu] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMenu:")
       [make_pointer_from_object menu]) : unit)
@@ -50,7 +47,7 @@ class virtual methods = object (self)
   method addItemsWithTitles (itemTitles : [`NSArray] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addItemsWithTitles:")
       [make_pointer_from_object itemTitles]) : unit)
-  method insertItemWithTitle  ~atIndex:(index : int ) (title : [`NSString] Objc.t) =
+  method insertItemWithTitle_atIndex  (title : [`NSString] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg title "insertItemWithTitle" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
@@ -84,7 +81,7 @@ class virtual methods = object (self)
   method indexOfItemWithRepresentedObject (obj : [`NSObject] Objc.t) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "indexOfItemWithRepresentedObject:")
       [make_pointer_from_object obj]) : int)
-  method indexOfItemWithTarget  ~andAction:(actionSelector : selector ) (target : [`NSObject] Objc.t) =
+  method indexOfItemWithTarget_andAction  (target : [`NSObject] Objc.t) (actionSelector : selector) =
     let sel, args = (
       Objc.arg target "indexOfItemWithTarget" make_pointer_from_object
       ++ Objc.arg actionSelector "andAction" make_selector

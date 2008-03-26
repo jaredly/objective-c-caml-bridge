@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSFileWrapper *)
 class virtual methods = object (self)
-  method virtual repr : [`NSFileWrapper] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initDirectoryWithFileWrappers (docs : [`NSDictionary] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initDirectoryWithFileWrappers:")
       [make_pointer_from_object docs]) : [`NSObject] Objc.id)
@@ -19,7 +19,7 @@ class virtual methods = object (self)
   method initWithSerializedRepresentation (data : [`NSData] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithSerializedRepresentation:")
       [make_pointer_from_object data]) : [`NSObject] Objc.id)
-  method writeToFile  ~atomically:(atomicFlag : bool ) ~updateFilenames:(updateFilenamesFlag : bool ) (path : [`NSString] Objc.t) =
+  method writeToFile_atomically_updateFilenames  (path : [`NSString] Objc.t) (atomicFlag : bool) (updateFilenamesFlag : bool) =
     let sel, args = (
       Objc.arg path "writeToFile" make_pointer_from_object
       ++ Objc.arg atomicFlag "atomically" make_bool
@@ -84,14 +84,14 @@ class virtual methods = object (self)
   method addFileWithPath (path : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "addFileWithPath:")
       [make_pointer_from_object path]) : [`NSString] Objc.id))
-  method addRegularFileWithContents  ~preferredFilename:(filename : [`NSString] Objc.t ) (data : [`NSData] Objc.t) =
+  method addRegularFileWithContents_preferredFilename  (data : [`NSData] Objc.t) (filename : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg data "addRegularFileWithContents" make_pointer_from_object
       ++ Objc.arg filename "preferredFilename" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSString] Objc.id))
-  method addSymbolicLinkWithDestination  ~preferredFilename:(filename : [`NSString] Objc.t ) (path : [`NSString] Objc.t) =
+  method addSymbolicLinkWithDestination_preferredFilename  (path : [`NSString] Objc.t) (filename : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg path "addSymbolicLinkWithDestination" make_pointer_from_object
       ++ Objc.arg filename "preferredFilename" make_pointer_from_object

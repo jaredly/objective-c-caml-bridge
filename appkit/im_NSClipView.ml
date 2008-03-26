@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSClipView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSClipView] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setBackgroundColor (color : [`NSColor] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBackgroundColor:")
       [make_pointer_from_object color]) : unit)
@@ -22,24 +22,18 @@ class virtual methods = object (self)
   method documentView =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "documentView")[])
        : [`NSObject] Objc.id)
-(*  UNSUPPORTED
   method documentRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "documentRect")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "documentRect")[])
+       : NSRect.t)
   method setDocumentCursor (anObj : [`NSCursor] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDocumentCursor:")
       [make_pointer_from_object anObj]) : unit)
   method documentCursor =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "documentCursor")[])
        : [`NSCursor] Objc.id))
-(*  UNSUPPORTED
   method documentVisibleRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "documentVisibleRect")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "documentVisibleRect")[])
+       : NSRect.t)
   method viewFrameChanged (notification : [`NSNotification] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "viewFrameChanged:")
       [make_pointer_from_object notification]) : unit)
@@ -55,16 +49,10 @@ class virtual methods = object (self)
   method autoscroll (theEvent : [`NSEvent] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "autoscroll:")
       [make_pointer_from_object theEvent]) : bool)
-(*  UNSUPPORTED
-  method constrainScrollPoint (newOrigin : (*NSPoint*) unsupported) =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "constrainScrollPoint:")
-      [(*NSPoint*) unsupported newOrigin]) : (*NSPoint*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method scrollToPoint (newOrigin : (*NSPoint*) unsupported) =
+  method constrainScrollPoint (newOrigin : NSPoint.t) =
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "constrainScrollPoint:")
+      [make_point newOrigin]) : NSPoint.t)
+  method scrollToPoint (newOrigin : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "scrollToPoint:")
-      [(*NSPoint*) unsupported newOrigin]) : unit)
-
-*)
+      [make_point newOrigin]) : unit)
 end

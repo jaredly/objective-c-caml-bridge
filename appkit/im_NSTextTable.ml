@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextTable *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextTable] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method numberOfColumns =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "numberOfColumns")[])
        : int)
@@ -28,43 +28,34 @@ class virtual methods = object (self)
   method setHidesEmptyCells (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setHidesEmptyCells:")
       [make_bool flag]) : unit)
-(*  UNSUPPORTED
-  method rectForBlock  ~layoutAtPoint:(startingPoint : (*NSPoint*) unsupported ) ~inRect:(rect : (*NSRect*) unsupported ) ~textContainer:(textContainer : [`NSTextContainer] Objc.t ) ~characterRange:(charRange : (int * int) ) (block : [`NSTextTableBlock] Objc.t) =
+  method rectForBlock_layoutAtPoint_inRect_textContainer_characterRange  (block : [`NSTextTableBlock] Objc.t) (startingPoint : NSPoint.t) (rect : NSRect.t) (textContainer : [`NSTextContainer] Objc.t) (charRange : NSRange.t) =
     let sel, args = (
       Objc.arg block "rectForBlock" make_pointer_from_object
-      ++ Objc.arg startingPoint "layoutAtPoint" (*NSPoint*) unsupported
-      ++ Objc.arg rect "inRect" (*NSRect*) unsupported
+      ++ Objc.arg startingPoint "layoutAtPoint" make_point
+      ++ Objc.arg rect "inRect" make_rect
       ++ Objc.arg textContainer "textContainer" make_pointer_from_object
       ++ Objc.arg charRange "characterRange" make_range
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method boundsRectForBlock  ~contentRect:(contentRect : (*NSRect*) unsupported ) ~inRect:(rect : (*NSRect*) unsupported ) ~textContainer:(textContainer : [`NSTextContainer] Objc.t ) ~characterRange:(charRange : (int * int) ) (block : [`NSTextTableBlock] Objc.t) =
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method boundsRectForBlock_contentRect_inRect_textContainer_characterRange  (block : [`NSTextTableBlock] Objc.t) (contentRect : NSRect.t) (rect : NSRect.t) (textContainer : [`NSTextContainer] Objc.t) (charRange : NSRange.t) =
     let sel, args = (
       Objc.arg block "boundsRectForBlock" make_pointer_from_object
-      ++ Objc.arg contentRect "contentRect" (*NSRect*) unsupported
-      ++ Objc.arg rect "inRect" (*NSRect*) unsupported
+      ++ Objc.arg contentRect "contentRect" make_rect
+      ++ Objc.arg rect "inRect" make_rect
       ++ Objc.arg textContainer "textContainer" make_pointer_from_object
       ++ Objc.arg charRange "characterRange" make_range
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method drawBackgroundForBlock  ~withFrame:(frameRect : (*NSRect*) unsupported ) ~inView:(controlView : [`NSView] Objc.t ) ~characterRange:(charRange : (int * int) ) ~layoutManager:(layoutManager : [`NSLayoutManager] Objc.t ) (block : [`NSTextTableBlock] Objc.t) =
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method drawBackgroundForBlock_withFrame_inView_characterRange_layoutManager  (block : [`NSTextTableBlock] Objc.t) (frameRect : NSRect.t) (controlView : [`NSView] Objc.t) (charRange : NSRange.t) (layoutManager : [`NSLayoutManager] Objc.t) =
     let sel, args = (
       Objc.arg block "drawBackgroundForBlock" make_pointer_from_object
-      ++ Objc.arg frameRect "withFrame" (*NSRect*) unsupported
+      ++ Objc.arg frameRect "withFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
       ++ Objc.arg charRange "characterRange" make_range
       ++ Objc.arg layoutManager "layoutManager" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
 end

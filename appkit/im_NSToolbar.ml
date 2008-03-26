@@ -3,11 +3,11 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSToolbar *)
 class virtual methods = object (self)
-  method virtual repr : [`NSToolbar] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithIdentifier (identifier : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithIdentifier:")
       [make_pointer_from_object identifier]) : [`NSObject] Objc.id)
-  method insertItemWithItemIdentifier  ~atIndex:(index : int ) (itemIdentifier : [`NSString] Objc.t) =
+  method insertItemWithItemIdentifier_atIndex  (itemIdentifier : [`NSString] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg itemIdentifier "insertItemWithItemIdentifier" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int

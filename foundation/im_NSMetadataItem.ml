@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMetadataItem *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMetadataItem] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method valueForAttribute (key : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "valueForAttribute:")
       [make_pointer_from_object key]) : [`NSObject] Objc.id)

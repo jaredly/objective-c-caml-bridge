@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSCompoundPredicate *)
 class virtual methods = object (self)
-  method virtual repr : [`NSCompoundPredicate] Objc.id
-  method initWithType  ~subpredicates:(subpredicates : [`NSArray] Objc.t ) (_type : int) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithType_subpredicates  (_type : int) (subpredicates : [`NSArray] Objc.t) =
     let sel, args = (
       Objc.arg _type "initWithType" make_int
       ++ Objc.arg subpredicates "subpredicates" make_pointer_from_object

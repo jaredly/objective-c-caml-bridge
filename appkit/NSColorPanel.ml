@@ -21,9 +21,15 @@ let _NSColorPanelCrayonModeMask = 128L
 let _NSColorPanelAllModesMask = 65535L
 
 
-class t = fun (r :[`NSColorPanel] id) -> object
+class virtual methods = object
   inherit Im_NSColorPanel.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSColorPanel] id) -> object
+  inherit methods
+  inherit NSPanel.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSColorPanel *)
@@ -36,7 +42,7 @@ let sharedColorPanel () =
 let sharedColorPanelExists () =
     (get_bool (Objc.invoke Objc.tag_bool c (Selector.find "sharedColorPanelExists")[])
        : bool)
-let dragColor  ~withEvent:(theEvent : [`NSEvent] Objc.t ) ~fromView:(sourceView : [`NSView] Objc.t ) (color : [`NSColor] Objc.t) =
+let dragColor_withEvent_fromView  (color : [`NSColor] Objc.t) (theEvent : [`NSEvent] Objc.t) (sourceView : [`NSView] Objc.t) =
     let sel, args = (
       Objc.arg color "dragColor" make_pointer_from_object
       ++ Objc.arg theEvent "withEvent" make_pointer_from_object

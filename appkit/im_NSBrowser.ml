@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSBrowser *)
 class virtual methods = object (self)
-  method virtual repr : [`NSBrowser] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method loadColumnZero =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "loadColumnZero")[])
        : unit)
@@ -109,7 +109,7 @@ class virtual methods = object (self)
   method sendsActionOnArrowKeys =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "sendsActionOnArrowKeys")[])
        : bool)
-  method setTitle  ~ofColumn:(column : int ) (aString : [`NSString] Objc.t) =
+  method setTitle_ofColumn  (aString : [`NSString] Objc.t) (column : int) =
     let sel, args = (
       Objc.arg aString "setTitle" make_pointer_from_object
       ++ Objc.arg column "ofColumn" make_int
@@ -146,7 +146,7 @@ class virtual methods = object (self)
   method selectedCells =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "selectedCells")[])
        : [`NSArray] Objc.id))
-  method selectRow  ~inColumn:(column : int ) (row : int) =
+  method selectRow_inColumn  (row : int) (column : int) =
     let sel, args = (
       Objc.arg row "selectRow" make_int
       ++ Objc.arg column "inColumn" make_int
@@ -195,7 +195,7 @@ class virtual methods = object (self)
   method matrixInColumn (column : int) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "matrixInColumn:")
       [make_int column]) : [`NSMatrix] Objc.id))
-  method loadedCellAtRow  ~column:(col : int ) (row : int) =
+  method loadedCellAtRow_column  (row : int) (col : int) =
     let sel, args = (
       Objc.arg row "loadedCellAtRow" make_int
       ++ Objc.arg col "column" make_int
@@ -214,44 +214,28 @@ class virtual methods = object (self)
   method doDoubleClick (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "doDoubleClick:")
       [make_pointer_from_object sender]) : unit)
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
   method sendAction =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "sendAction")[])
        : bool)
-
-*)
-(*  UNSUPPORTED
   method titleFrameOfColumn (column : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "titleFrameOfColumn:")
-      [make_int column]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method drawTitleOfColumn  ~inRect:(aRect : (*NSRect*) unsupported ) (column : int) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "titleFrameOfColumn:")
+      [make_int column]) : NSRect.t)
+  method drawTitleOfColumn_inRect  (column : int) (aRect : NSRect.t) =
     let sel, args = (
       Objc.arg column "drawTitleOfColumn" make_int
-      ++ Objc.arg aRect "inRect" (*NSRect*) unsupported
+      ++ Objc.arg aRect "inRect" make_rect
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method titleHeight =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "titleHeight")[])
        : float)
-(*  UNSUPPORTED
   method frameOfColumn (column : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "frameOfColumn:")
-      [make_int column]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "frameOfColumn:")
+      [make_int column]) : NSRect.t)
   method frameOfInsideOfColumn (column : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "frameOfInsideOfColumn:")
-      [make_int column]) : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "frameOfInsideOfColumn:")
+      [make_int column]) : NSRect.t)
   method columnWidthForColumnContentWidth (columnContentWidth : float) =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "columnWidthForColumnContentWidth:")
       [make_float columnContentWidth]) : float)
@@ -270,7 +254,7 @@ class virtual methods = object (self)
   method prefersAllColumnUserResizing =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "prefersAllColumnUserResizing")[])
        : bool)
-  method setWidth  ~ofColumn:(columnIndex : int ) (columnWidth : float) =
+  method setWidth_ofColumn  (columnWidth : float) (columnIndex : int) =
     let sel, args = (
       Objc.arg columnWidth "setWidth" make_float
       ++ Objc.arg columnIndex "ofColumn" make_int

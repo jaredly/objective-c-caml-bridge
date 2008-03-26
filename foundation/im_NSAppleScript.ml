@@ -3,9 +3,9 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSAppleScript *)
 class virtual methods = object (self)
-  method virtual repr : [`NSAppleScript] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 (*  UNSUPPORTED
-  method initWithContentsOfURL  ~error:(errorInfo : (*pointer to pointer to NSDictionary*) unsupported ) (url : [`NSURL] Objc.t) =
+  method initWithContentsOfURL_error  (url : [`NSURL] Objc.t) (errorInfo : (*pointer to pointer to NSDictionary*) unsupported) =
     let sel, args = (
       Objc.arg url "initWithContentsOfURL" make_pointer_from_object
       ++ Objc.arg errorInfo "error" (*pointer to pointer to NSDictionary*) unsupported
@@ -36,7 +36,7 @@ class virtual methods = object (self)
 
 *)
 (*  UNSUPPORTED
-  method executeAppleEvent  ~error:(errorInfo : (*pointer to pointer to NSDictionary*) unsupported ) (event : [`NSAppleEventDescriptor] Objc.t) =
+  method executeAppleEvent_error  (event : [`NSAppleEventDescriptor] Objc.t) (errorInfo : (*pointer to pointer to NSDictionary*) unsupported) =
     let sel, args = (
       Objc.arg event "executeAppleEvent" make_pointer_from_object
       ++ Objc.arg errorInfo "error" (*pointer to pointer to NSDictionary*) unsupported

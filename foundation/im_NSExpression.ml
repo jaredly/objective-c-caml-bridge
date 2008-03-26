@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSExpression *)
 class virtual methods = object (self)
-  method virtual repr : [`NSExpression] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithExpressionType (_type : int) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithExpressionType:")
       [make_int _type]) : [`NSObject] Objc.id)
@@ -28,7 +28,7 @@ class virtual methods = object (self)
   method arguments =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "arguments")[])
        : [`NSArray] Objc.id))
-  method expressionValueWithObject  ~context:(context : [`NSMutableDictionary] Objc.t ) (_object : [`NSObject] Objc.t) =
+  method expressionValueWithObject_context  (_object : [`NSObject] Objc.t) (context : [`NSMutableDictionary] Objc.t) =
     let sel, args = (
       Objc.arg _object "expressionValueWithObject" make_pointer_from_object
       ++ Objc.arg context "context" make_pointer_from_object

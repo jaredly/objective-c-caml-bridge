@@ -1,11 +1,19 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSValue] id) -> object
-  inherit Cati_NSValueExtensionMethods.methods_NSValue
-  inherit Cati_NSValueCreation.methods_NSValue
+class virtual methods = object
+  inherit Foundation_cati_NSValueExtensionMethods.methods_NSValue
+  inherit Foundation_cati_NSValueCreation.methods_NSValue
   inherit Im_NSValue.methods
-  method repr = r
+  inherit Foundation_cati_NSValueRangeExtensions.methods_NSValue
+  inherit Foundation_cati_NSValueGeometryExtensions.methods_NSValue
+end
+
+class t = fun (r :[`NSValue] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSValue *)
@@ -24,7 +32,7 @@ let valueWithPointer (pointer : (*pointer to const void*) unsupported) =
 *)
 (* class methods for category NSValueCreation of NSValue *)
 (*  UNSUPPORTED
-let valueWithBytes  ~objCType:(_type : string ) (value : (*pointer to const void*) unsupported) =
+let valueWithBytes_objCType  (value : (*pointer to const void*) unsupported) (_type : string) =
     let sel, args = (
       Objc.arg value "valueWithBytes" (*pointer to const void*) unsupported
       ++ Objc.arg _type "objCType" make_string
@@ -34,7 +42,7 @@ let valueWithBytes  ~objCType:(_type : string ) (value : (*pointer to const void
 
 *)
 (*  UNSUPPORTED
-let value  ~withObjCType:(_type : string ) (value : (*pointer to const void*) unsupported) =
+let value_withObjCType  (value : (*pointer to const void*) unsupported) (_type : string) =
     let sel, args = (
       Objc.arg value "value" (*pointer to const void*) unsupported
       ++ Objc.arg _type "withObjCType" make_string
@@ -43,3 +51,17 @@ let value  ~withObjCType:(_type : string ) (value : (*pointer to const void*) un
        : [`NSValue] Objc.id))
 
 *)
+(* class methods for category NSValueRangeExtensions of NSValue *)
+let valueWithRange (range : NSRange.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "valueWithRange:")
+      [make_range range]) : [`NSValue] Objc.id))
+(* class methods for category NSValueGeometryExtensions of NSValue *)
+let valueWithPoint (point : NSPoint.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "valueWithPoint:")
+      [make_point point]) : [`NSValue] Objc.id))
+let valueWithSize (size : NSSize.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "valueWithSize:")
+      [make_size size]) : [`NSValue] Objc.id))
+let valueWithRect (rect : NSRect.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "valueWithRect:")
+      [make_rect rect]) : [`NSValue] Objc.id))

@@ -12,10 +12,16 @@ let _NSDateFormatterBehavior10_0 = 1000L
 let _NSDateFormatterBehavior10_4 = 1040L
 
 
-class t = fun (r :[`NSDateFormatter] id) -> object
-  inherit Cati_NSDateFormatterCompatibility.methods_NSDateFormatter
+class virtual methods = object
+  inherit Foundation_cati_NSDateFormatterCompatibility.methods_NSDateFormatter
   inherit Im_NSDateFormatter.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSDateFormatter] id) -> object
+  inherit methods
+  inherit NSFormatter.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSDateFormatter *)

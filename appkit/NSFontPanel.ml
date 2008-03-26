@@ -22,9 +22,15 @@ let _NSFontPanelStandardModesMask = 65535L
 let _NSFontPanelAllModesMask = 4294967295L
 
 
-class t = fun (r :[`NSFontPanel] id) -> object
+class virtual methods = object
   inherit Im_NSFontPanel.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSFontPanel] id) -> object
+  inherit methods
+  inherit NSPanel.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSFontPanel *)

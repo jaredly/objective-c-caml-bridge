@@ -1,11 +1,17 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSRunLoop] id) -> object
-  inherit Cati_NSOrderedPerform.methods_NSRunLoop
-  inherit Cati_NSRunLoopConveniences.methods_NSRunLoop
+class virtual methods = object
+  inherit Foundation_cati_NSOrderedPerform.methods_NSRunLoop
+  inherit Foundation_cati_NSRunLoopConveniences.methods_NSRunLoop
   inherit Im_NSRunLoop.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSRunLoop] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSRunLoop *)

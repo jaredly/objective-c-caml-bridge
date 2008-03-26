@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSXMLParser *)
 class virtual methods = object (self)
-  method virtual repr : [`NSXMLParser] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithContentsOfURL (url : [`NSURL] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithContentsOfURL:")
       [make_pointer_from_object url]) : [`NSObject] Objc.id)

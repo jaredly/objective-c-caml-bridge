@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSStream *)
 class virtual methods = object (self)
-  method virtual repr : [`NSStream] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method open_ =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "open")[])
        : unit)
@@ -19,21 +19,21 @@ class virtual methods = object (self)
   method propertyForKey (key : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "propertyForKey:")
       [make_pointer_from_object key]) : [`NSObject] Objc.id)
-  method setProperty  ~forKey:(key : [`NSString] Objc.t ) (property : [`NSObject] Objc.t) =
+  method setProperty_forKey  (property : [`NSObject] Objc.t) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg property "setProperty" make_pointer_from_object
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method scheduleInRunLoop  ~forMode:(mode : [`NSString] Objc.t ) (aRunLoop : [`NSRunLoop] Objc.t) =
+  method scheduleInRunLoop_forMode  (aRunLoop : [`NSRunLoop] Objc.t) (mode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg aRunLoop "scheduleInRunLoop" make_pointer_from_object
       ++ Objc.arg mode "forMode" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method removeFromRunLoop  ~forMode:(mode : [`NSString] Objc.t ) (aRunLoop : [`NSRunLoop] Objc.t) =
+  method removeFromRunLoop_forMode  (aRunLoop : [`NSRunLoop] Objc.t) (mode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg aRunLoop "removeFromRunLoop" make_pointer_from_object
       ++ Objc.arg mode "forMode" make_pointer_from_object

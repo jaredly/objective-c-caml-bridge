@@ -3,12 +3,12 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSNotification *)
 class virtual methods = object (self)
-  method virtual repr : [`NSNotification] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method name =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "name")[])
        : [`NSString] Objc.id))
-  method l_object =
-    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_object")[])
+  method _object =
+    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "object")[])
        : [`NSObject] Objc.id)
   method userInfo =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "userInfo")[])

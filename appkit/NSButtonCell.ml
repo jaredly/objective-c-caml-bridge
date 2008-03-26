@@ -1,14 +1,20 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSButtonCell] id) -> object
-  inherit Cati_NSButtonCellSoundExtensions.methods_NSButtonCell
-  inherit Cati_NSButtonCellBezelStyles.methods_NSButtonCell
-  inherit Cati_NSButtonCellAttributedStringMethods.methods_NSButtonCell
-  inherit Cati_NSButtonCellExtensions.methods_NSButtonCell
-  inherit Cati_NSKeyboardUI.methods_NSButtonCell
+class virtual methods = object
+  inherit AppKit_cati_NSButtonCellSoundExtensions.methods_NSButtonCell
+  inherit AppKit_cati_NSButtonCellBezelStyles.methods_NSButtonCell
+  inherit AppKit_cati_NSButtonCellAttributedStringMethods.methods_NSButtonCell
+  inherit AppKit_cati_NSButtonCellExtensions.methods_NSButtonCell
+  inherit AppKit_cati_NSKeyboardUI.methods_NSButtonCell
   inherit Im_NSButtonCell.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSButtonCell] id) -> object
+  inherit methods
+  inherit NSActionCell.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSButtonCell *)

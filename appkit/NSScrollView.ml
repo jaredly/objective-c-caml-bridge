@@ -1,10 +1,16 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSScrollView] id) -> object
-  inherit Cati_NSRulerSupport.methods_NSScrollView
+class virtual methods = object
+  inherit AppKit_cati_NSRulerSupport.methods_NSScrollView
   inherit Im_NSScrollView.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSScrollView] id) -> object
+  inherit methods
+  inherit NSView.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSScrollView *)
@@ -18,27 +24,21 @@ let setRulerViewClass (rulerViewClass : [`NSObject] Objc.t) =
 let rulerViewClass () =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "rulerViewClass")[])
        : [`NSScrollView] Objc.id))
-(*  UNSUPPORTED
-let frameSizeForContentSize  ~hasHorizontalScroller:(hFlag : bool ) ~hasVerticalScroller:(vFlag : bool ) ~borderType:(aType : (*NSBorderType*) unsupported ) (cSize : (*NSSize*) unsupported) =
+let frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType  (cSize : NSSize.t) (hFlag : bool) (vFlag : bool) (aType : int) =
     let sel, args = (
-      Objc.arg cSize "frameSizeForContentSize" (*NSSize*) unsupported
+      Objc.arg cSize "frameSizeForContentSize" make_size
       ++ Objc.arg hFlag "hasHorizontalScroller" make_bool
       ++ Objc.arg vFlag "hasVerticalScroller" make_bool
-      ++ Objc.arg aType "borderType" (*NSBorderType*) unsupported
+      ++ Objc.arg aType "borderType" make_int
     ) ([],[]) in
-      ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported c (Selector.find_list sel) args)
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-let contentSizeForFrameSize  ~hasHorizontalScroller:(hFlag : bool ) ~hasVerticalScroller:(vFlag : bool ) ~borderType:(aType : (*NSBorderType*) unsupported ) (fSize : (*NSSize*) unsupported) =
+      (get_size (Objc.invoke Objc.tag_nssize c (Selector.find_list sel) args)
+       : NSSize.t)
+let contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType  (fSize : NSSize.t) (hFlag : bool) (vFlag : bool) (aType : int) =
     let sel, args = (
-      Objc.arg fSize "contentSizeForFrameSize" (*NSSize*) unsupported
+      Objc.arg fSize "contentSizeForFrameSize" make_size
       ++ Objc.arg hFlag "hasHorizontalScroller" make_bool
       ++ Objc.arg vFlag "hasVerticalScroller" make_bool
-      ++ Objc.arg aType "borderType" (*NSBorderType*) unsupported
+      ++ Objc.arg aType "borderType" make_int
     ) ([],[]) in
-      ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported c (Selector.find_list sel) args)
-       : (*NSSize*) unsupported)
-
-*)
+      (get_size (Objc.invoke Objc.tag_nssize c (Selector.find_list sel) args)
+       : NSSize.t)

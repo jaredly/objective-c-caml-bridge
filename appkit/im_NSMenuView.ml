@@ -3,13 +3,10 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMenuView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMenuView] Objc.id
-(*  UNSUPPORTED
-  method initWithFrame (frame : (*NSRect*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithFrame (frame : NSRect.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithFrame:")
-      [(*NSRect*) unsupported frame]) : [`NSObject] Objc.id)
-
-*)
+      [make_rect frame]) : [`NSObject] Objc.id)
   method initAsTearOff =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initAsTearOff")[])
        : [`NSObject] Objc.id)
@@ -43,24 +40,15 @@ class virtual methods = object (self)
   method font =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "font")[])
        : [`NSFont] Objc.id))
-(*  UNSUPPORTED
   method innerRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "innerRect")[])
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "innerRect")[])
+       : NSRect.t)
   method rectOfItemAtIndex (index : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "rectOfItemAtIndex:")
-      [make_int index]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method indexOfItemAtPoint (point : (*NSPoint*) unsupported) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "rectOfItemAtIndex:")
+      [make_int index]) : NSRect.t)
+  method indexOfItemAtPoint (point : NSPoint.t) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "indexOfItemAtPoint:")
-      [(*NSPoint*) unsupported point]) : int)
-
-*)
+      [make_point point]) : int)
   method setNeedsDisplayForItemAtIndex (index : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setNeedsDisplayForItemAtIndex:")
       [make_int index]) : unit)
@@ -88,7 +76,7 @@ class virtual methods = object (self)
   method keyEquivalentWidth =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "keyEquivalentWidth")[])
        : float)
-  method setMenuItemCell  ~forItemAtIndex:(index : int ) (cell : [`NSMenuItemCell] Objc.t) =
+  method setMenuItemCell_forItemAtIndex  (cell : [`NSMenuItemCell] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg cell "setMenuItemCell" make_pointer_from_object
       ++ Objc.arg index "forItemAtIndex" make_int
@@ -119,16 +107,13 @@ class virtual methods = object (self)
   method isTornOff =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isTornOff")[])
        : bool)
-(*  UNSUPPORTED
   method locationForSubmenu (aSubmenu : [`NSMenu] Objc.t) =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "locationForSubmenu:")
-      [make_pointer_from_object aSubmenu]) : (*NSPoint*) unsupported)
-
-*)
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "locationForSubmenu:")
+      [make_pointer_from_object aSubmenu]) : NSPoint.t)
 (*  UNSUPPORTED
-  method setWindowFrameForAttachingToRect  ~onScreen:(screen : [`NSScreen] Objc.t ) ~preferredEdge:(edge : (*NSRectEdge*) unsupported ) ~popUpSelectedItem:(selectedItemIndex : int ) (screenRect : (*NSRect*) unsupported) =
+  method setWindowFrameForAttachingToRect_onScreen_preferredEdge_popUpSelectedItem  (screenRect : NSRect.t) (screen : [`NSScreen] Objc.t) (edge : (*NSRectEdge*) unsupported) (selectedItemIndex : int) =
     let sel, args = (
-      Objc.arg screenRect "setWindowFrameForAttachingToRect" (*NSRect*) unsupported
+      Objc.arg screenRect "setWindowFrameForAttachingToRect" make_rect
       ++ Objc.arg screen "onScreen" make_pointer_from_object
       ++ Objc.arg edge "preferredEdge" (*NSRectEdge*) unsupported
       ++ Objc.arg selectedItemIndex "popUpSelectedItem" make_int

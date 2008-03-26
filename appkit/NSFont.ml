@@ -11,10 +11,16 @@ let _NSTwoByteGlyphPacking = 6L
 let _NSFourByteGlyphPacking = 7L
 
 
-class t = fun (r :[`NSFont] id) -> object
-  inherit Cati_NSFontDeprecated.methods_NSFont
+class virtual methods = object
+  inherit AppKit_cati_NSFontDeprecated.methods_NSFont
   inherit Im_NSFont.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSFont] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSFont *)
@@ -31,22 +37,37 @@ let preferredFontNames () =
 let setPreferredFontNames (fontNameArray : [`NSArray] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit c (Selector.find "setPreferredFontNames:")
       [make_pointer_from_object fontNameArray]) : unit)
-let fontWithName  ~size:(fontSize : float ) (fontName : [`NSString] Objc.t) =
+let fontWithName_size  (fontName : [`NSString] Objc.t) (fontSize : float) =
     let sel, args = (
       Objc.arg fontName "fontWithName" make_pointer_from_object
       ++ Objc.arg fontSize "size" make_float
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSFont] Objc.id))
-  (* skipping selector fontWithName:matrix *)
-let fontWithDescriptor  ~size:(fontSize : float ) (fontDescriptor : [`NSFontDescriptor] Objc.t) =
+(*  UNSUPPORTED
+let fontWithName_matrix  (fontName : [`NSString] Objc.t) (fontMatrix : (*pointer to const float*) unsupported) =
+    let sel, args = (
+      Objc.arg fontName "fontWithName" make_pointer_from_object
+      ++ Objc.arg fontMatrix "matrix" (*pointer to const float*) unsupported
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSFont] Objc.id))
+
+*)
+let fontWithDescriptor_size  (fontDescriptor : [`NSFontDescriptor] Objc.t) (fontSize : float) =
     let sel, args = (
       Objc.arg fontDescriptor "fontWithDescriptor" make_pointer_from_object
       ++ Objc.arg fontSize "size" make_float
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSFont] Objc.id))
-  (* skipping selector fontWithDescriptor:textTransform *)
+let fontWithDescriptor_textTransform  (fontDescriptor : [`NSFontDescriptor] Objc.t) (textTransform : [`NSAffineTransform] Objc.t) =
+    let sel, args = (
+      Objc.arg fontDescriptor "fontWithDescriptor" make_pointer_from_object
+      ++ Objc.arg textTransform "textTransform" make_pointer_from_object
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSFont] Objc.id))
 let userFontOfSize (fontSize : float) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "userFontOfSize:")
       [make_float fontSize]) : [`NSFont] Objc.id))

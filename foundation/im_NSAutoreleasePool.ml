@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSAutoreleasePool *)
 class virtual methods = object (self)
-  method virtual repr : [`NSAutoreleasePool] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method addObject (anObject : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addObject:")
       [make_pointer_from_object anObject]) : unit)

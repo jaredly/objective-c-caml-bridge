@@ -24,9 +24,15 @@ let _NSCancelTextMovement = 23L
 let _NSOtherTextMovement = 0L
 
 
-class t = fun (r :[`NSText] id) -> object
+class virtual methods = object
   inherit Im_NSText.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSText] id) -> object
+  inherit methods
+  inherit NSView.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSText *)

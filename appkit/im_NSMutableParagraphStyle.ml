@@ -3,19 +3,16 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMutableParagraphStyle *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMutableParagraphStyle] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setLineSpacing (aFloat : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setLineSpacing:")
       [make_float aFloat]) : unit)
   method setParagraphSpacing (aFloat : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setParagraphSpacing:")
       [make_float aFloat]) : unit)
-(*  UNSUPPORTED
-  method setAlignment (alignment : (*NSTextAlignment*) unsupported) =
+  method setAlignment (alignment : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAlignment:")
-      [(*NSTextAlignment*) unsupported alignment]) : unit)
-
-*)
+      [make_int alignment]) : unit)
   method setFirstLineHeadIndent (aFloat : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFirstLineHeadIndent:")
       [make_float aFloat]) : unit)
@@ -46,12 +43,9 @@ class virtual methods = object (self)
   method setParagraphStyle (obj : [`NSParagraphStyle] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setParagraphStyle:")
       [make_pointer_from_object obj]) : unit)
-(*  UNSUPPORTED
-  method setBaseWritingDirection (writingDirection : (*NSWritingDirection*) unsupported) =
+  method setBaseWritingDirection (writingDirection : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBaseWritingDirection:")
-      [(*NSWritingDirection*) unsupported writingDirection]) : unit)
-
-*)
+      [make_int writingDirection]) : unit)
   method setLineHeightMultiple (aFloat : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setLineHeightMultiple:")
       [make_float aFloat]) : unit)

@@ -3,18 +3,14 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPopUpButtonCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPopUpButtonCell] Objc.id
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
-  method initTextCell  ~pullsDown:(pullDown : bool ) (stringValue : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initTextCell_pullsDown  (stringValue : [`NSString] Objc.t) (pullDown : bool) =
     let sel, args = (
       Objc.arg stringValue "initTextCell" make_pointer_from_object
       ++ Objc.arg pullDown "pullsDown" make_bool
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
   method setMenu (menu : [`NSMenu] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMenu:")
       [make_pointer_from_object menu]) : unit)
@@ -63,7 +59,7 @@ class virtual methods = object (self)
   method addItemsWithTitles (itemTitles : [`NSArray] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addItemsWithTitles:")
       [make_pointer_from_object itemTitles]) : unit)
-  method insertItemWithTitle  ~atIndex:(index : int ) (title : [`NSString] Objc.t) =
+  method insertItemWithTitle_atIndex  (title : [`NSString] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg title "insertItemWithTitle" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
@@ -97,7 +93,7 @@ class virtual methods = object (self)
   method indexOfItemWithRepresentedObject (obj : [`NSObject] Objc.t) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "indexOfItemWithRepresentedObject:")
       [make_pointer_from_object obj]) : int)
-  method indexOfItemWithTarget  ~andAction:(actionSelector : selector ) (target : [`NSObject] Objc.t) =
+  method indexOfItemWithTarget_andAction  (target : [`NSObject] Objc.t) (actionSelector : selector) =
     let sel, args = (
       Objc.arg target "indexOfItemWithTarget" make_pointer_from_object
       ++ Objc.arg actionSelector "andAction" make_selector
@@ -146,29 +142,23 @@ class virtual methods = object (self)
   method titleOfSelectedItem =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "titleOfSelectedItem")[])
        : [`NSString] Objc.id))
-(*  UNSUPPORTED
-  method attachPopUpWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method attachPopUpWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "attachPopUpWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "attachPopUpWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method dismissPopUp =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "dismissPopUp")[])
        : unit)
-(*  UNSUPPORTED
-  method performClickWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (frame : (*NSRect*) unsupported) =
+  method performClickWithFrame_inView  (frame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg frame "performClickWithFrame" (*NSRect*) unsupported
+      Objc.arg frame "performClickWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method arrowPosition =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "arrowPosition")[])
        : int)

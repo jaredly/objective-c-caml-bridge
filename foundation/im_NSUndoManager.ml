@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSUndoManager *)
 class virtual methods = object (self)
-  method virtual repr : [`NSUndoManager] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method beginUndoGrouping =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "beginUndoGrouping")[])
        : unit)
@@ -67,11 +67,11 @@ class virtual methods = object (self)
   method removeAllActionsWithTarget (target : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "removeAllActionsWithTarget:")
       [make_pointer_from_object target]) : unit)
-  method registerUndoWithTarget  ~selector:(selector : selector ) ~l_object:(anObject : [`NSObject] Objc.t ) (target : [`NSObject] Objc.t) =
+  method registerUndoWithTarget_selector_object  (target : [`NSObject] Objc.t) (selector : selector) (anObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg target "registerUndoWithTarget" make_pointer_from_object
       ++ Objc.arg selector "selector" make_selector
-      ++ Objc.arg anObject "l_object" make_pointer_from_object
+      ++ Objc.arg anObject "object" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)

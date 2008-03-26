@@ -1,11 +1,17 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSTimeZone] id) -> object
-  inherit Cati_NSTimeZoneCreation.methods_NSTimeZone
-  inherit Cati_NSExtendedTimeZone.methods_NSTimeZone
+class virtual methods = object
+  inherit Foundation_cati_NSTimeZoneCreation.methods_NSTimeZone
+  inherit Foundation_cati_NSExtendedTimeZone.methods_NSTimeZone
   inherit Im_NSTimeZone.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSTimeZone] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSTimeZone *)
@@ -13,11 +19,13 @@ let c = Classes.find "NSTimeZone"
 let _new()= (Objc.objcnew c : [`NSTimeZone] id)
 let alloc() = (Objc.objcalloc c : [`NSTimeZone] id)
 (* class methods for category NSTimeZoneCreation of NSTimeZone *)
-  (* skipping selector timeZoneWithName *)
-let timeZoneWithName  ?data:(aData : [`NSData] Objc.t option) (tzName : [`NSString] Objc.t) =
+let timeZoneWithName (tzName : [`NSString] Objc.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "timeZoneWithName:")
+      [make_pointer_from_object tzName]) : [`NSTimeZone] Objc.id))
+let timeZoneWithName_data  (tzName : [`NSString] Objc.t) (aData : [`NSData] Objc.t) =
     let sel, args = (
       Objc.arg tzName "timeZoneWithName" make_pointer_from_object
-      ++ Objc.opt_arg aData "data" make_pointer_from_object
+      ++ Objc.arg aData "data" make_pointer_from_object
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSTimeZone] Objc.id))

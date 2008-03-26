@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSearchField *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSearchField] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setRecentSearches (searches : [`NSArray] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setRecentSearches:")
       [make_pointer_from_object searches]) : unit)

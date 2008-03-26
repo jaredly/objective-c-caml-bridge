@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPrintPanel *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPrintPanel] Objc.id
-  method beginSheetWithPrintInfo  ~modalForWindow:(docWindow : [`NSWindow] Objc.t ) ~delegate:(delegate : [`NSObject] Objc.t ) ~didEndSelector:(didEndSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (printInfo : [`NSPrintInfo] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method beginSheetWithPrintInfo_modalForWindow_delegate_didEndSelector_contextInfo  (printInfo : [`NSPrintInfo] Objc.t) (docWindow : [`NSWindow] Objc.t) (delegate : [`NSObject] Objc.t) (didEndSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg printInfo "beginSheetWithPrintInfo" make_pointer_from_object
       ++ Objc.arg docWindow "modalForWindow" make_pointer_from_object

@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSKeyedUnarchiver] id) -> object
+class virtual methods = object
   inherit Im_NSKeyedUnarchiver.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSKeyedUnarchiver] id) -> object
+  inherit methods
+  inherit NSCoder.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSKeyedUnarchiver *)
@@ -16,7 +22,7 @@ let unarchiveObjectWithData (data : [`NSData] Objc.t) =
 let unarchiveObjectWithFile (path : [`NSString] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "unarchiveObjectWithFile:")
       [make_pointer_from_object path]) : [`NSKeyedUnarchiver] Objc.id))
-let setClass  ~forClassName:(codedName : [`NSString] Objc.t ) (cls : [`NSObject] Objc.t) =
+let setClass_forClassName  (cls : [`NSObject] Objc.t) (codedName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg cls "setClass" make_pointer_from_object
       ++ Objc.arg codedName "forClassName" make_pointer_from_object

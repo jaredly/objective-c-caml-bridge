@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSGraphicsContext *)
 class virtual methods = object (self)
-  method virtual repr : [`NSGraphicsContext] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method attributes =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "attributes")[])
        : [`NSDictionary] Objc.id))

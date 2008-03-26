@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSController *)
 class virtual methods = object (self)
-  method virtual repr : [`NSController] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method objectDidBeginEditing (editor : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "objectDidBeginEditing:")
       [make_pointer_from_object editor]) : unit)
@@ -16,7 +16,7 @@ class virtual methods = object (self)
   method commitEditing =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "commitEditing")[])
        : bool)
-  method commitEditingWithDelegate  ~didCommitSelector:(didCommitSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (delegate : [`NSObject] Objc.t) =
+  method commitEditingWithDelegate_didCommitSelector_contextInfo  (delegate : [`NSObject] Objc.t) (didCommitSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg delegate "commitEditingWithDelegate" make_pointer_from_object
       ++ Objc.arg didCommitSelector "didCommitSelector" make_selector

@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextField *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextField] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setBackgroundColor (color : [`NSColor] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBackgroundColor:")
       [make_pointer_from_object color]) : unit)
@@ -73,16 +73,10 @@ class virtual methods = object (self)
   method acceptsFirstResponder =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "acceptsFirstResponder")[])
        : bool)
-(*  UNSUPPORTED
-  method setBezelStyle (style : (*NSTextFieldBezelStyle*) unsupported) =
+  method setBezelStyle (style : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBezelStyle:")
-      [(*NSTextFieldBezelStyle*) unsupported style]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_int style]) : unit)
   method bezelStyle =
-    ((*NSTextFieldBezelStyle*) unsupported (Objc.invoke (*NSTextFieldBezelStyle*) Objc.tag_unsupported self#repr (Selector.find "bezelStyle")[])
-       : (*NSTextFieldBezelStyle*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "bezelStyle")[])
+       : int)
 end

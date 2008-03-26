@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMetadataQueryResultGroup *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMetadataQueryResultGroup] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method attribute =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "attribute")[])
        : [`NSString] Objc.id))

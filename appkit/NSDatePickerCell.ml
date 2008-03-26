@@ -10,9 +10,15 @@ let _NSYearMonthDayDatePickerElementFlag = 224L
 let _NSEraDatePickerElementFlag = 256L
 
 
-class t = fun (r :[`NSDatePickerCell] id) -> object
+class virtual methods = object
   inherit Im_NSDatePickerCell.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSDatePickerCell] id) -> object
+  inherit methods
+  inherit NSActionCell.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSDatePickerCell *)

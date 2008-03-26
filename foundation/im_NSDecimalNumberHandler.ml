@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDecimalNumberHandler *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDecimalNumberHandler] Objc.id
-  method initWithRoundingMode  ~scale:(scale : int ) ~raiseOnExactness:(exact : bool ) ~raiseOnOverflow:(overflow : bool ) ~raiseOnUnderflow:(underflow : bool ) ~raiseOnDivideByZero:(divideByZero : bool ) (roundingMode : int) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithRoundingMode_scale_raiseOnExactness_raiseOnOverflow_raiseOnUnderflow_raiseOnDivideByZero  (roundingMode : int) (scale : int) (exact : bool) (overflow : bool) (underflow : bool) (divideByZero : bool) =
     let sel, args = (
       Objc.arg roundingMode "initWithRoundingMode" make_int
       ++ Objc.arg scale "scale" make_int

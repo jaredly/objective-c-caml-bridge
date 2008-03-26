@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSUnarchiver] id) -> object
+class virtual methods = object
   inherit Im_NSUnarchiver.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSUnarchiver] id) -> object
+  inherit methods
+  inherit NSCoder.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSUnarchiver *)
@@ -16,7 +22,7 @@ let unarchiveObjectWithData (data : [`NSData] Objc.t) =
 let unarchiveObjectWithFile (path : [`NSString] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "unarchiveObjectWithFile:")
       [make_pointer_from_object path]) : [`NSUnarchiver] Objc.id))
-let decodeClassName  ~asClassName:(trueName : [`NSString] Objc.t ) (inArchiveName : [`NSString] Objc.t) =
+let decodeClassName_asClassName  (inArchiveName : [`NSString] Objc.t) (trueName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg inArchiveName "decodeClassName" make_pointer_from_object
       ++ Objc.arg trueName "asClassName" make_pointer_from_object

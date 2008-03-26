@@ -3,11 +3,11 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMutableArray *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMutableArray] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method addObject (anObject : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addObject:")
       [make_pointer_from_object anObject]) : unit)
-  method insertObject  ~atIndex:(index : int ) (anObject : [`NSObject] Objc.t) =
+  method insertObject_atIndex  (anObject : [`NSObject] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg anObject "insertObject" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
@@ -20,7 +20,7 @@ class virtual methods = object (self)
   method removeObjectAtIndex (index : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "removeObjectAtIndex:")
       [make_int index]) : unit)
-  method replaceObjectAtIndex  ~withObject:(anObject : [`NSObject] Objc.t ) (index : int) =
+  method replaceObjectAtIndex_withObject  (index : int) (anObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg index "replaceObjectAtIndex" make_int
       ++ Objc.arg anObject "withObject" make_pointer_from_object

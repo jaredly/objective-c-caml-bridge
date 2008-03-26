@@ -3,24 +3,24 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSResponder *)
 class virtual methods = object (self)
-  method virtual repr : [`NSResponder] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method nextResponder =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "nextResponder")[])
        : [`NSResponder] Objc.id))
   method setNextResponder (aResponder : [`NSResponder] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setNextResponder:")
       [make_pointer_from_object aResponder]) : unit)
-  method tryToPerform  ~l_with:(anObject : [`NSObject] Objc.t ) (anAction : selector) =
+  method tryToPerform_with  (anAction : selector) (anObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg anAction "tryToPerform" make_selector
-      ++ Objc.arg anObject "l_with" make_pointer_from_object
+      ++ Objc.arg anObject "with" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
   method performKeyEquivalent (theEvent : [`NSEvent] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "performKeyEquivalent:")
       [make_pointer_from_object theEvent]) : bool)
-  method validRequestorForSendType  ~returnType:(returnType : [`NSString] Objc.t ) (sendType : [`NSString] Objc.t) =
+  method validRequestorForSendType_returnType  (sendType : [`NSString] Objc.t) (returnType : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg sendType "validRequestorForSendType" make_pointer_from_object
       ++ Objc.arg returnType "returnType" make_pointer_from_object

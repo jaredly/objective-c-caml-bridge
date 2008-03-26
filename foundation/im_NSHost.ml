@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSHost *)
 class virtual methods = object (self)
-  method virtual repr : [`NSHost] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method isEqualToHost (aHost : [`NSHost] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isEqualToHost:")
       [make_pointer_from_object aHost]) : bool)

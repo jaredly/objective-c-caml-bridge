@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTimeZone *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTimeZone] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method name =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "name")[])
        : [`NSString] Objc.id))

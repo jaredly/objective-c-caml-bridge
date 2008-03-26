@@ -1,10 +1,16 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSMenu] id) -> object
-  inherit Cati_NSSubmenuAction.methods_NSMenu
+class virtual methods = object
+  inherit AppKit_cati_NSSubmenuAction.methods_NSMenu
   inherit Im_NSMenu.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSMenu] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSMenu *)
@@ -18,13 +24,20 @@ let setMenuZone (aZone : [`NSZone] Objc.t) =
 let menuZone () =
     ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "menuZone")[])
        : [`NSZone] Objc.id))
-  (* skipping selector popUpContextMenu:withEvent:forView *)
-let popUpContextMenu  ~withEvent:(event : [`NSEvent] Objc.t ) ~forView:(view : [`NSView] Objc.t ) ?withFont:(font : [`NSFont] Objc.t option) (menu : [`NSMenu] Objc.t) =
+let popUpContextMenu_withEvent_forView  (menu : [`NSMenu] Objc.t) (event : [`NSEvent] Objc.t) (view : [`NSView] Objc.t) =
     let sel, args = (
       Objc.arg menu "popUpContextMenu" make_pointer_from_object
       ++ Objc.arg event "withEvent" make_pointer_from_object
       ++ Objc.arg view "forView" make_pointer_from_object
-      ++ Objc.opt_arg font "withFont" make_pointer_from_object
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit c (Selector.find_list sel) args)
+       : unit)
+let popUpContextMenu_withEvent_forView_withFont  (menu : [`NSMenu] Objc.t) (event : [`NSEvent] Objc.t) (view : [`NSView] Objc.t) (font : [`NSFont] Objc.t) =
+    let sel, args = (
+      Objc.arg menu "popUpContextMenu" make_pointer_from_object
+      ++ Objc.arg event "withEvent" make_pointer_from_object
+      ++ Objc.arg view "forView" make_pointer_from_object
+      ++ Objc.arg font "withFont" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit c (Selector.find_list sel) args)
        : unit)

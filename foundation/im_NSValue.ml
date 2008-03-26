@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSValue *)
 class virtual methods = object (self)
-  method virtual repr : [`NSValue] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method getValue (value : [`void] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "getValue:")
       [make_pointer_from_object value]) : unit)

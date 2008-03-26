@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSBundle *)
 class virtual methods = object (self)
-  method virtual repr : [`NSBundle] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithPath (path : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithPath:")
       [make_pointer_from_object path]) : [`NSObject] Objc.id)
@@ -46,27 +46,46 @@ class virtual methods = object (self)
   method principalClass =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "principalClass")[])
        : [`NSObject] Objc.id)
-  (* skipping selector pathForResource:ofType *)
-  (* skipping selector pathForResource:ofType:inDirectory *)
-  method pathForResource  ?ofType:(ext : [`NSString] Objc.t option) ?inDirectory:(subpath : [`NSString] Objc.t option) ?forLocalization:(localizationName : [`NSString] Objc.t option) (name : [`NSString] Objc.t) =
+  method pathForResource_ofType  (name : [`NSString] Objc.t) (ext : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg name "pathForResource" make_pointer_from_object
-      ++ Objc.opt_arg ext "ofType" make_pointer_from_object
-      ++ Objc.opt_arg subpath "inDirectory" make_pointer_from_object
-      ++ Objc.opt_arg localizationName "forLocalization" make_pointer_from_object
+      ++ Objc.arg ext "ofType" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSString] Objc.id))
-  (* skipping selector pathsForResourcesOfType:inDirectory *)
-  method pathsForResourcesOfType  ~inDirectory:(subpath : [`NSString] Objc.t ) ?forLocalization:(localizationName : [`NSString] Objc.t option) (ext : [`NSString] Objc.t) =
+  method pathForResource_ofType_inDirectory  (name : [`NSString] Objc.t) (ext : [`NSString] Objc.t) (subpath : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg name "pathForResource" make_pointer_from_object
+      ++ Objc.arg ext "ofType" make_pointer_from_object
+      ++ Objc.arg subpath "inDirectory" make_pointer_from_object
+    ) ([],[]) in
+      ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSString] Objc.id))
+  method pathForResource_ofType_inDirectory_forLocalization  (name : [`NSString] Objc.t) (ext : [`NSString] Objc.t) (subpath : [`NSString] Objc.t) (localizationName : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg name "pathForResource" make_pointer_from_object
+      ++ Objc.arg ext "ofType" make_pointer_from_object
+      ++ Objc.arg subpath "inDirectory" make_pointer_from_object
+      ++ Objc.arg localizationName "forLocalization" make_pointer_from_object
+    ) ([],[]) in
+      ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSString] Objc.id))
+  method pathsForResourcesOfType_inDirectory  (ext : [`NSString] Objc.t) (subpath : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg ext "pathsForResourcesOfType" make_pointer_from_object
       ++ Objc.arg subpath "inDirectory" make_pointer_from_object
-      ++ Objc.opt_arg localizationName "forLocalization" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSArray] Objc.id))
-  method localizedStringForKey  ~value:(value : [`NSString] Objc.t ) ~table:(tableName : [`NSString] Objc.t ) (key : [`NSString] Objc.t) =
+  method pathsForResourcesOfType_inDirectory_forLocalization  (ext : [`NSString] Objc.t) (subpath : [`NSString] Objc.t) (localizationName : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg ext "pathsForResourcesOfType" make_pointer_from_object
+      ++ Objc.arg subpath "inDirectory" make_pointer_from_object
+      ++ Objc.arg localizationName "forLocalization" make_pointer_from_object
+    ) ([],[]) in
+      ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSArray] Objc.id))
+  method localizedStringForKey_value_table  (key : [`NSString] Objc.t) (value : [`NSString] Objc.t) (tableName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg key "localizedStringForKey" make_pointer_from_object
       ++ Objc.arg value "value" make_pointer_from_object

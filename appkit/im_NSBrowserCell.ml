@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSBrowserCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSBrowserCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method highlightColorInView (controlView : [`NSView] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "highlightColorInView:")
       [make_pointer_from_object controlView]) : [`NSColor] Objc.id))

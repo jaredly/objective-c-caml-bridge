@@ -3,10 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSRangeSpecifier *)
 class virtual methods = object (self)
-  method virtual repr : [`NSRangeSpecifier] Objc.id
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
-  method initWithContainerClassDescription  ~containerSpecifier:(container : [`NSScriptObjectSpecifier] Objc.t ) ~key:(property : [`NSString] Objc.t ) ~startSpecifier:(startSpec : [`NSScriptObjectSpecifier] Objc.t ) ~endSpecifier:(endSpec : [`NSScriptObjectSpecifier] Objc.t ) (classDesc : [`NSScriptClassDescription] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithContainerClassDescription_containerSpecifier_key_startSpecifier_endSpecifier  (classDesc : [`NSScriptClassDescription] Objc.t) (container : [`NSScriptObjectSpecifier] Objc.t) (property : [`NSString] Objc.t) (startSpec : [`NSScriptObjectSpecifier] Objc.t) (endSpec : [`NSScriptObjectSpecifier] Objc.t) =
     let sel, args = (
       Objc.arg classDesc "initWithContainerClassDescription" make_pointer_from_object
       ++ Objc.arg container "containerSpecifier" make_pointer_from_object
@@ -16,8 +14,6 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
   method startSpecifier =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "startSpecifier")[])
        : [`NSScriptObjectSpecifier] Objc.id))

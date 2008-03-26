@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSApplication *)
 class virtual methods = object (self)
-  method virtual repr : [`NSApplication] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setDelegate (anObject : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDelegate:")
       [make_pointer_from_object anObject]) : unit)
@@ -58,7 +58,9 @@ class virtual methods = object (self)
   method run =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "run")[])
        : unit)
-  (* skipping selector runModalForWindow *)
+  method runModalForWindow (theWindow : [`NSWindow] Objc.t) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "runModalForWindow:")
+      [make_pointer_from_object theWindow]) : int)
   method stop (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "stop:")
       [make_pointer_from_object sender]) : unit)
@@ -74,7 +76,12 @@ class virtual methods = object (self)
   method modalWindow =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "modalWindow")[])
        : [`NSWindow] Objc.id))
-  (* skipping selector beginModalSessionForWindow *)
+(*  UNSUPPORTED
+  method beginModalSessionForWindow (theWindow : [`NSWindow] Objc.t) =
+    ((*NSModalSession*) unsupported (Objc.invoke (*NSModalSession*) Objc.tag_unsupported self#repr (Selector.find "beginModalSessionForWindow:")
+      [make_pointer_from_object theWindow]) : (*NSModalSession*) unsupported)
+
+*)
 (*  UNSUPPORTED
   method runModalSession (session : (*NSModalSession*) unsupported) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "runModalSession:")
@@ -96,7 +103,7 @@ class virtual methods = object (self)
   method cancelUserAttentionRequest (request : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "cancelUserAttentionRequest:")
       [make_int request]) : unit)
-  method beginSheet  ~modalForWindow:(docWindow : [`NSWindow] Objc.t ) ~modalDelegate:(modalDelegate : [`NSObject] Objc.t ) ~didEndSelector:(didEndSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (sheet : [`NSWindow] Objc.t) =
+  method beginSheet_modalForWindow_modalDelegate_didEndSelector_contextInfo  (sheet : [`NSWindow] Objc.t) (docWindow : [`NSWindow] Objc.t) (modalDelegate : [`NSObject] Objc.t) (didEndSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg sheet "beginSheet" make_pointer_from_object
       ++ Objc.arg docWindow "modalForWindow" make_pointer_from_object
@@ -106,32 +113,34 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  (* skipping selector endSheet *)
-  method endSheet  ?returnCode:(returnCode : int option) (sheet : [`NSWindow] Objc.t) =
+  method endSheet (sheet : [`NSWindow] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "endSheet:")
+      [make_pointer_from_object sheet]) : unit)
+  method endSheet_returnCode  (sheet : [`NSWindow] Objc.t) (returnCode : int) =
     let sel, args = (
       Objc.arg sheet "endSheet" make_pointer_from_object
-      ++ Objc.opt_arg returnCode "returnCode" make_int
+      ++ Objc.arg returnCode "returnCode" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method runModalForWindow  ?relativeToWindow:(docWindow : [`NSWindow] Objc.t option) (theWindow : [`NSWindow] Objc.t) =
+  method runModalForWindow_relativeToWindow  (theWindow : [`NSWindow] Objc.t) (docWindow : [`NSWindow] Objc.t) =
     let sel, args = (
       Objc.arg theWindow "runModalForWindow" make_pointer_from_object
-      ++ Objc.opt_arg docWindow "relativeToWindow" make_pointer_from_object
+      ++ Objc.arg docWindow "relativeToWindow" make_pointer_from_object
     ) ([],[]) in
       (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find_list sel) args)
        : int)
 (*  UNSUPPORTED
-  method beginModalSessionForWindow  ?relativeToWindow:(docWindow : [`NSWindow] Objc.t option) (theWindow : [`NSWindow] Objc.t) =
+  method beginModalSessionForWindow_relativeToWindow  (theWindow : [`NSWindow] Objc.t) (docWindow : [`NSWindow] Objc.t) =
     let sel, args = (
       Objc.arg theWindow "beginModalSessionForWindow" make_pointer_from_object
-      ++ Objc.opt_arg docWindow "relativeToWindow" make_pointer_from_object
+      ++ Objc.arg docWindow "relativeToWindow" make_pointer_from_object
     ) ([],[]) in
       ((*NSModalSession*) unsupported (Objc.invoke (*NSModalSession*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
        : (*NSModalSession*) unsupported)
 
 *)
-  method nextEventMatchingMask  ~untilDate:(expiration : [`NSDate] Objc.t ) ~inMode:(mode : [`NSString] Objc.t ) ~dequeue:(deqFlag : bool ) (mask : int) =
+  method nextEventMatchingMask_untilDate_inMode_dequeue  (mask : int) (expiration : [`NSDate] Objc.t) (mode : [`NSString] Objc.t) (deqFlag : bool) =
     let sel, args = (
       Objc.arg mask "nextEventMatchingMask" make_int
       ++ Objc.arg expiration "untilDate" make_pointer_from_object
@@ -140,14 +149,14 @@ class virtual methods = object (self)
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSEvent] Objc.id))
-  method discardEventsMatchingMask  ~beforeEvent:(lastEvent : [`NSEvent] Objc.t ) (mask : int) =
+  method discardEventsMatchingMask_beforeEvent  (mask : int) (lastEvent : [`NSEvent] Objc.t) =
     let sel, args = (
       Objc.arg mask "discardEventsMatchingMask" make_int
       ++ Objc.arg lastEvent "beforeEvent" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method postEvent  ~atStart:(flag : bool ) (event : [`NSEvent] Objc.t) =
+  method postEvent_atStart  (event : [`NSEvent] Objc.t) (flag : bool) =
     let sel, args = (
       Objc.arg event "postEvent" make_pointer_from_object
       ++ Objc.arg flag "atStart" make_bool
@@ -163,7 +172,7 @@ class virtual methods = object (self)
   method preventWindowOrdering =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "preventWindowOrdering")[])
        : unit)
-  method makeWindowsPerform  ~inOrder:(flag : bool ) (aSelector : selector) =
+  method makeWindowsPerform_inOrder  (aSelector : selector) (flag : bool) =
     let sel, args = (
       Objc.arg aSelector "makeWindowsPerform" make_selector
       ++ Objc.arg flag "inOrder" make_bool
@@ -191,31 +200,33 @@ class virtual methods = object (self)
   method applicationIconImage =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "applicationIconImage")[])
        : [`NSImage] Objc.id))
-  method sendAction  ~l_to:(theTarget : [`NSObject] Objc.t ) ~from:(sender : [`NSObject] Objc.t ) (theAction : selector) =
+  method sendAction_to_from  (theAction : selector) (theTarget : [`NSObject] Objc.t) (sender : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg theAction "sendAction" make_selector
-      ++ Objc.arg theTarget "l_to" make_pointer_from_object
+      ++ Objc.arg theTarget "to" make_pointer_from_object
       ++ Objc.arg sender "from" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  (* skipping selector targetForAction *)
-  method targetForAction  ?l_to:(theTarget : [`NSObject] Objc.t option) ?from:(sender : [`NSObject] Objc.t option) (theAction : selector) =
+  method targetForAction (theAction : selector) =
+    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "targetForAction:")
+      [make_selector theAction]) : [`NSObject] Objc.id)
+  method targetForAction_to_from  (theAction : selector) (theTarget : [`NSObject] Objc.t) (sender : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg theAction "targetForAction" make_selector
-      ++ Objc.opt_arg theTarget "l_to" make_pointer_from_object
-      ++ Objc.opt_arg sender "from" make_pointer_from_object
+      ++ Objc.arg theTarget "to" make_pointer_from_object
+      ++ Objc.arg sender "from" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method tryToPerform  ~l_with:(anObject : [`NSObject] Objc.t ) (anAction : selector) =
+  method tryToPerform_with  (anAction : selector) (anObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg anAction "tryToPerform" make_selector
-      ++ Objc.arg anObject "l_with" make_pointer_from_object
+      ++ Objc.arg anObject "with" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method validRequestorForSendType  ~returnType:(returnType : [`NSString] Objc.t ) (sendType : [`NSString] Objc.t) =
+  method validRequestorForSendType_returnType  (sendType : [`NSString] Objc.t) (returnType : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg sendType "validRequestorForSendType" make_pointer_from_object
       ++ Objc.arg returnType "returnType" make_pointer_from_object

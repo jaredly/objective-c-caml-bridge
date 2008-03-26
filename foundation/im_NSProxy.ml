@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSProxy *)
 class virtual methods = object (self)
-  method virtual repr : [`NSProxy] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method forwardInvocation (invocation : [`NSInvocation] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "forwardInvocation:")
       [make_pointer_from_object invocation]) : unit)

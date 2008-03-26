@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSCalendar *)
 class virtual methods = object (self)
-  method virtual repr : [`NSCalendar] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithCalendarIdentifier (ident : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithCalendarIdentifier:")
       [make_pointer_from_object ident]) : [`NSObject] Objc.id)
@@ -36,19 +36,19 @@ class virtual methods = object (self)
        : int)
   method minimumRangeOfUnit (unit : int) =
     (get_range (Objc.invoke Objc.tag_nsrange self#repr (Selector.find "minimumRangeOfUnit:")
-      [make_int unit]) : (int * int))
+      [make_int unit]) : NSRange.t)
   method maximumRangeOfUnit (unit : int) =
     (get_range (Objc.invoke Objc.tag_nsrange self#repr (Selector.find "maximumRangeOfUnit:")
-      [make_int unit]) : (int * int))
-  method rangeOfUnit  ~inUnit:(larger : int ) ~forDate:(date : [`NSDate] Objc.t ) (smaller : int) =
+      [make_int unit]) : NSRange.t)
+  method rangeOfUnit_inUnit_forDate  (smaller : int) (larger : int) (date : [`NSDate] Objc.t) =
     let sel, args = (
       Objc.arg smaller "rangeOfUnit" make_int
       ++ Objc.arg larger "inUnit" make_int
       ++ Objc.arg date "forDate" make_pointer_from_object
     ) ([],[]) in
       (get_range (Objc.invoke Objc.tag_nsrange self#repr (Selector.find_list sel) args)
-       : (int * int))
-  method ordinalityOfUnit  ~inUnit:(larger : int ) ~forDate:(date : [`NSDate] Objc.t ) (smaller : int) =
+       : NSRange.t)
+  method ordinalityOfUnit_inUnit_forDate  (smaller : int) (larger : int) (date : [`NSDate] Objc.t) =
     let sel, args = (
       Objc.arg smaller "ordinalityOfUnit" make_int
       ++ Objc.arg larger "inUnit" make_int
@@ -59,8 +59,14 @@ class virtual methods = object (self)
   method dateFromComponents (comps : [`NSDateComponents] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "dateFromComponents:")
       [make_pointer_from_object comps]) : [`NSDate] Objc.id))
-  (* skipping selector components:fromDate *)
-  method dateByAddingComponents  ~toDate:(date : [`NSDate] Objc.t ) ~options:(opts : int ) (comps : [`NSDateComponents] Objc.t) =
+  method components_fromDate  (unitFlags : int) (date : [`NSDate] Objc.t) =
+    let sel, args = (
+      Objc.arg unitFlags "components" make_int
+      ++ Objc.arg date "fromDate" make_pointer_from_object
+    ) ([],[]) in
+      ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSDateComponents] Objc.id))
+  method dateByAddingComponents_toDate_options  (comps : [`NSDateComponents] Objc.t) (date : [`NSDate] Objc.t) (opts : int) =
     let sel, args = (
       Objc.arg comps "dateByAddingComponents" make_pointer_from_object
       ++ Objc.arg date "toDate" make_pointer_from_object
@@ -68,12 +74,12 @@ class virtual methods = object (self)
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSDate] Objc.id))
-  method components  ~fromDate:(startingDate : [`NSDate] Objc.t ) ?toDate:(resultDate : [`NSDate] Objc.t option) ?options:(opts : int option) (unitFlags : int) =
+  method components_fromDate_toDate_options  (unitFlags : int) (startingDate : [`NSDate] Objc.t) (resultDate : [`NSDate] Objc.t) (opts : int) =
     let sel, args = (
       Objc.arg unitFlags "components" make_int
       ++ Objc.arg startingDate "fromDate" make_pointer_from_object
-      ++ Objc.opt_arg resultDate "toDate" make_pointer_from_object
-      ++ Objc.opt_arg opts "options" make_int
+      ++ Objc.arg resultDate "toDate" make_pointer_from_object
+      ++ Objc.arg opts "options" make_int
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSDateComponents] Objc.id))

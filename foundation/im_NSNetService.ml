@@ -3,31 +3,38 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSNetService *)
 class virtual methods = object (self)
-  method virtual repr : [`NSNetService] Objc.id
-  method initWithDomain  ~l_type:(_type : [`NSString] Objc.t ) ~name:(name : [`NSString] Objc.t ) ?port:(port : int option) (domain : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithDomain_type_name_port  (domain : [`NSString] Objc.t) (_type : [`NSString] Objc.t) (name : [`NSString] Objc.t) (port : int) =
     let sel, args = (
       Objc.arg domain "initWithDomain" make_pointer_from_object
-      ++ Objc.arg _type "l_type" make_pointer_from_object
+      ++ Objc.arg _type "type" make_pointer_from_object
       ++ Objc.arg name "name" make_pointer_from_object
-      ++ Objc.opt_arg port "port" make_int
+      ++ Objc.arg port "port" make_int
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  (* skipping selector initWithDomain:l_type:name *)
+  method initWithDomain_type_name  (domain : [`NSString] Objc.t) (_type : [`NSString] Objc.t) (name : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg domain "initWithDomain" make_pointer_from_object
+      ++ Objc.arg _type "type" make_pointer_from_object
+      ++ Objc.arg name "name" make_pointer_from_object
+    ) ([],[]) in
+      (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSObject] Objc.id)
   method delegate =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "delegate")[])
        : [`NSObject] Objc.id)
   method setDelegate (delegate : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDelegate:")
       [make_pointer_from_object delegate]) : unit)
-  method scheduleInRunLoop  ~forMode:(mode : [`NSString] Objc.t ) (aRunLoop : [`NSRunLoop] Objc.t) =
+  method scheduleInRunLoop_forMode  (aRunLoop : [`NSRunLoop] Objc.t) (mode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg aRunLoop "scheduleInRunLoop" make_pointer_from_object
       ++ Objc.arg mode "forMode" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method removeFromRunLoop  ~forMode:(mode : [`NSString] Objc.t ) (aRunLoop : [`NSRunLoop] Objc.t) =
+  method removeFromRunLoop_forMode  (aRunLoop : [`NSRunLoop] Objc.t) (mode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg aRunLoop "removeFromRunLoop" make_pointer_from_object
       ++ Objc.arg mode "forMode" make_pointer_from_object
@@ -37,8 +44,8 @@ class virtual methods = object (self)
   method domain =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "domain")[])
        : [`NSString] Objc.id))
-  method l_type =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_type")[])
+  method _type =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "type")[])
        : [`NSString] Objc.id))
   method name =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "name")[])
@@ -53,7 +60,7 @@ class virtual methods = object (self)
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "stop")[])
        : unit)
 (*  UNSUPPORTED
-  method getInputStream  ~outputStream:(outputStream : (*pointer to pointer to NSOutputStream*) unsupported ) (inputStream : (*pointer to pointer to NSInputStream*) unsupported) =
+  method getInputStream_outputStream  (inputStream : (*pointer to pointer to NSInputStream*) unsupported) (outputStream : (*pointer to pointer to NSOutputStream*) unsupported) =
     let sel, args = (
       Objc.arg inputStream "getInputStream" (*pointer to pointer to NSInputStream*) unsupported
       ++ Objc.arg outputStream "outputStream" (*pointer to pointer to NSOutputStream*) unsupported
@@ -68,8 +75,8 @@ class virtual methods = object (self)
   method setTXTRecordData (recordData : [`NSData] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "setTXTRecordData:")
       [make_pointer_from_object recordData]) : bool)
-  method l_TXTRecordData =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_TXTRecordData")[])
+  method getTXTRecordData =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "TXTRecordData")[])
        : [`NSData] Objc.id))
   method startMonitoring =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "startMonitoring")[])

@@ -27,29 +27,44 @@ let _NSMacOSRomanStringEncoding = 30L
 let _NSProprietaryStringEncoding = 65536L
 
 
-class t = fun (r :[`NSString] id) -> object
-  inherit Cati_NSStringDeprecated.methods_NSString
-  inherit Cati_NSExtendedStringPropertyListParsing.methods_NSString
-  inherit Cati_NSStringExtensionMethods.methods_NSString
+class virtual methods = object
+  inherit Foundation_cati_NSURLUtilities.methods_NSString
+  inherit Foundation_cati_NSStringDeprecated.methods_NSString
+  inherit Foundation_cati_NSExtendedStringPropertyListParsing.methods_NSString
+  inherit Foundation_cati_NSStringExtensionMethods.methods_NSString
   inherit Im_NSString.methods
-  method repr = r
+  inherit Foundation_cati_NSStringPathExtensions.methods_NSString
+end
+
+class t = fun (r :[`NSString] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSString *)
 let c = Classes.find "NSString"
 let _new()= (Objc.objcnew c : [`NSString] id)
 let alloc() = (Objc.objcalloc c : [`NSString] id)
+(* class methods for category NSURLUtilities of NSString *)
 (* class methods for category NSStringDeprecated of NSString *)
-  (* skipping selector stringWithContentsOfFile *)
-  (* skipping selector stringWithContentsOfURL *)
-let stringWithCString  ?length:(length : int option) (bytes : string) =
+let stringWithContentsOfFile (path : [`NSString] Objc.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "stringWithContentsOfFile:")
+      [make_pointer_from_object path]) : [`NSString] Objc.id))
+let stringWithContentsOfURL (url : [`NSURL] Objc.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "stringWithContentsOfURL:")
+      [make_pointer_from_object url]) : [`NSString] Objc.id))
+let stringWithCString_length  (bytes : string) (length : int) =
     let sel, args = (
       Objc.arg bytes "stringWithCString" make_string
-      ++ Objc.opt_arg length "length" make_int
+      ++ Objc.arg length "length" make_int
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSString] Objc.id))
-  (* skipping selector stringWithCString *)
+let stringWithCString (bytes : string) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "stringWithCString:")
+      [make_string bytes]) : [`NSString] Objc.id))
 (* class methods for category NSExtendedStringPropertyListParsing of NSString *)
 (* class methods for category NSStringExtensionMethods of NSString *)
 let defaultCStringEncoding () =
@@ -71,7 +86,7 @@ let stringWithString (string : [`NSString] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "stringWithString:")
       [make_pointer_from_object string]) : [`NSString] Objc.id))
 (*  UNSUPPORTED
-let stringWithCharacters  ~length:(length : int ) (characters : (*pointer to const unichar*) unsupported) =
+let stringWithCharacters_length  (characters : (*pointer to const unichar*) unsupported) (length : int) =
     let sel, args = (
       Objc.arg characters "stringWithCharacters" (*pointer to const unichar*) unsupported
       ++ Objc.arg length "length" make_int
@@ -83,22 +98,46 @@ let stringWithCharacters  ~length:(length : int ) (characters : (*pointer to con
 let stringWithUTF8String (nullTerminatedCString : string) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "stringWithUTF8String:")
       [make_string nullTerminatedCString]) : [`NSString] Objc.id))
-  (* skipping selector stringWithCString:encoding *)
-let stringWithContentsOfURL  ?encoding:(enc : int64 option) ?error:(error : bool option) (url : [`NSURL] Objc.t) =
+let stringWithCString_encoding  (cString : string) (enc : int64) =
+    let sel, args = (
+      Objc.arg cString "stringWithCString" make_string
+      ++ Objc.arg enc "encoding" make_int64
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSString] Objc.id))
+let stringWithContentsOfURL_encoding_error  (url : [`NSURL] Objc.t) (enc : int64) (error : bool) =
     let sel, args = (
       Objc.arg url "stringWithContentsOfURL" make_pointer_from_object
-      ++ Objc.opt_arg enc "encoding" make_int64
-      ++ Objc.opt_arg error "error" make_error
+      ++ Objc.arg enc "encoding" make_int64
+      ++ Objc.arg error "error" make_error
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSString] Objc.id))
-let stringWithContentsOfFile  ?encoding:(enc : int64 option) ?error:(error : bool option) (path : [`NSString] Objc.t) =
+let stringWithContentsOfFile_encoding_error  (path : [`NSString] Objc.t) (enc : int64) (error : bool) =
     let sel, args = (
       Objc.arg path "stringWithContentsOfFile" make_pointer_from_object
-      ++ Objc.opt_arg enc "encoding" make_int64
-      ++ Objc.opt_arg error "error" make_error
+      ++ Objc.arg enc "encoding" make_int64
+      ++ Objc.arg error "error" make_error
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSString] Objc.id))
-  (* skipping selector stringWithContentsOfURL:usedEncoding:error *)
-  (* skipping selector stringWithContentsOfFile:usedEncoding:error *)
+let stringWithContentsOfURL_usedEncoding_error  (url : [`NSURL] Objc.t) (enc : [`NSStringEncoding] Objc.t) (error : bool) =
+    let sel, args = (
+      Objc.arg url "stringWithContentsOfURL" make_pointer_from_object
+      ++ Objc.arg enc "usedEncoding" make_pointer_from_object
+      ++ Objc.arg error "error" make_error
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSString] Objc.id))
+let stringWithContentsOfFile_usedEncoding_error  (path : [`NSString] Objc.t) (enc : [`NSStringEncoding] Objc.t) (error : bool) =
+    let sel, args = (
+      Objc.arg path "stringWithContentsOfFile" make_pointer_from_object
+      ++ Objc.arg enc "usedEncoding" make_pointer_from_object
+      ++ Objc.arg error "error" make_error
+    ) ([],[]) in
+      (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
+       : [`NSString] Objc.id))
+(* class methods for category NSStringPathExtensions of NSString *)
+let pathWithComponents (components : [`NSArray] Objc.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "pathWithComponents:")
+      [make_pointer_from_object components]) : [`NSString] Objc.id))

@@ -3,14 +3,14 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPrintOperation *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPrintOperation] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method isCopyingOperation =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isCopyingOperation")[])
        : bool)
   method runOperation =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "runOperation")[])
        : bool)
-  method runOperationModalForWindow  ~delegate:(delegate : [`NSObject] Objc.t ) ~didRunSelector:(didRunSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (docWindow : [`NSWindow] Objc.t) =
+  method runOperationModalForWindow_delegate_didRunSelector_contextInfo  (docWindow : [`NSWindow] Objc.t) (delegate : [`NSObject] Objc.t) (didRunSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg docWindow "runOperationModalForWindow" make_pointer_from_object
       ++ Objc.arg delegate "delegate" make_pointer_from_object

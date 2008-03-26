@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSScriptCommandDescription *)
 class virtual methods = object (self)
-  method virtual repr : [`NSScriptCommandDescription] Objc.id
-  method initWithSuiteName  ~commandName:(commandName : [`NSString] Objc.t ) ~dictionary:(commandDeclaration : [`NSDictionary] Objc.t ) (suiteName : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithSuiteName_commandName_dictionary  (suiteName : [`NSString] Objc.t) (commandName : [`NSString] Objc.t) (commandDeclaration : [`NSDictionary] Objc.t) =
     let sel, args = (
       Objc.arg suiteName "initWithSuiteName" make_pointer_from_object
       ++ Objc.arg commandName "commandName" make_pointer_from_object

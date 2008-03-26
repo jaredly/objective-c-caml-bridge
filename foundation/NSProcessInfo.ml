@@ -11,9 +11,15 @@ let _NSSunOSOperatingSystem = 6L
 let _NSOSF1OperatingSystem = 7L
 
 
-class t = fun (r :[`NSProcessInfo] id) -> object
+class virtual methods = object
   inherit Im_NSProcessInfo.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSProcessInfo] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSProcessInfo *)

@@ -5,9 +5,15 @@ open Objc
 let _NSOutlineViewDropOnItemIndex = -1L
 
 
-class t = fun (r :[`NSOutlineView] id) -> object
+class virtual methods = object
   inherit Im_NSOutlineView.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSOutlineView] id) -> object
+  inherit methods
+  inherit NSTableView.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSOutlineView *)

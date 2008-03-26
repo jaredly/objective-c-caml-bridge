@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTimer *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTimer] Objc.id
-  method initWithFireDate  ~interval:(ti : float ) ~target:(t : [`NSObject] Objc.t ) ~selector:(s : selector ) ~userInfo:(ui : [`NSObject] Objc.t ) ~repeats:(rep : bool ) (date : [`NSDate] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithFireDate_interval_target_selector_userInfo_repeats  (date : [`NSDate] Objc.t) (ti : float) (t : [`NSObject] Objc.t) (s : selector) (ui : [`NSObject] Objc.t) (rep : bool) =
     let sel, args = (
       Objc.arg date "initWithFireDate" make_pointer_from_object
       ++ Objc.arg ti "interval" make_float

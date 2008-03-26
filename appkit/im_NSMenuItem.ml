@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMenuItem *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMenuItem] Objc.id
-  method initWithTitle  ~action:(aSelector : selector ) ~keyEquivalent:(charCode : [`NSString] Objc.t ) (aString : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithTitle_action_keyEquivalent  (aString : [`NSString] Objc.t) (aSelector : selector) (charCode : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg aString "initWithTitle" make_pointer_from_object
       ++ Objc.arg aSelector "action" make_selector

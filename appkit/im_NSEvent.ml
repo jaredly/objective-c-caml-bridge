@@ -3,9 +3,9 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSEvent *)
 class virtual methods = object (self)
-  method virtual repr : [`NSEvent] Objc.id
-  method l_type =
-    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "l_type")[])
+  method virtual repr : [`NSObject] Objc.id
+  method _type =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "type")[])
        : int)
   method modifierFlags =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "modifierFlags")[])
@@ -34,12 +34,9 @@ class virtual methods = object (self)
   method pressure =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "pressure")[])
        : float)
-(*  UNSUPPORTED
   method locationInWindow =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "locationInWindow")[])
-       : (*NSPoint*) unsupported)
-
-*)
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "locationInWindow")[])
+       : NSPoint.t)
   method deltaX =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "deltaX")[])
        : float)
@@ -91,12 +88,9 @@ class virtual methods = object (self)
   method buttonMask =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "buttonMask")[])
        : int)
-(*  UNSUPPORTED
   method tilt =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "tilt")[])
-       : (*NSPoint*) unsupported)
-
-*)
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "tilt")[])
+       : NSPoint.t)
   method rotation =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "rotation")[])
        : float)

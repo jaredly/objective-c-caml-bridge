@@ -3,9 +3,9 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSCoder *)
 class virtual methods = object (self)
-  method virtual repr : [`NSCoder] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 (*  UNSUPPORTED
-  method encodeValueOfObjCType  ~at:(addr : (*pointer to const void*) unsupported ) (_type : string) =
+  method encodeValueOfObjCType_at  (_type : string) (addr : (*pointer to const void*) unsupported) =
     let sel, args = (
       Objc.arg _type "encodeValueOfObjCType" make_string
       ++ Objc.arg addr "at" (*pointer to const void*) unsupported
@@ -17,7 +17,7 @@ class virtual methods = object (self)
   method encodeDataObject (data : [`NSData] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "encodeDataObject:")
       [make_pointer_from_object data]) : unit)
-  method decodeValueOfObjCType  ~at:(data : [`void] Objc.t ) (_type : string) =
+  method decodeValueOfObjCType_at  (_type : string) (data : [`void] Objc.t) =
     let sel, args = (
       Objc.arg _type "decodeValueOfObjCType" make_string
       ++ Objc.arg data "at" make_pointer_from_object

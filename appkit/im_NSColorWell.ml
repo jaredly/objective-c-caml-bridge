@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSColorWell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSColorWell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method deactivate =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "deactivate")[])
        : unit)
@@ -13,12 +13,9 @@ class virtual methods = object (self)
   method isActive =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isActive")[])
        : bool)
-(*  UNSUPPORTED
-  method drawWellInside (insideRect : (*NSRect*) unsupported) =
+  method drawWellInside (insideRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawWellInside:")
-      [(*NSRect*) unsupported insideRect]) : unit)
-
-*)
+      [make_rect insideRect]) : unit)
   method isBordered =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isBordered")[])
        : bool)

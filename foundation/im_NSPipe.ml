@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPipe *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPipe] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method fileHandleForReading =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "fileHandleForReading")[])
        : [`NSFileHandle] Objc.id))

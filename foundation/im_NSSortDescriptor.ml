@@ -3,13 +3,19 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSortDescriptor *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSortDescriptor] Objc.id
-  (* skipping selector initWithKey:ascending *)
-  method initWithKey  ~ascending:(ascending : bool ) ?selector:(selector : selector option) (key : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithKey_ascending  (key : [`NSString] Objc.t) (ascending : bool) =
     let sel, args = (
       Objc.arg key "initWithKey" make_pointer_from_object
       ++ Objc.arg ascending "ascending" make_bool
-      ++ Objc.opt_arg selector "selector" make_selector
+    ) ([],[]) in
+      (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSObject] Objc.id)
+  method initWithKey_ascending_selector  (key : [`NSString] Objc.t) (ascending : bool) (selector : selector) =
+    let sel, args = (
+      Objc.arg key "initWithKey" make_pointer_from_object
+      ++ Objc.arg ascending "ascending" make_bool
+      ++ Objc.arg selector "selector" make_selector
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
@@ -22,7 +28,7 @@ class virtual methods = object (self)
   method selector =
     (get_selector (Objc.invoke Objc.tag_selector self#repr (Selector.find "selector")[])
        : selector)
-  method compareObject  ~toObject:(object2 : [`NSObject] Objc.t ) (object1 : [`NSObject] Objc.t) =
+  method compareObject_toObject  (object1 : [`NSObject] Objc.t) (object2 : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg object1 "compareObject" make_pointer_from_object
       ++ Objc.arg object2 "toObject" make_pointer_from_object

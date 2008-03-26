@@ -3,33 +3,32 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSWindow *)
 class virtual methods = object (self)
-  method virtual repr : [`NSWindow] Objc.id
-(*  UNSUPPORTED
-  method frameRectForContentRect (contentRect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "frameRectForContentRect:")
-      [(*NSRect*) unsupported contentRect]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method contentRectForFrameRect (frameRect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "contentRectForFrameRect:")
-      [(*NSRect*) unsupported frameRect]) : (*NSRect*) unsupported)
-
-*)
-  (* skipping selector initWithContentRect:styleMask:backing:defer *)
-(*  UNSUPPORTED
-  method initWithContentRect  ~styleMask:(aStyle : int ) ~backing:(bufferingType : int ) ~defer:(flag : bool ) ?screen:(screen : [`NSScreen] Objc.t option) (contentRect : (*NSRect*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method frameRectForContentRect (contentRect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "frameRectForContentRect:")
+      [make_rect contentRect]) : NSRect.t)
+  method contentRectForFrameRect (frameRect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "contentRectForFrameRect:")
+      [make_rect frameRect]) : NSRect.t)
+  method initWithContentRect_styleMask_backing_defer  (contentRect : NSRect.t) (aStyle : int) (bufferingType : int) (flag : bool) =
     let sel, args = (
-      Objc.arg contentRect "initWithContentRect" (*NSRect*) unsupported
+      Objc.arg contentRect "initWithContentRect" make_rect
       ++ Objc.arg aStyle "styleMask" make_int
       ++ Objc.arg bufferingType "backing" make_int
       ++ Objc.arg flag "defer" make_bool
-      ++ Objc.opt_arg screen "screen" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
+  method initWithContentRect_styleMask_backing_defer_screen  (contentRect : NSRect.t) (aStyle : int) (bufferingType : int) (flag : bool) (screen : [`NSScreen] Objc.t) =
+    let sel, args = (
+      Objc.arg contentRect "initWithContentRect" make_rect
+      ++ Objc.arg aStyle "styleMask" make_int
+      ++ Objc.arg bufferingType "backing" make_int
+      ++ Objc.arg flag "defer" make_bool
+      ++ Objc.arg screen "screen" make_pointer_from_object
+    ) ([],[]) in
+      (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSObject] Objc.id)
   method title =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "title")[])
        : [`NSString] Objc.id))
@@ -69,7 +68,7 @@ class virtual methods = object (self)
   method styleMask =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "styleMask")[])
        : int)
-  method fieldEditor  ~forObject:(anObject : [`NSObject] Objc.t ) (createFlag : bool) =
+  method fieldEditor_forObject  (createFlag : bool) (anObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg createFlag "fieldEditor" make_bool
       ++ Objc.arg anObject "forObject" make_pointer_from_object
@@ -79,118 +78,76 @@ class virtual methods = object (self)
   method endEditingFor (anObject : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "endEditingFor:")
       [make_pointer_from_object anObject]) : unit)
-(*  UNSUPPORTED
-  method constrainFrameRect  ~toScreen:(screen : [`NSScreen] Objc.t ) (frameRect : (*NSRect*) unsupported) =
+  method constrainFrameRect_toScreen  (frameRect : NSRect.t) (screen : [`NSScreen] Objc.t) =
     let sel, args = (
-      Objc.arg frameRect "constrainFrameRect" (*NSRect*) unsupported
+      Objc.arg frameRect "constrainFrameRect" make_rect
       ++ Objc.arg screen "toScreen" make_pointer_from_object
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
-  (* skipping selector setFrame:display *)
-(*  UNSUPPORTED
-  method setContentSize (aSize : (*NSSize*) unsupported) =
-    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContentSize:")
-      [(*NSSize*) unsupported aSize]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setFrameOrigin (aPoint : (*NSPoint*) unsupported) =
-    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameOrigin:")
-      [(*NSPoint*) unsupported aPoint]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setFrameTopLeftPoint (aPoint : (*NSPoint*) unsupported) =
-    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameTopLeftPoint:")
-      [(*NSPoint*) unsupported aPoint]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method cascadeTopLeftFromPoint (topLeftPoint : (*NSPoint*) unsupported) =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "cascadeTopLeftFromPoint:")
-      [(*NSPoint*) unsupported topLeftPoint]) : (*NSPoint*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method frame =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "frame")[])
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method animationResizeTime (newFrame : (*NSRect*) unsupported) =
-    (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "animationResizeTime:")
-      [(*NSRect*) unsupported newFrame]) : float)
-
-*)
-(*  UNSUPPORTED
-  method setFrame  ~display:(displayFlag : bool ) ?animate:(animateFlag : bool option) (frameRect : (*NSRect*) unsupported) =
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method setFrame_display  (frameRect : NSRect.t) (flag : bool) =
     let sel, args = (
-      Objc.arg frameRect "setFrame" (*NSRect*) unsupported
-      ++ Objc.arg displayFlag "display" make_bool
-      ++ Objc.opt_arg animateFlag "animate" make_bool
+      Objc.arg frameRect "setFrame" make_rect
+      ++ Objc.arg flag "display" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
+  method setContentSize (aSize : NSSize.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContentSize:")
+      [make_size aSize]) : unit)
+  method setFrameOrigin (aPoint : NSPoint.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameOrigin:")
+      [make_point aPoint]) : unit)
+  method setFrameTopLeftPoint (aPoint : NSPoint.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameTopLeftPoint:")
+      [make_point aPoint]) : unit)
+  method cascadeTopLeftFromPoint (topLeftPoint : NSPoint.t) =
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "cascadeTopLeftFromPoint:")
+      [make_point topLeftPoint]) : NSPoint.t)
+  method frame =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "frame")[])
+       : NSRect.t)
+  method animationResizeTime (newFrame : NSRect.t) =
+    (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "animationResizeTime:")
+      [make_rect newFrame]) : float)
+  method setFrame_display_animate  (frameRect : NSRect.t) (displayFlag : bool) (animateFlag : bool) =
+    let sel, args = (
+      Objc.arg frameRect "setFrame" make_rect
+      ++ Objc.arg displayFlag "display" make_bool
+      ++ Objc.arg animateFlag "animate" make_bool
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
   method setShowsResizeIndicator (show : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setShowsResizeIndicator:")
       [make_bool show]) : unit)
   method showsResizeIndicator =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "showsResizeIndicator")[])
        : bool)
-(*  UNSUPPORTED
-  method setResizeIncrements (increments : (*NSSize*) unsupported) =
+  method setResizeIncrements (increments : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setResizeIncrements:")
-      [(*NSSize*) unsupported increments]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size increments]) : unit)
   method resizeIncrements =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "resizeIncrements")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setAspectRatio (ratio : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "resizeIncrements")[])
+       : NSSize.t)
+  method setAspectRatio (ratio : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAspectRatio:")
-      [(*NSSize*) unsupported ratio]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size ratio]) : unit)
   method aspectRatio =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "aspectRatio")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setContentResizeIncrements (increments : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "aspectRatio")[])
+       : NSSize.t)
+  method setContentResizeIncrements (increments : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContentResizeIncrements:")
-      [(*NSSize*) unsupported increments]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size increments]) : unit)
   method contentResizeIncrements =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "contentResizeIncrements")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setContentAspectRatio (ratio : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "contentResizeIncrements")[])
+       : NSSize.t)
+  method setContentAspectRatio (ratio : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContentAspectRatio:")
-      [(*NSSize*) unsupported ratio]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size ratio]) : unit)
   method contentAspectRatio =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "contentAspectRatio")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "contentAspectRatio")[])
+       : NSSize.t)
   method useOptimizedDrawing (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "useOptimizedDrawing:")
       [make_bool flag]) : unit)
@@ -272,14 +229,14 @@ class virtual methods = object (self)
   method isMiniaturized =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isMiniaturized")[])
        : bool)
-  method tryToPerform  ~l_with:(anObject : [`NSObject] Objc.t ) (anAction : selector) =
+  method tryToPerform_with  (anAction : selector) (anObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg anAction "tryToPerform" make_selector
-      ++ Objc.arg anObject "l_with" make_pointer_from_object
+      ++ Objc.arg anObject "with" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method validRequestorForSendType  ~returnType:(returnType : [`NSString] Objc.t ) (sendType : [`NSString] Objc.t) =
+  method validRequestorForSendType_returnType  (sendType : [`NSString] Objc.t) (returnType : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg sendType "validRequestorForSendType" make_pointer_from_object
       ++ Objc.arg returnType "returnType" make_pointer_from_object
@@ -325,7 +282,7 @@ class virtual methods = object (self)
   method orderOut (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "orderOut:")
       [make_pointer_from_object sender]) : unit)
-  method orderWindow  ~relativeTo:(otherWin : int ) (place : int) =
+  method orderWindow_relativeTo  (place : int) (otherWin : int) =
     let sel, args = (
       Objc.arg place "orderWindow" make_int
       ++ Objc.arg otherWin "relativeTo" make_int
@@ -389,18 +346,12 @@ class virtual methods = object (self)
   method worksWhenModal =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "worksWhenModal")[])
        : bool)
-(*  UNSUPPORTED
-  method convertBaseToScreen (aPoint : (*NSPoint*) unsupported) =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "convertBaseToScreen:")
-      [(*NSPoint*) unsupported aPoint]) : (*NSPoint*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method convertScreenToBase (aPoint : (*NSPoint*) unsupported) =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "convertScreenToBase:")
-      [(*NSPoint*) unsupported aPoint]) : (*NSPoint*) unsupported)
-
-*)
+  method convertBaseToScreen (aPoint : NSPoint.t) =
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "convertBaseToScreen:")
+      [make_point aPoint]) : NSPoint.t)
+  method convertScreenToBase (aPoint : NSPoint.t) =
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "convertScreenToBase:")
+      [make_point aPoint]) : NSPoint.t)
   method performClose (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "performClose:")
       [make_pointer_from_object sender]) : unit)
@@ -419,18 +370,12 @@ class virtual methods = object (self)
   method isOneShot =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isOneShot")[])
        : bool)
-(*  UNSUPPORTED
-  method dataWithEPSInsideRect (rect : (*NSRect*) unsupported) =
+  method dataWithEPSInsideRect (rect : NSRect.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "dataWithEPSInsideRect:")
-      [(*NSRect*) unsupported rect]) : [`NSData] Objc.id))
-
-*)
-(*  UNSUPPORTED
-  method dataWithPDFInsideRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : [`NSData] Objc.id))
+  method dataWithPDFInsideRect (rect : NSRect.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "dataWithPDFInsideRect:")
-      [(*NSRect*) unsupported rect]) : [`NSData] Objc.id))
-
-*)
+      [make_rect rect]) : [`NSData] Objc.id))
   method print (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "print:")
       [make_pointer_from_object sender]) : unit)
@@ -470,18 +415,12 @@ class virtual methods = object (self)
   method level =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "level")[])
        : int)
-(*  UNSUPPORTED
-  method setDepthLimit (limit : (*NSWindowDepth*) unsupported) =
+  method setDepthLimit (limit : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDepthLimit:")
-      [(*NSWindowDepth*) unsupported limit]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_int limit]) : unit)
   method depthLimit =
-    ((*NSWindowDepth*) unsupported (Objc.invoke (*NSWindowDepth*) Objc.tag_unsupported self#repr (Selector.find "depthLimit")[])
-       : (*NSWindowDepth*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "depthLimit")[])
+       : int)
   method setDynamicDepthLimit (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDynamicDepthLimit:")
       [make_bool flag]) : unit)
@@ -536,98 +475,75 @@ class virtual methods = object (self)
   method saveFrameUsingName (name : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "saveFrameUsingName:")
       [make_pointer_from_object name]) : unit)
-  method setFrameUsingName  ?force:(force : bool option) (name : [`NSString] Objc.t) =
+  method setFrameUsingName_force  (name : [`NSString] Objc.t) (force : bool) =
     let sel, args = (
       Objc.arg name "setFrameUsingName" make_pointer_from_object
-      ++ Objc.opt_arg force "force" make_bool
+      ++ Objc.arg force "force" make_bool
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  (* skipping selector setFrameUsingName *)
+  method setFrameUsingName (name : [`NSString] Objc.t) =
+    (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "setFrameUsingName:")
+      [make_pointer_from_object name]) : bool)
   method setFrameAutosaveName (name : [`NSString] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "setFrameAutosaveName:")
       [make_pointer_from_object name]) : bool)
   method frameAutosaveName =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "frameAutosaveName")[])
        : [`NSString] Objc.id))
-(*  UNSUPPORTED
-  method cacheImageInRect (aRect : (*NSRect*) unsupported) =
+  method cacheImageInRect (aRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "cacheImageInRect:")
-      [(*NSRect*) unsupported aRect]) : unit)
-
-*)
+      [make_rect aRect]) : unit)
   method restoreCachedImage =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "restoreCachedImage")[])
        : unit)
   method discardCachedImage =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "discardCachedImage")[])
        : unit)
-(*  UNSUPPORTED
   method minSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "minSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "minSize")[])
+       : NSSize.t)
   method maxSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "maxSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setMinSize (size : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "maxSize")[])
+       : NSSize.t)
+  method setMinSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMinSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setMaxSize (size : (*NSSize*) unsupported) =
+      [make_size size]) : unit)
+  method setMaxSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMaxSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size size]) : unit)
   method contentMinSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "contentMinSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "contentMinSize")[])
+       : NSSize.t)
   method contentMaxSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "contentMaxSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setContentMinSize (size : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "contentMaxSize")[])
+       : NSSize.t)
+  method setContentMinSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContentMinSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setContentMaxSize (size : (*NSSize*) unsupported) =
+      [make_size size]) : unit)
+  method setContentMaxSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContentMaxSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-  (* skipping selector nextEventMatchingMask *)
-  method nextEventMatchingMask  ?untilDate:(expiration : [`NSDate] Objc.t option) ?inMode:(mode : [`NSString] Objc.t option) ?dequeue:(deqFlag : bool option) (mask : int) =
+      [make_size size]) : unit)
+  method nextEventMatchingMask (mask : int) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "nextEventMatchingMask:")
+      [make_int mask]) : [`NSEvent] Objc.id))
+  method nextEventMatchingMask_untilDate_inMode_dequeue  (mask : int) (expiration : [`NSDate] Objc.t) (mode : [`NSString] Objc.t) (deqFlag : bool) =
     let sel, args = (
       Objc.arg mask "nextEventMatchingMask" make_int
-      ++ Objc.opt_arg expiration "untilDate" make_pointer_from_object
-      ++ Objc.opt_arg mode "inMode" make_pointer_from_object
-      ++ Objc.opt_arg deqFlag "dequeue" make_bool
+      ++ Objc.arg expiration "untilDate" make_pointer_from_object
+      ++ Objc.arg mode "inMode" make_pointer_from_object
+      ++ Objc.arg deqFlag "dequeue" make_bool
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSEvent] Objc.id))
-  method discardEventsMatchingMask  ~beforeEvent:(lastEvent : [`NSEvent] Objc.t ) (mask : int) =
+  method discardEventsMatchingMask_beforeEvent  (mask : int) (lastEvent : [`NSEvent] Objc.t) =
     let sel, args = (
       Objc.arg mask "discardEventsMatchingMask" make_int
       ++ Objc.arg lastEvent "beforeEvent" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method postEvent  ~atStart:(flag : bool ) (event : [`NSEvent] Objc.t) =
+  method postEvent_atStart  (event : [`NSEvent] Objc.t) (flag : bool) =
     let sel, args = (
       Objc.arg event "postEvent" make_pointer_from_object
       ++ Objc.arg flag "atStart" make_bool
@@ -655,12 +571,9 @@ class virtual methods = object (self)
   method sendEvent (theEvent : [`NSEvent] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "sendEvent:")
       [make_pointer_from_object theEvent]) : unit)
-(*  UNSUPPORTED
   method mouseLocationOutsideOfEventStream =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "mouseLocationOutsideOfEventStream")[])
-       : (*NSPoint*) unsupported)
-
-*)
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "mouseLocationOutsideOfEventStream")[])
+       : NSPoint.t)
   method windowController =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "windowController")[])
        : [`NSObject] Objc.id)
@@ -676,7 +589,7 @@ class virtual methods = object (self)
   method standardWindowButton (b : int) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "standardWindowButton:")
       [make_int b]) : [`NSButton] Objc.id))
-  method addChildWindow  ~ordered:(place : int ) (childWin : [`NSWindow] Objc.t) =
+  method addChildWindow_ordered  (childWin : [`NSWindow] Objc.t) (place : int) =
     let sel, args = (
       Objc.arg childWin "addChildWindow" make_pointer_from_object
       ++ Objc.arg place "ordered" make_int

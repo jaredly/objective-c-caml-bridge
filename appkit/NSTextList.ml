@@ -5,9 +5,15 @@ open Objc
 let _NSTextListPrependEnclosingMarker = 1L
 
 
-class t = fun (r :[`NSTextList] id) -> object
+class virtual methods = object
   inherit Im_NSTextList.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSTextList] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSTextList *)

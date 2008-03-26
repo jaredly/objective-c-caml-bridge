@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSBezierPath] id) -> object
+class virtual methods = object
   inherit Im_NSBezierPath.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSBezierPath] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSBezierPath *)
@@ -13,56 +19,35 @@ let alloc() = (Objc.objcalloc c : [`NSBezierPath] id)
 let bezierPath () =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "bezierPath")[])
        : [`NSBezierPath] Objc.id))
-(*  UNSUPPORTED
-let bezierPathWithRect (rect : (*NSRect*) unsupported) =
+let bezierPathWithRect (rect : NSRect.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "bezierPathWithRect:")
-      [(*NSRect*) unsupported rect]) : [`NSBezierPath] Objc.id))
-
-*)
-(*  UNSUPPORTED
-let bezierPathWithOvalInRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : [`NSBezierPath] Objc.id))
+let bezierPathWithOvalInRect (rect : NSRect.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "bezierPathWithOvalInRect:")
-      [(*NSRect*) unsupported rect]) : [`NSBezierPath] Objc.id))
-
-*)
-(*  UNSUPPORTED
-let fillRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : [`NSBezierPath] Objc.id))
+let fillRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit c (Selector.find "fillRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-let strokeRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+let strokeRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit c (Selector.find "strokeRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-let clipRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+let clipRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit c (Selector.find "clipRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-let strokeLineFromPoint  ~toPoint:(point2 : (*NSPoint*) unsupported ) (point1 : (*NSPoint*) unsupported) =
+      [make_rect rect]) : unit)
+let strokeLineFromPoint_toPoint  (point1 : NSPoint.t) (point2 : NSPoint.t) =
     let sel, args = (
-      Objc.arg point1 "strokeLineFromPoint" (*NSPoint*) unsupported
-      ++ Objc.arg point2 "toPoint" (*NSPoint*) unsupported
+      Objc.arg point1 "strokeLineFromPoint" make_point
+      ++ Objc.arg point2 "toPoint" make_point
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit c (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-let drawPackedGlyphs  ~atPoint:(point : (*NSPoint*) unsupported ) (packedGlyphs : string) =
+let drawPackedGlyphs_atPoint  (packedGlyphs : string) (point : NSPoint.t) =
     let sel, args = (
       Objc.arg packedGlyphs "drawPackedGlyphs" make_string
-      ++ Objc.arg point "atPoint" (*NSPoint*) unsupported
+      ++ Objc.arg point "atPoint" make_point
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit c (Selector.find_list sel) args)
        : unit)
-
-*)
 let setDefaultMiterLimit (limit : float) =
     (get_unit (Objc.invoke Objc.tag_unit c (Selector.find "setDefaultMiterLimit:")
       [make_float limit]) : unit)

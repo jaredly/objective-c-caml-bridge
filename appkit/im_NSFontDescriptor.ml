@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSFontDescriptor *)
 class virtual methods = object (self)
-  method virtual repr : [`NSFontDescriptor] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method postscriptName =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "postscriptName")[])
        : [`NSString] Objc.id))

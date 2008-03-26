@@ -3,9 +3,9 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSGlyphGenerator *)
 class virtual methods = object (self)
-  method virtual repr : [`NSGlyphGenerator] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 (*  UNSUPPORTED
-  method generateGlyphsForGlyphStorage  ~desiredNumberOfCharacters:(nChars : int ) ~glyphIndex:(glyphIndex : (*pointer to unsigned int*) unsupported ) ~characterIndex:(charIndex : (*pointer to unsigned int*) unsupported ) (glyphStorage : [`NSObject] Objc.t) =
+  method generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex  (glyphStorage : [`NSObject] Objc.t) (nChars : int) (glyphIndex : (*pointer to unsigned int*) unsupported) (charIndex : (*pointer to unsigned int*) unsupported) =
     let sel, args = (
       Objc.arg glyphStorage "generateGlyphsForGlyphStorage" make_pointer_from_object
       ++ Objc.arg nChars "desiredNumberOfCharacters" make_int

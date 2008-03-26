@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSKeyedUnarchiver *)
 class virtual methods = object (self)
-  method virtual repr : [`NSKeyedUnarchiver] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initForReadingWithData (data : [`NSData] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initForReadingWithData:")
       [make_pointer_from_object data]) : [`NSObject] Objc.id)
@@ -16,7 +16,7 @@ class virtual methods = object (self)
   method finishDecoding =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "finishDecoding")[])
        : unit)
-  method setClass  ~forClassName:(codedName : [`NSString] Objc.t ) (cls : [`NSObject] Objc.t) =
+  method setClass_forClassName  (cls : [`NSObject] Objc.t) (codedName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg cls "setClass" make_pointer_from_object
       ++ Objc.arg codedName "forClassName" make_pointer_from_object
@@ -51,7 +51,7 @@ class virtual methods = object (self)
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "decodeDoubleForKey:")
       [make_pointer_from_object key]) : float)
 (*  UNSUPPORTED
-  method decodeBytesForKey  ~returnedLength:(lengthp : (*pointer to unsigned int*) unsupported ) (key : [`NSString] Objc.t) =
+  method decodeBytesForKey_returnedLength  (key : [`NSString] Objc.t) (lengthp : (*pointer to unsigned int*) unsupported) =
     let sel, args = (
       Objc.arg key "decodeBytesForKey" make_pointer_from_object
       ++ Objc.arg lengthp "returnedLength" (*pointer to unsigned int*) unsupported

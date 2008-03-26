@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSEnumerator *)
 class virtual methods = object (self)
-  method virtual repr : [`NSEnumerator] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method nextObject =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "nextObject")[])
        : [`NSObject] Objc.id)

@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMovieView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMovieView] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setMovie (movie : [`NSMovie] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMovie:")
       [make_pointer_from_object movie]) : unit)
@@ -13,12 +13,9 @@ class virtual methods = object (self)
   method movieController =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "movieController")[])
        : [`void] Objc.id))
-(*  UNSUPPORTED
   method movieRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "movieRect")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "movieRect")[])
+       : NSRect.t)
   method start (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "start:")
       [make_pointer_from_object sender]) : unit)
@@ -79,7 +76,7 @@ class virtual methods = object (self)
   method playsEveryFrame =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "playsEveryFrame")[])
        : bool)
-  method showController  ~adjustingSize:(adjustSize : bool ) (show : bool) =
+  method showController_adjustingSize  (show : bool) (adjustSize : bool) =
     let sel, args = (
       Objc.arg show "showController" make_bool
       ++ Objc.arg adjustSize "adjustingSize" make_bool
@@ -92,12 +89,9 @@ class virtual methods = object (self)
   method resizeWithMagnification (magnification : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "resizeWithMagnification:")
       [make_float magnification]) : unit)
-(*  UNSUPPORTED
   method sizeForMagnification (magnification : float) =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "sizeForMagnification:")
-      [make_float magnification]) : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "sizeForMagnification:")
+      [make_float magnification]) : NSSize.t)
   method setEditable (editable : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setEditable:")
       [make_bool editable]) : unit)
@@ -107,13 +101,9 @@ class virtual methods = object (self)
   method cut (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "cut:")
       [make_pointer_from_object sender]) : unit)
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
   method copy (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "copy:")
       [make_pointer_from_object sender]) : unit)
-
-*)
   method paste (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "paste:")
       [make_pointer_from_object sender]) : unit)

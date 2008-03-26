@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSGlyphInfo *)
 class virtual methods = object (self)
-  method virtual repr : [`NSGlyphInfo] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method glyphName =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "glyphName")[])
        : [`NSString] Objc.id))

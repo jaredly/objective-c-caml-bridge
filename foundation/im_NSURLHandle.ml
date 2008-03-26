@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSURLHandle *)
 class virtual methods = object (self)
-  method virtual repr : [`NSURLHandle] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method status =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "status")[])
        : int)
@@ -37,14 +37,14 @@ class virtual methods = object (self)
   method backgroundLoadDidFailWithReason (reason : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "backgroundLoadDidFailWithReason:")
       [make_pointer_from_object reason]) : unit)
-  method didLoadBytes  ~loadComplete:(yorn : bool ) (newBytes : [`NSData] Objc.t) =
+  method didLoadBytes_loadComplete  (newBytes : [`NSData] Objc.t) (yorn : bool) =
     let sel, args = (
       Objc.arg newBytes "didLoadBytes" make_pointer_from_object
       ++ Objc.arg yorn "loadComplete" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method initWithURL  ~cached:(willCache : bool ) (anURL : [`NSURL] Objc.t) =
+  method initWithURL_cached  (anURL : [`NSURL] Objc.t) (willCache : bool) =
     let sel, args = (
       Objc.arg anURL "initWithURL" make_pointer_from_object
       ++ Objc.arg willCache "cached" make_bool
@@ -57,7 +57,7 @@ class virtual methods = object (self)
   method propertyForKeyIfAvailable (propertyKey : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "propertyForKeyIfAvailable:")
       [make_pointer_from_object propertyKey]) : [`NSObject] Objc.id)
-  method writeProperty  ~forKey:(propertyKey : [`NSString] Objc.t ) (propertyValue : [`NSObject] Objc.t) =
+  method writeProperty_forKey  (propertyValue : [`NSObject] Objc.t) (propertyKey : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg propertyValue "writeProperty" make_pointer_from_object
       ++ Objc.arg propertyKey "forKey" make_pointer_from_object

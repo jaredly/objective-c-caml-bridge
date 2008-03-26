@@ -3,59 +3,41 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSBezierPath *)
 class virtual methods = object (self)
-  method virtual repr : [`NSBezierPath] Objc.id
-(*  UNSUPPORTED
-  method moveToPoint (point : (*NSPoint*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method moveToPoint (point : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "moveToPoint:")
-      [(*NSPoint*) unsupported point]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method lineToPoint (point : (*NSPoint*) unsupported) =
+      [make_point point]) : unit)
+  method lineToPoint (point : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "lineToPoint:")
-      [(*NSPoint*) unsupported point]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method curveToPoint  ~controlPoint1:(controlPoint1 : (*NSPoint*) unsupported ) ~controlPoint2:(controlPoint2 : (*NSPoint*) unsupported ) (endPoint : (*NSPoint*) unsupported) =
+      [make_point point]) : unit)
+  method curveToPoint_controlPoint1_controlPoint2  (endPoint : NSPoint.t) (controlPoint1 : NSPoint.t) (controlPoint2 : NSPoint.t) =
     let sel, args = (
-      Objc.arg endPoint "curveToPoint" (*NSPoint*) unsupported
-      ++ Objc.arg controlPoint1 "controlPoint1" (*NSPoint*) unsupported
-      ++ Objc.arg controlPoint2 "controlPoint2" (*NSPoint*) unsupported
+      Objc.arg endPoint "curveToPoint" make_point
+      ++ Objc.arg controlPoint1 "controlPoint1" make_point
+      ++ Objc.arg controlPoint2 "controlPoint2" make_point
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method closePath =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "closePath")[])
        : unit)
   method removeAllPoints =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "removeAllPoints")[])
        : unit)
-(*  UNSUPPORTED
-  method relativeMoveToPoint (point : (*NSPoint*) unsupported) =
+  method relativeMoveToPoint (point : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "relativeMoveToPoint:")
-      [(*NSPoint*) unsupported point]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method relativeLineToPoint (point : (*NSPoint*) unsupported) =
+      [make_point point]) : unit)
+  method relativeLineToPoint (point : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "relativeLineToPoint:")
-      [(*NSPoint*) unsupported point]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method relativeCurveToPoint  ~controlPoint1:(controlPoint1 : (*NSPoint*) unsupported ) ~controlPoint2:(controlPoint2 : (*NSPoint*) unsupported ) (endPoint : (*NSPoint*) unsupported) =
+      [make_point point]) : unit)
+  method relativeCurveToPoint_controlPoint1_controlPoint2  (endPoint : NSPoint.t) (controlPoint1 : NSPoint.t) (controlPoint2 : NSPoint.t) =
     let sel, args = (
-      Objc.arg endPoint "relativeCurveToPoint" (*NSPoint*) unsupported
-      ++ Objc.arg controlPoint1 "controlPoint1" (*NSPoint*) unsupported
-      ++ Objc.arg controlPoint2 "controlPoint2" (*NSPoint*) unsupported
+      Objc.arg endPoint "relativeCurveToPoint" make_point
+      ++ Objc.arg controlPoint1 "controlPoint1" make_point
+      ++ Objc.arg controlPoint2 "controlPoint2" make_point
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method lineWidth =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "lineWidth")[])
        : float)
@@ -92,7 +74,7 @@ class virtual methods = object (self)
   method setFlatness (flatness : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFlatness:")
       [make_float flatness]) : unit)
-  method getLineDash  ~count:(count : [`int] Objc.t ) ~phase:(phase : [`float] Objc.t ) (pattern : [`float] Objc.t) =
+  method getLineDash_count_phase  (pattern : [`float] Objc.t) (count : [`int] Objc.t) (phase : [`float] Objc.t) =
     let sel, args = (
       Objc.arg pattern "getLineDash" make_pointer_from_object
       ++ Objc.arg count "count" make_pointer_from_object
@@ -101,7 +83,7 @@ class virtual methods = object (self)
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
 (*  UNSUPPORTED
-  method setLineDash  ~count:(count : int ) ~phase:(phase : float ) (pattern : (*pointer to const float*) unsupported) =
+  method setLineDash_count_phase  (pattern : (*pointer to const float*) unsupported) (count : int) (phase : float) =
     let sel, args = (
       Objc.arg pattern "setLineDash" (*pointer to const float*) unsupported
       ++ Objc.arg count "count" make_int
@@ -135,40 +117,33 @@ class virtual methods = object (self)
   method isEmpty =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isEmpty")[])
        : bool)
-(*  UNSUPPORTED
   method currentPoint =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find "currentPoint")[])
-       : (*NSPoint*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find "currentPoint")[])
+       : NSPoint.t)
   method controlPointBounds =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "controlPointBounds")[])
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "controlPointBounds")[])
+       : NSRect.t)
   method bounds =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "bounds")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "bounds")[])
+       : NSRect.t)
   method elementCount =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "elementCount")[])
        : int)
 (*  UNSUPPORTED
-  method elementAtIndex  ?associatedPoints:(points : (*NSPointArray*) unsupported option) (index : int) =
+  method elementAtIndex_associatedPoints  (index : int) (points : (*NSPointArray*) unsupported) =
     let sel, args = (
       Objc.arg index "elementAtIndex" make_int
-      ++ Objc.opt_arg points "associatedPoints" (*NSPointArray*) unsupported
+      ++ Objc.arg points "associatedPoints" (*NSPointArray*) unsupported
     ) ([],[]) in
       (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find_list sel) args)
        : int)
 
 *)
-  (* skipping selector elementAtIndex *)
+  method elementAtIndex (index : int) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "elementAtIndex:")
+      [make_int index]) : int)
 (*  UNSUPPORTED
-  method setAssociatedPoints  ~atIndex:(index : int ) (points : (*NSPointArray*) unsupported) =
+  method setAssociatedPoints_atIndex  (points : (*NSPointArray*) unsupported) (index : int) =
     let sel, args = (
       Objc.arg points "setAssociatedPoints" (*NSPointArray*) unsupported
       ++ Objc.arg index "atIndex" make_int
@@ -180,14 +155,11 @@ class virtual methods = object (self)
   method appendBezierPath (path : [`NSBezierPath] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "appendBezierPath:")
       [make_pointer_from_object path]) : unit)
-(*  UNSUPPORTED
-  method appendBezierPathWithRect (rect : (*NSRect*) unsupported) =
+  method appendBezierPathWithRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "appendBezierPathWithRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
+      [make_rect rect]) : unit)
 (*  UNSUPPORTED
-  method appendBezierPathWithPoints  ~count:(count : int ) (points : (*NSPointArray*) unsupported) =
+  method appendBezierPathWithPoints_count  (points : (*NSPointArray*) unsupported) (count : int) =
     let sel, args = (
       Objc.arg points "appendBezierPathWithPoints" (*NSPointArray*) unsupported
       ++ Objc.arg count "count" make_int
@@ -196,39 +168,38 @@ class virtual methods = object (self)
        : unit)
 
 *)
-(*  UNSUPPORTED
-  method appendBezierPathWithOvalInRect (rect : (*NSRect*) unsupported) =
+  method appendBezierPathWithOvalInRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "appendBezierPathWithOvalInRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method appendBezierPathWithArcWithCenter  ~radius:(radius : float ) ~startAngle:(startAngle : float ) ~endAngle:(endAngle : float ) ?clockwise:(clockwise : bool option) (center : (*NSPoint*) unsupported) =
+      [make_rect rect]) : unit)
+  method appendBezierPathWithArcWithCenter_radius_startAngle_endAngle_clockwise  (center : NSPoint.t) (radius : float) (startAngle : float) (endAngle : float) (clockwise : bool) =
     let sel, args = (
-      Objc.arg center "appendBezierPathWithArcWithCenter" (*NSPoint*) unsupported
+      Objc.arg center "appendBezierPathWithArcWithCenter" make_point
       ++ Objc.arg radius "radius" make_float
       ++ Objc.arg startAngle "startAngle" make_float
       ++ Objc.arg endAngle "endAngle" make_float
-      ++ Objc.opt_arg clockwise "clockwise" make_bool
+      ++ Objc.arg clockwise "clockwise" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-  (* skipping selector appendBezierPathWithArcWithCenter:radius:startAngle:endAngle *)
-(*  UNSUPPORTED
-  method appendBezierPathWithArcFromPoint  ~toPoint:(point2 : (*NSPoint*) unsupported ) ~radius:(radius : float ) (point1 : (*NSPoint*) unsupported) =
+  method appendBezierPathWithArcWithCenter_radius_startAngle_endAngle  (center : NSPoint.t) (radius : float) (startAngle : float) (endAngle : float) =
     let sel, args = (
-      Objc.arg point1 "appendBezierPathWithArcFromPoint" (*NSPoint*) unsupported
-      ++ Objc.arg point2 "toPoint" (*NSPoint*) unsupported
+      Objc.arg center "appendBezierPathWithArcWithCenter" make_point
+      ++ Objc.arg radius "radius" make_float
+      ++ Objc.arg startAngle "startAngle" make_float
+      ++ Objc.arg endAngle "endAngle" make_float
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
+  method appendBezierPathWithArcFromPoint_toPoint_radius  (point1 : NSPoint.t) (point2 : NSPoint.t) (radius : float) =
+    let sel, args = (
+      Objc.arg point1 "appendBezierPathWithArcFromPoint" make_point
+      ++ Objc.arg point2 "toPoint" make_point
       ++ Objc.arg radius "radius" make_float
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
 (*  UNSUPPORTED
-  method appendBezierPathWithGlyph  ~inFont:(font : [`NSFont] Objc.t ) (glyph : (*NSGlyph*) unsupported) =
+  method appendBezierPathWithGlyph_inFont  (glyph : (*NSGlyph*) unsupported) (font : [`NSFont] Objc.t) =
     let sel, args = (
       Objc.arg glyph "appendBezierPathWithGlyph" (*NSGlyph*) unsupported
       ++ Objc.arg font "inFont" make_pointer_from_object
@@ -237,7 +208,7 @@ class virtual methods = object (self)
        : unit)
 
 *)
-  method appendBezierPathWithGlyphs  ~count:(count : int ) ~inFont:(font : [`NSFont] Objc.t ) (glyphs : [`NSGlyph] Objc.t) =
+  method appendBezierPathWithGlyphs_count_inFont  (glyphs : [`NSGlyph] Objc.t) (count : int) (font : [`NSFont] Objc.t) =
     let sel, args = (
       Objc.arg glyphs "appendBezierPathWithGlyphs" make_pointer_from_object
       ++ Objc.arg count "count" make_int
@@ -248,12 +219,9 @@ class virtual methods = object (self)
   method appendBezierPathWithPackedGlyphs (packedGlyphs : string) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "appendBezierPathWithPackedGlyphs:")
       [make_string packedGlyphs]) : unit)
-(*  UNSUPPORTED
-  method containsPoint (point : (*NSPoint*) unsupported) =
+  method containsPoint (point : NSPoint.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "containsPoint:")
-      [(*NSPoint*) unsupported point]) : bool)
-
-*)
+      [make_point point]) : bool)
   method cachesBezierPath =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "cachesBezierPath")[])
        : bool)

@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSNibOutletConnector *)
 class virtual methods = object (self)
-  method virtual repr : [`NSNibOutletConnector] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method establishConnection =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "establishConnection")[])
        : unit)

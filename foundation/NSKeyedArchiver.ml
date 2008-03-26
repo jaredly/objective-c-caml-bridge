@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSKeyedArchiver] id) -> object
+class virtual methods = object
   inherit Im_NSKeyedArchiver.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSKeyedArchiver] id) -> object
+  inherit methods
+  inherit NSCoder.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSKeyedArchiver *)
@@ -13,14 +19,14 @@ let alloc() = (Objc.objcalloc c : [`NSKeyedArchiver] id)
 let archivedDataWithRootObject (rootObject : [`NSObject] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "archivedDataWithRootObject:")
       [make_pointer_from_object rootObject]) : [`NSData] Objc.id))
-let archiveRootObject  ~toFile:(path : [`NSString] Objc.t ) (rootObject : [`NSObject] Objc.t) =
+let archiveRootObject_toFile  (rootObject : [`NSObject] Objc.t) (path : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg rootObject "archiveRootObject" make_pointer_from_object
       ++ Objc.arg path "toFile" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool c (Selector.find_list sel) args)
        : bool)
-let setClassName  ~forClass:(cls : [`NSObject] Objc.t ) (codedName : [`NSString] Objc.t) =
+let setClassName_forClass  (codedName : [`NSString] Objc.t) (cls : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg codedName "setClassName" make_pointer_from_object
       ++ Objc.arg cls "forClass" make_pointer_from_object

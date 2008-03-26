@@ -3,17 +3,13 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDistantObjectRequest *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDistantObjectRequest] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method invocation =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "invocation")[])
        : [`NSInvocation] Objc.id))
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
   method connection =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "connection")[])
        : [`NSConnection] Objc.id))
-
-*)
   method conversation =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "conversation")[])
        : [`NSObject] Objc.id)

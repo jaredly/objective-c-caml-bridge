@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSLock *)
 class virtual methods = object (self)
-  method virtual repr : [`NSLock] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method tryLock =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "tryLock")[])
        : bool)

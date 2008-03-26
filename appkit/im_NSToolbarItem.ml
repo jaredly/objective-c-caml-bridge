@@ -3,20 +3,16 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSToolbarItem *)
 class virtual methods = object (self)
-  method virtual repr : [`NSToolbarItem] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithItemIdentifier (itemIdentifier : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithItemIdentifier:")
       [make_pointer_from_object itemIdentifier]) : [`NSObject] Objc.id)
   method itemIdentifier =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "itemIdentifier")[])
        : [`NSString] Objc.id))
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
   method toolbar =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "toolbar")[])
        : [`NSToolbar] Objc.id))
-
-*)
   method setLabel (label : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setLabel:")
       [make_pointer_from_object label]) : unit)
@@ -77,30 +73,18 @@ class virtual methods = object (self)
   method view =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "view")[])
        : [`NSView] Objc.id))
-(*  UNSUPPORTED
-  method setMinSize (size : (*NSSize*) unsupported) =
+  method setMinSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMinSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size size]) : unit)
   method minSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "minSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setMaxSize (size : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "minSize")[])
+       : NSSize.t)
+  method setMaxSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMaxSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size size]) : unit)
   method maxSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "maxSize")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "maxSize")[])
+       : NSSize.t)
   method setVisibilityPriority (visibilityPriority : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setVisibilityPriority:")
       [make_int visibilityPriority]) : unit)

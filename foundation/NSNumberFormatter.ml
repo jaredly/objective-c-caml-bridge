@@ -24,17 +24,21 @@ let _NSNumberFormatterBehavior10_4 = 1040L
 (* let_NSNumberFormatterRoundHalfUp = ?? *)
 
 
-class t = fun (r :[`NSNumberFormatter] id) -> object
-  inherit Cati_NSNumberFormatterCompatibility.methods_NSNumberFormatter
+class virtual methods = object
   inherit Im_NSNumberFormatter.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSNumberFormatter] id) -> object
+  inherit methods
+  inherit NSFormatter.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSNumberFormatter *)
 let c = Classes.find "NSNumberFormatter"
 let _new()= (Objc.objcnew c : [`NSNumberFormatter] id)
 let alloc() = (Objc.objcalloc c : [`NSNumberFormatter] id)
-(* class methods for category NSNumberFormatterCompatibility of NSNumberFormatter *)
 let defaultFormatterBehavior () =
     (get_int (Objc.invoke Objc.tag_int c (Selector.find "defaultFormatterBehavior")[])
        : int)

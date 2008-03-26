@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSStatusBar *)
 class virtual methods = object (self)
-  method virtual repr : [`NSStatusBar] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method statusItemWithLength (length : float) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "statusItemWithLength:")
       [make_float length]) : [`NSStatusItem] Objc.id))

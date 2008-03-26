@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSearchFieldCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSearchFieldCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method searchButtonCell =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "searchButtonCell")[])
        : [`NSButtonCell] Objc.id))
@@ -22,24 +22,15 @@ class virtual methods = object (self)
   method resetCancelButtonCell =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "resetCancelButtonCell")[])
        : unit)
-(*  UNSUPPORTED
-  method searchTextRectForBounds (rect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "searchTextRectForBounds:")
-      [(*NSRect*) unsupported rect]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method searchButtonRectForBounds (rect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "searchButtonRectForBounds:")
-      [(*NSRect*) unsupported rect]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method cancelButtonRectForBounds (rect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "cancelButtonRectForBounds:")
-      [(*NSRect*) unsupported rect]) : (*NSRect*) unsupported)
-
-*)
+  method searchTextRectForBounds (rect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "searchTextRectForBounds:")
+      [make_rect rect]) : NSRect.t)
+  method searchButtonRectForBounds (rect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "searchButtonRectForBounds:")
+      [make_rect rect]) : NSRect.t)
+  method cancelButtonRectForBounds (rect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "cancelButtonRectForBounds:")
+      [make_rect rect]) : NSRect.t)
   method setSearchMenuTemplate (menu : [`NSMenu] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setSearchMenuTemplate:")
       [make_pointer_from_object menu]) : unit)

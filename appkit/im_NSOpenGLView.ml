@@ -3,17 +3,14 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSOpenGLView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSOpenGLView] Objc.id
-(*  UNSUPPORTED
-  method initWithFrame  ~pixelFormat:(format : [`NSOpenGLPixelFormat] Objc.t ) (frameRect : (*NSRect*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithFrame_pixelFormat  (frameRect : NSRect.t) (format : [`NSOpenGLPixelFormat] Objc.t) =
     let sel, args = (
-      Objc.arg frameRect "initWithFrame" (*NSRect*) unsupported
+      Objc.arg frameRect "initWithFrame" make_rect
       ++ Objc.arg format "pixelFormat" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
   method setOpenGLContext (context : [`NSOpenGLContext] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setOpenGLContext:")
       [make_pointer_from_object context]) : unit)

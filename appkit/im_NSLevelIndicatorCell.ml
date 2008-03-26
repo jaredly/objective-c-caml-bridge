@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSLevelIndicatorCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSLevelIndicatorCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithLevelIndicatorStyle (levelIndicatorStyle : int) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithLevelIndicatorStyle:")
       [make_int levelIndicatorStyle]) : [`NSObject] Objc.id)
@@ -37,18 +37,12 @@ class virtual methods = object (self)
   method setCriticalValue (criticalValue : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setCriticalValue:")
       [make_float criticalValue]) : unit)
-(*  UNSUPPORTED
-  method setTickMarkPosition (position : (*NSTickMarkPosition*) unsupported) =
+  method setTickMarkPosition (position : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTickMarkPosition:")
-      [(*NSTickMarkPosition*) unsupported position]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_int position]) : unit)
   method tickMarkPosition =
-    ((*NSTickMarkPosition*) unsupported (Objc.invoke (*NSTickMarkPosition*) Objc.tag_unsupported self#repr (Selector.find "tickMarkPosition")[])
-       : (*NSTickMarkPosition*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "tickMarkPosition")[])
+       : int)
   method setNumberOfTickMarks (count : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setNumberOfTickMarks:")
       [make_int count]) : unit)
@@ -61,12 +55,9 @@ class virtual methods = object (self)
   method numberOfMajorTickMarks =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "numberOfMajorTickMarks")[])
        : int)
-(*  UNSUPPORTED
   method rectOfTickMarkAtIndex (index : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "rectOfTickMarkAtIndex:")
-      [make_int index]) : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "rectOfTickMarkAtIndex:")
+      [make_int index]) : NSRect.t)
   method tickMarkValueAtIndex (index : int) =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "tickMarkValueAtIndex:")
       [make_int index]) : float)

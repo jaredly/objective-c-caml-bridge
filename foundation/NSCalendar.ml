@@ -6,9 +6,15 @@ open Objc
 let _NSUndefinedDateComponent = 2147483647L
 
 
-class t = fun (r :[`NSCalendar] id) -> object
+class virtual methods = object
   inherit Im_NSCalendar.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSCalendar] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSCalendar *)

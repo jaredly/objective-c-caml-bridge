@@ -122,16 +122,22 @@ let _NSPowerOffEventType = 1L
 (* let_NSTabletProximityEventSubtype = ?? *)
 
 
-class t = fun (r :[`NSEvent] id) -> object
+class virtual methods = object
   inherit Im_NSEvent.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSEvent] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSEvent *)
 let c = Classes.find "NSEvent"
 let _new()= (Objc.objcnew c : [`NSEvent] id)
 let alloc() = (Objc.objcalloc c : [`NSEvent] id)
-let startPeriodicEventsAfterDelay  ~withPeriod:(period : float ) (delay : float) =
+let startPeriodicEventsAfterDelay_withPeriod  (delay : float) (period : float) =
     let sel, args = (
       Objc.arg delay "startPeriodicEventsAfterDelay" make_float
       ++ Objc.arg period "withPeriod" make_float
@@ -141,11 +147,10 @@ let startPeriodicEventsAfterDelay  ~withPeriod:(period : float ) (delay : float)
 let stopPeriodicEvents () =
     (get_unit (Objc.invoke Objc.tag_unit c (Selector.find "stopPeriodicEvents")[])
        : unit)
-(*  UNSUPPORTED
-let mouseEventWithType  ~location:(location : (*NSPoint*) unsupported ) ~modifierFlags:(flags : int ) ~timestamp:(time : float ) ~windowNumber:(wNum : int ) ~context:(context : [`NSGraphicsContext] Objc.t ) ~eventNumber:(eNum : int ) ~clickCount:(cNum : int ) ~pressure:(pressure : float ) (_type : int) =
+let mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure  (_type : int) (location : NSPoint.t) (flags : int) (time : float) (wNum : int) (context : [`NSGraphicsContext] Objc.t) (eNum : int) (cNum : int) (pressure : float) =
     let sel, args = (
       Objc.arg _type "mouseEventWithType" make_int
-      ++ Objc.arg location "location" (*NSPoint*) unsupported
+      ++ Objc.arg location "location" make_point
       ++ Objc.arg flags "modifierFlags" make_int
       ++ Objc.arg time "timestamp" make_float
       ++ Objc.arg wNum "windowNumber" make_int
@@ -156,13 +161,10 @@ let mouseEventWithType  ~location:(location : (*NSPoint*) unsupported ) ~modifie
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSEvent] Objc.id))
-
-*)
-(*  UNSUPPORTED
-let keyEventWithType  ~location:(location : (*NSPoint*) unsupported ) ~modifierFlags:(flags : int ) ~timestamp:(time : float ) ~windowNumber:(wNum : int ) ~context:(context : [`NSGraphicsContext] Objc.t ) ~characters:(keys : [`NSString] Objc.t ) ~charactersIgnoringModifiers:(ukeys : [`NSString] Objc.t ) ~isARepeat:(flag : bool ) ~keyCode:(code : int ) (_type : int) =
+let keyEventWithType_location_modifierFlags_timestamp_windowNumber_context_characters_charactersIgnoringModifiers_isARepeat_keyCode  (_type : int) (location : NSPoint.t) (flags : int) (time : float) (wNum : int) (context : [`NSGraphicsContext] Objc.t) (keys : [`NSString] Objc.t) (ukeys : [`NSString] Objc.t) (flag : bool) (code : int) =
     let sel, args = (
       Objc.arg _type "keyEventWithType" make_int
-      ++ Objc.arg location "location" (*NSPoint*) unsupported
+      ++ Objc.arg location "location" make_point
       ++ Objc.arg flags "modifierFlags" make_int
       ++ Objc.arg time "timestamp" make_float
       ++ Objc.arg wNum "windowNumber" make_int
@@ -174,13 +176,10 @@ let keyEventWithType  ~location:(location : (*NSPoint*) unsupported ) ~modifierF
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSEvent] Objc.id))
-
-*)
-(*  UNSUPPORTED
-let enterExitEventWithType  ~location:(location : (*NSPoint*) unsupported ) ~modifierFlags:(flags : int ) ~timestamp:(time : float ) ~windowNumber:(wNum : int ) ~context:(context : [`NSGraphicsContext] Objc.t ) ~eventNumber:(eNum : int ) ~trackingNumber:(tNum : int ) ~userData:(data : [`void] Objc.t ) (_type : int) =
+let enterExitEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_trackingNumber_userData  (_type : int) (location : NSPoint.t) (flags : int) (time : float) (wNum : int) (context : [`NSGraphicsContext] Objc.t) (eNum : int) (tNum : int) (data : [`void] Objc.t) =
     let sel, args = (
       Objc.arg _type "enterExitEventWithType" make_int
-      ++ Objc.arg location "location" (*NSPoint*) unsupported
+      ++ Objc.arg location "location" make_point
       ++ Objc.arg flags "modifierFlags" make_int
       ++ Objc.arg time "timestamp" make_float
       ++ Objc.arg wNum "windowNumber" make_int
@@ -191,13 +190,10 @@ let enterExitEventWithType  ~location:(location : (*NSPoint*) unsupported ) ~mod
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSEvent] Objc.id))
-
-*)
-(*  UNSUPPORTED
-let otherEventWithType  ~location:(location : (*NSPoint*) unsupported ) ~modifierFlags:(flags : int ) ~timestamp:(time : float ) ~windowNumber:(wNum : int ) ~context:(context : [`NSGraphicsContext] Objc.t ) ~subtype:(subtype : int ) ~data1:(d1 : int ) ~data2:(d2 : int ) (_type : int) =
+let otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2  (_type : int) (location : NSPoint.t) (flags : int) (time : float) (wNum : int) (context : [`NSGraphicsContext] Objc.t) (subtype : int) (d1 : int) (d2 : int) =
     let sel, args = (
       Objc.arg _type "otherEventWithType" make_int
-      ++ Objc.arg location "location" (*NSPoint*) unsupported
+      ++ Objc.arg location "location" make_point
       ++ Objc.arg flags "modifierFlags" make_int
       ++ Objc.arg time "timestamp" make_float
       ++ Objc.arg wNum "windowNumber" make_int
@@ -208,11 +204,6 @@ let otherEventWithType  ~location:(location : (*NSPoint*) unsupported ) ~modifie
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSEvent] Objc.id))
-
-*)
-(*  UNSUPPORTED
 let mouseLocation () =
-    ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported c (Selector.find "mouseLocation")[])
-       : (*NSPoint*) unsupported)
-
-*)
+    (get_point (Objc.invoke Objc.tag_nspoint c (Selector.find "mouseLocation")[])
+       : NSPoint.t)

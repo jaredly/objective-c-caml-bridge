@@ -3,15 +3,15 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSScriptObjectSpecifier *)
 class virtual methods = object (self)
-  method virtual repr : [`NSScriptObjectSpecifier] Objc.id
-  method initWithContainerSpecifier  ~key:(property : [`NSString] Objc.t ) (container : [`NSScriptObjectSpecifier] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithContainerSpecifier_key  (container : [`NSScriptObjectSpecifier] Objc.t) (property : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg container "initWithContainerSpecifier" make_pointer_from_object
       ++ Objc.arg property "key" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithContainerClassDescription  ~containerSpecifier:(container : [`NSScriptObjectSpecifier] Objc.t ) ~key:(property : [`NSString] Objc.t ) (classDesc : [`NSScriptClassDescription] Objc.t) =
+  method initWithContainerClassDescription_containerSpecifier_key  (classDesc : [`NSScriptClassDescription] Objc.t) (container : [`NSScriptObjectSpecifier] Objc.t) (property : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg classDesc "initWithContainerClassDescription" make_pointer_from_object
       ++ Objc.arg container "containerSpecifier" make_pointer_from_object
@@ -58,7 +58,7 @@ class virtual methods = object (self)
   method keyClassDescription =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "keyClassDescription")[])
        : [`NSScriptClassDescription] Objc.id))
-  method indicesOfObjectsByEvaluatingWithContainer  ~count:(count : [`int] Objc.t ) (container : [`NSObject] Objc.t) =
+  method indicesOfObjectsByEvaluatingWithContainer_count  (container : [`NSObject] Objc.t) (count : [`int] Objc.t) =
     let sel, args = (
       Objc.arg container "indicesOfObjectsByEvaluatingWithContainer" make_pointer_from_object
       ++ Objc.arg count "count" make_pointer_from_object

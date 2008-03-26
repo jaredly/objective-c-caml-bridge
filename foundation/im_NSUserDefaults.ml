@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSUserDefaults *)
 class virtual methods = object (self)
-  method virtual repr : [`NSUserDefaults] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method init =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "init")[])
        : [`NSObject] Objc.id)
@@ -13,7 +13,7 @@ class virtual methods = object (self)
   method objectForKey (defaultName : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "objectForKey:")
       [make_pointer_from_object defaultName]) : [`NSObject] Objc.id)
-  method setObject  ~forKey:(defaultName : [`NSString] Objc.t ) (value : [`NSObject] Objc.t) =
+  method setObject_forKey  (value : [`NSObject] Objc.t) (defaultName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg value "setObject" make_pointer_from_object
       ++ Objc.arg defaultName "forKey" make_pointer_from_object
@@ -47,21 +47,21 @@ class virtual methods = object (self)
   method boolForKey (defaultName : [`NSString] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "boolForKey:")
       [make_pointer_from_object defaultName]) : bool)
-  method setInteger  ~forKey:(defaultName : [`NSString] Objc.t ) (value : int) =
+  method setInteger_forKey  (value : int) (defaultName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg value "setInteger" make_int
       ++ Objc.arg defaultName "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method setFloat  ~forKey:(defaultName : [`NSString] Objc.t ) (value : float) =
+  method setFloat_forKey  (value : float) (defaultName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg value "setFloat" make_float
       ++ Objc.arg defaultName "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method setBool  ~forKey:(defaultName : [`NSString] Objc.t ) (value : bool) =
+  method setBool_forKey  (value : bool) (defaultName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg value "setBool" make_bool
       ++ Objc.arg defaultName "forKey" make_pointer_from_object
@@ -86,7 +86,7 @@ class virtual methods = object (self)
   method volatileDomainForName (domainName : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "volatileDomainForName:")
       [make_pointer_from_object domainName]) : [`NSDictionary] Objc.id))
-  method setVolatileDomain  ~forName:(domainName : [`NSString] Objc.t ) (domain : [`NSDictionary] Objc.t) =
+  method setVolatileDomain_forName  (domain : [`NSDictionary] Objc.t) (domainName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg domain "setVolatileDomain" make_pointer_from_object
       ++ Objc.arg domainName "forName" make_pointer_from_object
@@ -102,7 +102,7 @@ class virtual methods = object (self)
   method persistentDomainForName (domainName : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "persistentDomainForName:")
       [make_pointer_from_object domainName]) : [`NSDictionary] Objc.id))
-  method setPersistentDomain  ~forName:(domainName : [`NSString] Objc.t ) (domain : [`NSDictionary] Objc.t) =
+  method setPersistentDomain_forName  (domain : [`NSDictionary] Objc.t) (domainName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg domain "setPersistentDomain" make_pointer_from_object
       ++ Objc.arg domainName "forName" make_pointer_from_object
@@ -115,11 +115,13 @@ class virtual methods = object (self)
   method synchronize =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "synchronize")[])
        : bool)
-  (* skipping selector objectIsForcedForKey *)
-  method objectIsForcedForKey  ?inDomain:(domain : [`NSString] Objc.t option) (key : [`NSString] Objc.t) =
+  method objectIsForcedForKey (key : [`NSString] Objc.t) =
+    (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "objectIsForcedForKey:")
+      [make_pointer_from_object key]) : bool)
+  method objectIsForcedForKey_inDomain  (key : [`NSString] Objc.t) (domain : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg key "objectIsForcedForKey" make_pointer_from_object
-      ++ Objc.opt_arg domain "inDomain" make_pointer_from_object
+      ++ Objc.arg domain "inDomain" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)

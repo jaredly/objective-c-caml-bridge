@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPanel *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPanel] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method isFloatingPanel =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isFloatingPanel")[])
        : bool)

@@ -3,23 +3,17 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTableHeaderCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTableHeaderCell] Objc.id
-(*  UNSUPPORTED
-  method drawSortIndicatorWithFrame  ~inView:(controlView : [`NSView] Objc.t ) ~ascending:(ascending : bool ) ~priority:(priority : int ) (cellFrame : (*NSRect*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method drawSortIndicatorWithFrame_inView_ascending_priority  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) (ascending : bool) (priority : int) =
     let sel, args = (
-      Objc.arg cellFrame "drawSortIndicatorWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawSortIndicatorWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
       ++ Objc.arg ascending "ascending" make_bool
       ++ Objc.arg priority "priority" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method sortIndicatorRectForBounds (theRect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "sortIndicatorRectForBounds:")
-      [(*NSRect*) unsupported theRect]) : (*NSRect*) unsupported)
-
-*)
+  method sortIndicatorRectForBounds (theRect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "sortIndicatorRectForBounds:")
+      [make_rect theRect]) : NSRect.t)
 end

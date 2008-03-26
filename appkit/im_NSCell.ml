@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initTextCell (aString : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initTextCell:")
       [make_pointer_from_object aString]) : [`NSObject] Objc.id)
@@ -16,8 +16,8 @@ class virtual methods = object (self)
   method setControlView (view : [`NSView] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setControlView:")
       [make_pointer_from_object view]) : unit)
-  method l_type =
-    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "l_type")[])
+  method _type =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "type")[])
        : int)
   method setType (aType : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setType:")
@@ -106,18 +106,12 @@ class virtual methods = object (self)
   method setHighlighted (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setHighlighted:")
       [make_bool flag]) : unit)
-(*  UNSUPPORTED
   method alignment =
-    ((*NSTextAlignment*) unsupported (Objc.invoke (*NSTextAlignment*) Objc.tag_unsupported self#repr (Selector.find "alignment")[])
-       : (*NSTextAlignment*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setAlignment (mode : (*NSTextAlignment*) unsupported) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "alignment")[])
+       : int)
+  method setAlignment (mode : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAlignment:")
-      [(*NSTextAlignment*) unsupported mode]) : unit)
-
-*)
+      [make_int mode]) : unit)
   method wraps =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "wraps")[])
        : bool)
@@ -139,7 +133,7 @@ class virtual methods = object (self)
   method isEntryAcceptable (aString : [`NSString] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isEntryAcceptable:")
       [make_pointer_from_object aString]) : bool)
-  method setFloatingPointFormat  ~left:(leftDigits : int ) ~right:(rightDigits : int ) (autoRange : bool) =
+  method setFloatingPointFormat_left_right  (autoRange : bool) (leftDigits : int) (rightDigits : int) =
     let sel, args = (
       Objc.arg autoRange "setFloatingPointFormat" make_bool
       ++ Objc.arg leftDigits "left" make_int
@@ -234,152 +228,109 @@ class virtual methods = object (self)
   method cellAttribute (aParameter : int) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "cellAttribute:")
       [make_int aParameter]) : int)
-  method setCellAttribute  ~l_to:(value : int ) (aParameter : int) =
+  method setCellAttribute_to  (aParameter : int) (value : int) =
     let sel, args = (
       Objc.arg aParameter "setCellAttribute" make_int
-      ++ Objc.arg value "l_to" make_int
+      ++ Objc.arg value "to" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-(*  UNSUPPORTED
-  method imageRectForBounds (theRect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "imageRectForBounds:")
-      [(*NSRect*) unsupported theRect]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method titleRectForBounds (theRect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "titleRectForBounds:")
-      [(*NSRect*) unsupported theRect]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method drawingRectForBounds (theRect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "drawingRectForBounds:")
-      [(*NSRect*) unsupported theRect]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
+  method imageRectForBounds (theRect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "imageRectForBounds:")
+      [make_rect theRect]) : NSRect.t)
+  method titleRectForBounds (theRect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "titleRectForBounds:")
+      [make_rect theRect]) : NSRect.t)
+  method drawingRectForBounds (theRect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "drawingRectForBounds:")
+      [make_rect theRect]) : NSRect.t)
   method cellSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "cellSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method cellSizeForBounds (aRect : (*NSRect*) unsupported) =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "cellSizeForBounds:")
-      [(*NSRect*) unsupported aRect]) : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method highlightColorWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "cellSize")[])
+       : NSSize.t)
+  method cellSizeForBounds (aRect : NSRect.t) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "cellSizeForBounds:")
+      [make_rect aRect]) : NSSize.t)
+  method highlightColorWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "highlightColorWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "highlightColorWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSColor] Objc.id))
-
-*)
-(*  UNSUPPORTED
-  method calcDrawInfo (aRect : (*NSRect*) unsupported) =
+  method calcDrawInfo (aRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "calcDrawInfo:")
-      [(*NSRect*) unsupported aRect]) : unit)
-
-*)
+      [make_rect aRect]) : unit)
   method setUpFieldEditorAttributes (textObj : [`NSText] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "setUpFieldEditorAttributes:")
       [make_pointer_from_object textObj]) : [`NSText] Objc.id))
-(*  UNSUPPORTED
-  method drawInteriorWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method drawInteriorWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "drawInteriorWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawInteriorWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method drawWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "drawWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method highlight  ~withFrame:(cellFrame : (*NSRect*) unsupported ) ~inView:(controlView : [`NSView] Objc.t ) (flag : bool) =
+  method highlight_withFrame_inView  (flag : bool) (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
       Objc.arg flag "highlight" make_bool
-      ++ Objc.arg cellFrame "withFrame" (*NSRect*) unsupported
+      ++ Objc.arg cellFrame "withFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method mouseDownFlags =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "mouseDownFlags")[])
        : int)
-  method getPeriodicDelay  ~interval:(interval : [`float] Objc.t ) (delay : [`float] Objc.t) =
+  method getPeriodicDelay_interval  (delay : [`float] Objc.t) (interval : [`float] Objc.t) =
     let sel, args = (
       Objc.arg delay "getPeriodicDelay" make_pointer_from_object
       ++ Objc.arg interval "interval" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-(*  UNSUPPORTED
-  method startTrackingAt  ~inView:(controlView : [`NSView] Objc.t ) (startPoint : (*NSPoint*) unsupported) =
+  method startTrackingAt_inView  (startPoint : NSPoint.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg startPoint "startTrackingAt" (*NSPoint*) unsupported
+      Objc.arg startPoint "startTrackingAt" make_point
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-
-*)
-(*  UNSUPPORTED
-  method continueTracking  ~at:(currentPoint : (*NSPoint*) unsupported ) ~inView:(controlView : [`NSView] Objc.t ) (lastPoint : (*NSPoint*) unsupported) =
+  method continueTracking_at_inView  (lastPoint : NSPoint.t) (currentPoint : NSPoint.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg lastPoint "continueTracking" (*NSPoint*) unsupported
-      ++ Objc.arg currentPoint "at" (*NSPoint*) unsupported
+      Objc.arg lastPoint "continueTracking" make_point
+      ++ Objc.arg currentPoint "at" make_point
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-
-*)
-(*  UNSUPPORTED
-  method stopTracking  ~at:(stopPoint : (*NSPoint*) unsupported ) ~inView:(controlView : [`NSView] Objc.t ) ~mouseIsUp:(flag : bool ) (lastPoint : (*NSPoint*) unsupported) =
+  method stopTracking_at_inView_mouseIsUp  (lastPoint : NSPoint.t) (stopPoint : NSPoint.t) (controlView : [`NSView] Objc.t) (flag : bool) =
     let sel, args = (
-      Objc.arg lastPoint "stopTracking" (*NSPoint*) unsupported
-      ++ Objc.arg stopPoint "at" (*NSPoint*) unsupported
+      Objc.arg lastPoint "stopTracking" make_point
+      ++ Objc.arg stopPoint "at" make_point
       ++ Objc.arg controlView "inView" make_pointer_from_object
       ++ Objc.arg flag "mouseIsUp" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method trackMouse  ~inRect:(cellFrame : (*NSRect*) unsupported ) ~ofView:(controlView : [`NSView] Objc.t ) ~untilMouseUp:(flag : bool ) (theEvent : [`NSEvent] Objc.t) =
+  method trackMouse_inRect_ofView_untilMouseUp  (theEvent : [`NSEvent] Objc.t) (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) (flag : bool) =
     let sel, args = (
       Objc.arg theEvent "trackMouse" make_pointer_from_object
-      ++ Objc.arg cellFrame "inRect" (*NSRect*) unsupported
+      ++ Objc.arg cellFrame "inRect" make_rect
       ++ Objc.arg controlView "ofView" make_pointer_from_object
       ++ Objc.arg flag "untilMouseUp" make_bool
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-
-*)
-(*  UNSUPPORTED
-  method editWithFrame  ~inView:(controlView : [`NSView] Objc.t ) ~editor:(textObj : [`NSText] Objc.t ) ~delegate:(anObject : [`NSObject] Objc.t ) ~event:(theEvent : [`NSEvent] Objc.t ) (aRect : (*NSRect*) unsupported) =
+  method editWithFrame_inView_editor_delegate_event  (aRect : NSRect.t) (controlView : [`NSView] Objc.t) (textObj : [`NSText] Objc.t) (anObject : [`NSObject] Objc.t) (theEvent : [`NSEvent] Objc.t) =
     let sel, args = (
-      Objc.arg aRect "editWithFrame" (*NSRect*) unsupported
+      Objc.arg aRect "editWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
       ++ Objc.arg textObj "editor" make_pointer_from_object
       ++ Objc.arg anObject "delegate" make_pointer_from_object
@@ -387,12 +338,9 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method selectWithFrame  ~inView:(controlView : [`NSView] Objc.t ) ~editor:(textObj : [`NSText] Objc.t ) ~delegate:(anObject : [`NSObject] Objc.t ) ~start:(selStart : int ) ~length:(selLength : int ) (aRect : (*NSRect*) unsupported) =
+  method selectWithFrame_inView_editor_delegate_start_length  (aRect : NSRect.t) (controlView : [`NSView] Objc.t) (textObj : [`NSText] Objc.t) (anObject : [`NSObject] Objc.t) (selStart : int) (selLength : int) =
     let sel, args = (
-      Objc.arg aRect "selectWithFrame" (*NSRect*) unsupported
+      Objc.arg aRect "selectWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
       ++ Objc.arg textObj "editor" make_pointer_from_object
       ++ Objc.arg anObject "delegate" make_pointer_from_object
@@ -401,68 +349,48 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method endEditing (textObj : [`NSText] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "endEditing:")
       [make_pointer_from_object textObj]) : unit)
-(*  UNSUPPORTED
-  method resetCursorRect  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method resetCursorRect_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "resetCursorRect" (*NSRect*) unsupported
+      Objc.arg cellFrame "resetCursorRect" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method setMenu (aMenu : [`NSMenu] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMenu:")
       [make_pointer_from_object aMenu]) : unit)
   method menu =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "menu")[])
        : [`NSMenu] Objc.id))
-(*  UNSUPPORTED
-  method menuForEvent  ~inRect:(cellFrame : (*NSRect*) unsupported ) ~ofView:(view : [`NSView] Objc.t ) (event : [`NSEvent] Objc.t) =
+  method menuForEvent_inRect_ofView  (event : [`NSEvent] Objc.t) (cellFrame : NSRect.t) (view : [`NSView] Objc.t) =
     let sel, args = (
       Objc.arg event "menuForEvent" make_pointer_from_object
-      ++ Objc.arg cellFrame "inRect" (*NSRect*) unsupported
+      ++ Objc.arg cellFrame "inRect" make_rect
       ++ Objc.arg view "ofView" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSMenu] Objc.id))
-
-*)
   method setSendsActionOnEndEditing (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setSendsActionOnEndEditing:")
       [make_bool flag]) : unit)
   method sendsActionOnEndEditing =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "sendsActionOnEndEditing")[])
        : bool)
-(*  UNSUPPORTED
   method baseWritingDirection =
-    ((*NSWritingDirection*) unsupported (Objc.invoke (*NSWritingDirection*) Objc.tag_unsupported self#repr (Selector.find "baseWritingDirection")[])
-       : (*NSWritingDirection*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setBaseWritingDirection (writingDirection : (*NSWritingDirection*) unsupported) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "baseWritingDirection")[])
+       : int)
+  method setBaseWritingDirection (writingDirection : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBaseWritingDirection:")
-      [(*NSWritingDirection*) unsupported writingDirection]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setLineBreakMode (mode : (*NSLineBreakMode*) unsupported) =
+      [make_int writingDirection]) : unit)
+  method setLineBreakMode (mode : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setLineBreakMode:")
-      [(*NSLineBreakMode*) unsupported mode]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_int mode]) : unit)
   method lineBreakMode =
-    ((*NSLineBreakMode*) unsupported (Objc.invoke (*NSLineBreakMode*) Objc.tag_unsupported self#repr (Selector.find "lineBreakMode")[])
-       : (*NSLineBreakMode*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "lineBreakMode")[])
+       : int)
   method setAllowsUndo (allowsUndo : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAllowsUndo:")
       [make_bool allowsUndo]) : unit)

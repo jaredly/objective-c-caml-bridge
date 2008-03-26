@@ -3,25 +3,19 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSComboBoxCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSComboBoxCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method hasVerticalScroller =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "hasVerticalScroller")[])
        : bool)
   method setHasVerticalScroller (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setHasVerticalScroller:")
       [make_bool flag]) : unit)
-(*  UNSUPPORTED
   method intercellSpacing =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "intercellSpacing")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setIntercellSpacing (aSize : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "intercellSpacing")[])
+       : NSSize.t)
+  method setIntercellSpacing (aSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setIntercellSpacing:")
-      [(*NSSize*) unsupported aSize]) : unit)
-
-*)
+      [make_size aSize]) : unit)
   method itemHeight =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "itemHeight")[])
        : float)
@@ -91,7 +85,7 @@ class virtual methods = object (self)
   method addItemsWithObjectValues (objects : [`NSArray] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addItemsWithObjectValues:")
       [make_pointer_from_object objects]) : unit)
-  method insertItemWithObjectValue  ~atIndex:(index : int ) (_object : [`NSObject] Objc.t) =
+  method insertItemWithObjectValue_atIndex  (_object : [`NSObject] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg _object "insertItemWithObjectValue" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int

@@ -1,11 +1,17 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSFormCell] id) -> object
-  inherit Cati_NSFormCellAttributedStringMethods.methods_NSFormCell
-  inherit Cati_NSKeyboardUI.methods_NSFormCell
+class virtual methods = object
+  inherit AppKit_cati_NSFormCellAttributedStringMethods.methods_NSFormCell
+  inherit AppKit_cati_NSKeyboardUI.methods_NSFormCell
   inherit Im_NSFormCell.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSFormCell] id) -> object
+  inherit methods
+  inherit NSActionCell.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSFormCell *)

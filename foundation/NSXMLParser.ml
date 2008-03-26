@@ -1,10 +1,16 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSXMLParser] id) -> object
-  inherit Cati_NSXMLParserLocatorAdditions.methods_NSXMLParser
+class virtual methods = object
+  inherit Foundation_cati_NSXMLParserLocatorAdditions.methods_NSXMLParser
   inherit Im_NSXMLParser.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSXMLParser] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSXMLParser *)

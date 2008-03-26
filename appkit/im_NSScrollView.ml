@@ -3,19 +3,13 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSScrollView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSScrollView] Objc.id
-(*  UNSUPPORTED
+  method virtual repr : [`NSObject] Objc.id
   method documentVisibleRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "documentVisibleRect")[])
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "documentVisibleRect")[])
+       : NSRect.t)
   method contentSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "contentSize")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "contentSize")[])
+       : NSSize.t)
   method setDocumentView (aView : [`NSView] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDocumentView:")
       [make_pointer_from_object aView]) : unit)
@@ -34,18 +28,12 @@ class virtual methods = object (self)
   method documentCursor =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "documentCursor")[])
        : [`NSCursor] Objc.id))
-(*  UNSUPPORTED
-  method setBorderType (aType : (*NSBorderType*) unsupported) =
+  method setBorderType (aType : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBorderType:")
-      [(*NSBorderType*) unsupported aType]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_int aType]) : unit)
   method borderType =
-    ((*NSBorderType*) unsupported (Objc.invoke (*NSBorderType*) Objc.tag_unsupported self#repr (Selector.find "borderType")[])
-       : (*NSBorderType*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "borderType")[])
+       : int)
   method setBackgroundColor (color : [`NSColor] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBackgroundColor:")
       [make_pointer_from_object color]) : unit)

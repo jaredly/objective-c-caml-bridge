@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSURLConnection *)
 class virtual methods = object (self)
-  method virtual repr : [`NSURLConnection] Objc.id
-  method initWithRequest  ~delegate:(delegate : [`NSObject] Objc.t ) (request : [`NSURLRequest] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithRequest_delegate  (request : [`NSURLRequest] Objc.t) (delegate : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg request "initWithRequest" make_pointer_from_object
       ++ Objc.arg delegate "delegate" make_pointer_from_object

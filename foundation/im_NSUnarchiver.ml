@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSUnarchiver *)
 class virtual methods = object (self)
-  method virtual repr : [`NSUnarchiver] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initForReadingWithData (data : [`NSData] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initForReadingWithData:")
       [make_pointer_from_object data]) : [`NSObject] Objc.id)
@@ -19,7 +19,7 @@ class virtual methods = object (self)
   method systemVersion =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "systemVersion")[])
        : int)
-  method decodeClassName  ~asClassName:(trueName : [`NSString] Objc.t ) (inArchiveName : [`NSString] Objc.t) =
+  method decodeClassName_asClassName  (inArchiveName : [`NSString] Objc.t) (trueName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg inArchiveName "decodeClassName" make_pointer_from_object
       ++ Objc.arg trueName "asClassName" make_pointer_from_object
@@ -29,7 +29,7 @@ class virtual methods = object (self)
   method classNameDecodedForArchiveClassName (inArchiveName : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "classNameDecodedForArchiveClassName:")
       [make_pointer_from_object inArchiveName]) : [`NSString] Objc.id))
-  method replaceObject  ~withObject:(newObject : [`NSObject] Objc.t ) (_object : [`NSObject] Objc.t) =
+  method replaceObject_withObject  (_object : [`NSObject] Objc.t) (newObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg _object "replaceObject" make_pointer_from_object
       ++ Objc.arg newObject "withObject" make_pointer_from_object

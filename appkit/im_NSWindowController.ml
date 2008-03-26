@@ -3,19 +3,21 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSWindowController *)
 class virtual methods = object (self)
-  method virtual repr : [`NSWindowController] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithWindow (window : [`NSWindow] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithWindow:")
       [make_pointer_from_object window]) : [`NSObject] Objc.id)
-  (* skipping selector initWithWindowNibName *)
-  method initWithWindowNibName  ?owner:(owner : [`NSObject] Objc.t option) (windowNibName : [`NSString] Objc.t) =
+  method initWithWindowNibName (windowNibName : [`NSString] Objc.t) =
+    (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithWindowNibName:")
+      [make_pointer_from_object windowNibName]) : [`NSObject] Objc.id)
+  method initWithWindowNibName_owner  (windowNibName : [`NSString] Objc.t) (owner : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg windowNibName "initWithWindowNibName" make_pointer_from_object
-      ++ Objc.opt_arg owner "owner" make_pointer_from_object
+      ++ Objc.arg owner "owner" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithWindowNibPath  ~owner:(owner : [`NSObject] Objc.t ) (windowNibPath : [`NSString] Objc.t) =
+  method initWithWindowNibPath_owner  (windowNibPath : [`NSString] Objc.t) (owner : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg windowNibPath "initWithWindowNibPath" make_pointer_from_object
       ++ Objc.arg owner "owner" make_pointer_from_object

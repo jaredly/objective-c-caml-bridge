@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSExpression] id) -> object
+class virtual methods = object
   inherit Im_NSExpression.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSExpression] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSExpression *)
@@ -22,7 +28,7 @@ let expressionForVariable (string : [`NSString] Objc.t) =
 let expressionForKeyPath (keyPath : [`NSString] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "expressionForKeyPath:")
       [make_pointer_from_object keyPath]) : [`NSExpression] Objc.id))
-let expressionForFunction  ~arguments:(parameters : [`NSArray] Objc.t ) (name : [`NSString] Objc.t) =
+let expressionForFunction_arguments  (name : [`NSString] Objc.t) (parameters : [`NSArray] Objc.t) =
     let sel, args = (
       Objc.arg name "expressionForFunction" make_pointer_from_object
       ++ Objc.arg parameters "arguments" make_pointer_from_object

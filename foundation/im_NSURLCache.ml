@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSURLCache *)
 class virtual methods = object (self)
-  method virtual repr : [`NSURLCache] Objc.id
-  method initWithMemoryCapacity  ~diskCapacity:(diskCapacity : int ) ~diskPath:(path : [`NSString] Objc.t ) (memoryCapacity : int) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithMemoryCapacity_diskCapacity_diskPath  (memoryCapacity : int) (diskCapacity : int) (path : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg memoryCapacity "initWithMemoryCapacity" make_int
       ++ Objc.arg diskCapacity "diskCapacity" make_int
@@ -15,7 +15,7 @@ class virtual methods = object (self)
   method cachedResponseForRequest (request : [`NSURLRequest] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "cachedResponseForRequest:")
       [make_pointer_from_object request]) : [`NSCachedURLResponse] Objc.id))
-  method storeCachedResponse  ~forRequest:(request : [`NSURLRequest] Objc.t ) (cachedResponse : [`NSCachedURLResponse] Objc.t) =
+  method storeCachedResponse_forRequest  (cachedResponse : [`NSCachedURLResponse] Objc.t) (request : [`NSURLRequest] Objc.t) =
     let sel, args = (
       Objc.arg cachedResponse "storeCachedResponse" make_pointer_from_object
       ++ Objc.arg request "forRequest" make_pointer_from_object

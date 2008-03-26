@@ -1,16 +1,22 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSValueTransformer] id) -> object
+class virtual methods = object
   inherit Im_NSValueTransformer.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSValueTransformer] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSValueTransformer *)
 let c = Classes.find "NSValueTransformer"
 let _new()= (Objc.objcnew c : [`NSValueTransformer] id)
 let alloc() = (Objc.objcalloc c : [`NSValueTransformer] id)
-let setValueTransformer  ~forName:(name : [`NSString] Objc.t ) (transformer : [`NSValueTransformer] Objc.t) =
+let setValueTransformer_forName  (transformer : [`NSValueTransformer] Objc.t) (name : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg transformer "setValueTransformer" make_pointer_from_object
       ++ Objc.arg name "forName" make_pointer_from_object

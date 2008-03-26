@@ -3,5 +3,5 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSNull *)
 class virtual methods = object (self)
-  method virtual repr : [`NSNull] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 end

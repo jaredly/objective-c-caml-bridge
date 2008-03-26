@@ -1,10 +1,16 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSPasteboard] id) -> object
-  inherit Cati_NSFileContents.methods_NSPasteboard
+class virtual methods = object
+  inherit AppKit_cati_NSFileContents.methods_NSPasteboard
   inherit Im_NSPasteboard.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSPasteboard] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSPasteboard *)
@@ -27,7 +33,7 @@ let typesFilterableTo (_type : [`NSString] Objc.t) =
 let pasteboardByFilteringFile (filename : [`NSString] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "pasteboardByFilteringFile:")
       [make_pointer_from_object filename]) : [`NSPasteboard] Objc.id))
-let pasteboardByFilteringData  ~ofType:(_type : [`NSString] Objc.t ) (data : [`NSData] Objc.t) =
+let pasteboardByFilteringData_ofType  (data : [`NSData] Objc.t) (_type : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg data "pasteboardByFilteringData" make_pointer_from_object
       ++ Objc.arg _type "ofType" make_pointer_from_object

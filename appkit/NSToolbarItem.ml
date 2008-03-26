@@ -8,9 +8,15 @@ let _NSToolbarItemVisibilityPriorityHigh = 1000L
 let _NSToolbarItemVisibilityPriorityUser = 2000L
 
 
-class t = fun (r :[`NSToolbarItem] id) -> object
+class virtual methods = object
   inherit Im_NSToolbarItem.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSToolbarItem] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSToolbarItem *)

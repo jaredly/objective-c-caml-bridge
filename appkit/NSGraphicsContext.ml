@@ -1,11 +1,17 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSGraphicsContext] id) -> object
-  inherit Cati_NSQuartzCoreAdditions.methods_NSGraphicsContext
-  inherit Cati_NSGraphicsContext_RenderingOptions.methods_NSGraphicsContext
+class virtual methods = object
+  inherit AppKit_cati_NSQuartzCoreAdditions.methods_NSGraphicsContext
+  inherit AppKit_cati_NSGraphicsContext_RenderingOptions.methods_NSGraphicsContext
   inherit Im_NSGraphicsContext.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSGraphicsContext] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSGraphicsContext *)
@@ -23,7 +29,7 @@ let graphicsContextWithWindow (window : [`NSWindow] Objc.t) =
 let graphicsContextWithBitmapImageRep (bitmapRep : [`NSBitmapImageRep] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "graphicsContextWithBitmapImageRep:")
       [make_pointer_from_object bitmapRep]) : [`NSGraphicsContext] Objc.id))
-let graphicsContextWithGraphicsPort  ~flipped:(initialFlippedState : bool ) (graphicsPort : [`void] Objc.t) =
+let graphicsContextWithGraphicsPort_flipped  (graphicsPort : [`void] Objc.t) (initialFlippedState : bool) =
     let sel, args = (
       Objc.arg graphicsPort "graphicsContextWithGraphicsPort" make_pointer_from_object
       ++ Objc.arg initialFlippedState "flipped" make_bool

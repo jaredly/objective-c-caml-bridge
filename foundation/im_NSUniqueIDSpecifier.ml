@@ -3,10 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSUniqueIDSpecifier *)
 class virtual methods = object (self)
-  method virtual repr : [`NSUniqueIDSpecifier] Objc.id
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
-  method initWithContainerClassDescription  ~containerSpecifier:(container : [`NSScriptObjectSpecifier] Objc.t ) ~key:(property : [`NSString] Objc.t ) ~uniqueID:(uniqueID : [`NSObject] Objc.t ) (classDesc : [`NSScriptClassDescription] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithContainerClassDescription_containerSpecifier_key_uniqueID  (classDesc : [`NSScriptClassDescription] Objc.t) (container : [`NSScriptObjectSpecifier] Objc.t) (property : [`NSString] Objc.t) (uniqueID : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg classDesc "initWithContainerClassDescription" make_pointer_from_object
       ++ Objc.arg container "containerSpecifier" make_pointer_from_object
@@ -15,8 +13,6 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
   method uniqueID =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "uniqueID")[])
        : [`NSObject] Objc.id)

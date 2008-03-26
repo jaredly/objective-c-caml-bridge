@@ -3,22 +3,16 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSBox *)
 class virtual methods = object (self)
-  method virtual repr : [`NSBox] Objc.id
-(*  UNSUPPORTED
+  method virtual repr : [`NSObject] Objc.id
   method borderType =
-    ((*NSBorderType*) unsupported (Objc.invoke (*NSBorderType*) Objc.tag_unsupported self#repr (Selector.find "borderType")[])
-       : (*NSBorderType*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "borderType")[])
+       : int)
   method titlePosition =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "titlePosition")[])
        : int)
-(*  UNSUPPORTED
-  method setBorderType (aType : (*NSBorderType*) unsupported) =
+  method setBorderType (aType : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBorderType:")
-      [(*NSBorderType*) unsupported aType]) : unit)
-
-*)
+      [make_int aType]) : unit)
   method setBoxType (boxType : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBoxType:")
       [make_int boxType]) : unit)
@@ -40,42 +34,27 @@ class virtual methods = object (self)
   method setTitleFont (fontObj : [`NSFont] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTitleFont:")
       [make_pointer_from_object fontObj]) : unit)
-(*  UNSUPPORTED
   method borderRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "borderRect")[])
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "borderRect")[])
+       : NSRect.t)
   method titleRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "titleRect")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "titleRect")[])
+       : NSRect.t)
   method titleCell =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "titleCell")[])
        : [`NSObject] Objc.id)
   method sizeToFit =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "sizeToFit")[])
        : unit)
-(*  UNSUPPORTED
   method contentViewMargins =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "contentViewMargins")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setContentViewMargins (offsetSize : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "contentViewMargins")[])
+       : NSSize.t)
+  method setContentViewMargins (offsetSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContentViewMargins:")
-      [(*NSSize*) unsupported offsetSize]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setFrameFromContentFrame (contentFrame : (*NSRect*) unsupported) =
+      [make_size offsetSize]) : unit)
+  method setFrameFromContentFrame (contentFrame : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameFromContentFrame:")
-      [(*NSRect*) unsupported contentFrame]) : unit)
-
-*)
+      [make_rect contentFrame]) : unit)
   method contentView =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "contentView")[])
        : [`NSObject] Objc.id)

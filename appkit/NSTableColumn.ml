@@ -7,9 +7,15 @@ let _NSTableColumnAutoresizingMask = 1L
 let _NSTableColumnUserResizingMask = 2L
 
 
-class t = fun (r :[`NSTableColumn] id) -> object
+class virtual methods = object
   inherit Im_NSTableColumn.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSTableColumn] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSTableColumn *)

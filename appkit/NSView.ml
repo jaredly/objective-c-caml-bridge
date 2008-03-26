@@ -11,12 +11,20 @@ let _NSViewHeightSizable = 16L
 let _NSViewMaxYMargin = 32L
 
 
-class t = fun (r :[`NSView] id) -> object
-  inherit Cati_NSDrag.methods_NSView
-  inherit Cati_NSPrinting.methods_NSView
-  inherit Cati_NSKeyboardUI.methods_NSView
+class virtual methods = object
+  inherit AppKit_cati_NSDrag.methods_NSView
+  inherit AppKit_cati_NSPrinting.methods_NSView
+  inherit AppKit_cati_NSKeyboardUI.methods_NSView
   inherit Im_NSView.methods
-  method repr = r
+  inherit AppKit_cati_NSRulerMarkerClientViewDelegation.methods_NSView
+  inherit AppKit_cati_NSClipViewSuperview.methods_NSView
+end
+
+class t = fun (r :[`NSView] id) -> object
+  inherit methods
+  inherit NSResponder.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSView *)
@@ -35,3 +43,5 @@ let focusView () =
 let defaultMenu () =
     ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "defaultMenu")[])
        : [`NSMenu] Objc.id))
+(* class methods for category NSRulerMarkerClientViewDelegation of NSView *)
+(* class methods for category NSClipViewSuperview of NSView *)

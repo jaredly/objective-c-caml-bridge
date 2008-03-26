@@ -1,12 +1,18 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSFileHandle] id) -> object
-  inherit Cati_NSFileHandlePlatformSpecific.methods_NSFileHandle
-  inherit Cati_NSFileHandleAsynchronousAccess.methods_NSFileHandle
-  inherit Cati_NSFileHandleCreation.methods_NSFileHandle
+class virtual methods = object
+  inherit Foundation_cati_NSFileHandlePlatformSpecific.methods_NSFileHandle
+  inherit Foundation_cati_NSFileHandleAsynchronousAccess.methods_NSFileHandle
+  inherit Foundation_cati_NSFileHandleCreation.methods_NSFileHandle
   inherit Im_NSFileHandle.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSFileHandle] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSFileHandle *)

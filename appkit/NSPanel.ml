@@ -13,9 +13,15 @@ let _NSDocModalWindowMask = 64L
 let _NSNonactivatingPanelMask = 128L
 
 
-class t = fun (r :[`NSPanel] id) -> object
+class virtual methods = object
   inherit Im_NSPanel.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSPanel] id) -> object
+  inherit methods
+  inherit NSWindow.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSPanel *)

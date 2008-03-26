@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSFileHandle *)
 class virtual methods = object (self)
-  method virtual repr : [`NSFileHandle] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method availableData =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "availableData")[])
        : [`NSData] Objc.id))

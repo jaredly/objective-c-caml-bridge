@@ -1,16 +1,22 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSRulerView] id) -> object
+class virtual methods = object
   inherit Im_NSRulerView.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSRulerView] id) -> object
+  inherit methods
+  inherit NSView.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSRulerView *)
 let c = Classes.find "NSRulerView"
 let _new()= (Objc.objcnew c : [`NSRulerView] id)
 let alloc() = (Objc.objcalloc c : [`NSRulerView] id)
-let registerUnitWithName  ~abbreviation:(abbreviation : [`NSString] Objc.t ) ~unitToPointsConversionFactor:(conversionFactor : float ) ~stepUpCycle:(stepUpCycle : [`NSArray] Objc.t ) ~stepDownCycle:(stepDownCycle : [`NSArray] Objc.t ) (unitName : [`NSString] Objc.t) =
+let registerUnitWithName_abbreviation_unitToPointsConversionFactor_stepUpCycle_stepDownCycle  (unitName : [`NSString] Objc.t) (abbreviation : [`NSString] Objc.t) (conversionFactor : float) (stepUpCycle : [`NSArray] Objc.t) (stepDownCycle : [`NSArray] Objc.t) =
     let sel, args = (
       Objc.arg unitName "registerUnitWithName" make_pointer_from_object
       ++ Objc.arg abbreviation "abbreviation" make_pointer_from_object

@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTask *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTask] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method init =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "init")[])
        : [`NSObject] Objc.id)

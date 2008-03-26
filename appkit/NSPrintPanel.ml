@@ -23,9 +23,15 @@ let _NSPPPaperFeedButton = 55L
 let _NSPPLayoutButton = 56L
 
 
-class t = fun (r :[`NSPrintPanel] id) -> object
+class virtual methods = object
   inherit Im_NSPrintPanel.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSPrintPanel] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSPrintPanel *)

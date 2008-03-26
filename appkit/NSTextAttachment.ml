@@ -5,9 +5,15 @@ open Objc
 let _NSAttachmentCharacter = 65532L
 
 
-class t = fun (r :[`NSTextAttachment] id) -> object
+class virtual methods = object
   inherit Im_NSTextAttachment.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSTextAttachment] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSTextAttachment *)

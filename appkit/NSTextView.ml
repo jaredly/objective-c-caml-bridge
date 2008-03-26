@@ -1,13 +1,19 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSTextView] id) -> object
-  inherit Cati_NSSharing.methods_NSTextView
-  inherit Cati_NSDragging.methods_NSTextView
-  inherit Cati_NSPasteboard.methods_NSTextView
-  inherit Cati_NSCompletion.methods_NSTextView
+class virtual methods = object
+  inherit AppKit_cati_NSSharing.methods_NSTextView
+  inherit AppKit_cati_NSDragging.methods_NSTextView
+  inherit AppKit_cati_NSPasteboard.methods_NSTextView
+  inherit AppKit_cati_NSCompletion.methods_NSTextView
   inherit Im_NSTextView.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSTextView] id) -> object
+  inherit methods
+  inherit NSText.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSTextView *)

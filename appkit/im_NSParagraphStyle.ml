@@ -3,19 +3,16 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSParagraphStyle *)
 class virtual methods = object (self)
-  method virtual repr : [`NSParagraphStyle] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method lineSpacing =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "lineSpacing")[])
        : float)
   method paragraphSpacing =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "paragraphSpacing")[])
        : float)
-(*  UNSUPPORTED
   method alignment =
-    ((*NSTextAlignment*) unsupported (Objc.invoke (*NSTextAlignment*) Objc.tag_unsupported self#repr (Selector.find "alignment")[])
-       : (*NSTextAlignment*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "alignment")[])
+       : int)
   method headIndent =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "headIndent")[])
        : float)
@@ -37,12 +34,9 @@ class virtual methods = object (self)
   method lineBreakMode =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "lineBreakMode")[])
        : int)
-(*  UNSUPPORTED
   method baseWritingDirection =
-    ((*NSWritingDirection*) unsupported (Objc.invoke (*NSWritingDirection*) Objc.tag_unsupported self#repr (Selector.find "baseWritingDirection")[])
-       : (*NSWritingDirection*) unsupported)
-
-*)
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "baseWritingDirection")[])
+       : int)
   method lineHeightMultiple =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "lineHeightMultiple")[])
        : float)

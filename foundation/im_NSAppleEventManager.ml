@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSAppleEventManager *)
 class virtual methods = object (self)
-  method virtual repr : [`NSAppleEventManager] Objc.id
-  method setEventHandler  ~andSelector:(handleEventSelector : selector ) ~forEventClass:(eventClass : int64 ) ~andEventID:(eventID : int64 ) (handler : [`NSObject] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method setEventHandler_andSelector_forEventClass_andEventID  (handler : [`NSObject] Objc.t) (handleEventSelector : selector) (eventClass : int64) (eventID : int64) =
     let sel, args = (
       Objc.arg handler "setEventHandler" make_pointer_from_object
       ++ Objc.arg handleEventSelector "andSelector" make_selector
@@ -13,7 +13,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method removeEventHandlerForEventClass  ~andEventID:(eventID : int64 ) (eventClass : int64) =
+  method removeEventHandlerForEventClass_andEventID  (eventClass : int64) (eventID : int64) =
     let sel, args = (
       Objc.arg eventClass "removeEventHandlerForEventClass" make_int64
       ++ Objc.arg eventID "andEventID" make_int64
@@ -21,7 +21,7 @@ class virtual methods = object (self)
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
 (*  UNSUPPORTED
-  method dispatchRawAppleEvent  ~withRawReply:(theReply : [`AppleEvent] Objc.t ) ~handlerRefCon:(handlerRefCon : int64 ) (theAppleEvent : (*pointer to const AppleEvent*) unsupported) =
+  method dispatchRawAppleEvent_withRawReply_handlerRefCon  (theAppleEvent : (*pointer to const AppleEvent*) unsupported) (theReply : [`AppleEvent] Objc.t) (handlerRefCon : int64) =
     let sel, args = (
       Objc.arg theAppleEvent "dispatchRawAppleEvent" (*pointer to const AppleEvent*) unsupported
       ++ Objc.arg theReply "withRawReply" make_pointer_from_object

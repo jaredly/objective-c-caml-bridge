@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTabView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTabView] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method selectTabViewItem (tabViewItem : [`NSTabViewItem] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "selectTabViewItem:")
       [make_pointer_from_object tabViewItem]) : unit)
@@ -43,12 +43,9 @@ class virtual methods = object (self)
   method allowsTruncatedLabels =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "allowsTruncatedLabels")[])
        : bool)
-(*  UNSUPPORTED
   method minimumSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "minimumSize")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "minimumSize")[])
+       : NSSize.t)
   method drawsBackground =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "drawsBackground")[])
        : bool)
@@ -79,7 +76,7 @@ class virtual methods = object (self)
   method addTabViewItem (tabViewItem : [`NSTabViewItem] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addTabViewItem:")
       [make_pointer_from_object tabViewItem]) : unit)
-  method insertTabViewItem  ~atIndex:(index : int ) (tabViewItem : [`NSTabViewItem] Objc.t) =
+  method insertTabViewItem_atIndex  (tabViewItem : [`NSTabViewItem] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg tabViewItem "insertTabViewItem" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
@@ -95,18 +92,12 @@ class virtual methods = object (self)
   method delegate =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "delegate")[])
        : [`NSObject] Objc.id)
-(*  UNSUPPORTED
-  method tabViewItemAtPoint (point : (*NSPoint*) unsupported) =
+  method tabViewItemAtPoint (point : NSPoint.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "tabViewItemAtPoint:")
-      [(*NSPoint*) unsupported point]) : [`NSTabViewItem] Objc.id))
-
-*)
-(*  UNSUPPORTED
+      [make_point point]) : [`NSTabViewItem] Objc.id))
   method contentRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "contentRect")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "contentRect")[])
+       : NSRect.t)
   method numberOfTabViewItems =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "numberOfTabViewItems")[])
        : int)

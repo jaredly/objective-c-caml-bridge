@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSURLCredential *)
 class virtual methods = object (self)
-  method virtual repr : [`NSURLCredential] Objc.id
-  method initWithUser  ~password:(password : [`NSString] Objc.t ) ~persistence:(persistence : int ) (user : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithUser_password_persistence  (user : [`NSString] Objc.t) (password : [`NSString] Objc.t) (persistence : int) =
     let sel, args = (
       Objc.arg user "initWithUser" make_pointer_from_object
       ++ Objc.arg password "password" make_pointer_from_object

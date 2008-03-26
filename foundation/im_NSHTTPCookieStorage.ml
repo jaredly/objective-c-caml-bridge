@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSHTTPCookieStorage *)
 class virtual methods = object (self)
-  method virtual repr : [`NSHTTPCookieStorage] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method cookies =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "cookies")[])
        : [`NSArray] Objc.id))
@@ -16,7 +16,7 @@ class virtual methods = object (self)
   method cookiesForURL (_URL : [`NSURL] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "cookiesForURL:")
       [make_pointer_from_object _URL]) : [`NSArray] Objc.id))
-  method setCookies  ~forURL:(_URL : [`NSURL] Objc.t ) ~mainDocumentURL:(mainDocumentURL : [`NSURL] Objc.t ) (cookies : [`NSArray] Objc.t) =
+  method setCookies_forURL_mainDocumentURL  (cookies : [`NSArray] Objc.t) (_URL : [`NSURL] Objc.t) (mainDocumentURL : [`NSURL] Objc.t) =
     let sel, args = (
       Objc.arg cookies "setCookies" make_pointer_from_object
       ++ Objc.arg _URL "forURL" make_pointer_from_object

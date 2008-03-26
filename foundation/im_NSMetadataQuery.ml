@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMetadataQuery *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMetadataQuery] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method init =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "init")[])
        : [`NSObject] Objc.id)
@@ -88,7 +88,7 @@ class virtual methods = object (self)
   method groupedResults =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "groupedResults")[])
        : [`NSArray] Objc.id))
-  method valueOfAttribute  ~forResultAtIndex:(idx : int ) (attrName : [`NSString] Objc.t) =
+  method valueOfAttribute_forResultAtIndex  (attrName : [`NSString] Objc.t) (idx : int) =
     let sel, args = (
       Objc.arg attrName "valueOfAttribute" make_pointer_from_object
       ++ Objc.arg idx "forResultAtIndex" make_int

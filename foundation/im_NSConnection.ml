@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSConnection *)
 class virtual methods = object (self)
-  method virtual repr : [`NSConnection] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method statistics =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "statistics")[])
        : [`NSDictionary] Objc.id))
@@ -55,15 +55,17 @@ class virtual methods = object (self)
   method requestModes =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "requestModes")[])
        : [`NSArray] Objc.id))
-  (* skipping selector registerName *)
-  method registerName  ?withNameServer:(server : [`NSPortNameServer] Objc.t option) (name : [`NSString] Objc.t) =
+  method registerName (name : [`NSString] Objc.t) =
+    (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "registerName:")
+      [make_pointer_from_object name]) : bool)
+  method registerName_withNameServer  (name : [`NSString] Objc.t) (server : [`NSPortNameServer] Objc.t) =
     let sel, args = (
       Objc.arg name "registerName" make_pointer_from_object
-      ++ Objc.opt_arg server "withNameServer" make_pointer_from_object
+      ++ Objc.arg server "withNameServer" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method initWithReceivePort  ~sendPort:(sendPort : [`NSPort] Objc.t ) (receivePort : [`NSPort] Objc.t) =
+  method initWithReceivePort_sendPort  (receivePort : [`NSPort] Objc.t) (sendPort : [`NSPort] Objc.t) =
     let sel, args = (
       Objc.arg receivePort "initWithReceivePort" make_pointer_from_object
       ++ Objc.arg sendPort "sendPort" make_pointer_from_object

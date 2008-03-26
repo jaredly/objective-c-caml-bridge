@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSInputManager *)
 class virtual methods = object (self)
-  method virtual repr : [`NSInputManager] Objc.id
-  method initWithName  ~host:(hostName : [`NSString] Objc.t ) (inputServerName : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithName_host  (inputServerName : [`NSString] Objc.t) (hostName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg inputServerName "initWithName" make_pointer_from_object
       ++ Objc.arg hostName "host" make_pointer_from_object
@@ -17,7 +17,7 @@ class virtual methods = object (self)
   method markedTextAbandoned (cli : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "markedTextAbandoned:")
       [make_pointer_from_object cli]) : unit)
-  method markedTextSelectionChanged  ~client:(cli : [`NSObject] Objc.t ) (newSel : int * int) =
+  method markedTextSelectionChanged_client  (newSel : NSRange.t) (cli : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg newSel "markedTextSelectionChanged" make_range
       ++ Objc.arg cli "client" make_pointer_from_object

@@ -3,26 +3,26 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDocument *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDocument] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method init =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "init")[])
        : [`NSObject] Objc.id)
-  method initWithType  ~error:(outError : bool ) (typeName : [`NSString] Objc.t) =
+  method initWithType_error  (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg typeName "initWithType" make_pointer_from_object
       ++ Objc.arg outError "error" make_error
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithContentsOfURL  ~ofType:(typeName : [`NSString] Objc.t ) ?error:(outError : bool option) (absoluteURL : [`NSURL] Objc.t) =
+  method initWithContentsOfURL_ofType_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg absoluteURL "initWithContentsOfURL" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
-      ++ Objc.opt_arg outError "error" make_error
+      ++ Objc.arg outError "error" make_error
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initForURL  ~withContentsOfURL:(absoluteDocumentContentsURL : [`NSURL] Objc.t ) ~ofType:(typeName : [`NSString] Objc.t ) ~error:(outError : bool ) (absoluteDocumentURL : [`NSURL] Objc.t) =
+  method initForURL_withContentsOfURL_ofType_error  (absoluteDocumentURL : [`NSURL] Objc.t) (absoluteDocumentContentsURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg absoluteDocumentURL "initForURL" make_pointer_from_object
       ++ Objc.arg absoluteDocumentContentsURL "withContentsOfURL" make_pointer_from_object
@@ -55,7 +55,7 @@ class virtual methods = object (self)
       [make_pointer_from_object sender]) : (*IBAction*) unsupported)
 
 *)
-  method revertToContentsOfURL  ~ofType:(typeName : [`NSString] Objc.t ) ~error:(outError : bool ) (absoluteURL : [`NSURL] Objc.t) =
+  method revertToContentsOfURL_ofType_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg absoluteURL "revertToContentsOfURL" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
@@ -63,15 +63,15 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method readFromURL  ~ofType:(typeName : [`NSString] Objc.t ) ?error:(outError : bool option) (absoluteURL : [`NSURL] Objc.t) =
+  method readFromURL_ofType_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg absoluteURL "readFromURL" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
-      ++ Objc.opt_arg outError "error" make_error
+      ++ Objc.arg outError "error" make_error
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method readFromFileWrapper  ~ofType:(typeName : [`NSString] Objc.t ) ~error:(outError : bool ) (fileWrapper : [`NSFileWrapper] Objc.t) =
+  method readFromFileWrapper_ofType_error  (fileWrapper : [`NSFileWrapper] Objc.t) (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg fileWrapper "readFromFileWrapper" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
@@ -79,7 +79,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method readFromData  ~ofType:(typeName : [`NSString] Objc.t ) ~error:(outError : bool ) (data : [`NSData] Objc.t) =
+  method readFromData_ofType_error  (data : [`NSData] Objc.t) (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg data "readFromData" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
@@ -87,22 +87,29 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  (* skipping selector writeToURL:ofType:error *)
-  method fileWrapperOfType  ~error:(outError : bool ) (typeName : [`NSString] Objc.t) =
+  method writeToURL_ofType_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (outError : bool) =
+    let sel, args = (
+      Objc.arg absoluteURL "writeToURL" make_pointer_from_object
+      ++ Objc.arg typeName "ofType" make_pointer_from_object
+      ++ Objc.arg outError "error" make_error
+    ) ([],[]) in
+      (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
+       : bool)
+  method fileWrapperOfType_error  (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg typeName "fileWrapperOfType" make_pointer_from_object
       ++ Objc.arg outError "error" make_error
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSFileWrapper] Objc.id))
-  method dataOfType  ~error:(outError : bool ) (typeName : [`NSString] Objc.t) =
+  method dataOfType_error  (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg typeName "dataOfType" make_pointer_from_object
       ++ Objc.arg outError "error" make_error
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSData] Objc.id))
-  method writeSafelyToURL  ~ofType:(typeName : [`NSString] Objc.t ) ~forSaveOperation:(saveOperation : int ) ~error:(outError : bool ) (absoluteURL : [`NSURL] Objc.t) =
+  method writeSafelyToURL_ofType_forSaveOperation_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (saveOperation : int) (outError : bool) =
     let sel, args = (
       Objc.arg absoluteURL "writeSafelyToURL" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
@@ -111,17 +118,17 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method writeToURL  ?ofType:(typeName : [`NSString] Objc.t option) ?forSaveOperation:(saveOperation : int option) ?originalContentsURL:(absoluteOriginalContentsURL : [`NSURL] Objc.t option) ?error:(outError : bool option) (absoluteURL : [`NSURL] Objc.t) =
+  method writeToURL_ofType_forSaveOperation_originalContentsURL_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (saveOperation : int) (absoluteOriginalContentsURL : [`NSURL] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg absoluteURL "writeToURL" make_pointer_from_object
-      ++ Objc.opt_arg typeName "ofType" make_pointer_from_object
-      ++ Objc.opt_arg saveOperation "forSaveOperation" make_int
-      ++ Objc.opt_arg absoluteOriginalContentsURL "originalContentsURL" make_pointer_from_object
-      ++ Objc.opt_arg outError "error" make_error
+      ++ Objc.arg typeName "ofType" make_pointer_from_object
+      ++ Objc.arg saveOperation "forSaveOperation" make_int
+      ++ Objc.arg absoluteOriginalContentsURL "originalContentsURL" make_pointer_from_object
+      ++ Objc.arg outError "error" make_error
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-  method fileAttributesToWriteToURL  ~ofType:(typeName : [`NSString] Objc.t ) ~forSaveOperation:(saveOperation : int ) ~originalContentsURL:(absoluteOriginalContentsURL : [`NSURL] Objc.t ) ~error:(outError : bool ) (absoluteURL : [`NSURL] Objc.t) =
+  method fileAttributesToWriteToURL_ofType_forSaveOperation_originalContentsURL_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (saveOperation : int) (absoluteOriginalContentsURL : [`NSURL] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg absoluteURL "fileAttributesToWriteToURL" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
@@ -152,7 +159,7 @@ class virtual methods = object (self)
       [make_pointer_from_object sender]) : (*IBAction*) unsupported)
 
 *)
-  method saveDocumentWithDelegate  ~didSaveSelector:(didSaveSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (delegate : [`NSObject] Objc.t) =
+  method saveDocumentWithDelegate_didSaveSelector_contextInfo  (delegate : [`NSObject] Objc.t) (didSaveSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg delegate "saveDocumentWithDelegate" make_pointer_from_object
       ++ Objc.arg didSaveSelector "didSaveSelector" make_selector
@@ -160,7 +167,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method runModalSavePanelForSaveOperation  ~delegate:(delegate : [`NSObject] Objc.t ) ~didSaveSelector:(didSaveSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (saveOperation : int) =
+  method runModalSavePanelForSaveOperation_delegate_didSaveSelector_contextInfo  (saveOperation : int) (delegate : [`NSObject] Objc.t) (didSaveSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg saveOperation "runModalSavePanelForSaveOperation" make_int
       ++ Objc.arg delegate "delegate" make_pointer_from_object
@@ -181,7 +188,7 @@ class virtual methods = object (self)
   method fileTypeFromLastRunSavePanel =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "fileTypeFromLastRunSavePanel")[])
        : [`NSString] Objc.id))
-  method saveToURL  ~ofType:(typeName : [`NSString] Objc.t ) ~forSaveOperation:(saveOperation : int ) ~delegate:(delegate : [`NSObject] Objc.t ) ~didSaveSelector:(didSaveSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (absoluteURL : [`NSURL] Objc.t) =
+  method saveToURL_ofType_forSaveOperation_delegate_didSaveSelector_contextInfo  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (saveOperation : int) (delegate : [`NSObject] Objc.t) (didSaveSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg absoluteURL "saveToURL" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
@@ -192,11 +199,19 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  (* skipping selector saveToURL:ofType:forSaveOperation:error *)
+  method saveToURL_ofType_forSaveOperation_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (saveOperation : int) (outError : bool) =
+    let sel, args = (
+      Objc.arg absoluteURL "saveToURL" make_pointer_from_object
+      ++ Objc.arg typeName "ofType" make_pointer_from_object
+      ++ Objc.arg saveOperation "forSaveOperation" make_int
+      ++ Objc.arg outError "error" make_error
+    ) ([],[]) in
+      (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
+       : bool)
   method hasUnautosavedChanges =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "hasUnautosavedChanges")[])
        : bool)
-  method autosaveDocumentWithDelegate  ~didAutosaveSelector:(didAutosaveSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (delegate : [`NSObject] Objc.t) =
+  method autosaveDocumentWithDelegate_didAutosaveSelector_contextInfo  (delegate : [`NSObject] Objc.t) (didAutosaveSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg delegate "autosaveDocumentWithDelegate" make_pointer_from_object
       ++ Objc.arg didAutosaveSelector "didAutosaveSelector" make_selector
@@ -213,7 +228,7 @@ class virtual methods = object (self)
   method autosavedContentsFileURL =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "autosavedContentsFileURL")[])
        : [`NSURL] Objc.id))
-  method canCloseDocumentWithDelegate  ~shouldCloseSelector:(shouldCloseSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (delegate : [`NSObject] Objc.t) =
+  method canCloseDocumentWithDelegate_shouldCloseSelector_contextInfo  (delegate : [`NSObject] Objc.t) (shouldCloseSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg delegate "canCloseDocumentWithDelegate" make_pointer_from_object
       ++ Objc.arg shouldCloseSelector "shouldCloseSelector" make_selector
@@ -230,12 +245,12 @@ class virtual methods = object (self)
       [make_pointer_from_object sender]) : (*IBAction*) unsupported)
 
 *)
-  method runModalPageLayoutWithPrintInfo  ?delegate:(delegate : [`NSObject] Objc.t option) ?didRunSelector:(didRunSelector : selector option) ?contextInfo:(contextInfo : [`void] Objc.t option) (printInfo : [`NSPrintInfo] Objc.t) =
+  method runModalPageLayoutWithPrintInfo_delegate_didRunSelector_contextInfo  (printInfo : [`NSPrintInfo] Objc.t) (delegate : [`NSObject] Objc.t) (didRunSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg printInfo "runModalPageLayoutWithPrintInfo" make_pointer_from_object
-      ++ Objc.opt_arg delegate "delegate" make_pointer_from_object
-      ++ Objc.opt_arg didRunSelector "didRunSelector" make_selector
-      ++ Objc.opt_arg contextInfo "contextInfo" make_pointer_from_object
+      ++ Objc.arg delegate "delegate" make_pointer_from_object
+      ++ Objc.arg didRunSelector "didRunSelector" make_selector
+      ++ Objc.arg contextInfo "contextInfo" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
@@ -257,7 +272,7 @@ class virtual methods = object (self)
       [make_pointer_from_object sender]) : (*IBAction*) unsupported)
 
 *)
-  method printDocumentWithSettings  ~showPrintPanel:(showPrintPanel : bool ) ~delegate:(delegate : [`NSObject] Objc.t ) ~didPrintSelector:(didPrintSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (printSettings : [`NSDictionary] Objc.t) =
+  method printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo  (printSettings : [`NSDictionary] Objc.t) (showPrintPanel : bool) (delegate : [`NSObject] Objc.t) (didPrintSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg printSettings "printDocumentWithSettings" make_pointer_from_object
       ++ Objc.arg showPrintPanel "showPrintPanel" make_bool
@@ -267,14 +282,14 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method printOperationWithSettings  ~error:(outError : bool ) (printSettings : [`NSDictionary] Objc.t) =
+  method printOperationWithSettings_error  (printSettings : [`NSDictionary] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg printSettings "printOperationWithSettings" make_pointer_from_object
       ++ Objc.arg outError "error" make_error
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSPrintOperation] Objc.id))
-  method runModalPrintOperation  ~delegate:(delegate : [`NSObject] Objc.t ) ~didRunSelector:(didRunSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (printOperation : [`NSPrintOperation] Objc.t) =
+  method runModalPrintOperation_delegate_didRunSelector_contextInfo  (printOperation : [`NSPrintOperation] Objc.t) (delegate : [`NSObject] Objc.t) (didRunSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg printOperation "runModalPrintOperation" make_pointer_from_object
       ++ Objc.arg delegate "delegate" make_pointer_from_object
@@ -301,17 +316,19 @@ class virtual methods = object (self)
   method setHasUndoManager (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setHasUndoManager:")
       [make_bool flag]) : unit)
-  method presentError  ?modalForWindow:(window : [`NSWindow] Objc.t option) ?delegate:(delegate : [`NSObject] Objc.t option) ?didPresentSelector:(didPresentSelector : selector option) ?contextInfo:(contextInfo : [`void] Objc.t option) (error : [`NSError] Objc.t) =
+  method presentError_modalForWindow_delegate_didPresentSelector_contextInfo  (error : [`NSError] Objc.t) (window : [`NSWindow] Objc.t) (delegate : [`NSObject] Objc.t) (didPresentSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg error "presentError" make_pointer_from_object
-      ++ Objc.opt_arg window "modalForWindow" make_pointer_from_object
-      ++ Objc.opt_arg delegate "delegate" make_pointer_from_object
-      ++ Objc.opt_arg didPresentSelector "didPresentSelector" make_selector
-      ++ Objc.opt_arg contextInfo "contextInfo" make_pointer_from_object
+      ++ Objc.arg window "modalForWindow" make_pointer_from_object
+      ++ Objc.arg delegate "delegate" make_pointer_from_object
+      ++ Objc.arg didPresentSelector "didPresentSelector" make_selector
+      ++ Objc.arg contextInfo "contextInfo" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  (* skipping selector presentError *)
+  method presentError (error : [`NSError] Objc.t) =
+    (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "presentError:")
+      [make_pointer_from_object error]) : bool)
   method willPresentError (error : [`NSError] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "willPresentError:")
       [make_pointer_from_object error]) : [`NSError] Objc.id))
@@ -333,7 +350,7 @@ class virtual methods = object (self)
   method showWindows =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "showWindows")[])
        : unit)
-  method shouldCloseWindowController  ~delegate:(delegate : [`NSObject] Objc.t ) ~shouldCloseSelector:(callback : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (windowController : [`NSWindowController] Objc.t) =
+  method shouldCloseWindowController_delegate_shouldCloseSelector_contextInfo  (windowController : [`NSWindowController] Objc.t) (delegate : [`NSObject] Objc.t) (callback : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg windowController "shouldCloseWindowController" make_pointer_from_object
       ++ Objc.arg delegate "delegate" make_pointer_from_object

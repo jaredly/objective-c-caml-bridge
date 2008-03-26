@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSScriptCommand *)
 class virtual methods = object (self)
-  method virtual repr : [`NSScriptCommand] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithCommandDescription (commandDef : [`NSScriptCommandDescription] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithCommandDescription:")
       [make_pointer_from_object commandDef]) : [`NSObject] Objc.id)

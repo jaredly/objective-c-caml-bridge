@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSBundle] id) -> object
+class virtual methods = object
   inherit Im_NSBundle.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSBundle] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSBundle *)
@@ -28,7 +34,7 @@ let allBundles () =
 let allFrameworks () =
     ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "allFrameworks")[])
        : [`NSArray] Objc.id))
-let pathForResource  ~ofType:(ext : [`NSString] Objc.t ) ~inDirectory:(bundlePath : [`NSString] Objc.t ) (name : [`NSString] Objc.t) =
+let pathForResource_ofType_inDirectory  (name : [`NSString] Objc.t) (ext : [`NSString] Objc.t) (bundlePath : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg name "pathForResource" make_pointer_from_object
       ++ Objc.arg ext "ofType" make_pointer_from_object
@@ -36,18 +42,20 @@ let pathForResource  ~ofType:(ext : [`NSString] Objc.t ) ~inDirectory:(bundlePat
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSString] Objc.id))
-let pathsForResourcesOfType  ~inDirectory:(bundlePath : [`NSString] Objc.t ) (ext : [`NSString] Objc.t) =
+let pathsForResourcesOfType_inDirectory  (ext : [`NSString] Objc.t) (bundlePath : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg ext "pathsForResourcesOfType" make_pointer_from_object
       ++ Objc.arg bundlePath "inDirectory" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSArray] Objc.id))
-  (* skipping selector preferredLocalizationsFromArray *)
-let preferredLocalizationsFromArray  ?forPreferences:(preferencesArray : [`NSArray] Objc.t option) (localizationsArray : [`NSArray] Objc.t) =
+let preferredLocalizationsFromArray (localizationsArray : [`NSArray] Objc.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "preferredLocalizationsFromArray:")
+      [make_pointer_from_object localizationsArray]) : [`NSArray] Objc.id))
+let preferredLocalizationsFromArray_forPreferences  (localizationsArray : [`NSArray] Objc.t) (preferencesArray : [`NSArray] Objc.t) =
     let sel, args = (
       Objc.arg localizationsArray "preferredLocalizationsFromArray" make_pointer_from_object
-      ++ Objc.opt_arg preferencesArray "forPreferences" make_pointer_from_object
+      ++ Objc.arg preferencesArray "forPreferences" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSArray] Objc.id))

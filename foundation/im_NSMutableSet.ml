@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMutableSet *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMutableSet] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method addObject (_object : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addObject:")
       [make_pointer_from_object _object]) : unit)

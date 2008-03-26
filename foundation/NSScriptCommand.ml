@@ -15,9 +15,15 @@ let _NSOperationNotSupportedForKeyScriptError = 9L
 let _NSCannotCreateScriptCommandError = 10L
 
 
-class t = fun (r :[`NSScriptCommand] id) -> object
+class virtual methods = object
   inherit Im_NSScriptCommand.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSScriptCommand] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSScriptCommand *)

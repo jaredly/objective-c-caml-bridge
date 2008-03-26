@@ -3,5 +3,5 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPropertySpecifier *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPropertySpecifier] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 end

@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDirectoryEnumerator *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDirectoryEnumerator] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method fileAttributes =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "fileAttributes")[])
        : [`NSDictionary] Objc.id))

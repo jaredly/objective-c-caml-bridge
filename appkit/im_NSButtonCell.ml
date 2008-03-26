@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSButtonCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSButtonCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method title =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "title")[])
        : [`NSString] Objc.id))
@@ -22,18 +22,12 @@ class virtual methods = object (self)
   method setAlternateImage (image : [`NSImage] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAlternateImage:")
       [make_pointer_from_object image]) : unit)
-(*  UNSUPPORTED
   method imagePosition =
-    ((*NSCellImagePosition*) unsupported (Objc.invoke (*NSCellImagePosition*) Objc.tag_unsupported self#repr (Selector.find "imagePosition")[])
-       : (*NSCellImagePosition*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setImagePosition (aPosition : (*NSCellImagePosition*) unsupported) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "imagePosition")[])
+       : int)
+  method setImagePosition (aPosition : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setImagePosition:")
-      [(*NSCellImagePosition*) unsupported aPosition]) : unit)
-
-*)
+      [make_int aPosition]) : unit)
   method highlightsBy =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "highlightsBy")[])
        : int)
@@ -61,14 +55,14 @@ class virtual methods = object (self)
   method setTransparent (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTransparent:")
       [make_bool flag]) : unit)
-  method setPeriodicDelay  ~interval:(interval : float ) (delay : float) =
+  method setPeriodicDelay_interval  (delay : float) (interval : float) =
     let sel, args = (
       Objc.arg delay "setPeriodicDelay" make_float
       ++ Objc.arg interval "interval" make_float
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method getPeriodicDelay  ~interval:(interval : [`float] Objc.t ) (delay : [`float] Objc.t) =
+  method getPeriodicDelay_interval  (delay : [`float] Objc.t) (interval : [`float] Objc.t) =
     let sel, args = (
       Objc.arg delay "getPeriodicDelay" make_pointer_from_object
       ++ Objc.arg interval "interval" make_pointer_from_object
@@ -93,40 +87,37 @@ class virtual methods = object (self)
   method setKeyEquivalentFont (fontObj : [`NSFont] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setKeyEquivalentFont:")
       [make_pointer_from_object fontObj]) : unit)
-  (* skipping selector setKeyEquivalentFont:size *)
+  method setKeyEquivalentFont_size  (fontName : [`NSString] Objc.t) (fontSize : float) =
+    let sel, args = (
+      Objc.arg fontName "setKeyEquivalentFont" make_pointer_from_object
+      ++ Objc.arg fontSize "size" make_float
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
   method performClick (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "performClick:")
       [make_pointer_from_object sender]) : unit)
-(*  UNSUPPORTED
-  method drawImage  ~withFrame:(frame : (*NSRect*) unsupported ) ~inView:(controlView : [`NSView] Objc.t ) (image : [`NSImage] Objc.t) =
+  method drawImage_withFrame_inView  (image : [`NSImage] Objc.t) (frame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
       Objc.arg image "drawImage" make_pointer_from_object
-      ++ Objc.arg frame "withFrame" (*NSRect*) unsupported
+      ++ Objc.arg frame "withFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawTitle  ~withFrame:(frame : (*NSRect*) unsupported ) ~inView:(controlView : [`NSView] Objc.t ) (title : [`NSAttributedString] Objc.t) =
+  method drawTitle_withFrame_inView  (title : [`NSAttributedString] Objc.t) (frame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
       Objc.arg title "drawTitle" make_pointer_from_object
-      ++ Objc.arg frame "withFrame" (*NSRect*) unsupported
+      ++ Objc.arg frame "withFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method drawBezelWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (frame : (*NSRect*) unsupported) =
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method drawBezelWithFrame_inView  (frame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg frame "drawBezelWithFrame" (*NSRect*) unsupported
+      Objc.arg frame "drawBezelWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
 end

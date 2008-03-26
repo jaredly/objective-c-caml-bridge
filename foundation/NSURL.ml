@@ -1,10 +1,16 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSURL] id) -> object
-  inherit Cati_NSURLLoading.methods_NSURL
+class virtual methods = object
+  inherit Foundation_cati_NSURLLoading.methods_NSURL
   inherit Im_NSURL.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSURL] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSURL *)
@@ -15,11 +21,13 @@ let alloc() = (Objc.objcalloc c : [`NSURL] id)
 let fileURLWithPath (path : [`NSString] Objc.t) =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "fileURLWithPath:")
       [make_pointer_from_object path]) : [`NSURL] Objc.id))
-  (* skipping selector l_URLWithString *)
-let l_URLWithString  ?relativeToURL:(baseURL : [`NSURL] Objc.t option) (_URLString : [`NSString] Objc.t) =
+let urlWithString (_URLString : [`NSString] Objc.t) =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "URLWithString:")
+      [make_pointer_from_object _URLString]) : [`NSURL] Objc.id))
+let urlWithString_relativeToURL  (_URLString : [`NSString] Objc.t) (baseURL : [`NSURL] Objc.t) =
     let sel, args = (
-      Objc.arg _URLString "l_URLWithString" make_pointer_from_object
-      ++ Objc.opt_arg baseURL "relativeToURL" make_pointer_from_object
+      Objc.arg _URLString "URLWithString" make_pointer_from_object
+      ++ Objc.arg baseURL "relativeToURL" make_pointer_from_object
     ) ([],[]) in
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSURL] Objc.id))

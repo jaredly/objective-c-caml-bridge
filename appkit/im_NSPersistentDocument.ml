@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPersistentDocument *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPersistentDocument] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method managedObjectContext =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "managedObjectContext")[])
        : [`NSManagedObjectContext] Objc.id))
@@ -13,7 +13,7 @@ class virtual methods = object (self)
   method managedObjectModel =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "managedObjectModel")[])
        : [`NSObject] Objc.id)
-  method configurePersistentStoreCoordinatorForURL  ~ofType:(fileType : [`NSString] Objc.t ) ~error:(error : bool ) (url : [`NSURL] Objc.t) =
+  method configurePersistentStoreCoordinatorForURL_ofType_error  (url : [`NSURL] Objc.t) (fileType : [`NSString] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg url "configurePersistentStoreCoordinatorForURL" make_pointer_from_object
       ++ Objc.arg fileType "ofType" make_pointer_from_object
@@ -24,9 +24,7 @@ class virtual methods = object (self)
   method persistentStoreTypeForFileType (fileType : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "persistentStoreTypeForFileType:")
       [make_pointer_from_object fileType]) : [`NSString] Objc.id))
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
-  method writeToURL  ~ofType:(typeName : [`NSString] Objc.t ) ~forSaveOperation:(saveOperation : int ) ~originalContentsURL:(absoluteOriginalContentsURL : [`NSURL] Objc.t ) ~error:(error : bool ) (absoluteURL : [`NSURL] Objc.t) =
+  method writeToURL_ofType_forSaveOperation_originalContentsURL_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (saveOperation : int) (absoluteOriginalContentsURL : [`NSURL] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg absoluteURL "writeToURL" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
@@ -36,11 +34,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-
-*)
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
-  method readFromURL  ~ofType:(typeName : [`NSString] Objc.t ) ~error:(error : bool ) (absoluteURL : [`NSURL] Objc.t) =
+  method readFromURL_ofType_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg absoluteURL "readFromURL" make_pointer_from_object
       ++ Objc.arg typeName "ofType" make_pointer_from_object
@@ -48,9 +42,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-
-*)
-  method revertToContentsOfURL  ~ofType:(inTypeName : [`NSString] Objc.t ) ~error:(outError : bool ) (inAbsoluteURL : [`NSURL] Objc.t) =
+  method revertToContentsOfURL_ofType_error  (inAbsoluteURL : [`NSURL] Objc.t) (inTypeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg inAbsoluteURL "revertToContentsOfURL" make_pointer_from_object
       ++ Objc.arg inTypeName "ofType" make_pointer_from_object

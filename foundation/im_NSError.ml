@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSError *)
 class virtual methods = object (self)
-  method virtual repr : [`NSError] Objc.id
-  method initWithDomain  ~code:(code : int ) ~userInfo:(dict : [`NSDictionary] Objc.t ) (domain : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithDomain_code_userInfo  (domain : [`NSString] Objc.t) (code : int) (dict : [`NSDictionary] Objc.t) =
     let sel, args = (
       Objc.arg domain "initWithDomain" make_pointer_from_object
       ++ Objc.arg code "code" make_int

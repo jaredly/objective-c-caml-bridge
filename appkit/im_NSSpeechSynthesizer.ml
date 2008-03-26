@@ -3,15 +3,17 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSpeechSynthesizer *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSpeechSynthesizer] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithVoice (voice : [`NSString] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithVoice:")
       [make_pointer_from_object voice]) : [`NSObject] Objc.id)
-  (* skipping selector startSpeakingString *)
-  method startSpeakingString  ?toURL:(url : [`NSURL] Objc.t option) (string : [`NSString] Objc.t) =
+  method startSpeakingString (string : [`NSString] Objc.t) =
+    (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "startSpeakingString:")
+      [make_pointer_from_object string]) : bool)
+  method startSpeakingString_toURL  (string : [`NSString] Objc.t) (url : [`NSURL] Objc.t) =
     let sel, args = (
       Objc.arg string "startSpeakingString" make_pointer_from_object
-      ++ Objc.opt_arg url "toURL" make_pointer_from_object
+      ++ Objc.arg url "toURL" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)

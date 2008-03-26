@@ -3,29 +3,41 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSText *)
 class virtual methods = object (self)
-  method virtual repr : [`NSText] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method string =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "string")[])
        : [`NSString] Objc.id))
   method setString (string : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setString:")
       [make_pointer_from_object string]) : unit)
-  method replaceCharactersInRange  ?withString:(aString : [`NSString] Objc.t option) (range : int * int) =
+  method replaceCharactersInRange_withString  (range : NSRange.t) (aString : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg range "replaceCharactersInRange" make_range
-      ++ Objc.opt_arg aString "withString" make_pointer_from_object
+      ++ Objc.arg aString "withString" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  (* skipping selector replaceCharactersInRange:withRTF *)
-  (* skipping selector replaceCharactersInRange:withRTFD *)
-  method l_RTFFromRange (range : int * int) =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_RTFFromRange:")
+  method replaceCharactersInRange_withRTF  (range : NSRange.t) (rtfData : [`NSData] Objc.t) =
+    let sel, args = (
+      Objc.arg range "replaceCharactersInRange" make_range
+      ++ Objc.arg rtfData "withRTF" make_pointer_from_object
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
+  method replaceCharactersInRange_withRTFD  (range : NSRange.t) (rtfdData : [`NSData] Objc.t) =
+    let sel, args = (
+      Objc.arg range "replaceCharactersInRange" make_range
+      ++ Objc.arg rtfdData "withRTFD" make_pointer_from_object
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
+  method _RTFFromRange (range : NSRange.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "RTFFromRange:")
       [make_range range]) : [`NSData] Objc.id))
-  method l_RTFDFromRange (range : int * int) =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_RTFDFromRange:")
+  method _RTFDFromRange (range : NSRange.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "RTFDFromRange:")
       [make_range range]) : [`NSData] Objc.id))
-  method writeRTFDToFile  ~atomically:(flag : bool ) (path : [`NSString] Objc.t) =
+  method writeRTFDToFile_atomically  (path : [`NSString] Objc.t) (flag : bool) =
     let sel, args = (
       Objc.arg path "writeRTFDToFile" make_pointer_from_object
       ++ Objc.arg flag "atomically" make_bool
@@ -77,11 +89,15 @@ class virtual methods = object (self)
   method drawsBackground =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "drawsBackground")[])
        : bool)
-  (* skipping selector setFont *)
+  method setFont (obj : [`NSFont] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFont:")
+      [make_pointer_from_object obj]) : unit)
   method font =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "font")[])
        : [`NSFont] Objc.id))
-  (* skipping selector setTextColor *)
+  method setTextColor (color : [`NSColor] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTextColor:")
+      [make_pointer_from_object color]) : unit)
   method textColor =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "textColor")[])
        : [`NSColor] Objc.id))
@@ -103,17 +119,17 @@ class virtual methods = object (self)
   method isFieldEditor =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isFieldEditor")[])
        : bool)
-  method setTextColor  ?range:(range : (int * int) option) (color : [`NSColor] Objc.t) =
+  method setTextColor_range  (color : [`NSColor] Objc.t) (range : NSRange.t) =
     let sel, args = (
       Objc.arg color "setTextColor" make_pointer_from_object
-      ++ Objc.opt_arg range "range" make_range
+      ++ Objc.arg range "range" make_range
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method setFont  ?range:(range : (int * int) option) (font : [`NSFont] Objc.t) =
+  method setFont_range  (font : [`NSFont] Objc.t) (range : NSRange.t) =
     let sel, args = (
       Objc.arg font "setFont" make_pointer_from_object
-      ++ Objc.opt_arg range "range" make_range
+      ++ Objc.arg range "range" make_range
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
@@ -123,30 +139,18 @@ class virtual methods = object (self)
   method setUsesFontPanel (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setUsesFontPanel:")
       [make_bool flag]) : unit)
-(*  UNSUPPORTED
   method maxSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "maxSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setMaxSize (newMaxSize : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "maxSize")[])
+       : NSSize.t)
+  method setMaxSize (newMaxSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMaxSize:")
-      [(*NSSize*) unsupported newMaxSize]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size newMaxSize]) : unit)
   method minSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "minSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setMinSize (newMinSize : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "minSize")[])
+       : NSSize.t)
+  method setMinSize (newMinSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMinSize:")
-      [(*NSSize*) unsupported newMinSize]) : unit)
-
-*)
+      [make_size newMinSize]) : unit)
   method isHorizontallyResizable =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isHorizontallyResizable")[])
        : bool)
@@ -162,13 +166,9 @@ class virtual methods = object (self)
   method sizeToFit =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "sizeToFit")[])
        : unit)
-(*  UNSUPPORTED
-(* unsupported: breaks compilation somewhere *)
   method copy (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "copy:")
       [make_pointer_from_object sender]) : unit)
-
-*)
   method copyFont (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "copyFont:")
       [make_pointer_from_object sender]) : unit)
@@ -231,11 +231,11 @@ class virtual methods = object (self)
        : bool)
   method selectedRange =
     (get_range (Objc.invoke Objc.tag_nsrange self#repr (Selector.find "selectedRange")[])
-       : (int * int))
-  method setSelectedRange (range : int * int) =
+       : NSRange.t)
+  method setSelectedRange (range : NSRange.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setSelectedRange:")
       [make_range range]) : unit)
-  method scrollRangeToVisible (range : int * int) =
+  method scrollRangeToVisible (range : NSRange.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "scrollRangeToVisible:")
       [make_range range]) : unit)
 end

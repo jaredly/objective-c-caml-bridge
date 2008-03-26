@@ -3,11 +3,11 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDrawer *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDrawer] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 (*  UNSUPPORTED
-  method initWithContentSize  ~preferredEdge:(edge : (*NSRectEdge*) unsupported ) (contentSize : (*NSSize*) unsupported) =
+  method initWithContentSize_preferredEdge  (contentSize : NSSize.t) (edge : (*NSRectEdge*) unsupported) =
     let sel, args = (
-      Objc.arg contentSize "initWithContentSize" (*NSSize*) unsupported
+      Objc.arg contentSize "initWithContentSize" make_size
       ++ Objc.arg edge "preferredEdge" (*NSRectEdge*) unsupported
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
@@ -44,20 +44,40 @@ class virtual methods = object (self)
   method delegate =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "delegate")[])
        : [`NSObject] Objc.id)
-  (* skipping selector open *)
+(*  UNSUPPORTED
+(* unsupported: breaks compilation somewhere *)
+  method open_ =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "open")[])
+       : unit)
+
+*)
 (*  UNSUPPORTED
   method openOnEdge (edge : (*NSRectEdge*) unsupported) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "openOnEdge:")
       [(*NSRectEdge*) unsupported edge]) : unit)
 
 *)
-  (* skipping selector close *)
+(*  UNSUPPORTED
+(* unsupported: breaks compilation somewhere *)
+  method close =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "close")[])
+       : unit)
+
+*)
+(*  UNSUPPORTED
+(* unsupported: breaks compilation somewhere *)
   method open_ (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "open:")
       [make_pointer_from_object sender]) : unit)
+
+*)
+(*  UNSUPPORTED
+(* unsupported: breaks compilation somewhere *)
   method close (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "close:")
       [make_pointer_from_object sender]) : unit)
+
+*)
   method toggle (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "toggle:")
       [make_pointer_from_object sender]) : unit)
@@ -70,42 +90,24 @@ class virtual methods = object (self)
        : (*NSRectEdge*) unsupported)
 
 *)
-(*  UNSUPPORTED
-  method setContentSize (size : (*NSSize*) unsupported) =
+  method setContentSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setContentSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size size]) : unit)
   method contentSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "contentSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setMinContentSize (size : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "contentSize")[])
+       : NSSize.t)
+  method setMinContentSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMinContentSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size size]) : unit)
   method minContentSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "minContentSize")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setMaxContentSize (size : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "minContentSize")[])
+       : NSSize.t)
+  method setMaxContentSize (size : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMaxContentSize:")
-      [(*NSSize*) unsupported size]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size size]) : unit)
   method maxContentSize =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "maxContentSize")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "maxContentSize")[])
+       : NSSize.t)
   method setLeadingOffset (offset : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setLeadingOffset:")
       [make_float offset]) : unit)

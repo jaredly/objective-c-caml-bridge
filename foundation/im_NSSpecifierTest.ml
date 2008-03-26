@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSpecifierTest *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSpecifierTest] Objc.id
-  method initWithObjectSpecifier  ~comparisonOperator:(compOp : int ) ~testObject:(obj2 : [`NSObject] Objc.t ) (obj1 : [`NSScriptObjectSpecifier] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithObjectSpecifier_comparisonOperator_testObject  (obj1 : [`NSScriptObjectSpecifier] Objc.t) (compOp : int) (obj2 : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg obj1 "initWithObjectSpecifier" make_pointer_from_object
       ++ Objc.arg compOp "comparisonOperator" make_int

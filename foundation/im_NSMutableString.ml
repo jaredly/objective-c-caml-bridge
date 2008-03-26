@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMutableString *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMutableString] Objc.id
-  method replaceCharactersInRange  ~withString:(aString : [`NSString] Objc.t ) (range : int * int) =
+  method virtual repr : [`NSObject] Objc.id
+  method replaceCharactersInRange_withString  (range : NSRange.t) (aString : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg range "replaceCharactersInRange" make_range
       ++ Objc.arg aString "withString" make_pointer_from_object

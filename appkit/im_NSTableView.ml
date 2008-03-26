@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTableView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTableView] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setDataSource (aSource : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDataSource:")
       [make_pointer_from_object aSource]) : unit)
@@ -52,18 +52,12 @@ class virtual methods = object (self)
   method gridStyleMask =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "gridStyleMask")[])
        : int)
-(*  UNSUPPORTED
-  method setIntercellSpacing (aSize : (*NSSize*) unsupported) =
+  method setIntercellSpacing (aSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setIntercellSpacing:")
-      [(*NSSize*) unsupported aSize]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size aSize]) : unit)
   method intercellSpacing =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "intercellSpacing")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "intercellSpacing")[])
+       : NSSize.t)
   method setUsesAlternatingRowBackgroundColors (useAlternatingRowColors : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setUsesAlternatingRowBackgroundColors:")
       [make_bool useAlternatingRowColors]) : unit)
@@ -127,7 +121,7 @@ class virtual methods = object (self)
   method scrollColumnToVisible (column : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "scrollColumnToVisible:")
       [make_int column]) : unit)
-  method moveColumn  ~toColumn:(newIndex : int ) (column : int) =
+  method moveColumn_toColumn  (column : int) (newIndex : int) =
     let sel, args = (
       Objc.arg column "moveColumn" make_int
       ++ Objc.arg newIndex "toColumn" make_int
@@ -164,7 +158,7 @@ class virtual methods = object (self)
   method sortDescriptors =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "sortDescriptors")[])
        : [`NSArray] Objc.id))
-  method setIndicatorImage  ~inTableColumn:(tc : [`NSTableColumn] Objc.t ) (anImage : [`NSImage] Objc.t) =
+  method setIndicatorImage_inTableColumn  (anImage : [`NSImage] Objc.t) (tc : [`NSTableColumn] Objc.t) =
     let sel, args = (
       Objc.arg anImage "setIndicatorImage" make_pointer_from_object
       ++ Objc.arg tc "inTableColumn" make_pointer_from_object
@@ -186,18 +180,15 @@ class virtual methods = object (self)
   method verticalMotionCanBeginDrag =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "verticalMotionCanBeginDrag")[])
        : bool)
-(*  UNSUPPORTED
-  method canDragRowsWithIndexes  ~atPoint:(mouseDownPoint : (*NSPoint*) unsupported ) (rowIndexes : [`NSIndexSet] Objc.t) =
+  method canDragRowsWithIndexes_atPoint  (rowIndexes : [`NSIndexSet] Objc.t) (mouseDownPoint : NSPoint.t) =
     let sel, args = (
       Objc.arg rowIndexes "canDragRowsWithIndexes" make_pointer_from_object
-      ++ Objc.arg mouseDownPoint "atPoint" (*NSPoint*) unsupported
+      ++ Objc.arg mouseDownPoint "atPoint" make_point
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-
-*)
 (*  UNSUPPORTED
-  method dragImageForRowsWithIndexes  ~tableColumns:(tableColumns : [`NSArray] Objc.t ) ~event:(dragEvent : [`NSEvent] Objc.t ) ~offset:(dragImageOffset : (*NSPointPointer*) unsupported ) (dragRows : [`NSIndexSet] Objc.t) =
+  method dragImageForRowsWithIndexes_tableColumns_event_offset  (dragRows : [`NSIndexSet] Objc.t) (tableColumns : [`NSArray] Objc.t) (dragEvent : [`NSEvent] Objc.t) (dragImageOffset : (*NSPointPointer*) unsupported) =
     let sel, args = (
       Objc.arg dragRows "dragImageForRowsWithIndexes" make_pointer_from_object
       ++ Objc.arg tableColumns "tableColumns" make_pointer_from_object
@@ -208,14 +199,14 @@ class virtual methods = object (self)
        : [`NSImage] Objc.id))
 
 *)
-  method setDraggingSourceOperationMask  ~forLocal:(isLocal : bool ) (mask : int) =
+  method setDraggingSourceOperationMask_forLocal  (mask : int) (isLocal : bool) =
     let sel, args = (
       Objc.arg mask "setDraggingSourceOperationMask" make_int
       ++ Objc.arg isLocal "forLocal" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method setDropRow  ~dropOperation:(op : int ) (row : int) =
+  method setDropRow_dropOperation  (row : int) (op : int) =
     let sel, args = (
       Objc.arg row "setDropRow" make_int
       ++ Objc.arg op "dropOperation" make_int
@@ -246,14 +237,14 @@ class virtual methods = object (self)
   method deselectAll (sender : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "deselectAll:")
       [make_pointer_from_object sender]) : unit)
-  method selectColumnIndexes  ~byExtendingSelection:(extend : bool ) (indexes : [`NSIndexSet] Objc.t) =
+  method selectColumnIndexes_byExtendingSelection  (indexes : [`NSIndexSet] Objc.t) (extend : bool) =
     let sel, args = (
       Objc.arg indexes "selectColumnIndexes" make_pointer_from_object
       ++ Objc.arg extend "byExtendingSelection" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method selectRowIndexes  ~byExtendingSelection:(extend : bool ) (indexes : [`NSIndexSet] Objc.t) =
+  method selectRowIndexes_byExtendingSelection  (indexes : [`NSIndexSet] Objc.t) (extend : bool) =
     let sel, args = (
       Objc.arg indexes "selectRowIndexes" make_pointer_from_object
       ++ Objc.arg extend "byExtendingSelection" make_bool
@@ -290,52 +281,31 @@ class virtual methods = object (self)
   method numberOfSelectedRows =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "numberOfSelectedRows")[])
        : int)
-(*  UNSUPPORTED
   method rectOfColumn (column : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "rectOfColumn:")
-      [make_int column]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "rectOfColumn:")
+      [make_int column]) : NSRect.t)
   method rectOfRow (row : int) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "rectOfRow:")
-      [make_int row]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method columnsInRect (rect : (*NSRect*) unsupported) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "rectOfRow:")
+      [make_int row]) : NSRect.t)
+  method columnsInRect (rect : NSRect.t) =
     (get_range (Objc.invoke Objc.tag_nsrange self#repr (Selector.find "columnsInRect:")
-      [(*NSRect*) unsupported rect]) : (int * int))
-
-*)
-(*  UNSUPPORTED
-  method rowsInRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : NSRange.t)
+  method rowsInRect (rect : NSRect.t) =
     (get_range (Objc.invoke Objc.tag_nsrange self#repr (Selector.find "rowsInRect:")
-      [(*NSRect*) unsupported rect]) : (int * int))
-
-*)
-(*  UNSUPPORTED
-  method columnAtPoint (point : (*NSPoint*) unsupported) =
+      [make_rect rect]) : NSRange.t)
+  method columnAtPoint (point : NSPoint.t) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "columnAtPoint:")
-      [(*NSPoint*) unsupported point]) : int)
-
-*)
-(*  UNSUPPORTED
-  method rowAtPoint (point : (*NSPoint*) unsupported) =
+      [make_point point]) : int)
+  method rowAtPoint (point : NSPoint.t) =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "rowAtPoint:")
-      [(*NSPoint*) unsupported point]) : int)
-
-*)
-(*  UNSUPPORTED
-  method frameOfCellAtColumn  ~row:(row : int ) (column : int) =
+      [make_point point]) : int)
+  method frameOfCellAtColumn_row  (column : int) (row : int) =
     let sel, args = (
       Objc.arg column "frameOfCellAtColumn" make_int
       ++ Objc.arg row "row" make_int
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
   method textShouldBeginEditing (textObject : [`NSText] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "textShouldBeginEditing:")
       [make_pointer_from_object textObject]) : bool)
@@ -363,7 +333,7 @@ class virtual methods = object (self)
   method autosaveTableColumns =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "autosaveTableColumns")[])
        : bool)
-  method editColumn  ~row:(row : int ) ~withEvent:(theEvent : [`NSEvent] Objc.t ) ~select:(select : bool ) (column : int) =
+  method editColumn_row_withEvent_select  (column : int) (row : int) (theEvent : [`NSEvent] Objc.t) (select : bool) =
     let sel, args = (
       Objc.arg column "editColumn" make_int
       ++ Objc.arg row "row" make_int
@@ -372,48 +342,36 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-(*  UNSUPPORTED
-  method drawRow  ~clipRect:(rect : (*NSRect*) unsupported ) (row : int) =
+  method drawRow_clipRect  (row : int) (rect : NSRect.t) =
     let sel, args = (
       Objc.arg row "drawRow" make_int
-      ++ Objc.arg rect "clipRect" (*NSRect*) unsupported
+      ++ Objc.arg rect "clipRect" make_rect
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method highlightSelectionInClipRect (rect : (*NSRect*) unsupported) =
+  method highlightSelectionInClipRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "highlightSelectionInClipRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawGridInClipRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+  method drawGridInClipRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawGridInClipRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawBackgroundInClipRect (clipRect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+  method drawBackgroundInClipRect (clipRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawBackgroundInClipRect:")
-      [(*NSRect*) unsupported clipRect]) : unit)
-
-*)
+      [make_rect clipRect]) : unit)
   method setDrawsGrid (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDrawsGrid:")
       [make_bool flag]) : unit)
   method drawsGrid =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "drawsGrid")[])
        : bool)
-  method selectColumn  ~byExtendingSelection:(extend : bool ) (column : int) =
+  method selectColumn_byExtendingSelection  (column : int) (extend : bool) =
     let sel, args = (
       Objc.arg column "selectColumn" make_int
       ++ Objc.arg extend "byExtendingSelection" make_bool
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method selectRow  ~byExtendingSelection:(extend : bool ) (row : int) =
+  method selectRow_byExtendingSelection  (row : int) (extend : bool) =
     let sel, args = (
       Objc.arg row "selectRow" make_int
       ++ Objc.arg extend "byExtendingSelection" make_bool
@@ -427,7 +385,7 @@ class virtual methods = object (self)
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "selectedRowEnumerator")[])
        : [`NSEnumerator] Objc.id))
 (*  UNSUPPORTED
-  method dragImageForRows  ~event:(dragEvent : [`NSEvent] Objc.t ) ~dragImageOffset:(dragImageOffset : (*NSPointPointer*) unsupported ) (dragRows : [`NSArray] Objc.t) =
+  method dragImageForRows_event_dragImageOffset  (dragRows : [`NSArray] Objc.t) (dragEvent : [`NSEvent] Objc.t) (dragImageOffset : (*NSPointPointer*) unsupported) =
     let sel, args = (
       Objc.arg dragRows "dragImageForRows" make_pointer_from_object
       ++ Objc.arg dragEvent "event" make_pointer_from_object

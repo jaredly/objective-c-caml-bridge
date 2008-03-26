@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSXMLDocument *)
 class virtual methods = object (self)
-  method virtual repr : [`NSXMLDocument] Objc.id
-  method initWithXMLString  ~options:(mask : int ) ~error:(error : bool ) (string : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithXMLString_options_error  (string : [`NSString] Objc.t) (mask : int) (error : bool) =
     let sel, args = (
       Objc.arg string "initWithXMLString" make_pointer_from_object
       ++ Objc.arg mask "options" make_int
@@ -12,7 +12,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithContentsOfURL  ~options:(mask : int ) ~error:(error : bool ) (url : [`NSURL] Objc.t) =
+  method initWithContentsOfURL_options_error  (url : [`NSURL] Objc.t) (mask : int) (error : bool) =
     let sel, args = (
       Objc.arg url "initWithContentsOfURL" make_pointer_from_object
       ++ Objc.arg mask "options" make_int
@@ -20,7 +20,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithData  ~options:(mask : int ) ~error:(error : bool ) (data : [`NSData] Objc.t) =
+  method initWithData_options_error  (data : [`NSData] Objc.t) (mask : int) (error : bool) =
     let sel, args = (
       Objc.arg data "initWithData" make_pointer_from_object
       ++ Objc.arg mask "options" make_int
@@ -58,14 +58,14 @@ class virtual methods = object (self)
   method setMIMEType (_MIMEType : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMIMEType:")
       [make_pointer_from_object _MIMEType]) : unit)
-  method l_MIMEType =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_MIMEType")[])
+  method mimeType =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "MIMEType")[])
        : [`NSString] Objc.id))
   method setDTD (documentTypeDeclaration : [`NSXMLDTD] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDTD:")
       [make_pointer_from_object documentTypeDeclaration]) : unit)
-  method l_DTD =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_DTD")[])
+  method dtd =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "DTD")[])
        : [`NSXMLDTD] Objc.id))
   method setRootElement (root : [`NSXMLNode] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setRootElement:")
@@ -73,14 +73,14 @@ class virtual methods = object (self)
   method rootElement =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "rootElement")[])
        : [`NSXMLElement] Objc.id))
-  method insertChild  ~atIndex:(index : int ) (child : [`NSXMLNode] Objc.t) =
+  method insertChild_atIndex  (child : [`NSXMLNode] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg child "insertChild" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method insertChildren  ~atIndex:(index : int ) (children : [`NSArray] Objc.t) =
+  method insertChildren_atIndex  (children : [`NSArray] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg children "insertChildren" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
@@ -96,20 +96,20 @@ class virtual methods = object (self)
   method addChild (child : [`NSXMLNode] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addChild:")
       [make_pointer_from_object child]) : unit)
-  method replaceChildAtIndex  ~withNode:(node : [`NSXMLNode] Objc.t ) (index : int) =
+  method replaceChildAtIndex_withNode  (index : int) (node : [`NSXMLNode] Objc.t) =
     let sel, args = (
       Objc.arg index "replaceChildAtIndex" make_int
       ++ Objc.arg node "withNode" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method l_XMLData =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_XMLData")[])
+  method xmlData =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "XMLData")[])
        : [`NSData] Objc.id))
-  method l_XMLDataWithOptions (options : int) =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_XMLDataWithOptions:")
+  method xmlDataWithOptions (options : int) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "XMLDataWithOptions:")
       [make_int options]) : [`NSData] Objc.id))
-  method objectByApplyingXSLT  ~arguments:(arguments : [`NSDictionary] Objc.t ) ~error:(error : bool ) (xslt : [`NSData] Objc.t) =
+  method objectByApplyingXSLT_arguments_error  (xslt : [`NSData] Objc.t) (arguments : [`NSDictionary] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg xslt "objectByApplyingXSLT" make_pointer_from_object
       ++ Objc.arg arguments "arguments" make_pointer_from_object
@@ -117,7 +117,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method objectByApplyingXSLTString  ~arguments:(arguments : [`NSDictionary] Objc.t ) ~error:(error : bool ) (xslt : [`NSString] Objc.t) =
+  method objectByApplyingXSLTString_arguments_error  (xslt : [`NSString] Objc.t) (arguments : [`NSDictionary] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg xslt "objectByApplyingXSLTString" make_pointer_from_object
       ++ Objc.arg arguments "arguments" make_pointer_from_object
@@ -125,7 +125,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method objectByApplyingXSLTAtURL  ~arguments:(argument : [`NSDictionary] Objc.t ) ~error:(error : bool ) (xsltURL : [`NSURL] Objc.t) =
+  method objectByApplyingXSLTAtURL_arguments_error  (xsltURL : [`NSURL] Objc.t) (argument : [`NSDictionary] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg xsltURL "objectByApplyingXSLTAtURL" make_pointer_from_object
       ++ Objc.arg argument "arguments" make_pointer_from_object

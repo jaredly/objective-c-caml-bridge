@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTokenFieldCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTokenFieldCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setTokenStyle (style : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTokenStyle:")
       [make_int style]) : unit)

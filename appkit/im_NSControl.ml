@@ -3,13 +3,10 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSControl *)
 class virtual methods = object (self)
-  method virtual repr : [`NSControl] Objc.id
-(*  UNSUPPORTED
-  method initWithFrame (frameRect : (*NSRect*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithFrame (frameRect : NSRect.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithFrame:")
-      [(*NSRect*) unsupported frameRect]) : [`NSObject] Objc.id)
-
-*)
+      [make_rect frameRect]) : [`NSObject] Objc.id)
   method sizeToFit =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "sizeToFit")[])
        : unit)
@@ -67,7 +64,7 @@ class virtual methods = object (self)
   method setEnabled (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setEnabled:")
       [make_bool flag]) : unit)
-  method setFloatingPointFormat  ~left:(leftDigits : int ) ~right:(rightDigits : int ) (autoRange : bool) =
+  method setFloatingPointFormat_left_right  (autoRange : bool) (leftDigits : int) (rightDigits : int) =
     let sel, args = (
       Objc.arg autoRange "setFloatingPointFormat" make_bool
       ++ Objc.arg leftDigits "left" make_int
@@ -75,18 +72,12 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-(*  UNSUPPORTED
   method alignment =
-    ((*NSTextAlignment*) unsupported (Objc.invoke (*NSTextAlignment*) Objc.tag_unsupported self#repr (Selector.find "alignment")[])
-       : (*NSTextAlignment*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setAlignment (mode : (*NSTextAlignment*) unsupported) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "alignment")[])
+       : int)
+  method setAlignment (mode : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAlignment:")
-      [(*NSTextAlignment*) unsupported mode]) : unit)
-
-*)
+      [make_int mode]) : unit)
   method font =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "font")[])
        : [`NSFont] Objc.id))
@@ -151,10 +142,10 @@ class virtual methods = object (self)
   method selectCell (aCell : [`NSCell] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "selectCell:")
       [make_pointer_from_object aCell]) : unit)
-  method sendAction  ~l_to:(theTarget : [`NSObject] Objc.t ) (theAction : selector) =
+  method sendAction_to  (theAction : selector) (theTarget : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg theAction "sendAction" make_selector
-      ++ Objc.arg theTarget "l_to" make_pointer_from_object
+      ++ Objc.arg theTarget "to" make_pointer_from_object
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
@@ -185,16 +176,10 @@ class virtual methods = object (self)
   method mouseDown (theEvent : [`NSEvent] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "mouseDown:")
       [make_pointer_from_object theEvent]) : unit)
-(*  UNSUPPORTED
   method baseWritingDirection =
-    ((*NSWritingDirection*) unsupported (Objc.invoke (*NSWritingDirection*) Objc.tag_unsupported self#repr (Selector.find "baseWritingDirection")[])
-       : (*NSWritingDirection*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setBaseWritingDirection (writingDirection : (*NSWritingDirection*) unsupported) =
+    (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "baseWritingDirection")[])
+       : int)
+  method setBaseWritingDirection (writingDirection : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBaseWritingDirection:")
-      [(*NSWritingDirection*) unsupported writingDirection]) : unit)
-
-*)
+      [make_int writingDirection]) : unit)
 end

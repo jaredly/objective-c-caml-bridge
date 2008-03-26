@@ -3,13 +3,10 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSView] Objc.id
-(*  UNSUPPORTED
-  method initWithFrame (frameRect : (*NSRect*) unsupported) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithFrame (frameRect : NSRect.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithFrame:")
-      [(*NSRect*) unsupported frameRect]) : [`NSObject] Objc.id)
-
-*)
+      [make_rect frameRect]) : [`NSObject] Objc.id)
   method window =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "window")[])
        : [`NSWindow] Objc.id))
@@ -38,7 +35,7 @@ class virtual methods = object (self)
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isHiddenOrHasHiddenAncestor")[])
        : bool)
 (*  UNSUPPORTED
-  method getRectsBeingDrawn  ~count:(count : [`int] Objc.t ) (rects : (*pointer to pointer to const NSRect*) unsupported) =
+  method getRectsBeingDrawn_count  (rects : (*pointer to pointer to const NSRect*) unsupported) (count : [`int] Objc.t) =
     let sel, args = (
       Objc.arg rects "getRectsBeingDrawn" (*pointer to pointer to const NSRect*) unsupported
       ++ Objc.arg count "count" make_pointer_from_object
@@ -47,26 +44,25 @@ class virtual methods = object (self)
        : unit)
 
 *)
-(*  UNSUPPORTED
-  method needsToDrawRect (aRect : (*NSRect*) unsupported) =
+  method needsToDrawRect (aRect : NSRect.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "needsToDrawRect:")
-      [(*NSRect*) unsupported aRect]) : bool)
-
-*)
+      [make_rect aRect]) : bool)
   method wantsDefaultClipping =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "wantsDefaultClipping")[])
        : bool)
-  (* skipping selector addSubview *)
-  method addSubview  ?positioned:(place : int option) ?relativeTo:(otherView : [`NSView] Objc.t option) (aView : [`NSView] Objc.t) =
+  method addSubview (aView : [`NSView] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addSubview:")
+      [make_pointer_from_object aView]) : unit)
+  method addSubview_positioned_relativeTo  (aView : [`NSView] Objc.t) (place : int) (otherView : [`NSView] Objc.t) =
     let sel, args = (
       Objc.arg aView "addSubview" make_pointer_from_object
-      ++ Objc.opt_arg place "positioned" make_int
-      ++ Objc.opt_arg otherView "relativeTo" make_pointer_from_object
+      ++ Objc.arg place "positioned" make_int
+      ++ Objc.arg otherView "relativeTo" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
 (*  UNSUPPORTED
-  method sortSubviewsUsingFunction  ~context:(context : [`void] Objc.t ) (compare : (*id->id->pointer to void->int*) unsupported) =
+  method sortSubviewsUsingFunction_context  (compare : (*id->id->pointer to void->int*) unsupported) (context : [`void] Objc.t) =
     let sel, args = (
       Objc.arg compare "sortSubviewsUsingFunction" (*id->id->pointer to void->int*) unsupported
       ++ Objc.arg context "context" make_pointer_from_object
@@ -96,10 +92,10 @@ class virtual methods = object (self)
   method removeFromSuperview =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "removeFromSuperview")[])
        : unit)
-  method replaceSubview  ~l_with:(newView : [`NSView] Objc.t ) (oldView : [`NSView] Objc.t) =
+  method replaceSubview_with  (oldView : [`NSView] Objc.t) (newView : [`NSView] Objc.t) =
     let sel, args = (
       Objc.arg oldView "replaceSubview" make_pointer_from_object
-      ++ Objc.arg newView "l_with" make_pointer_from_object
+      ++ Objc.arg newView "with" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
@@ -112,18 +108,12 @@ class virtual methods = object (self)
   method postsFrameChangedNotifications =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "postsFrameChangedNotifications")[])
        : bool)
-(*  UNSUPPORTED
-  method resizeSubviewsWithOldSize (oldSize : (*NSSize*) unsupported) =
+  method resizeSubviewsWithOldSize (oldSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "resizeSubviewsWithOldSize:")
-      [(*NSSize*) unsupported oldSize]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method resizeWithOldSuperviewSize (oldSize : (*NSSize*) unsupported) =
+      [make_size oldSize]) : unit)
+  method resizeWithOldSuperviewSize (oldSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "resizeWithOldSuperviewSize:")
-      [(*NSSize*) unsupported oldSize]) : unit)
-
-*)
+      [make_size oldSize]) : unit)
   method setAutoresizesSubviews (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAutoresizesSubviews:")
       [make_bool flag]) : unit)
@@ -136,81 +126,51 @@ class virtual methods = object (self)
   method autoresizingMask =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "autoresizingMask")[])
        : int)
-(*  UNSUPPORTED
-  method setFrameOrigin (newOrigin : (*NSPoint*) unsupported) =
+  method setFrameOrigin (newOrigin : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameOrigin:")
-      [(*NSPoint*) unsupported newOrigin]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setFrameSize (newSize : (*NSSize*) unsupported) =
+      [make_point newOrigin]) : unit)
+  method setFrameSize (newSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameSize:")
-      [(*NSSize*) unsupported newSize]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setFrame (frameRect : (*NSRect*) unsupported) =
+      [make_size newSize]) : unit)
+  method setFrame (frameRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrame:")
-      [(*NSRect*) unsupported frameRect]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_rect frameRect]) : unit)
   method frame =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "frame")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "frame")[])
+       : NSRect.t)
   method setFrameRotation (angle : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameRotation:")
       [make_float angle]) : unit)
   method frameRotation =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "frameRotation")[])
        : float)
-(*  UNSUPPORTED
-  method setBoundsOrigin (newOrigin : (*NSPoint*) unsupported) =
+  method setBoundsOrigin (newOrigin : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBoundsOrigin:")
-      [(*NSPoint*) unsupported newOrigin]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setBoundsSize (newSize : (*NSSize*) unsupported) =
+      [make_point newOrigin]) : unit)
+  method setBoundsSize (newSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBoundsSize:")
-      [(*NSSize*) unsupported newSize]) : unit)
-
-*)
+      [make_size newSize]) : unit)
   method setBoundsRotation (angle : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBoundsRotation:")
       [make_float angle]) : unit)
   method boundsRotation =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "boundsRotation")[])
        : float)
-(*  UNSUPPORTED
-  method translateOriginToPoint (translation : (*NSPoint*) unsupported) =
+  method translateOriginToPoint (translation : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "translateOriginToPoint:")
-      [(*NSPoint*) unsupported translation]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method scaleUnitSquareToSize (newUnitSize : (*NSSize*) unsupported) =
+      [make_point translation]) : unit)
+  method scaleUnitSquareToSize (newUnitSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "scaleUnitSquareToSize:")
-      [(*NSSize*) unsupported newUnitSize]) : unit)
-
-*)
+      [make_size newUnitSize]) : unit)
   method rotateByAngle (angle : float) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "rotateByAngle:")
       [make_float angle]) : unit)
-(*  UNSUPPORTED
-  method setBounds (aRect : (*NSRect*) unsupported) =
+  method setBounds (aRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBounds:")
-      [(*NSRect*) unsupported aRect]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_rect aRect]) : unit)
   method bounds =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "bounds")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "bounds")[])
+       : NSRect.t)
   method isFlipped =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isFlipped")[])
        : bool)
@@ -223,57 +183,60 @@ class virtual methods = object (self)
   method isOpaque =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isOpaque")[])
        : bool)
-(*  UNSUPPORTED
-  method convertPoint  ~fromView:(aView : [`NSView] Objc.t ) (aPoint : (*NSPoint*) unsupported) =
+  method convertPoint_fromView  (aPoint : NSPoint.t) (aView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg aPoint "convertPoint" (*NSPoint*) unsupported
+      Objc.arg aPoint "convertPoint" make_point
       ++ Objc.arg aView "fromView" make_pointer_from_object
     ) ([],[]) in
-      ((*NSPoint*) unsupported (Objc.invoke (*NSPoint*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSPoint*) unsupported)
-
-*)
-  (* skipping selector convertPoint:toView *)
-(*  UNSUPPORTED
-  method convertSize  ~fromView:(aView : [`NSView] Objc.t ) (aSize : (*NSSize*) unsupported) =
+      (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find_list sel) args)
+       : NSPoint.t)
+  method convertPoint_toView  (aPoint : NSPoint.t) (aView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg aSize "convertSize" (*NSSize*) unsupported
+      Objc.arg aPoint "convertPoint" make_point
+      ++ Objc.arg aView "toView" make_pointer_from_object
+    ) ([],[]) in
+      (get_point (Objc.invoke Objc.tag_nspoint self#repr (Selector.find_list sel) args)
+       : NSPoint.t)
+  method convertSize_fromView  (aSize : NSSize.t) (aView : [`NSView] Objc.t) =
+    let sel, args = (
+      Objc.arg aSize "convertSize" make_size
       ++ Objc.arg aView "fromView" make_pointer_from_object
     ) ([],[]) in
-      ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSSize*) unsupported)
-
-*)
-  (* skipping selector convertSize:toView *)
-(*  UNSUPPORTED
-  method convertRect  ~fromView:(aView : [`NSView] Objc.t ) (aRect : (*NSRect*) unsupported) =
+      (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find_list sel) args)
+       : NSSize.t)
+  method convertSize_toView  (aSize : NSSize.t) (aView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg aRect "convertRect" (*NSRect*) unsupported
+      Objc.arg aSize "convertSize" make_size
+      ++ Objc.arg aView "toView" make_pointer_from_object
+    ) ([],[]) in
+      (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find_list sel) args)
+       : NSSize.t)
+  method convertRect_fromView  (aRect : NSRect.t) (aView : [`NSView] Objc.t) =
+    let sel, args = (
+      Objc.arg aRect "convertRect" make_rect
       ++ Objc.arg aView "fromView" make_pointer_from_object
     ) ([],[]) in
-      ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find_list sel) args)
-       : (*NSRect*) unsupported)
-
-*)
-  (* skipping selector convertRect:toView *)
-(*  UNSUPPORTED
-  method centerScanRect (aRect : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "centerScanRect:")
-      [(*NSRect*) unsupported aRect]) : (*NSRect*) unsupported)
-
-*)
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method convertRect_toView  (aRect : NSRect.t) (aView : [`NSView] Objc.t) =
+    let sel, args = (
+      Objc.arg aRect "convertRect" make_rect
+      ++ Objc.arg aView "toView" make_pointer_from_object
+    ) ([],[]) in
+      (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find_list sel) args)
+       : NSRect.t)
+  method centerScanRect (aRect : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "centerScanRect:")
+      [make_rect aRect]) : NSRect.t)
   method canDraw =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "canDraw")[])
        : bool)
   method setNeedsDisplay (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setNeedsDisplay:")
       [make_bool flag]) : unit)
-(*  UNSUPPORTED
-  method setNeedsDisplayInRect (invalidRect : (*NSRect*) unsupported) =
+  method setNeedsDisplayInRect (invalidRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setNeedsDisplayInRect:")
-      [(*NSRect*) unsupported invalidRect]) : unit)
-
-*)
+      [make_rect invalidRect]) : unit)
   method needsDisplay =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "needsDisplay")[])
        : bool)
@@ -289,12 +252,9 @@ class virtual methods = object (self)
   method lockFocusIfCanDrawInContext (context : [`NSGraphicsContext] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "lockFocusIfCanDrawInContext:")
       [make_pointer_from_object context]) : bool)
-(*  UNSUPPORTED
   method visibleRect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "visibleRect")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "visibleRect")[])
+       : NSRect.t)
   method display =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "display")[])
        : unit)
@@ -304,57 +264,38 @@ class virtual methods = object (self)
   method displayIfNeededIgnoringOpacity =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "displayIfNeededIgnoringOpacity")[])
        : unit)
-(*  UNSUPPORTED
-  method displayRect (rect : (*NSRect*) unsupported) =
+  method displayRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "displayRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method displayIfNeededInRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+  method displayIfNeededInRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "displayIfNeededInRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-  (* skipping selector displayRectIgnoringOpacity *)
-(*  UNSUPPORTED
-  method displayIfNeededInRectIgnoringOpacity (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+  method displayRectIgnoringOpacity (rect : NSRect.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "displayRectIgnoringOpacity:")
+      [make_rect rect]) : unit)
+  method displayIfNeededInRectIgnoringOpacity (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "displayIfNeededInRectIgnoringOpacity:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+  method drawRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method displayRectIgnoringOpacity  ?inContext:(context : [`NSGraphicsContext] Objc.t option) (aRect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+  method displayRectIgnoringOpacity_inContext  (aRect : NSRect.t) (context : [`NSGraphicsContext] Objc.t) =
     let sel, args = (
-      Objc.arg aRect "displayRectIgnoringOpacity" (*NSRect*) unsupported
-      ++ Objc.opt_arg context "inContext" make_pointer_from_object
+      Objc.arg aRect "displayRectIgnoringOpacity" make_rect
+      ++ Objc.arg context "inContext" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method bitmapImageRepForCachingDisplayInRect (rect : (*NSRect*) unsupported) =
+  method bitmapImageRepForCachingDisplayInRect (rect : NSRect.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "bitmapImageRepForCachingDisplayInRect:")
-      [(*NSRect*) unsupported rect]) : [`NSBitmapImageRep] Objc.id))
-
-*)
-(*  UNSUPPORTED
-  method cacheDisplayInRect  ~toBitmapImageRep:(bitmapImageRep : [`NSBitmapImageRep] Objc.t ) (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : [`NSBitmapImageRep] Objc.id))
+  method cacheDisplayInRect_toBitmapImageRep  (rect : NSRect.t) (bitmapImageRep : [`NSBitmapImageRep] Objc.t) =
     let sel, args = (
-      Objc.arg rect "cacheDisplayInRect" (*NSRect*) unsupported
+      Objc.arg rect "cacheDisplayInRect" make_rect
       ++ Objc.arg bitmapImageRep "toBitmapImageRep" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method gState =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "gState")[])
        : int)
@@ -370,53 +311,35 @@ class virtual methods = object (self)
   method renewGState =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "renewGState")[])
        : unit)
-(*  UNSUPPORTED
-  method scrollPoint (aPoint : (*NSPoint*) unsupported) =
+  method scrollPoint (aPoint : NSPoint.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "scrollPoint:")
-      [(*NSPoint*) unsupported aPoint]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method scrollRectToVisible (aRect : (*NSRect*) unsupported) =
+      [make_point aPoint]) : unit)
+  method scrollRectToVisible (aRect : NSRect.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "scrollRectToVisible:")
-      [(*NSRect*) unsupported aRect]) : bool)
-
-*)
+      [make_rect aRect]) : bool)
   method autoscroll (theEvent : [`NSEvent] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "autoscroll:")
       [make_pointer_from_object theEvent]) : bool)
-(*  UNSUPPORTED
-  method adjustScroll (newVisible : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "adjustScroll:")
-      [(*NSRect*) unsupported newVisible]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method scrollRect  ~by:(delta : (*NSSize*) unsupported ) (aRect : (*NSRect*) unsupported) =
+  method adjustScroll (newVisible : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "adjustScroll:")
+      [make_rect newVisible]) : NSRect.t)
+  method scrollRect_by  (aRect : NSRect.t) (delta : NSSize.t) =
     let sel, args = (
-      Objc.arg aRect "scrollRect" (*NSRect*) unsupported
-      ++ Objc.arg delta "by" (*NSSize*) unsupported
+      Objc.arg aRect "scrollRect" make_rect
+      ++ Objc.arg delta "by" make_size
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method hitTest (aPoint : (*NSPoint*) unsupported) =
+  method hitTest (aPoint : NSPoint.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "hitTest:")
-      [(*NSPoint*) unsupported aPoint]) : [`NSView] Objc.id))
-
-*)
-(*  UNSUPPORTED
-  method mouse  ~inRect:(aRect : (*NSRect*) unsupported ) (aPoint : (*NSPoint*) unsupported) =
+      [make_point aPoint]) : [`NSView] Objc.id))
+  method mouse_inRect  (aPoint : NSPoint.t) (aRect : NSRect.t) =
     let sel, args = (
-      Objc.arg aPoint "mouse" (*NSPoint*) unsupported
-      ++ Objc.arg aRect "inRect" (*NSRect*) unsupported
+      Objc.arg aPoint "mouse" make_point
+      ++ Objc.arg aRect "inRect" make_rect
     ) ([],[]) in
       (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find_list sel) args)
        : bool)
-
-*)
   method viewWithTag (aTag : int) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "viewWithTag:")
       [make_int aTag]) : [`NSObject] Objc.id)
@@ -438,26 +361,20 @@ class virtual methods = object (self)
   method mouseDownCanMoveWindow =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "mouseDownCanMoveWindow")[])
        : bool)
-(*  UNSUPPORTED
-  method addCursorRect  ~cursor:(anObj : [`NSCursor] Objc.t ) (aRect : (*NSRect*) unsupported) =
+  method addCursorRect_cursor  (aRect : NSRect.t) (anObj : [`NSCursor] Objc.t) =
     let sel, args = (
-      Objc.arg aRect "addCursorRect" (*NSRect*) unsupported
+      Objc.arg aRect "addCursorRect" make_rect
       ++ Objc.arg anObj "cursor" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method removeCursorRect  ~cursor:(anObj : [`NSCursor] Objc.t ) (aRect : (*NSRect*) unsupported) =
+  method removeCursorRect_cursor  (aRect : NSRect.t) (anObj : [`NSCursor] Objc.t) =
     let sel, args = (
-      Objc.arg aRect "removeCursorRect" (*NSRect*) unsupported
+      Objc.arg aRect "removeCursorRect" make_rect
       ++ Objc.arg anObj "cursor" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method discardCursorRects =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "discardCursorRects")[])
        : unit)
@@ -465,9 +382,9 @@ class virtual methods = object (self)
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "resetCursorRects")[])
        : unit)
 (*  UNSUPPORTED
-  method addTrackingRect  ~owner:(anObject : [`NSObject] Objc.t ) ~userData:(data : [`void] Objc.t ) ~assumeInside:(flag : bool ) (aRect : (*NSRect*) unsupported) =
+  method addTrackingRect_owner_userData_assumeInside  (aRect : NSRect.t) (anObject : [`NSObject] Objc.t) (data : [`void] Objc.t) (flag : bool) =
     let sel, args = (
-      Objc.arg aRect "addTrackingRect" (*NSRect*) unsupported
+      Objc.arg aRect "addTrackingRect" make_rect
       ++ Objc.arg anObject "owner" make_pointer_from_object
       ++ Objc.arg data "userData" make_pointer_from_object
       ++ Objc.arg flag "assumeInside" make_bool
@@ -504,9 +421,9 @@ class virtual methods = object (self)
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "toolTip")[])
        : [`NSString] Objc.id))
 (*  UNSUPPORTED
-  method addToolTipRect  ~owner:(anObject : [`NSObject] Objc.t ) ~userData:(data : [`void] Objc.t ) (aRect : (*NSRect*) unsupported) =
+  method addToolTipRect_owner_userData  (aRect : NSRect.t) (anObject : [`NSObject] Objc.t) (data : [`void] Objc.t) =
     let sel, args = (
-      Objc.arg aRect "addToolTipRect" (*NSRect*) unsupported
+      Objc.arg aRect "addToolTipRect" make_rect
       ++ Objc.arg anObject "owner" make_pointer_from_object
       ++ Objc.arg data "userData" make_pointer_from_object
     ) ([],[]) in
@@ -535,14 +452,11 @@ class virtual methods = object (self)
   method preservesContentDuringLiveResize =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "preservesContentDuringLiveResize")[])
        : bool)
-(*  UNSUPPORTED
   method rectPreservedDuringLiveResize =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "rectPreservedDuringLiveResize")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "rectPreservedDuringLiveResize")[])
+       : NSRect.t)
 (*  UNSUPPORTED
-  method getRectsExposedDuringLiveResize  ~count:(count : [`int] Objc.t ) (exposedRects : (*array of NSRect*) unsupported) =
+  method getRectsExposedDuringLiveResize_count  (exposedRects : (*array of NSRect*) unsupported) (count : [`int] Objc.t) =
     let sel, args = (
       Objc.arg exposedRects "getRectsExposedDuringLiveResize" (*array of NSRect*) unsupported
       ++ Objc.arg count "count" make_pointer_from_object

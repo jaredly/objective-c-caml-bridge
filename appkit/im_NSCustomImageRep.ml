@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSCustomImageRep *)
 class virtual methods = object (self)
-  method virtual repr : [`NSCustomImageRep] Objc.id
-  method initWithDrawSelector  ~delegate:(anObject : [`NSObject] Objc.t ) (aMethod : selector) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithDrawSelector_delegate  (aMethod : selector) (anObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg aMethod "initWithDrawSelector" make_selector
       ++ Objc.arg anObject "delegate" make_pointer_from_object

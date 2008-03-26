@@ -1,16 +1,22 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSGlyphInfo] id) -> object
+class virtual methods = object
   inherit Im_NSGlyphInfo.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSGlyphInfo] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSGlyphInfo *)
 let c = Classes.find "NSGlyphInfo"
 let _new()= (Objc.objcnew c : [`NSGlyphInfo] id)
 let alloc() = (Objc.objcalloc c : [`NSGlyphInfo] id)
-let glyphInfoWithGlyphName  ~forFont:(font : [`NSFont] Objc.t ) ~baseString:(theString : [`NSString] Objc.t ) (glyphName : [`NSString] Objc.t) =
+let glyphInfoWithGlyphName_forFont_baseString  (glyphName : [`NSString] Objc.t) (font : [`NSFont] Objc.t) (theString : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg glyphName "glyphInfoWithGlyphName" make_pointer_from_object
       ++ Objc.arg font "forFont" make_pointer_from_object
@@ -19,7 +25,7 @@ let glyphInfoWithGlyphName  ~forFont:(font : [`NSFont] Objc.t ) ~baseString:(the
       (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find_list sel) args)
        : [`NSGlyphInfo] Objc.id))
 (*  UNSUPPORTED
-let glyphInfoWithGlyph  ~forFont:(font : [`NSFont] Objc.t ) ~baseString:(theString : [`NSString] Objc.t ) (glyph : (*NSGlyph*) unsupported) =
+let glyphInfoWithGlyph_forFont_baseString  (glyph : (*NSGlyph*) unsupported) (font : [`NSFont] Objc.t) (theString : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg glyph "glyphInfoWithGlyph" (*NSGlyph*) unsupported
       ++ Objc.arg font "forFont" make_pointer_from_object
@@ -29,7 +35,7 @@ let glyphInfoWithGlyph  ~forFont:(font : [`NSFont] Objc.t ) ~baseString:(theStri
        : [`NSGlyphInfo] Objc.id))
 
 *)
-let glyphInfoWithCharacterIdentifier  ~collection:(characterCollection : int ) ~baseString:(theString : [`NSString] Objc.t ) (cid : int) =
+let glyphInfoWithCharacterIdentifier_collection_baseString  (cid : int) (characterCollection : int) (theString : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg cid "glyphInfoWithCharacterIdentifier" make_int
       ++ Objc.arg characterCollection "collection" make_int

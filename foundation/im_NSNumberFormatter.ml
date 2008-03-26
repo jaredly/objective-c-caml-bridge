@@ -3,11 +3,11 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSNumberFormatter *)
 class virtual methods = object (self)
-  method virtual repr : [`NSNumberFormatter] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method init =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "init")[])
        : [`NSObject] Objc.id)
-  method getObjectValue  ~forString:(string : [`NSString] Objc.t ) ~range:(rangep : [`NSRange] Objc.t ) ~error:(error : bool ) (obj : [`id] Objc.t) =
+  method getObjectValue_forString_range_error  (obj : [`id] Objc.t) (string : [`NSString] Objc.t) (rangep : [`NSRange] Objc.t) (error : bool) =
     let sel, args = (
       Objc.arg obj "getObjectValue" make_pointer_from_object
       ++ Objc.arg string "forString" make_pointer_from_object
@@ -310,20 +310,16 @@ class virtual methods = object (self)
   method setMaximumFractionDigits (number : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMaximumFractionDigits:")
       [make_int number]) : unit)
-(*  UNSUPPORTED
-(* unsupported: already have a method with that name compiled *)
   method minimum =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "minimum")[])
        : [`NSNumber] Objc.id))
-
-*)
-  (* skipping selector setMinimum *)
-(*  UNSUPPORTED
-(* unsupported: already have a method with that name compiled *)
+  method setMinimum (number : [`NSNumber] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMinimum:")
+      [make_pointer_from_object number]) : unit)
   method maximum =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "maximum")[])
        : [`NSNumber] Objc.id))
-
-*)
-  (* skipping selector setMaximum *)
+  method setMaximum (number : [`NSNumber] Objc.t) =
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMaximum:")
+      [make_pointer_from_object number]) : unit)
 end

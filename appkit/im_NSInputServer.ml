@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSInputServer *)
 class virtual methods = object (self)
-  method virtual repr : [`NSInputServer] Objc.id
-  method initWithDelegate  ~name:(name : [`NSString] Objc.t ) (aDelegate : [`NSObject] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithDelegate_name  (aDelegate : [`NSObject] Objc.t) (name : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg aDelegate "initWithDelegate" make_pointer_from_object
       ++ Objc.arg name "name" make_pointer_from_object

@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSURLProtocol *)
 class virtual methods = object (self)
-  method virtual repr : [`NSURLProtocol] Objc.id
-  method initWithRequest  ~cachedResponse:(cachedResponse : [`NSCachedURLResponse] Objc.t ) ~client:(client : [`NSObject] Objc.t ) (request : [`NSURLRequest] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithRequest_cachedResponse_client  (request : [`NSURLRequest] Objc.t) (cachedResponse : [`NSCachedURLResponse] Objc.t) (client : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg request "initWithRequest" make_pointer_from_object
       ++ Objc.arg cachedResponse "cachedResponse" make_pointer_from_object

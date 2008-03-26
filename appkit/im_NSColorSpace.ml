@@ -3,12 +3,12 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSColorSpace *)
 class virtual methods = object (self)
-  method virtual repr : [`NSColorSpace] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithICCProfileData (iccData : [`NSData] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithICCProfileData:")
       [make_pointer_from_object iccData]) : [`NSObject] Objc.id)
-  method l_ICCProfileData =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_ICCProfileData")[])
+  method _ICCProfileData =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "ICCProfileData")[])
        : [`NSData] Objc.id))
   method initWithColorSyncProfile (prof : [`void] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithColorSyncProfile:")

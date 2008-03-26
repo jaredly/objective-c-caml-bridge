@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTableColumn *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTableColumn] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithIdentifier (identifier : [`NSObject] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithIdentifier:")
       [make_pointer_from_object identifier]) : [`NSObject] Objc.id)

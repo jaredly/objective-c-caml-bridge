@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextTableBlock *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextTableBlock] Objc.id
-  method initWithTable  ~startingRow:(row : int ) ~rowSpan:(rowSpan : int ) ~startingColumn:(col : int ) ~columnSpan:(colSpan : int ) (table : [`NSTextTable] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithTable_startingRow_rowSpan_startingColumn_columnSpan  (table : [`NSTextTable] Objc.t) (row : int) (rowSpan : int) (col : int) (colSpan : int) =
     let sel, args = (
       Objc.arg table "initWithTable" make_pointer_from_object
       ++ Objc.arg row "startingRow" make_int

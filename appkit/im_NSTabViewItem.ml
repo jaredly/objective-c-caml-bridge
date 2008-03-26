@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTabViewItem *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTabViewItem] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initWithIdentifier (identifier : [`NSObject] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initWithIdentifier:")
       [make_pointer_from_object identifier]) : [`NSObject] Objc.id)
@@ -43,20 +43,14 @@ class virtual methods = object (self)
   method setInitialFirstResponder (view : [`NSView] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setInitialFirstResponder:")
       [make_pointer_from_object view]) : unit)
-(*  UNSUPPORTED
-  method drawLabel  ~inRect:(labelRect : (*NSRect*) unsupported ) (shouldTruncateLabel : bool) =
+  method drawLabel_inRect  (shouldTruncateLabel : bool) (labelRect : NSRect.t) =
     let sel, args = (
       Objc.arg shouldTruncateLabel "drawLabel" make_bool
-      ++ Objc.arg labelRect "inRect" (*NSRect*) unsupported
+      ++ Objc.arg labelRect "inRect" make_rect
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
   method sizeOfLabel (computeMin : bool) =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "sizeOfLabel:")
-      [make_bool computeMin]) : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "sizeOfLabel:")
+      [make_bool computeMin]) : NSSize.t)
 end

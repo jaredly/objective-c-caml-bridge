@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSPrintInfo] id) -> object
+class virtual methods = object
   inherit Im_NSPrintInfo.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSPrintInfo] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSPrintInfo *)
@@ -22,9 +28,6 @@ let defaultPrinter () =
 let setDefaultPrinter (printer : [`NSPrinter] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit c (Selector.find "setDefaultPrinter:")
       [make_pointer_from_object printer]) : unit)
-(*  UNSUPPORTED
 let sizeForPaperName (name : [`NSString] Objc.t) =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported c (Selector.find "sizeForPaperName:")
-      [make_pointer_from_object name]) : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize c (Selector.find "sizeForPaperName:")
+      [make_pointer_from_object name]) : NSSize.t)

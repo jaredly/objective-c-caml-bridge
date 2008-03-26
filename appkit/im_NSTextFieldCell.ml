@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextFieldCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextFieldCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setBackgroundColor (color : [`NSColor] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBackgroundColor:")
       [make_pointer_from_object color]) : unit)

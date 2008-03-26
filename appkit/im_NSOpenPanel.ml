@@ -3,9 +3,9 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSOpenPanel *)
 class virtual methods = object (self)
-  method virtual repr : [`NSOpenPanel] Objc.id
-  method l_URLs =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_URLs")[])
+  method virtual repr : [`NSObject] Objc.id
+  method urls =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "URLs")[])
        : [`NSArray] Objc.id))
   method filenames =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "filenames")[])

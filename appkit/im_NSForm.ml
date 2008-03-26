@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSForm *)
 class virtual methods = object (self)
-  method virtual repr : [`NSForm] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method indexOfSelectedItem =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "indexOfSelectedItem")[])
        : int)
@@ -19,12 +19,9 @@ class virtual methods = object (self)
   method setBezeled (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setBezeled:")
       [make_bool flag]) : unit)
-(*  UNSUPPORTED
-  method setTitleAlignment (mode : (*NSTextAlignment*) unsupported) =
+  method setTitleAlignment (mode : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTitleAlignment:")
-      [(*NSTextAlignment*) unsupported mode]) : unit)
-
-*)
+      [make_int mode]) : unit)
   method setTextAlignment (mode : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTextAlignment:")
       [make_int mode]) : unit)
@@ -43,7 +40,7 @@ class virtual methods = object (self)
   method addEntry (title : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "addEntry:")
       [make_pointer_from_object title]) : [`NSFormCell] Objc.id))
-  method insertEntry  ~atIndex:(index : int ) (title : [`NSString] Objc.t) =
+  method insertEntry_atIndex  (title : [`NSString] Objc.t) (index : int) =
     let sel, args = (
       Objc.arg title "insertEntry" make_pointer_from_object
       ++ Objc.arg index "atIndex" make_int
@@ -59,22 +56,13 @@ class virtual methods = object (self)
   method selectTextAtIndex (index : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "selectTextAtIndex:")
       [make_int index]) : unit)
-(*  UNSUPPORTED
-  method setFrameSize (newSize : (*NSSize*) unsupported) =
+  method setFrameSize (newSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setFrameSize:")
-      [(*NSSize*) unsupported newSize]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setTitleBaseWritingDirection (writingDirection : (*NSWritingDirection*) unsupported) =
+      [make_size newSize]) : unit)
+  method setTitleBaseWritingDirection (writingDirection : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTitleBaseWritingDirection:")
-      [(*NSWritingDirection*) unsupported writingDirection]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method setTextBaseWritingDirection (writingDirection : (*NSWritingDirection*) unsupported) =
+      [make_int writingDirection]) : unit)
+  method setTextBaseWritingDirection (writingDirection : int) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setTextBaseWritingDirection:")
-      [(*NSWritingDirection*) unsupported writingDirection]) : unit)
-
-*)
+      [make_int writingDirection]) : unit)
 end

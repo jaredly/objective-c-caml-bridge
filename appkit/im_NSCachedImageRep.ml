@@ -3,36 +3,27 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSCachedImageRep *)
 class virtual methods = object (self)
-  method virtual repr : [`NSCachedImageRep] Objc.id
-(*  UNSUPPORTED
-  method initWithWindow  ~rect:(rect : (*NSRect*) unsupported ) (win : [`NSWindow] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithWindow_rect  (win : [`NSWindow] Objc.t) (rect : NSRect.t) =
     let sel, args = (
       Objc.arg win "initWithWindow" make_pointer_from_object
-      ++ Objc.arg rect "rect" (*NSRect*) unsupported
+      ++ Objc.arg rect "rect" make_rect
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
-(*  UNSUPPORTED
-  method initWithSize  ~depth:(depth : (*NSWindowDepth*) unsupported ) ~separate:(flag : bool ) ~alpha:(alpha : bool ) (size : (*NSSize*) unsupported) =
+  method initWithSize_depth_separate_alpha  (size : NSSize.t) (depth : int) (flag : bool) (alpha : bool) =
     let sel, args = (
-      Objc.arg size "initWithSize" (*NSSize*) unsupported
-      ++ Objc.arg depth "depth" (*NSWindowDepth*) unsupported
+      Objc.arg size "initWithSize" make_size
+      ++ Objc.arg depth "depth" make_int
       ++ Objc.arg flag "separate" make_bool
       ++ Objc.arg alpha "alpha" make_bool
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-
-*)
   method window =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "window")[])
        : [`NSWindow] Objc.id))
-(*  UNSUPPORTED
   method rect =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "rect")[])
-       : (*NSRect*) unsupported)
-
-*)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "rect")[])
+       : NSRect.t)
 end

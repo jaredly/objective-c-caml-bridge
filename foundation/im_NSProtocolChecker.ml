@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSProtocolChecker *)
 class virtual methods = object (self)
-  method virtual repr : [`NSProtocolChecker] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method protocol =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "protocol")[])
        : [`Protocol] Objc.id))

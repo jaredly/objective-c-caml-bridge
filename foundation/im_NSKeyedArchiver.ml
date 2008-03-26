@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSKeyedArchiver *)
 class virtual methods = object (self)
-  method virtual repr : [`NSKeyedArchiver] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method initForWritingWithMutableData (data : [`NSMutableData] Objc.t) =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "initForWritingWithMutableData:")
       [make_pointer_from_object data]) : [`NSObject] Objc.id)
@@ -22,7 +22,7 @@ class virtual methods = object (self)
   method finishEncoding =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "finishEncoding")[])
        : unit)
-  method setClassName  ~forClass:(cls : [`NSObject] Objc.t ) (codedName : [`NSString] Objc.t) =
+  method setClassName_forClass  (codedName : [`NSString] Objc.t) (cls : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg codedName "setClassName" make_pointer_from_object
       ++ Objc.arg cls "forClass" make_pointer_from_object
@@ -32,56 +32,56 @@ class virtual methods = object (self)
   method classNameForClass (cls : [`NSObject] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "classNameForClass:")
       [make_pointer_from_object cls]) : [`NSString] Objc.id))
-  method encodeObject  ~forKey:(key : [`NSString] Objc.t ) (objv : [`NSObject] Objc.t) =
+  method encodeObject_forKey  (objv : [`NSObject] Objc.t) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg objv "encodeObject" make_pointer_from_object
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method encodeConditionalObject  ~forKey:(key : [`NSString] Objc.t ) (objv : [`NSObject] Objc.t) =
+  method encodeConditionalObject_forKey  (objv : [`NSObject] Objc.t) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg objv "encodeConditionalObject" make_pointer_from_object
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method encodeBool  ~forKey:(key : [`NSString] Objc.t ) (boolv : bool) =
+  method encodeBool_forKey  (boolv : bool) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg boolv "encodeBool" make_bool
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method encodeInt  ~forKey:(key : [`NSString] Objc.t ) (intv : int) =
+  method encodeInt_forKey  (intv : int) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg intv "encodeInt" make_int
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method encodeInt32  ~forKey:(key : [`NSString] Objc.t ) (intv : int64) =
+  method encodeInt32_forKey  (intv : int64) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg intv "encodeInt32" make_int64
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method encodeInt64  ~forKey:(key : [`NSString] Objc.t ) (intv : int64) =
+  method encodeInt64_forKey  (intv : int64) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg intv "encodeInt64" make_int64
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method encodeFloat  ~forKey:(key : [`NSString] Objc.t ) (realv : float) =
+  method encodeFloat_forKey  (realv : float) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg realv "encodeFloat" make_float
       ++ Objc.arg key "forKey" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method encodeDouble  ~forKey:(key : [`NSString] Objc.t ) (realv : float) =
+  method encodeDouble_forKey  (realv : float) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg realv "encodeDouble" make_float
       ++ Objc.arg key "forKey" make_pointer_from_object
@@ -89,7 +89,7 @@ class virtual methods = object (self)
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
 (*  UNSUPPORTED
-  method encodeBytes  ~length:(lenv : int ) ~forKey:(key : [`NSString] Objc.t ) (bytesp : (*pointer to const uint8_t*) unsupported) =
+  method encodeBytes_length_forKey  (bytesp : (*pointer to const uint8_t*) unsupported) (lenv : int) (key : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg bytesp "encodeBytes" (*pointer to const uint8_t*) unsupported
       ++ Objc.arg lenv "length" make_int

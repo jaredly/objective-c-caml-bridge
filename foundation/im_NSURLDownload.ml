@@ -3,15 +3,15 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSURLDownload *)
 class virtual methods = object (self)
-  method virtual repr : [`NSURLDownload] Objc.id
-  method initWithRequest  ~delegate:(delegate : [`NSObject] Objc.t ) (request : [`NSURLRequest] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithRequest_delegate  (request : [`NSURLRequest] Objc.t) (delegate : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg request "initWithRequest" make_pointer_from_object
       ++ Objc.arg delegate "delegate" make_pointer_from_object
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithResumeData  ~delegate:(delegate : [`NSObject] Objc.t ) ~path:(path : [`NSString] Objc.t ) (resumeData : [`NSData] Objc.t) =
+  method initWithResumeData_delegate_path  (resumeData : [`NSData] Objc.t) (delegate : [`NSObject] Objc.t) (path : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg resumeData "initWithResumeData" make_pointer_from_object
       ++ Objc.arg delegate "delegate" make_pointer_from_object
@@ -22,7 +22,7 @@ class virtual methods = object (self)
   method cancel =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "cancel")[])
        : unit)
-  method setDestination  ~allowOverwrite:(allowOverwrite : bool ) (path : [`NSString] Objc.t) =
+  method setDestination_allowOverwrite  (path : [`NSString] Objc.t) (allowOverwrite : bool) =
     let sel, args = (
       Objc.arg path "setDestination" make_pointer_from_object
       ++ Objc.arg allowOverwrite "allowOverwrite" make_bool

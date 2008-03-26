@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextList *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextList] Objc.id
-  method initWithMarkerFormat  ~options:(mask : int ) (format : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithMarkerFormat_options  (format : [`NSString] Objc.t) (mask : int) =
     let sel, args = (
       Objc.arg format "initWithMarkerFormat" make_pointer_from_object
       ++ Objc.arg mask "options" make_int

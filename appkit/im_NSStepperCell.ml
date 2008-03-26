@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSStepperCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSStepperCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method minValue =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "minValue")[])
        : float)

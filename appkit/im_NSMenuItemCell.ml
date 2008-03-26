@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSMenuItemCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSMenuItemCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setMenuItem (item : [`NSMenuItem] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMenuItem:")
       [make_pointer_from_object item]) : unit)
@@ -49,90 +49,60 @@ class virtual methods = object (self)
   method keyEquivalentWidth =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "keyEquivalentWidth")[])
        : float)
-(*  UNSUPPORTED
-  method stateImageRectForBounds (cellFrame : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "stateImageRectForBounds:")
-      [(*NSRect*) unsupported cellFrame]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method imageRectForBounds (cellFrame : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "imageRectForBounds:")
-      [(*NSRect*) unsupported cellFrame]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method titleRectForBounds (cellFrame : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "titleRectForBounds:")
-      [(*NSRect*) unsupported cellFrame]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method keyEquivalentRectForBounds (cellFrame : (*NSRect*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "keyEquivalentRectForBounds:")
-      [(*NSRect*) unsupported cellFrame]) : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method drawSeparatorItemWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method stateImageRectForBounds (cellFrame : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "stateImageRectForBounds:")
+      [make_rect cellFrame]) : NSRect.t)
+  method imageRectForBounds (cellFrame : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "imageRectForBounds:")
+      [make_rect cellFrame]) : NSRect.t)
+  method titleRectForBounds (cellFrame : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "titleRectForBounds:")
+      [make_rect cellFrame]) : NSRect.t)
+  method keyEquivalentRectForBounds (cellFrame : NSRect.t) =
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "keyEquivalentRectForBounds:")
+      [make_rect cellFrame]) : NSRect.t)
+  method drawSeparatorItemWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "drawSeparatorItemWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawSeparatorItemWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawStateImageWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method drawStateImageWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "drawStateImageWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawStateImageWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawImageWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method drawImageWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "drawImageWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawImageWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawTitleWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method drawTitleWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "drawTitleWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawTitleWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawKeyEquivalentWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method drawKeyEquivalentWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "drawKeyEquivalentWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawKeyEquivalentWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawBorderAndBackgroundWithFrame  ~inView:(controlView : [`NSView] Objc.t ) (cellFrame : (*NSRect*) unsupported) =
+  method drawBorderAndBackgroundWithFrame_inView  (cellFrame : NSRect.t) (controlView : [`NSView] Objc.t) =
     let sel, args = (
-      Objc.arg cellFrame "drawBorderAndBackgroundWithFrame" (*NSRect*) unsupported
+      Objc.arg cellFrame "drawBorderAndBackgroundWithFrame" make_rect
       ++ Objc.arg controlView "inView" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-
-*)
   method tag =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "tag")[])
        : int)

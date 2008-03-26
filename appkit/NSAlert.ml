@@ -7,9 +7,15 @@ let _NSAlertSecondButtonReturn = 1001L
 let _NSAlertThirdButtonReturn = 1002L
 
 
-class t = fun (r :[`NSAlert] id) -> object
+class virtual methods = object
   inherit Im_NSAlert.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSAlert] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSAlert *)

@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSAlert *)
 class virtual methods = object (self)
-  method virtual repr : [`NSAlert] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setMessageText (messageText : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setMessageText:")
       [make_pointer_from_object messageText]) : unit)
@@ -55,7 +55,7 @@ class virtual methods = object (self)
   method runModal =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "runModal")[])
        : int)
-  method beginSheetModalForWindow  ~modalDelegate:(delegate : [`NSObject] Objc.t ) ~didEndSelector:(didEndSelector : selector ) ~contextInfo:(contextInfo : [`void] Objc.t ) (window : [`NSWindow] Objc.t) =
+  method beginSheetModalForWindow_modalDelegate_didEndSelector_contextInfo  (window : [`NSWindow] Objc.t) (delegate : [`NSObject] Objc.t) (didEndSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg window "beginSheetModalForWindow" make_pointer_from_object
       ++ Objc.arg delegate "modalDelegate" make_pointer_from_object

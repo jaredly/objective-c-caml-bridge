@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextStorage *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextStorage] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method addLayoutManager (obj : [`NSLayoutManager] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "addLayoutManager:")
       [make_pointer_from_object obj]) : unit)
@@ -13,7 +13,7 @@ class virtual methods = object (self)
   method layoutManagers =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "layoutManagers")[])
        : [`NSArray] Objc.id))
-  method edited  ~range:(range : (int * int) ) ~changeInLength:(delta : int ) (editedMask : int) =
+  method edited_range_changeInLength  (editedMask : int) (range : NSRange.t) (delta : int) =
     let sel, args = (
       Objc.arg editedMask "edited" make_int
       ++ Objc.arg range "range" make_range
@@ -24,10 +24,10 @@ class virtual methods = object (self)
   method processEditing =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "processEditing")[])
        : unit)
-  method invalidateAttributesInRange (range : int * int) =
+  method invalidateAttributesInRange (range : NSRange.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "invalidateAttributesInRange:")
       [make_range range]) : unit)
-  method ensureAttributesAreFixedInRange (range : int * int) =
+  method ensureAttributesAreFixedInRange (range : NSRange.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "ensureAttributesAreFixedInRange:")
       [make_range range]) : unit)
   method fixesAttributesLazily =
@@ -38,7 +38,7 @@ class virtual methods = object (self)
        : int)
   method editedRange =
     (get_range (Objc.invoke Objc.tag_nsrange self#repr (Selector.find "editedRange")[])
-       : (int * int))
+       : NSRange.t)
   method changeInLength =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "changeInLength")[])
        : int)

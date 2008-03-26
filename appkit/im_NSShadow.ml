@@ -3,22 +3,16 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSShadow *)
 class virtual methods = object (self)
-  method virtual repr : [`NSShadow] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method init =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "init")[])
        : [`NSObject] Objc.id)
-(*  UNSUPPORTED
   method shadowOffset =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "shadowOffset")[])
-       : (*NSSize*) unsupported)
-
-*)
-(*  UNSUPPORTED
-  method setShadowOffset (offset : (*NSSize*) unsupported) =
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "shadowOffset")[])
+       : NSSize.t)
+  method setShadowOffset (offset : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setShadowOffset:")
-      [(*NSSize*) unsupported offset]) : unit)
-
-*)
+      [make_size offset]) : unit)
   method shadowBlurRadius =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "shadowBlurRadius")[])
        : float)

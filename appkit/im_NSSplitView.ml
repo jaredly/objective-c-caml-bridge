@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSplitView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSplitView] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method setDelegate (anObject : [`NSObject] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setDelegate:")
       [make_pointer_from_object anObject]) : unit)
@@ -16,12 +16,9 @@ class virtual methods = object (self)
   method dividerThickness =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "dividerThickness")[])
        : float)
-(*  UNSUPPORTED
-  method drawDividerInRect (aRect : (*NSRect*) unsupported) =
+  method drawDividerInRect (aRect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawDividerInRect:")
-      [(*NSRect*) unsupported aRect]) : unit)
-
-*)
+      [make_rect aRect]) : unit)
   method setVertical (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setVertical:")
       [make_bool flag]) : unit)

@@ -13,9 +13,15 @@ let _NSTableViewSolidVerticalGridLineMask = 1L
 let _NSTableViewSolidHorizontalGridLineMask = 2L
 
 
-class t = fun (r :[`NSTableView] id) -> object
+class virtual methods = object
   inherit Im_NSTableView.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSTableView] id) -> object
+  inherit methods
+  inherit NSControl.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSTableView *)

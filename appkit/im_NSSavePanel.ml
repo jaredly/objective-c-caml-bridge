@@ -3,9 +3,9 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSavePanel *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSavePanel] Objc.id
-  method l_URL =
-    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "l_URL")[])
+  method virtual repr : [`NSObject] Objc.id
+  method url =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "URL")[])
        : [`NSURL] Objc.id))
   method filename =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "filename")[])

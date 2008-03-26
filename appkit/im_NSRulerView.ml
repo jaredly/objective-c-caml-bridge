@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSRulerView *)
 class virtual methods = object (self)
-  method virtual repr : [`NSRulerView] Objc.id
-  method initWithScrollView  ~orientation:(orientation : int ) (scrollView : [`NSScrollView] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithScrollView_orientation  (scrollView : [`NSScrollView] Objc.t) (orientation : int) =
     let sel, args = (
       Objc.arg scrollView "initWithScrollView" make_pointer_from_object
       ++ Objc.arg orientation "orientation" make_int
@@ -77,7 +77,7 @@ class virtual methods = object (self)
   method markers =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "markers")[])
        : [`NSArray] Objc.id))
-  method trackMarker  ~withMouseEvent:(event : [`NSEvent] Objc.t ) (marker : [`NSRulerMarker] Objc.t) =
+  method trackMarker_withMouseEvent  (marker : [`NSRulerMarker] Objc.t) (event : [`NSEvent] Objc.t) =
     let sel, args = (
       Objc.arg marker "trackMarker" make_pointer_from_object
       ++ Objc.arg event "withMouseEvent" make_pointer_from_object
@@ -90,7 +90,7 @@ class virtual methods = object (self)
   method accessoryView =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "accessoryView")[])
        : [`NSView] Objc.id))
-  method moveRulerlineFromLocation  ~toLocation:(newLocation : float ) (oldLocation : float) =
+  method moveRulerlineFromLocation_toLocation  (oldLocation : float) (newLocation : float) =
     let sel, args = (
       Objc.arg oldLocation "moveRulerlineFromLocation" make_float
       ++ Objc.arg newLocation "toLocation" make_float
@@ -100,18 +100,12 @@ class virtual methods = object (self)
   method invalidateHashMarks =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "invalidateHashMarks")[])
        : unit)
-(*  UNSUPPORTED
-  method drawHashMarksAndLabelsInRect (rect : (*NSRect*) unsupported) =
+  method drawHashMarksAndLabelsInRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawHashMarksAndLabelsInRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
-(*  UNSUPPORTED
-  method drawMarkersInRect (rect : (*NSRect*) unsupported) =
+      [make_rect rect]) : unit)
+  method drawMarkersInRect (rect : NSRect.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "drawMarkersInRect:")
-      [(*NSRect*) unsupported rect]) : unit)
-
-*)
+      [make_rect rect]) : unit)
   method isFlipped =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isFlipped")[])
        : bool)

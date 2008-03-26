@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSURLProtectionSpace *)
 class virtual methods = object (self)
-  method virtual repr : [`NSURLProtectionSpace] Objc.id
-  method initWithHost  ~port:(port : int ) ~protocol:(protocol : [`NSString] Objc.t ) ~realm:(realm : [`NSString] Objc.t ) ~authenticationMethod:(authenticationMethod : [`NSString] Objc.t ) (host : [`NSString] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithHost_port_protocol_realm_authenticationMethod  (host : [`NSString] Objc.t) (port : int) (protocol : [`NSString] Objc.t) (realm : [`NSString] Objc.t) (authenticationMethod : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg host "initWithHost" make_pointer_from_object
       ++ Objc.arg port "port" make_int
@@ -14,11 +14,11 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithProxyHost  ~port:(port : int ) ~l_type:(_type : [`NSString] Objc.t ) ~realm:(realm : [`NSString] Objc.t ) ~authenticationMethod:(authenticationMethod : [`NSString] Objc.t ) (host : [`NSString] Objc.t) =
+  method initWithProxyHost_port_type_realm_authenticationMethod  (host : [`NSString] Objc.t) (port : int) (_type : [`NSString] Objc.t) (realm : [`NSString] Objc.t) (authenticationMethod : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg host "initWithProxyHost" make_pointer_from_object
       ++ Objc.arg port "port" make_int
-      ++ Objc.arg _type "l_type" make_pointer_from_object
+      ++ Objc.arg _type "type" make_pointer_from_object
       ++ Objc.arg realm "realm" make_pointer_from_object
       ++ Objc.arg authenticationMethod "authenticationMethod" make_pointer_from_object
     ) ([],[]) in

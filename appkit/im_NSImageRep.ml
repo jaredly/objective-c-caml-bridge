@@ -3,34 +3,22 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSImageRep *)
 class virtual methods = object (self)
-  method virtual repr : [`NSImageRep] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method draw =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "draw")[])
        : bool)
-(*  UNSUPPORTED
-  method drawAtPoint (point : (*NSPoint*) unsupported) =
+  method drawAtPoint (point : NSPoint.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "drawAtPoint:")
-      [(*NSPoint*) unsupported point]) : bool)
-
-*)
-(*  UNSUPPORTED
-  method drawInRect (rect : (*NSRect*) unsupported) =
+      [make_point point]) : bool)
+  method drawInRect (rect : NSRect.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "drawInRect:")
-      [(*NSRect*) unsupported rect]) : bool)
-
-*)
-(*  UNSUPPORTED
-  method setSize (aSize : (*NSSize*) unsupported) =
+      [make_rect rect]) : bool)
+  method setSize (aSize : NSSize.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setSize:")
-      [(*NSSize*) unsupported aSize]) : unit)
-
-*)
-(*  UNSUPPORTED
+      [make_size aSize]) : unit)
   method size =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "size")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "size")[])
+       : NSSize.t)
   method setAlpha (flag : bool) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setAlpha:")
       [make_bool flag]) : unit)

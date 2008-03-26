@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSPredicate *)
 class virtual methods = object (self)
-  method virtual repr : [`NSPredicate] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method predicateWithSubstitutionVariables (variables : [`NSDictionary] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "predicateWithSubstitutionVariables:")
       [make_pointer_from_object variables]) : [`NSPredicate] Objc.id))

@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSFont *)
 class virtual methods = object (self)
-  method virtual repr : [`NSFont] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method fontName =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "fontName")[])
        : [`NSString] Objc.id))
@@ -43,18 +43,12 @@ class virtual methods = object (self)
   method coveredCharacterSet =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "coveredCharacterSet")[])
        : [`NSCharacterSet] Objc.id))
-(*  UNSUPPORTED
   method boundingRectForFont =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "boundingRectForFont")[])
-       : (*NSRect*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "boundingRectForFont")[])
+       : NSRect.t)
   method maximumAdvancement =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "maximumAdvancement")[])
-       : (*NSSize*) unsupported)
-
-*)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "maximumAdvancement")[])
+       : NSSize.t)
   method ascender =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "ascender")[])
        : float)
@@ -84,18 +78,18 @@ class virtual methods = object (self)
        : bool)
 (*  UNSUPPORTED
   method boundingRectForGlyph (aGlyph : (*NSGlyph*) unsupported) =
-    ((*NSRect*) unsupported (Objc.invoke (*NSRect*) Objc.tag_unsupported self#repr (Selector.find "boundingRectForGlyph:")
-      [(*NSGlyph*) unsupported aGlyph]) : (*NSRect*) unsupported)
+    (get_rect (Objc.invoke Objc.tag_nsrect self#repr (Selector.find "boundingRectForGlyph:")
+      [(*NSGlyph*) unsupported aGlyph]) : NSRect.t)
 
 *)
 (*  UNSUPPORTED
   method advancementForGlyph (ag : (*NSGlyph*) unsupported) =
-    ((*NSSize*) unsupported (Objc.invoke (*NSSize*) Objc.tag_unsupported self#repr (Selector.find "advancementForGlyph:")
-      [(*NSGlyph*) unsupported ag]) : (*NSSize*) unsupported)
+    (get_size (Objc.invoke Objc.tag_nssize self#repr (Selector.find "advancementForGlyph:")
+      [(*NSGlyph*) unsupported ag]) : NSSize.t)
 
 *)
 (*  UNSUPPORTED
-  method getBoundingRects  ~forGlyphs:(glyphs : (*pointer to const NSGlyph*) unsupported ) ~count:(glyphCount : int ) (bounds : (*NSRectArray*) unsupported) =
+  method getBoundingRects_forGlyphs_count  (bounds : (*NSRectArray*) unsupported) (glyphs : (*pointer to const NSGlyph*) unsupported) (glyphCount : int) =
     let sel, args = (
       Objc.arg bounds "getBoundingRects" (*NSRectArray*) unsupported
       ++ Objc.arg glyphs "forGlyphs" (*pointer to const NSGlyph*) unsupported
@@ -106,7 +100,7 @@ class virtual methods = object (self)
 
 *)
 (*  UNSUPPORTED
-  method getAdvancements  ~forGlyphs:(glyphs : (*pointer to const NSGlyph*) unsupported ) ~count:(glyphCount : int ) (advancements : (*NSSizeArray*) unsupported) =
+  method getAdvancements_forGlyphs_count  (advancements : (*NSSizeArray*) unsupported) (glyphs : (*pointer to const NSGlyph*) unsupported) (glyphCount : int) =
     let sel, args = (
       Objc.arg advancements "getAdvancements" (*NSSizeArray*) unsupported
       ++ Objc.arg glyphs "forGlyphs" (*pointer to const NSGlyph*) unsupported
@@ -116,7 +110,17 @@ class virtual methods = object (self)
        : unit)
 
 *)
-  (* skipping selector getAdvancements:forPackedGlyphs:length *)
+(*  UNSUPPORTED
+  method getAdvancements_forPackedGlyphs_length  (advancements : (*NSSizeArray*) unsupported) (packedGlyphs : (*pointer to const void*) unsupported) (length : int) =
+    let sel, args = (
+      Objc.arg advancements "getAdvancements" (*NSSizeArray*) unsupported
+      ++ Objc.arg packedGlyphs "forPackedGlyphs" (*pointer to const void*) unsupported
+      ++ Objc.arg length "length" make_int
+    ) ([],[]) in
+      (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
+       : unit)
+
+*)
   method set =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "set")[])
        : unit)

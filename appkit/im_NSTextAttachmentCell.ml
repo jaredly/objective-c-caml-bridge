@@ -3,5 +3,5 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSTextAttachmentCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSTextAttachmentCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
 end

@@ -1,9 +1,15 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSCursor] id) -> object
+class virtual methods = object
   inherit Im_NSCursor.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSCursor] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSCursor *)
@@ -16,8 +22,8 @@ let currentCursor () =
 let arrowCursor () =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "arrowCursor")[])
        : [`NSCursor] Objc.id))
-let l_IBeamCursor () =
-    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "l_IBeamCursor")[])
+let _IBeamCursor () =
+    (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "IBeamCursor")[])
        : [`NSCursor] Objc.id))
 let pointingHandCursor () =
     (new t (get_pointer (Objc.invoke Objc.tag_pointer c (Selector.find "pointingHandCursor")[])

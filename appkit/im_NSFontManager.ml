@@ -3,14 +3,14 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSFontManager *)
 class virtual methods = object (self)
-  method virtual repr : [`NSFontManager] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method isMultiple =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isMultiple")[])
        : bool)
   method selectedFont =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "selectedFont")[])
        : [`NSFont] Objc.id))
-  method setSelectedFont  ~isMultiple:(flag : bool ) (fontObj : [`NSFont] Objc.t) =
+  method setSelectedFont_isMultiple  (fontObj : [`NSFont] Objc.t) (flag : bool) =
     let sel, args = (
       Objc.arg fontObj "setSelectedFont" make_pointer_from_object
       ++ Objc.arg flag "isMultiple" make_bool
@@ -27,7 +27,7 @@ class virtual methods = object (self)
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "fontPanel:")
       [make_bool create]) : [`NSFontPanel] Objc.id))
 (*  UNSUPPORTED
-  method fontWithFamily  ~traits:(traits : (*NSFontTraitMask*) unsupported ) ~weight:(weight : int ) ~size:(size : float ) (family : [`NSString] Objc.t) =
+  method fontWithFamily_traits_weight_size  (family : [`NSString] Objc.t) (traits : (*NSFontTraitMask*) unsupported) (weight : int) (size : float) =
     let sel, args = (
       Objc.arg family "fontWithFamily" make_pointer_from_object
       ++ Objc.arg traits "traits" (*NSFontTraitMask*) unsupported
@@ -56,19 +56,51 @@ class virtual methods = object (self)
   method availableMembersOfFontFamily (fam : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "availableMembersOfFontFamily:")
       [make_pointer_from_object fam]) : [`NSArray] Objc.id))
-  (* skipping selector convertFont *)
-  method convertFont  ?toSize:(size : float option) (fontObj : [`NSFont] Objc.t) =
+  method convertFont (fontObj : [`NSFont] Objc.t) =
+    ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "convertFont:")
+      [make_pointer_from_object fontObj]) : [`NSFont] Objc.id))
+  method convertFont_toSize  (fontObj : [`NSFont] Objc.t) (size : float) =
     let sel, args = (
       Objc.arg fontObj "convertFont" make_pointer_from_object
-      ++ Objc.opt_arg size "toSize" make_float
+      ++ Objc.arg size "toSize" make_float
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSFont] Objc.id))
-  (* skipping selector convertFont:toFace *)
-  (* skipping selector convertFont:toFamily *)
-  (* skipping selector convertFont:toHaveTrait *)
-  (* skipping selector convertFont:toNotHaveTrait *)
-  method convertWeight  ~ofFont:(fontObj : [`NSFont] Objc.t ) (upFlag : bool) =
+  method convertFont_toFace  (fontObj : [`NSFont] Objc.t) (typeface : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg fontObj "convertFont" make_pointer_from_object
+      ++ Objc.arg typeface "toFace" make_pointer_from_object
+    ) ([],[]) in
+      ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSFont] Objc.id))
+  method convertFont_toFamily  (fontObj : [`NSFont] Objc.t) (family : [`NSString] Objc.t) =
+    let sel, args = (
+      Objc.arg fontObj "convertFont" make_pointer_from_object
+      ++ Objc.arg family "toFamily" make_pointer_from_object
+    ) ([],[]) in
+      ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSFont] Objc.id))
+(*  UNSUPPORTED
+  method convertFont_toHaveTrait  (fontObj : [`NSFont] Objc.t) (trait : (*NSFontTraitMask*) unsupported) =
+    let sel, args = (
+      Objc.arg fontObj "convertFont" make_pointer_from_object
+      ++ Objc.arg trait "toHaveTrait" (*NSFontTraitMask*) unsupported
+    ) ([],[]) in
+      ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSFont] Objc.id))
+
+*)
+(*  UNSUPPORTED
+  method convertFont_toNotHaveTrait  (fontObj : [`NSFont] Objc.t) (trait : (*NSFontTraitMask*) unsupported) =
+    let sel, args = (
+      Objc.arg fontObj "convertFont" make_pointer_from_object
+      ++ Objc.arg trait "toNotHaveTrait" (*NSFontTraitMask*) unsupported
+    ) ([],[]) in
+      ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
+       : [`NSFont] Objc.id))
+
+*)
+  method convertWeight_ofFont  (upFlag : bool) (fontObj : [`NSFont] Objc.t) =
     let sel, args = (
       Objc.arg upFlag "convertWeight" make_bool
       ++ Objc.arg fontObj "ofFont" make_pointer_from_object
@@ -96,14 +128,14 @@ class virtual methods = object (self)
   method delegate =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "delegate")[])
        : [`NSObject] Objc.id)
-  method localizedNameForFamily  ~face:(faceKey : [`NSString] Objc.t ) (family : [`NSString] Objc.t) =
+  method localizedNameForFamily_face  (family : [`NSString] Objc.t) (faceKey : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg family "localizedNameForFamily" make_pointer_from_object
       ++ Objc.arg faceKey "face" make_pointer_from_object
     ) ([],[]) in
       ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSString] Objc.id))
-  method setSelectedAttributes  ~isMultiple:(flag : bool ) (attributes : [`NSDictionary] Objc.t) =
+  method setSelectedAttributes_isMultiple  (attributes : [`NSDictionary] Objc.t) (flag : bool) =
     let sel, args = (
       Objc.arg attributes "setSelectedAttributes" make_pointer_from_object
       ++ Objc.arg flag "isMultiple" make_bool
@@ -122,7 +154,7 @@ class virtual methods = object (self)
   method fontDescriptorsInCollection (collectionNames : [`NSString] Objc.t) =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "fontDescriptorsInCollection:")
       [make_pointer_from_object collectionNames]) : [`NSArray] Objc.id))
-  method addCollection  ~options:(collectionOptions : int ) (collectionName : [`NSString] Objc.t) =
+  method addCollection_options  (collectionName : [`NSString] Objc.t) (collectionOptions : int) =
     let sel, args = (
       Objc.arg collectionName "addCollection" make_pointer_from_object
       ++ Objc.arg collectionOptions "options" make_int
@@ -132,14 +164,14 @@ class virtual methods = object (self)
   method removeCollection (collectionName : [`NSString] Objc.t) =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "removeCollection:")
       [make_pointer_from_object collectionName]) : bool)
-  method addFontDescriptors  ~toCollection:(collectionName : [`NSString] Objc.t ) (descriptors : [`NSArray] Objc.t) =
+  method addFontDescriptors_toCollection  (descriptors : [`NSArray] Objc.t) (collectionName : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg descriptors "addFontDescriptors" make_pointer_from_object
       ++ Objc.arg collectionName "toCollection" make_pointer_from_object
     ) ([],[]) in
       (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find_list sel) args)
        : unit)
-  method removeFontDescriptor  ~fromCollection:(collection : [`NSString] Objc.t ) (descriptor : [`NSFontDescriptor] Objc.t) =
+  method removeFontDescriptor_fromCollection  (descriptor : [`NSFontDescriptor] Objc.t) (collection : [`NSString] Objc.t) =
     let sel, args = (
       Objc.arg descriptor "removeFontDescriptor" make_pointer_from_object
       ++ Objc.arg collection "fromCollection" make_pointer_from_object

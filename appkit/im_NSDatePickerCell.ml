@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSDatePickerCell *)
 class virtual methods = object (self)
-  method virtual repr : [`NSDatePickerCell] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method datePickerStyle =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "datePickerStyle")[])
        : int)

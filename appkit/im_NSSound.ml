@@ -3,15 +3,15 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSSound *)
 class virtual methods = object (self)
-  method virtual repr : [`NSSound] Objc.id
-  method initWithContentsOfURL  ~byReference:(byRef : bool ) (url : [`NSURL] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithContentsOfURL_byReference  (url : [`NSURL] Objc.t) (byRef : bool) =
     let sel, args = (
       Objc.arg url "initWithContentsOfURL" make_pointer_from_object
       ++ Objc.arg byRef "byReference" make_bool
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithContentsOfFile  ~byReference:(byRef : bool ) (path : [`NSString] Objc.t) =
+  method initWithContentsOfFile_byReference  (path : [`NSString] Objc.t) (byRef : bool) =
     let sel, args = (
       Objc.arg path "initWithContentsOfFile" make_pointer_from_object
       ++ Objc.arg byRef "byReference" make_bool

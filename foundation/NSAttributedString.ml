@@ -1,10 +1,16 @@
 (* THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD *)
 open Objc
 
-class t = fun (r :[`NSAttributedString] id) -> object
-  inherit Cati_NSExtendedAttributedString.methods_NSAttributedString
+class virtual methods = object
+  inherit Foundation_cati_NSExtendedAttributedString.methods_NSAttributedString
   inherit Im_NSAttributedString.methods
-  method repr = r
+end
+
+class t = fun (r :[`NSAttributedString] id) -> object
+  inherit methods
+  inherit NSObject.methods
+  method repr = Objc.forget_type r 
+  method typed_repr = r
 end
 
 (* Class object for NSAttributedString *)

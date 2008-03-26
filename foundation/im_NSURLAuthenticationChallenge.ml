@@ -3,8 +3,8 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSURLAuthenticationChallenge *)
 class virtual methods = object (self)
-  method virtual repr : [`NSURLAuthenticationChallenge] Objc.id
-  method initWithProtectionSpace  ~proposedCredential:(credential : [`NSURLCredential] Objc.t ) ~previousFailureCount:(previousFailureCount : int ) ~failureResponse:(response : [`NSURLResponse] Objc.t ) ~error:(error : [`NSError] Objc.t ) ~sender:(sender : [`NSObject] Objc.t ) (space : [`NSURLProtectionSpace] Objc.t) =
+  method virtual repr : [`NSObject] Objc.id
+  method initWithProtectionSpace_proposedCredential_previousFailureCount_failureResponse_error_sender  (space : [`NSURLProtectionSpace] Objc.t) (credential : [`NSURLCredential] Objc.t) (previousFailureCount : int) (response : [`NSURLResponse] Objc.t) (error : [`NSError] Objc.t) (sender : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg space "initWithProtectionSpace" make_pointer_from_object
       ++ Objc.arg credential "proposedCredential" make_pointer_from_object
@@ -15,7 +15,7 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-  method initWithAuthenticationChallenge  ~sender:(sender : [`NSObject] Objc.t ) (challenge : [`NSURLAuthenticationChallenge] Objc.t) =
+  method initWithAuthenticationChallenge_sender  (challenge : [`NSURLAuthenticationChallenge] Objc.t) (sender : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg challenge "initWithAuthenticationChallenge" make_pointer_from_object
       ++ Objc.arg sender "sender" make_pointer_from_object

@@ -3,7 +3,7 @@ open Objc
 
 (* Encapsulation of methods for native instance of NSNibConnector *)
 class virtual methods = object (self)
-  method virtual repr : [`NSNibConnector] Objc.id
+  method virtual repr : [`NSObject] Objc.id
   method source =
     (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "source")[])
        : [`NSObject] Objc.id)
@@ -22,7 +22,7 @@ class virtual methods = object (self)
   method setLabel (label : [`NSString] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "setLabel:")
       [make_pointer_from_object label]) : unit)
-  method replaceObject  ~withObject:(newObject : [`NSObject] Objc.t ) (oldObject : [`NSObject] Objc.t) =
+  method replaceObject_withObject  (oldObject : [`NSObject] Objc.t) (newObject : [`NSObject] Objc.t) =
     let sel, args = (
       Objc.arg oldObject "replaceObject" make_pointer_from_object
       ++ Objc.arg newObject "withObject" make_pointer_from_object
