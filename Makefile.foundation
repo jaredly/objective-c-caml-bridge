@@ -3,6 +3,7 @@ include mk/Makefile.caml-config
 
 # This tells ocamlfind what packages we depend on
 R=
+P=Foundation
 
 # Extra flags for compilation and linking
 INCS=

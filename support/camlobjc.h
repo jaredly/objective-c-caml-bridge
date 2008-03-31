@@ -19,3 +19,10 @@ enum {
 #define Caml_pointer_val(x)  (*((void **) Data_custom_val(x)))
 
 value caml_wrap_id (id x);
+
+// http://theocacao.com/document.page/264
+// http://theocacao.com/document.page/265
+// p 140 of Hillegass
+// http://www.borkware.com/rants/agentm/elegant-delegation/
+
+

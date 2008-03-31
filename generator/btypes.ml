@@ -154,3 +154,13 @@ let rec deps t =
       | Pointer (_, t) -> deps t
       | NamedType s -> Some s
       | _ -> None
+
+let rec ctype w = function
+      | NamedType s -> w s
+      | Pointer (constp, t) -> 
+	  w (if constp then "const " else "");
+	  ctype w t;
+	  w " *"
+      | Qualified (q,t) -> ctype w t
+      | Fun (tl, t) -> assert false
+      | ArrayType (t,_) -> assert false

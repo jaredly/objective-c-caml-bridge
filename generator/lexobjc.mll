@@ -37,6 +37,7 @@ rule objc_dot_h = parse
   | "struct" { Keyword "struct" }
   | "union" { Keyword "union" }
   | "IBOutlet" { objc_dot_h lexbuf }  (* empty define in Cocoa, used by IB *)
+  | "IBAction" { Ident "void" }  (* defined in Cocoa, used by IB *)
   | "<<" { Keyword "<<" }
   | '|' { Keyword "|" }
   | '<' { Keyword "<" }
@@ -110,6 +111,10 @@ and multiline = parse
 and import = parse
   | [' ' '\t' ] { import lexbuf }
   | '<' ['A'-'Z''a'-'z' '-' '/']* ".h>" { 
+	let l = Lexing.lexeme lexbuf in 
+	  Import (String.sub l 1 (String.length l - 2))
+      }
+  | '"' ['A'-'Z''a'-'z' '-' '/']* ".h" '"' { 
 	let l = Lexing.lexeme lexbuf in 
 	  Import (String.sub l 1 (String.length l - 2))
       }

@@ -27,7 +27,6 @@ http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSIn
  * around.
  */
 
-// Finalizer
 static void finalize_camlid(value v)
 {
   id i = Camlid_val(v);

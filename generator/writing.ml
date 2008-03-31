@@ -66,7 +66,7 @@ let default_out_dir = ref "./lib"
 (* what we look for to comment out stuff that can't compile or won't work *)
 let r_unsupported = Str.regexp_string "unsupported"
 
-class ml_deferred framework header aio = object (self)
+class ml_deferred aio = object (self)
   inherit deferred r_unsupported ("(*  UNSUPPORTED\n", "\n*)\n")  aio
   inherit formatter
   method prelude (w : string -> unit) = 
@@ -79,13 +79,36 @@ class ml_deferred framework header aio = object (self)
     ()
 end
 
+class c_deferred aio = object (self)
+  inherit deferred r_unsupported ("/* UNSUPPORTED\n", "\n*/\n") aio
+  inherit formatter
+  method prelude (w : string -> unit) = 
+    kprintf w "// THIS FILE IS GENERATED - ALL CHANGES WILL BE LOST AT THE NEXT BUILD\n";
+    ()
+  method postlude (w : string -> unit) =
+    w "// Local "; w "Variables:\n"; (* split in two so as not to trigger in this file...*)
+    w "// mode: objc\n";
+    w "// End:\n";
+    ()
+end
+
+let flush_buffer b filename =
+  let oc = open_out filename in
+  let w = output_string oc in
+    b#prelude w;
+    b#write w;
+    b#postlude w;
+    close_out oc;
+    Debug.f "Created %s" filename
+
+
 let base f = Filename.chop_suffix (Filename.basename f) ".h"
 
 let ow ?(out_dir = !default_out_dir) framework = 
   let o = object
     val modbuffers = new Ohash.autoinit (fun k -> 
       if Filename.check_suffix k ".ml" then
-	new ml_deferred framework k (new abstract_buffer)
+	new ml_deferred (new abstract_buffer)
       else 
 	assert false)
       123
@@ -96,12 +119,7 @@ let ow ?(out_dir = !default_out_dir) framework =
     method flush = modbuffers#iter (fun k b ->
       if b#length > 0 then begin
 	  Debug.f "Flushing buffer %s" k;
-	  let oc = open_out (Filename.concat out_dir k) in
-	  let w = output_string oc in
-	    b#prelude w;
-	    b#write w;
-	    b#postlude w;
-	    close_out oc
+	  flush_buffer b (Filename.concat out_dir k)
 	end)
   end in
     o

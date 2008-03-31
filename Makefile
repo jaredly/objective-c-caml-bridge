@@ -25,6 +25,8 @@ SAVE=README TODO LICENSE \
      $(wildcard mk/Makefile.*) \
      $(wildcard tryouts/*.ml*) tryouts/Makefile \
      $(wildcard tests/*.ml*) \
+     $(wildcard foundation/*.ml*) \
+     $(wildcard appkit/*.ml*) \
      utils/cmosort
 
 # List  binaries here (make clean will remove them)
@@ -56,10 +58,15 @@ GENERATOR_OBJ= \
 SUPPORT_OBJ=support/classes.cmo support/selector.cmo support/objc.cmo support/kvc.cmo \
 	support/NSRange.cmo support/NSSize.cmo support/NSPoint.cmo support/NSRect.cmo 
 
+# Mapper
+MAPPER_OBJ= \
+	generator/classgen.cmo
+
 all: 	libgenerator.cma \
 	bridgeocamlobjc.cma \
 	compiler_tests \
 	gen_foundation gen_appkit \
+	objcmapper \
 	tests
 
 
@@ -69,6 +76,10 @@ foundation:
 
 appkit:
 	make -f Makefile.appkit
+
+objcmapper: libgenerator.cma $(MAPPER_OBJ)
+	$(BYTELINK)
+	
 
 help::
 	@echo "make foundation # compiles stubs for foundation framework"
@@ -88,7 +99,8 @@ bridgeocamlobjc.cma: $(SUPPORT_OBJ) \
 	support/camlinvoke.o \
 	support/camlselectors.o \
 	support/camlclasses.o \
-	support/camlkvc.o
+	support/camlkvc.o \
+	support/f2ml.o
 	$(MIXEDBYTELIB) -ccopt -g -framework Foundation -lobjc
 
 # Foundation framework stubs
