@@ -1,19 +1,15 @@
-- doover for method naming convention
-  The whole idea of using labelled args for multiple variations of ObjC messages doesn't work
-  very well - it only supports the case where some arguments can be omitted. Unfortunately,
-  the various Cocoa API make use of overloading quite a bit (e.g. same primary selector foo: 
-  with multiple different secondary selectors, foo:a: foo:b: foo:c:d).
-  Instead, we're going to be dump and if the selector is foo:a:, then the method name in OCaml
-  will be foo_a_.
-
 - support for instance variables
-  	  KVC? 
 	  [target setValue:v forKey:@"fieldname"];
+	  what's the type for v? NSValue, NSNumber, NSFoo for other classes?
 
 - calls from ObjC to OCaml
   	inspect invocation
 	build array of values
 	invoke callback
+
+- look at threads that are not spawned by OCaml - is it possible to
+  call some C initialization that would make them tolerable to OCaml?
+
 
 Next:
   * nil as valid object of any type.
@@ -22,12 +18,8 @@ Next:
   * includes from CoreFoundation
   * NSAffineTransform and NSAttributedString are defined both in Foundation and AppKit...
   * casts:
-    	  NSComparisonResult: enum, builtin at low level
-	  NSTimeInverval
 	  Class: we should have it too?
-	  NSExpressionType
 	  NSDecimal? 20 bytes, not a class
-	  NSPoint, NSSize, NSRect
   
 ----------------------------------------------------------------------
 DONE
@@ -77,4 +69,11 @@ end
 
 - separate out Makefiles for foundation/appkit (some duplicate naming)
 - inheritance
-	
+- doover for method naming convention
+  The whole idea of using labelled args for multiple variations of ObjC messages doesn't work
+  very well - it only supports the case where some arguments can be omitted. Unfortunately,
+  the various Cocoa API make use of overloading quite a bit (e.g. same primary selector foo: 
+  with multiple different secondary selectors, foo:a: foo:b: foo:c:d).
+  Instead, we're going to be dump and if the selector is foo:a:, then the method name in OCaml
+  will be foo_a_.
+- NSPoint, NSSize, NSRect unit testing (use NSScreen?)
