@@ -49,12 +49,9 @@ class virtual methods = object (self)
   method fileModificationDate =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "fileModificationDate")[])
        : [`NSDate] Objc.id))
-(*  UNSUPPORTED
   method revertDocumentToSaved (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "revertDocumentToSaved:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "revertDocumentToSaved:")
+      [make_pointer_from_object sender]) : unit)
   method revertToContentsOfURL_ofType_error  (absoluteURL : [`NSURL] Objc.t) (typeName : [`NSString] Objc.t) (outError : bool) =
     let sel, args = (
       Objc.arg absoluteURL "revertToContentsOfURL" make_pointer_from_object
@@ -141,24 +138,15 @@ class virtual methods = object (self)
   method keepBackupFile =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "keepBackupFile")[])
        : bool)
-(*  UNSUPPORTED
   method saveDocument (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "saveDocument:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "saveDocument:")
+      [make_pointer_from_object sender]) : unit)
   method saveDocumentAs (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "saveDocumentAs:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "saveDocumentAs:")
+      [make_pointer_from_object sender]) : unit)
   method saveDocumentTo (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "saveDocumentTo:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "saveDocumentTo:")
+      [make_pointer_from_object sender]) : unit)
   method saveDocumentWithDelegate_didSaveSelector_contextInfo  (delegate : [`NSObject] Objc.t) (didSaveSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg delegate "saveDocumentWithDelegate" make_pointer_from_object
@@ -239,12 +227,9 @@ class virtual methods = object (self)
   method close =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "close")[])
        : unit)
-(*  UNSUPPORTED
   method runPageLayout (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "runPageLayout:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "runPageLayout:")
+      [make_pointer_from_object sender]) : unit)
   method runModalPageLayoutWithPrintInfo_delegate_didRunSelector_contextInfo  (printInfo : [`NSPrintInfo] Objc.t) (delegate : [`NSObject] Objc.t) (didRunSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg printInfo "runModalPageLayoutWithPrintInfo" make_pointer_from_object
@@ -266,12 +251,9 @@ class virtual methods = object (self)
   method printInfo =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "printInfo")[])
        : [`NSPrintInfo] Objc.id))
-(*  UNSUPPORTED
   method printDocument (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "printDocument:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "printDocument:")
+      [make_pointer_from_object sender]) : unit)
   method printDocumentWithSettings_showPrintPanel_delegate_didPrintSelector_contextInfo  (printSettings : [`NSDictionary] Objc.t) (showPrintPanel : bool) (delegate : [`NSObject] Objc.t) (didPrintSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg printSettings "printDocumentWithSettings" make_pointer_from_object

@@ -75,12 +75,9 @@ class virtual methods = object (self)
   method close =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "close")[])
        : unit)
-(*  UNSUPPORTED
   method showWindow (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "showWindow:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "showWindow:")
+      [make_pointer_from_object sender]) : unit)
   method isWindowLoaded =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "isWindowLoaded")[])
        : bool)

@@ -28,12 +28,9 @@ class virtual methods = object (self)
   method removeDocument (document : [`NSDocument] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "removeDocument:")
       [make_pointer_from_object document]) : unit)
-(*  UNSUPPORTED
   method newDocument (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "newDocument:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "newDocument:")
+      [make_pointer_from_object sender]) : unit)
   method openUntitledDocumentAndDisplay_error  (displayDocument : bool) (outError : bool) =
     let sel, args = (
       Objc.arg displayDocument "openUntitledDocumentAndDisplay" make_bool
@@ -48,12 +45,9 @@ class virtual methods = object (self)
     ) ([],[]) in
       (get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find_list sel) args)
        : [`NSObject] Objc.id)
-(*  UNSUPPORTED
   method openDocument (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "openDocument:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "openDocument:")
+      [make_pointer_from_object sender]) : unit)
   method urlsFromRunningOpenPanel =
     ((get_pointer (Objc.invoke Objc.tag_pointer self#repr (Selector.find "URLsFromRunningOpenPanel")[])
        : [`NSArray] Objc.id))
@@ -103,12 +97,9 @@ class virtual methods = object (self)
   method autosavingDelay =
     (get_float (Objc.invoke Objc.tag_float self#repr (Selector.find "autosavingDelay")[])
        : float)
-(*  UNSUPPORTED
   method saveAllDocuments (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "saveAllDocuments:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "saveAllDocuments:")
+      [make_pointer_from_object sender]) : unit)
   method hasEditedDocuments =
     (get_bool (Objc.invoke Objc.tag_bool self#repr (Selector.find "hasEditedDocuments")[])
        : bool)
@@ -149,12 +140,9 @@ class virtual methods = object (self)
   method maximumRecentDocumentCount =
     (get_int (Objc.invoke Objc.tag_int self#repr (Selector.find "maximumRecentDocumentCount")[])
        : int)
-(*  UNSUPPORTED
   method clearRecentDocuments (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "clearRecentDocuments:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "clearRecentDocuments:")
+      [make_pointer_from_object sender]) : unit)
   method noteNewRecentDocument (document : [`NSDocument] Objc.t) =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "noteNewRecentDocument:")
       [make_pointer_from_object document]) : unit)

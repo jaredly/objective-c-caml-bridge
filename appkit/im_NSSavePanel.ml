@@ -100,10 +100,7 @@ class virtual methods = object (self)
   method validateVisibleColumns =
     (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "validateVisibleColumns")[])
        : unit)
-(*  UNSUPPORTED
   method selectText (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "selectText:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "selectText:")
+      [make_pointer_from_object sender]) : unit)
 end

@@ -4,18 +4,12 @@ open Objc
 (* instance methods for category NSSavePanelRuntime of NSSavePanel *)
 class virtual methods_NSSavePanel = object (self)
   method virtual repr : [`NSObject] Objc.id
-(*  UNSUPPORTED
   method ok (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "ok:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
-(*  UNSUPPORTED
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "ok:")
+      [make_pointer_from_object sender]) : unit)
   method cancel (sender : [`NSObject] Objc.t) =
-    ((*IBAction*) unsupported (Objc.invoke (*IBAction*) Objc.tag_unsupported self#repr (Selector.find "cancel:")
-      [make_pointer_from_object sender]) : (*IBAction*) unsupported)
-
-*)
+    (get_unit (Objc.invoke Objc.tag_unit self#repr (Selector.find "cancel:")
+      [make_pointer_from_object sender]) : unit)
   method beginSheetForDirectory_file_modalForWindow_modalDelegate_didEndSelector_contextInfo  (path : [`NSString] Objc.t) (name : [`NSString] Objc.t) (docWindow : [`NSWindow] Objc.t) (delegate : [`NSObject] Objc.t) (didEndSelector : selector) (contextInfo : [`void] Objc.t) =
     let sel, args = (
       Objc.arg path "beginSheetForDirectory" make_pointer_from_object
