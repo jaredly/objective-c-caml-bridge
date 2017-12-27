@@ -8,3 +8,5 @@
 *.debug
 objcmapper
 test_generator
+ocamlcocoa
+tests/t*

@@ -1,453 +1,461 @@
-support/NSRect.cmo: support/NSSize.cmo support/NSPoint.cmo 
-support/NSRect.cmx: support/NSSize.cmx support/NSPoint.cmx 
-support/classes.cmo: support/objc.cmi support/classes.cmi 
-support/classes.cmx: support/objc.cmx support/classes.cmi 
-support/kvc.cmo: support/objc.cmi 
-support/kvc.cmx: support/objc.cmx 
-support/objc.cmo: support/selector.cmo support/objc.cmi 
-support/objc.cmx: support/selector.cmx support/objc.cmi 
-support/classes.cmi: support/objc.cmi 
-support/objc.cmi: support/selector.cmo support/NSSize.cmo support/NSRect.cmo \
-    support/NSRange.cmo support/NSPoint.cmo 
-foundation/Foundation_cati_NSArchiverCallback.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSArchiverCallback.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSArrayCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSArrayCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSArrayPathExtensions.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSArrayPathExtensions.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSAutoreleasePoolDebugging.cmo: support/objc.cmi 
-foundation/Foundation_cati_NSAutoreleasePoolDebugging.cmx: support/objc.cmx 
-foundation/Foundation_cati_NSCalendarDateExtras.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSCalendarDateExtras.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSClassDescriptionPrimitives.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSClassDescriptionPrimitives.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSComparisonMethods.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSComparisonMethods.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSConnectionDelegateMethods.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSConnectionDelegateMethods.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSCopyLinkMoveHandler.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSCopyLinkMoveHandler.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSDataCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSDataCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSDateCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSDateCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSDateFormatterCompatibility.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSDateFormatterCompatibility.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSDecimalNumberExtensions.cmo: support/objc.cmi 
-foundation/Foundation_cati_NSDecimalNumberExtensions.cmx: support/objc.cmx 
-foundation/Foundation_cati_NSDecimalNumberScanning.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSDecimalNumberScanning.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSDelayedPerforming.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSDelayedPerforming.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSDeprecatedKeyValueCoding.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSDeprecatedKeyValueCoding.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSDictionaryCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSDictionaryCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSDistantObjectRequestMethods.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSDistantObjectRequestMethods.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSDistributedObjects.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSDistributedObjects.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSErrorRecoveryAttempting.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSErrorRecoveryAttempting.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSExceptionRaisingConveniences.cmo: \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExceptionRaisingConveniences.cmx: \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedArray.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSExtendedArray.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSExtendedAttributedString.cmo: \
-    support/selector.cmo support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSExtendedAttributedString.cmx: \
-    support/selector.cmx support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSExtendedCoder.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedCoder.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedData.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSExtendedData.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSExtendedDate.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedDate.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedDictionary.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedDictionary.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedEnumerator.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedEnumerator.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedLocale.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedLocale.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedMutableArray.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSExtendedMutableArray.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSExtendedMutableAttributedString.cmo: \
-    support/selector.cmo support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSExtendedMutableAttributedString.cmx: \
-    support/selector.cmx support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSExtendedMutableData.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSExtendedMutableData.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSExtendedMutableDictionary.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSExtendedMutableDictionary.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSExtendedMutableSet.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedMutableSet.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedScanner.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedScanner.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedSet.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedSet.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSExtendedStringPropertyListParsing.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSExtendedStringPropertyListParsing.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSExtendedTimeZone.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSExtendedTimeZone.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSFileAttributes.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSFileAttributes.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSFileHandleAsynchronousAccess.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSFileHandleAsynchronousAccess.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSFileHandleCreation.cmo: support/objc.cmi 
-foundation/Foundation_cati_NSFileHandleCreation.cmx: support/objc.cmx 
-foundation/Foundation_cati_NSFileHandlePlatformSpecific.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSFileHandlePlatformSpecific.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSGeometryCoding.cmo: support/selector.cmo \
+support/NSPoint.cmo :
+support/NSPoint.cmx :
+support/NSRange.cmo :
+support/NSRange.cmx :
+support/NSRect.cmo : support/NSSize.cmo support/NSPoint.cmo
+support/NSRect.cmx : support/NSSize.cmx support/NSPoint.cmx
+support/NSSize.cmo :
+support/NSSize.cmx :
+support/classes.cmo : support/objc.cmi support/classes.cmi
+support/classes.cmx : support/objc.cmx support/classes.cmi
+support/classes.cmi : support/objc.cmi
+support/kvc.cmo : support/objc.cmi
+support/kvc.cmx : support/objc.cmx
+support/objc.cmo : support/selector.cmo support/objc.cmi
+support/objc.cmx : support/selector.cmx support/objc.cmi
+support/objc.cmi : support/selector.cmo support/NSSize.cmo \
+    support/NSRect.cmo support/NSRange.cmo support/NSPoint.cmo
+support/selector.cmo :
+support/selector.cmx :
+foundation/Foundation_cati_NSArchiverCallback.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSArchiverCallback.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSArrayCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSArrayCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSArrayPathExtensions.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSArrayPathExtensions.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSAutoreleasePoolDebugging.cmo : support/objc.cmi
+foundation/Foundation_cati_NSAutoreleasePoolDebugging.cmx : support/objc.cmx
+foundation/Foundation_cati_NSCalendarDateExtras.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSCalendarDateExtras.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSClassDescriptionPrimitives.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSClassDescriptionPrimitives.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSComparisonMethods.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSComparisonMethods.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSConnectionDelegateMethods.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSConnectionDelegateMethods.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSCopyLinkMoveHandler.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSCopyLinkMoveHandler.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSDataCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSDataCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSDateCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSDateCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSDateFormatterCompatibility.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSDateFormatterCompatibility.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSDecimalNumberExtensions.cmo : support/objc.cmi
+foundation/Foundation_cati_NSDecimalNumberExtensions.cmx : support/objc.cmx
+foundation/Foundation_cati_NSDecimalNumberScanning.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSDecimalNumberScanning.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSDelayedPerforming.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSDelayedPerforming.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSDeprecatedKeyValueCoding.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSDeprecatedKeyValueCoding.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSDictionaryCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSDictionaryCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSDistantObjectRequestMethods.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSDistantObjectRequestMethods.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSDistributedObjects.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSDistributedObjects.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSErrorRecoveryAttempting.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSErrorRecoveryAttempting.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSExceptionRaisingConveniences.cmo : \
+    support/objc.cmi
+foundation/Foundation_cati_NSExceptionRaisingConveniences.cmx : \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedArray.cmo : support/selector.cmo \
+    support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSExtendedArray.cmx : support/selector.cmx \
+    support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSExtendedAttributedString.cmo : \
+    support/selector.cmo support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSExtendedAttributedString.cmx : \
+    support/selector.cmx support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSExtendedCoder.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedCoder.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedData.cmo : support/selector.cmo \
+    support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSExtendedData.cmx : support/selector.cmx \
+    support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSExtendedDate.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedDate.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedDictionary.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedDictionary.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedEnumerator.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedEnumerator.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedLocale.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedLocale.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedMutableArray.cmo : support/selector.cmo \
+    support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSExtendedMutableArray.cmx : support/selector.cmx \
+    support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSExtendedMutableAttributedString.cmo : \
+    support/selector.cmo support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSExtendedMutableAttributedString.cmx : \
+    support/selector.cmx support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSExtendedMutableData.cmo : support/selector.cmo \
+    support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSExtendedMutableData.cmx : support/selector.cmx \
+    support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSExtendedMutableDictionary.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSExtendedMutableDictionary.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSExtendedMutableSet.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedMutableSet.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedScanner.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedScanner.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedSet.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedSet.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSExtendedStringPropertyListParsing.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSExtendedStringPropertyListParsing.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSExtendedTimeZone.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSExtendedTimeZone.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSFileAttributes.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSFileAttributes.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSFileHandleAsynchronousAccess.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSFileHandleAsynchronousAccess.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSFileHandleCreation.cmo : support/objc.cmi
+foundation/Foundation_cati_NSFileHandleCreation.cmx : support/objc.cmx
+foundation/Foundation_cati_NSFileHandlePlatformSpecific.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSFileHandlePlatformSpecific.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSGeometryCoding.cmo : support/selector.cmo \
     support/objc.cmi support/NSSize.cmo support/NSRect.cmo \
-    support/NSPoint.cmo 
-foundation/Foundation_cati_NSGeometryCoding.cmx: support/selector.cmx \
+    support/NSPoint.cmo
+foundation/Foundation_cati_NSGeometryCoding.cmx : support/selector.cmx \
     support/objc.cmx support/NSSize.cmx support/NSRect.cmx \
-    support/NSPoint.cmx 
-foundation/Foundation_cati_NSGeometryKeyedCoding.cmo: support/selector.cmo \
+    support/NSPoint.cmx
+foundation/Foundation_cati_NSGeometryKeyedCoding.cmo : support/selector.cmo \
     support/objc.cmi support/NSSize.cmo support/NSRect.cmo \
-    support/NSPoint.cmo 
-foundation/Foundation_cati_NSGeometryKeyedCoding.cmx: support/selector.cmx \
+    support/NSPoint.cmo
+foundation/Foundation_cati_NSGeometryKeyedCoding.cmx : support/selector.cmx \
     support/objc.cmx support/NSSize.cmx support/NSRect.cmx \
-    support/NSPoint.cmx 
-foundation/Foundation_cati_NSHTTPURLRequest.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSHTTPURLRequest.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSInputStreamExtensions.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSInputStreamExtensions.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSKeyValueCoding.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSKeyValueCoding.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSKeyValueObserverNotification.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSKeyValueObserverNotification.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSKeyValueObserverRegistration.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSKeyValueObserverRegistration.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSKeyValueObserving.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSKeyValueObserving.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSKeyValueObservingCustomization.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSKeyValueObservingCustomization.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSKeyedArchiverDelegate.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSKeyedArchiverDelegate.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSKeyedArchiverObjectSubstitution.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSKeyedArchiverObjectSubstitution.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSKeyedUnarchiverDelegate.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSKeyedUnarchiverDelegate.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSKeyedUnarchiverObjectSubstitution.cmo: \
-    support/objc.cmi 
-foundation/Foundation_cati_NSKeyedUnarchiverObjectSubstitution.cmx: \
-    support/objc.cmx 
-foundation/Foundation_cati_NSLocaleCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSLocaleCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSLocaleGeneralInfo.cmo: support/objc.cmi 
-foundation/Foundation_cati_NSLocaleGeneralInfo.cmx: support/objc.cmx 
-foundation/Foundation_cati_NSMachPortDelegateMethods.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSMachPortDelegateMethods.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSMainThreadPerformAdditions.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSMainThreadPerformAdditions.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSMetadataQueryDelegate.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSMetadataQueryDelegate.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSMutableArrayCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSMutableArrayCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSMutableDataCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSMutableDataCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSMutableDictionaryCreation.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSMutableDictionaryCreation.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSMutableHTTPURLRequest.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSMutableHTTPURLRequest.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSMutableSetCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSMutableSetCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSMutableStringExtensionMethods.cmo: \
-    support/selector.cmo support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSMutableStringExtensionMethods.cmx: \
-    support/selector.cmx support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSNaturalLangage.cmo: support/objc.cmi 
-foundation/Foundation_cati_NSNaturalLangage.cmx: support/objc.cmx 
-foundation/Foundation_cati_NSNetServiceBrowserDelegateMethods.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSNetServiceBrowserDelegateMethods.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSNetServiceDelegateMethods.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSNetServiceDelegateMethods.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSNotificationCreation.cmo: support/objc.cmi 
-foundation/Foundation_cati_NSNotificationCreation.cmx: support/objc.cmx 
-foundation/Foundation_cati_NSNumberCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSNumberCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSOrderedPerform.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSOrderedPerform.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSOutputStreamExtensions.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSOutputStreamExtensions.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSPortDelegateMethods.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSPortDelegateMethods.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSPredicateSupport.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSPredicateSupport.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSProtocolCheckerCreation.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSProtocolCheckerCreation.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSRunLoopConveniences.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSRunLoopConveniences.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSScriptClassDescription.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSScriptClassDescription.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSScriptKeyValueCoding.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSScriptKeyValueCoding.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSScriptObjectSpecifiers.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSScriptObjectSpecifiers.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSScripting.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSScripting.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSScriptingComparisonMethods.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSScriptingComparisonMethods.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSSetCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSSetCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSSocketStreamCreationExtensions.cmo: \
-    support/objc.cmi 
-foundation/Foundation_cati_NSSocketStreamCreationExtensions.cmx: \
-    support/objc.cmx 
-foundation/Foundation_cati_NSSortDescriptorSorting.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSSortDescriptorSorting.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSSpellServerDelegate.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSSpellServerDelegate.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSStreamDelegateEventExtensions.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSStreamDelegateEventExtensions.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSStringDeprecated.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSStringDeprecated.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSStringExtensionMethods.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSStringExtensionMethods.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSStringPathExtensions.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSStringPathExtensions.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSTaskConveniences.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSTaskConveniences.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSTimeZoneCreation.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSTimeZoneCreation.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSTypedstreamCompatibility.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSTypedstreamCompatibility.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSURLClient.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSURLClient.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSURLConnectionDelegate.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSURLConnectionDelegate.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSURLConnectionSynchronousLoading.cmo: \
-    support/objc.cmi 
-foundation/Foundation_cati_NSURLConnectionSynchronousLoading.cmx: \
-    support/objc.cmx 
-foundation/Foundation_cati_NSURLDownloadDelegate.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSURLDownloadDelegate.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSURLLoading.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSURLLoading.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSURLUtilities.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSURLUtilities.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSValueCreation.cmo: support/objc.cmi 
-foundation/Foundation_cati_NSValueCreation.cmx: support/objc.cmx 
-foundation/Foundation_cati_NSValueExtensionMethods.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/Foundation_cati_NSValueExtensionMethods.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/Foundation_cati_NSValueGeometryExtensions.cmo: \
+    support/NSPoint.cmx
+foundation/Foundation_cati_NSHTTPURLRequest.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSHTTPURLRequest.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSInputStreamExtensions.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSInputStreamExtensions.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSKeyValueCoding.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSKeyValueCoding.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSKeyValueObserverNotification.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSKeyValueObserverNotification.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSKeyValueObserverRegistration.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSKeyValueObserverRegistration.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSKeyValueObserving.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSKeyValueObserving.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSKeyValueObservingCustomization.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSKeyValueObservingCustomization.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSKeyedArchiverDelegate.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSKeyedArchiverDelegate.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSKeyedArchiverObjectSubstitution.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSKeyedArchiverObjectSubstitution.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSKeyedUnarchiverDelegate.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSKeyedUnarchiverDelegate.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSKeyedUnarchiverObjectSubstitution.cmo : \
+    support/objc.cmi
+foundation/Foundation_cati_NSKeyedUnarchiverObjectSubstitution.cmx : \
+    support/objc.cmx
+foundation/Foundation_cati_NSLocaleCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSLocaleCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSLocaleGeneralInfo.cmo : support/objc.cmi
+foundation/Foundation_cati_NSLocaleGeneralInfo.cmx : support/objc.cmx
+foundation/Foundation_cati_NSMachPortDelegateMethods.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSMachPortDelegateMethods.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSMainThreadPerformAdditions.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSMainThreadPerformAdditions.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSMetadataQueryDelegate.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSMetadataQueryDelegate.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSMutableArrayCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSMutableArrayCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSMutableDataCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSMutableDataCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSMutableDictionaryCreation.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSMutableDictionaryCreation.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSMutableHTTPURLRequest.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSMutableHTTPURLRequest.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSMutableSetCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSMutableSetCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSMutableStringExtensionMethods.cmo : \
+    support/selector.cmo support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSMutableStringExtensionMethods.cmx : \
+    support/selector.cmx support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSNaturalLangage.cmo : support/objc.cmi
+foundation/Foundation_cati_NSNaturalLangage.cmx : support/objc.cmx
+foundation/Foundation_cati_NSNetServiceBrowserDelegateMethods.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSNetServiceBrowserDelegateMethods.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSNetServiceDelegateMethods.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSNetServiceDelegateMethods.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSNotificationCreation.cmo : support/objc.cmi
+foundation/Foundation_cati_NSNotificationCreation.cmx : support/objc.cmx
+foundation/Foundation_cati_NSNumberCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSNumberCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSOrderedPerform.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSOrderedPerform.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSOutputStreamExtensions.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSOutputStreamExtensions.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSPortDelegateMethods.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSPortDelegateMethods.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSPredicateSupport.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSPredicateSupport.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSProtocolCheckerCreation.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSProtocolCheckerCreation.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSRunLoopConveniences.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSRunLoopConveniences.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSScriptClassDescription.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSScriptClassDescription.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSScriptKeyValueCoding.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSScriptKeyValueCoding.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSScriptObjectSpecifiers.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSScriptObjectSpecifiers.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSScripting.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSScripting.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSScriptingComparisonMethods.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSScriptingComparisonMethods.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSSetCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSSetCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSSocketStreamCreationExtensions.cmo : \
+    support/objc.cmi
+foundation/Foundation_cati_NSSocketStreamCreationExtensions.cmx : \
+    support/objc.cmx
+foundation/Foundation_cati_NSSortDescriptorSorting.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSSortDescriptorSorting.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSSpellServerDelegate.cmo : support/selector.cmo \
+    support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSSpellServerDelegate.cmx : support/selector.cmx \
+    support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSStreamDelegateEventExtensions.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSStreamDelegateEventExtensions.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSStringDeprecated.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSStringDeprecated.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSStringExtensionMethods.cmo : \
+    support/selector.cmo support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSStringExtensionMethods.cmx : \
+    support/selector.cmx support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSStringPathExtensions.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSStringPathExtensions.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSTaskConveniences.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSTaskConveniences.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSTimeZoneCreation.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSTimeZoneCreation.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSTypedstreamCompatibility.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSTypedstreamCompatibility.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSURLClient.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSURLClient.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSURLConnectionDelegate.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSURLConnectionDelegate.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSURLConnectionSynchronousLoading.cmo : \
+    support/objc.cmi
+foundation/Foundation_cati_NSURLConnectionSynchronousLoading.cmx : \
+    support/objc.cmx
+foundation/Foundation_cati_NSURLDownloadDelegate.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSURLDownloadDelegate.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSURLLoading.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSURLLoading.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSURLUtilities.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/Foundation_cati_NSURLUtilities.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/Foundation_cati_NSValueCreation.cmo : support/objc.cmi
+foundation/Foundation_cati_NSValueCreation.cmx : support/objc.cmx
+foundation/Foundation_cati_NSValueExtensionMethods.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSValueExtensionMethods.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSValueGeometryExtensions.cmo : \
     support/selector.cmo support/objc.cmi support/NSSize.cmo \
-    support/NSRect.cmo support/NSPoint.cmo 
-foundation/Foundation_cati_NSValueGeometryExtensions.cmx: \
+    support/NSRect.cmo support/NSPoint.cmo
+foundation/Foundation_cati_NSValueGeometryExtensions.cmx : \
     support/selector.cmx support/objc.cmx support/NSSize.cmx \
-    support/NSRect.cmx support/NSPoint.cmx 
-foundation/Foundation_cati_NSValueRangeExtensions.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/Foundation_cati_NSValueRangeExtensions.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/Foundation_cati_NSXMLParserDelegateEventAdditions.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSXMLParserDelegateEventAdditions.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/Foundation_cati_NSXMLParserLocatorAdditions.cmo: \
-    support/selector.cmo support/objc.cmi 
-foundation/Foundation_cati_NSXMLParserLocatorAdditions.cmx: \
-    support/selector.cmx support/objc.cmx 
-foundation/NSAffineTransform.cmo: support/selector.cmo support/objc.cmi \
+    support/NSRect.cmx support/NSPoint.cmx
+foundation/Foundation_cati_NSValueRangeExtensions.cmo : support/selector.cmo \
+    support/objc.cmi support/NSRange.cmo
+foundation/Foundation_cati_NSValueRangeExtensions.cmx : support/selector.cmx \
+    support/objc.cmx support/NSRange.cmx
+foundation/Foundation_cati_NSXMLParserDelegateEventAdditions.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSXMLParserDelegateEventAdditions.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/Foundation_cati_NSXMLParserLocatorAdditions.cmo : \
+    support/selector.cmo support/objc.cmi
+foundation/Foundation_cati_NSXMLParserLocatorAdditions.cmx : \
+    support/selector.cmx support/objc.cmx
+foundation/NSAffineTransform.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSAffineTransform.cmo \
-    support/classes.cmi 
-foundation/NSAffineTransform.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSAffineTransform.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSAffineTransform.cmx \
-    support/classes.cmx 
-foundation/NSAppleEventDescriptor.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSAppleEventDescriptor.cmo \
-    support/classes.cmi 
-foundation/NSAppleEventDescriptor.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSAppleEventDescriptor.cmx \
-    support/classes.cmx 
-foundation/NSAppleEventManager.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSAppleEventDescriptor.cmo : support/selector.cmo \
+    support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSAppleEventDescriptor.cmo support/classes.cmi
+foundation/NSAppleEventDescriptor.cmx : support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSAppleEventDescriptor.cmx support/classes.cmx
+foundation/NSAppleEventManager.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSAppleEventManager.cmo \
-    support/classes.cmi 
-foundation/NSAppleEventManager.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSAppleEventManager.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSAppleEventManager.cmx \
-    support/classes.cmx 
-foundation/NSAppleScript.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSAppleScript.cmo support/classes.cmi 
-foundation/NSAppleScript.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSAppleScript.cmx support/classes.cmx 
-foundation/NSArchiver.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSCoder.cmo foundation/im_NSArchiver.cmo support/classes.cmi 
-foundation/NSArchiver.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSCoder.cmx foundation/im_NSArchiver.cmx support/classes.cmx 
-foundation/NSArray.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSAppleScript.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSAppleScript.cmo support/classes.cmi
+foundation/NSAppleScript.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSAppleScript.cmx support/classes.cmx
+foundation/NSArchiver.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSCoder.cmo foundation/im_NSArchiver.cmo support/classes.cmi
+foundation/NSArchiver.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSCoder.cmx foundation/im_NSArchiver.cmx support/classes.cmx
+foundation/NSArray.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSArray.cmo \
     foundation/Foundation_cati_NSSortDescriptorSorting.cmo \
     foundation/Foundation_cati_NSPredicateSupport.cmo \
@@ -455,8 +463,8 @@ foundation/NSArray.cmo: support/selector.cmo support/objc.cmi \
     foundation/Foundation_cati_NSKeyValueCoding.cmo \
     foundation/Foundation_cati_NSExtendedArray.cmo \
     foundation/Foundation_cati_NSArrayPathExtensions.cmo \
-    foundation/Foundation_cati_NSArrayCreation.cmo support/classes.cmi 
-foundation/NSArray.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSArrayCreation.cmo support/classes.cmi
+foundation/NSArray.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSArray.cmx \
     foundation/Foundation_cati_NSSortDescriptorSorting.cmx \
     foundation/Foundation_cati_NSPredicateSupport.cmx \
@@ -464,532 +472,540 @@ foundation/NSArray.cmx: support/selector.cmx support/objc.cmx \
     foundation/Foundation_cati_NSKeyValueCoding.cmx \
     foundation/Foundation_cati_NSExtendedArray.cmx \
     foundation/Foundation_cati_NSArrayPathExtensions.cmx \
-    foundation/Foundation_cati_NSArrayCreation.cmx support/classes.cmx 
-foundation/NSAssertionHandler.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSArrayCreation.cmx support/classes.cmx
+foundation/NSAssertionHandler.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSAssertionHandler.cmo \
-    support/classes.cmi 
-foundation/NSAssertionHandler.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSAssertionHandler.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSAssertionHandler.cmx \
-    support/classes.cmx 
-foundation/NSAttributedString.cmo: support/objc.cmi foundation/NSObject.cmo \
+    support/classes.cmx
+foundation/NSAttributedString.cmo : support/objc.cmi foundation/NSObject.cmo \
     foundation/im_NSAttributedString.cmo \
     foundation/Foundation_cati_NSExtendedAttributedString.cmo \
-    support/classes.cmi 
-foundation/NSAttributedString.cmx: support/objc.cmx foundation/NSObject.cmx \
+    support/classes.cmi
+foundation/NSAttributedString.cmx : support/objc.cmx foundation/NSObject.cmx \
     foundation/im_NSAttributedString.cmx \
     foundation/Foundation_cati_NSExtendedAttributedString.cmx \
-    support/classes.cmx 
-foundation/NSAutoreleasePool.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSAutoreleasePool.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSAutoreleasePool.cmo \
     foundation/Foundation_cati_NSAutoreleasePoolDebugging.cmo \
-    support/classes.cmi 
-foundation/NSAutoreleasePool.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSAutoreleasePool.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSAutoreleasePool.cmx \
     foundation/Foundation_cati_NSAutoreleasePoolDebugging.cmx \
-    support/classes.cmx 
-foundation/NSBundle.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSBundle.cmo support/classes.cmi 
-foundation/NSBundle.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSBundle.cmx support/classes.cmx 
-foundation/NSCachedURLResponse.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSCachedURLResponse.cmo support/classes.cmi 
-foundation/NSCachedURLResponse.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSCachedURLResponse.cmx support/classes.cmx 
-foundation/NSCalendar.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSCalendar.cmo support/classes.cmi 
-foundation/NSCalendar.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSCalendar.cmx support/classes.cmx 
-foundation/NSCalendarDate.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSBundle.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSBundle.cmo support/classes.cmi
+foundation/NSBundle.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSBundle.cmx support/classes.cmx
+foundation/NSCachedURLResponse.cmo : support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSCachedURLResponse.cmo \
+    support/classes.cmi
+foundation/NSCachedURLResponse.cmx : support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSCachedURLResponse.cmx \
+    support/classes.cmx
+foundation/NSCalendar.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSCalendar.cmo support/classes.cmi
+foundation/NSCalendar.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSCalendar.cmx support/classes.cmx
+foundation/NSCalendarDate.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSDate.cmo foundation/im_NSCalendarDate.cmo \
-    support/classes.cmi 
-foundation/NSCalendarDate.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSCalendarDate.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSDate.cmx foundation/im_NSCalendarDate.cmx \
-    support/classes.cmx 
-foundation/NSCharacterSet.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSCharacterSet.cmo : support/selector.cmo support/objc.cmi \
     support/NSRange.cmo foundation/NSObject.cmo \
-    foundation/im_NSCharacterSet.cmo support/classes.cmi 
-foundation/NSCharacterSet.cmx: support/selector.cmx support/objc.cmx \
+    foundation/im_NSCharacterSet.cmo support/classes.cmi
+foundation/NSCharacterSet.cmx : support/selector.cmx support/objc.cmx \
     support/NSRange.cmx foundation/NSObject.cmx \
-    foundation/im_NSCharacterSet.cmx support/classes.cmx 
-foundation/NSClassDescription.cmo: support/selector.cmo support/objc.cmi \
+    foundation/im_NSCharacterSet.cmx support/classes.cmx
+foundation/NSClassDescription.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSClassDescription.cmo \
-    support/classes.cmi 
-foundation/NSClassDescription.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSClassDescription.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSClassDescription.cmx \
-    support/classes.cmx 
-foundation/NSCloneCommand.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSCloneCommand.cmo : support/objc.cmi \
     foundation/NSScriptCommand.cmo foundation/im_NSCloneCommand.cmo \
-    support/classes.cmi 
-foundation/NSCloneCommand.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSCloneCommand.cmx : support/objc.cmx \
     foundation/NSScriptCommand.cmx foundation/im_NSCloneCommand.cmx \
-    support/classes.cmx 
-foundation/NSCloseCommand.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSCloseCommand.cmo : support/objc.cmi \
     foundation/NSScriptCommand.cmo foundation/im_NSCloseCommand.cmo \
-    support/classes.cmi 
-foundation/NSCloseCommand.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSCloseCommand.cmx : support/objc.cmx \
     foundation/NSScriptCommand.cmx foundation/im_NSCloseCommand.cmx \
-    support/classes.cmx 
-foundation/NSCoder.cmo: support/objc.cmi foundation/NSObject.cmo \
+    support/classes.cmx
+foundation/NSCoder.cmo : support/objc.cmi foundation/NSObject.cmo \
     foundation/im_NSCoder.cmo \
     foundation/Foundation_cati_NSTypedstreamCompatibility.cmo \
     foundation/Foundation_cati_NSGeometryKeyedCoding.cmo \
     foundation/Foundation_cati_NSGeometryCoding.cmo \
-    foundation/Foundation_cati_NSExtendedCoder.cmo support/classes.cmi 
-foundation/NSCoder.cmx: support/objc.cmx foundation/NSObject.cmx \
+    foundation/Foundation_cati_NSExtendedCoder.cmo support/classes.cmi
+foundation/NSCoder.cmx : support/objc.cmx foundation/NSObject.cmx \
     foundation/im_NSCoder.cmx \
     foundation/Foundation_cati_NSTypedstreamCompatibility.cmx \
     foundation/Foundation_cati_NSGeometryKeyedCoding.cmx \
     foundation/Foundation_cati_NSGeometryCoding.cmx \
-    foundation/Foundation_cati_NSExtendedCoder.cmx support/classes.cmx 
-foundation/NSComparisonPredicate.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSExtendedCoder.cmx support/classes.cmx
+foundation/NSComparisonPredicate.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSPredicate.cmo foundation/im_NSComparisonPredicate.cmo \
-    support/classes.cmi 
-foundation/NSComparisonPredicate.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSComparisonPredicate.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSPredicate.cmx foundation/im_NSComparisonPredicate.cmx \
-    support/classes.cmx 
-foundation/NSCompoundPredicate.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSCompoundPredicate.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSPredicate.cmo foundation/im_NSCompoundPredicate.cmo \
-    support/classes.cmi 
-foundation/NSCompoundPredicate.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSCompoundPredicate.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSPredicate.cmx foundation/im_NSCompoundPredicate.cmx \
-    support/classes.cmx 
-foundation/NSConditionLock.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSConditionLock.cmo support/classes.cmi 
-foundation/NSConditionLock.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSConditionLock.cmx support/classes.cmx 
-foundation/NSConnection.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSConditionLock.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSConditionLock.cmo support/classes.cmi
+foundation/NSConditionLock.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSConditionLock.cmx support/classes.cmx
+foundation/NSConnection.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSConnection.cmo \
-    support/classes.cmi 
-foundation/NSConnection.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSConnection.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSConnection.cmx \
-    support/classes.cmx 
-foundation/NSConstantString.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSConstantString.cmo : support/objc.cmi \
     foundation/NSSimpleCString.cmo foundation/im_NSConstantString.cmo \
-    support/classes.cmi 
-foundation/NSConstantString.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSConstantString.cmx : support/objc.cmx \
     foundation/NSSimpleCString.cmx foundation/im_NSConstantString.cmx \
-    support/classes.cmx 
-foundation/NSCountCommand.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSCountCommand.cmo : support/objc.cmi \
     foundation/NSScriptCommand.cmo foundation/im_NSCountCommand.cmo \
-    support/classes.cmi 
-foundation/NSCountCommand.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSCountCommand.cmx : support/objc.cmx \
     foundation/NSScriptCommand.cmx foundation/im_NSCountCommand.cmx \
-    support/classes.cmx 
-foundation/NSCountedSet.cmo: support/objc.cmi foundation/NSMutableSet.cmo \
-    foundation/im_NSCountedSet.cmo support/classes.cmi 
-foundation/NSCountedSet.cmx: support/objc.cmx foundation/NSMutableSet.cmx \
-    foundation/im_NSCountedSet.cmx support/classes.cmx 
-foundation/NSCreateCommand.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSCountedSet.cmo : support/objc.cmi foundation/NSMutableSet.cmo \
+    foundation/im_NSCountedSet.cmo support/classes.cmi
+foundation/NSCountedSet.cmx : support/objc.cmx foundation/NSMutableSet.cmx \
+    foundation/im_NSCountedSet.cmx support/classes.cmx
+foundation/NSCreateCommand.cmo : support/objc.cmi \
     foundation/NSScriptCommand.cmo foundation/im_NSCreateCommand.cmo \
-    support/classes.cmi 
-foundation/NSCreateCommand.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSCreateCommand.cmx : support/objc.cmx \
     foundation/NSScriptCommand.cmx foundation/im_NSCreateCommand.cmx \
-    support/classes.cmx 
-foundation/NSData.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSData.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSData.cmo \
     foundation/Foundation_cati_NSExtendedData.cmo \
-    foundation/Foundation_cati_NSDataCreation.cmo support/classes.cmi 
-foundation/NSData.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSDataCreation.cmo support/classes.cmi
+foundation/NSData.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSData.cmx \
     foundation/Foundation_cati_NSExtendedData.cmx \
-    foundation/Foundation_cati_NSDataCreation.cmx support/classes.cmx 
-foundation/NSDate.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSDataCreation.cmx support/classes.cmx
+foundation/NSDate.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSDate.cmo \
     foundation/Foundation_cati_NSNaturalLangage.cmo \
     foundation/Foundation_cati_NSExtendedDate.cmo \
     foundation/Foundation_cati_NSDateCreation.cmo \
-    foundation/Foundation_cati_NSCalendarDateExtras.cmo support/classes.cmi 
-foundation/NSDate.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSCalendarDateExtras.cmo support/classes.cmi
+foundation/NSDate.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSDate.cmx \
     foundation/Foundation_cati_NSNaturalLangage.cmx \
     foundation/Foundation_cati_NSExtendedDate.cmx \
     foundation/Foundation_cati_NSDateCreation.cmx \
-    foundation/Foundation_cati_NSCalendarDateExtras.cmx support/classes.cmx 
-foundation/NSDateComponents.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSDateComponents.cmo support/classes.cmi 
-foundation/NSDateComponents.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSDateComponents.cmx support/classes.cmx 
-foundation/NSDateFormatter.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSCalendarDateExtras.cmx support/classes.cmx
+foundation/NSDateComponents.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSDateComponents.cmo support/classes.cmi
+foundation/NSDateComponents.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSDateComponents.cmx support/classes.cmx
+foundation/NSDateFormatter.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSFormatter.cmo foundation/im_NSDateFormatter.cmo \
     foundation/Foundation_cati_NSDateFormatterCompatibility.cmo \
-    support/classes.cmi 
-foundation/NSDateFormatter.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSDateFormatter.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSFormatter.cmx foundation/im_NSDateFormatter.cmx \
     foundation/Foundation_cati_NSDateFormatterCompatibility.cmx \
-    support/classes.cmx 
-foundation/NSDecimalNumber.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSDecimalNumber.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSNumber.cmo foundation/im_NSDecimalNumber.cmo \
-    support/classes.cmi 
-foundation/NSDecimalNumber.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSDecimalNumber.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSNumber.cmx foundation/im_NSDecimalNumber.cmx \
-    support/classes.cmx 
-foundation/NSDecimalNumberHandler.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSDecimalNumberHandler.cmo \
-    support/classes.cmi 
-foundation/NSDecimalNumberHandler.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSDecimalNumberHandler.cmx \
-    support/classes.cmx 
-foundation/NSDeleteCommand.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSDecimalNumberHandler.cmo : support/selector.cmo \
+    support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSDecimalNumberHandler.cmo support/classes.cmi
+foundation/NSDecimalNumberHandler.cmx : support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSDecimalNumberHandler.cmx support/classes.cmx
+foundation/NSDeleteCommand.cmo : support/objc.cmi \
     foundation/NSScriptCommand.cmo foundation/im_NSDeleteCommand.cmo \
-    support/classes.cmi 
-foundation/NSDeleteCommand.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSDeleteCommand.cmx : support/objc.cmx \
     foundation/NSScriptCommand.cmx foundation/im_NSDeleteCommand.cmx \
-    support/classes.cmx 
-foundation/NSDictionary.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSDictionary.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSDictionary.cmo \
     foundation/Foundation_cati_NSKeyValueCoding.cmo \
     foundation/Foundation_cati_NSFileAttributes.cmo \
     foundation/Foundation_cati_NSExtendedDictionary.cmo \
-    foundation/Foundation_cati_NSDictionaryCreation.cmo support/classes.cmi 
-foundation/NSDictionary.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSDictionaryCreation.cmo support/classes.cmi
+foundation/NSDictionary.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSDictionary.cmx \
     foundation/Foundation_cati_NSKeyValueCoding.cmx \
     foundation/Foundation_cati_NSFileAttributes.cmx \
     foundation/Foundation_cati_NSExtendedDictionary.cmx \
-    foundation/Foundation_cati_NSDictionaryCreation.cmx support/classes.cmx 
-foundation/NSDirectoryEnumerator.cmo: support/objc.cmi \
+    foundation/Foundation_cati_NSDictionaryCreation.cmx support/classes.cmx
+foundation/NSDirectoryEnumerator.cmo : support/objc.cmi \
     foundation/NSEnumerator.cmo foundation/im_NSDirectoryEnumerator.cmo \
-    support/classes.cmi 
-foundation/NSDirectoryEnumerator.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSDirectoryEnumerator.cmx : support/objc.cmx \
     foundation/NSEnumerator.cmx foundation/im_NSDirectoryEnumerator.cmx \
-    support/classes.cmx 
-foundation/NSDistantObject.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSDistantObject.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSProxy.cmo foundation/im_NSDistantObject.cmo \
-    support/classes.cmi 
-foundation/NSDistantObject.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSDistantObject.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSProxy.cmx foundation/im_NSDistantObject.cmx \
-    support/classes.cmx 
-foundation/NSDistantObjectRequest.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSDistantObjectRequest.cmo : support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSDistantObjectRequest.cmo \
-    support/classes.cmi 
-foundation/NSDistantObjectRequest.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSDistantObjectRequest.cmx : support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSDistantObjectRequest.cmx \
-    support/classes.cmx 
-foundation/NSDistributedLock.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSDistributedLock.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSDistributedLock.cmo \
-    support/classes.cmi 
-foundation/NSDistributedLock.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSDistributedLock.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSDistributedLock.cmx \
-    support/classes.cmx 
-foundation/NSDistributedNotificationCenter.cmo: support/selector.cmo \
+    support/classes.cmx
+foundation/NSDistributedNotificationCenter.cmo : support/selector.cmo \
     support/objc.cmi foundation/NSNotificationCenter.cmo \
-    foundation/im_NSDistributedNotificationCenter.cmo support/classes.cmi 
-foundation/NSDistributedNotificationCenter.cmx: support/selector.cmx \
+    foundation/im_NSDistributedNotificationCenter.cmo support/classes.cmi
+foundation/NSDistributedNotificationCenter.cmx : support/selector.cmx \
     support/objc.cmx foundation/NSNotificationCenter.cmx \
-    foundation/im_NSDistributedNotificationCenter.cmx support/classes.cmx 
-foundation/NSEnumerator.cmo: support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSDistributedNotificationCenter.cmx support/classes.cmx
+foundation/NSEnumerator.cmo : support/objc.cmi foundation/NSObject.cmo \
     foundation/im_NSEnumerator.cmo \
-    foundation/Foundation_cati_NSExtendedEnumerator.cmo support/classes.cmi 
-foundation/NSEnumerator.cmx: support/objc.cmx foundation/NSObject.cmx \
+    foundation/Foundation_cati_NSExtendedEnumerator.cmo support/classes.cmi
+foundation/NSEnumerator.cmx : support/objc.cmx foundation/NSObject.cmx \
     foundation/im_NSEnumerator.cmx \
-    foundation/Foundation_cati_NSExtendedEnumerator.cmx support/classes.cmx 
-foundation/NSError.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSError.cmo support/classes.cmi 
-foundation/NSError.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSError.cmx support/classes.cmx 
-foundation/NSException.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSExtendedEnumerator.cmx support/classes.cmx
+foundation/NSError.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSError.cmo support/classes.cmi
+foundation/NSError.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSError.cmx support/classes.cmx
+foundation/NSException.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSException.cmo \
     foundation/Foundation_cati_NSExceptionRaisingConveniences.cmo \
-    support/classes.cmi 
-foundation/NSException.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSException.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSException.cmx \
     foundation/Foundation_cati_NSExceptionRaisingConveniences.cmx \
-    support/classes.cmx 
-foundation/NSExistsCommand.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSExistsCommand.cmo : support/objc.cmi \
     foundation/NSScriptCommand.cmo foundation/im_NSExistsCommand.cmo \
-    support/classes.cmi 
-foundation/NSExistsCommand.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSExistsCommand.cmx : support/objc.cmx \
     foundation/NSScriptCommand.cmx foundation/im_NSExistsCommand.cmx \
-    support/classes.cmx 
-foundation/NSExpression.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSExpression.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSExpression.cmo \
-    support/classes.cmi 
-foundation/NSExpression.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSExpression.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSExpression.cmx \
-    support/classes.cmx 
-foundation/NSFileHandle.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSFileHandle.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSFileHandle.cmo \
     foundation/Foundation_cati_NSFileHandlePlatformSpecific.cmo \
     foundation/Foundation_cati_NSFileHandleCreation.cmo \
     foundation/Foundation_cati_NSFileHandleAsynchronousAccess.cmo \
-    support/classes.cmi 
-foundation/NSFileHandle.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSFileHandle.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSFileHandle.cmx \
     foundation/Foundation_cati_NSFileHandlePlatformSpecific.cmx \
     foundation/Foundation_cati_NSFileHandleCreation.cmx \
     foundation/Foundation_cati_NSFileHandleAsynchronousAccess.cmx \
-    support/classes.cmx 
-foundation/NSFileManager.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSFileManager.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSFileManager.cmo \
-    support/classes.cmi 
-foundation/NSFileManager.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSFileManager.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSFileManager.cmx \
-    support/classes.cmx 
-foundation/NSFormatter.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSFormatter.cmo support/classes.cmi 
-foundation/NSFormatter.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSFormatter.cmx support/classes.cmx 
-foundation/NSGetCommand.cmo: support/objc.cmi foundation/NSScriptCommand.cmo \
-    foundation/im_NSGetCommand.cmo support/classes.cmi 
-foundation/NSGetCommand.cmx: support/objc.cmx foundation/NSScriptCommand.cmx \
-    foundation/im_NSGetCommand.cmx support/classes.cmx 
-foundation/NSHTTPCookie.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSFormatter.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSFormatter.cmo support/classes.cmi
+foundation/NSFormatter.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSFormatter.cmx support/classes.cmx
+foundation/NSGetCommand.cmo : support/objc.cmi \
+    foundation/NSScriptCommand.cmo foundation/im_NSGetCommand.cmo \
+    support/classes.cmi
+foundation/NSGetCommand.cmx : support/objc.cmx \
+    foundation/NSScriptCommand.cmx foundation/im_NSGetCommand.cmx \
+    support/classes.cmx
+foundation/NSHTTPCookie.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSHTTPCookie.cmo \
-    support/classes.cmi 
-foundation/NSHTTPCookie.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSHTTPCookie.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSHTTPCookie.cmx \
-    support/classes.cmx 
-foundation/NSHTTPCookieStorage.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSHTTPCookieStorage.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSHTTPCookieStorage.cmo \
-    support/classes.cmi 
-foundation/NSHTTPCookieStorage.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSHTTPCookieStorage.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSHTTPCookieStorage.cmx \
-    support/classes.cmx 
-foundation/NSHTTPURLResponse.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSHTTPURLResponse.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSURLResponse.cmo foundation/im_NSHTTPURLResponse.cmo \
-    support/classes.cmi 
-foundation/NSHTTPURLResponse.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSHTTPURLResponse.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSURLResponse.cmx foundation/im_NSHTTPURLResponse.cmx \
-    support/classes.cmx 
-foundation/NSHost.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSHost.cmo support/classes.cmi 
-foundation/NSHost.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSHost.cmx support/classes.cmx 
-foundation/NSIndexPath.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSIndexPath.cmo support/classes.cmi 
-foundation/NSIndexPath.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSIndexPath.cmx support/classes.cmx 
-foundation/NSIndexSpecifier.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSHost.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSHost.cmo support/classes.cmi
+foundation/NSHost.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSHost.cmx support/classes.cmx
+foundation/NSIndexPath.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSIndexPath.cmo support/classes.cmi
+foundation/NSIndexPath.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSIndexPath.cmx support/classes.cmx
+foundation/NSIndexSpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo foundation/im_NSIndexSpecifier.cmo \
-    support/classes.cmi 
-foundation/NSIndexSpecifier.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSIndexSpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx foundation/im_NSIndexSpecifier.cmx \
-    support/classes.cmx 
-foundation/NSInputStream.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSInputStream.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSStream.cmo foundation/im_NSInputStream.cmo \
     foundation/Foundation_cati_NSInputStreamExtensions.cmo \
-    support/classes.cmi 
-foundation/NSInputStream.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSInputStream.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSStream.cmx foundation/im_NSInputStream.cmx \
     foundation/Foundation_cati_NSInputStreamExtensions.cmx \
-    support/classes.cmx 
-foundation/NSKeyValueObserving.cmo: support/objc.cmi 
-foundation/NSKeyValueObserving.cmx: support/objc.cmx 
-foundation/NSKeyedArchiver.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSKeyValueObserving.cmo : support/objc.cmi
+foundation/NSKeyValueObserving.cmx : support/objc.cmx
+foundation/NSKeyedArchiver.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSCoder.cmo foundation/im_NSKeyedArchiver.cmo \
-    support/classes.cmi 
-foundation/NSKeyedArchiver.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSKeyedArchiver.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSCoder.cmx foundation/im_NSKeyedArchiver.cmx \
-    support/classes.cmx 
-foundation/NSKeyedUnarchiver.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSKeyedUnarchiver.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSCoder.cmo foundation/im_NSKeyedUnarchiver.cmo \
-    support/classes.cmi 
-foundation/NSKeyedUnarchiver.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSKeyedUnarchiver.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSCoder.cmx foundation/im_NSKeyedUnarchiver.cmx \
-    support/classes.cmx 
-foundation/NSLocale.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSLocale.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSLocale.cmo \
     foundation/Foundation_cati_NSLocaleGeneralInfo.cmo \
     foundation/Foundation_cati_NSLocaleCreation.cmo \
-    foundation/Foundation_cati_NSExtendedLocale.cmo support/classes.cmi 
-foundation/NSLocale.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSExtendedLocale.cmo support/classes.cmi
+foundation/NSLocale.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSLocale.cmx \
     foundation/Foundation_cati_NSLocaleGeneralInfo.cmx \
     foundation/Foundation_cati_NSLocaleCreation.cmx \
-    foundation/Foundation_cati_NSExtendedLocale.cmx support/classes.cmx 
-foundation/NSLock.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSLock.cmo support/classes.cmi 
-foundation/NSLock.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSLock.cmx support/classes.cmx 
-foundation/NSLogicalTest.cmo: support/objc.cmi \
+    foundation/Foundation_cati_NSExtendedLocale.cmx support/classes.cmx
+foundation/NSLock.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSLock.cmo support/classes.cmi
+foundation/NSLock.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSLock.cmx support/classes.cmx
+foundation/NSLogicalTest.cmo : support/objc.cmi \
     foundation/NSScriptWhoseTest.cmo foundation/im_NSLogicalTest.cmo \
-    support/classes.cmi 
-foundation/NSLogicalTest.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSLogicalTest.cmx : support/objc.cmx \
     foundation/NSScriptWhoseTest.cmx foundation/im_NSLogicalTest.cmx \
-    support/classes.cmx 
-foundation/NSMachBootstrapServer.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSMachBootstrapServer.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSPortNameServer.cmo foundation/im_NSMachBootstrapServer.cmo \
-    support/classes.cmi 
-foundation/NSMachBootstrapServer.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSMachBootstrapServer.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSPortNameServer.cmx foundation/im_NSMachBootstrapServer.cmx \
-    support/classes.cmx 
-foundation/NSMachPort.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSPort.cmo foundation/im_NSMachPort.cmo support/classes.cmi 
-foundation/NSMachPort.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSPort.cmx foundation/im_NSMachPort.cmx support/classes.cmx 
-foundation/NSMessagePort.cmo: support/objc.cmi foundation/NSPort.cmo \
-    foundation/im_NSMessagePort.cmo support/classes.cmi 
-foundation/NSMessagePort.cmx: support/objc.cmx foundation/NSPort.cmx \
-    foundation/im_NSMessagePort.cmx support/classes.cmx 
-foundation/NSMessagePortNameServer.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSPortNameServer.cmo foundation/im_NSMessagePortNameServer.cmo \
-    support/classes.cmi 
-foundation/NSMessagePortNameServer.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSPortNameServer.cmx foundation/im_NSMessagePortNameServer.cmx \
-    support/classes.cmx 
-foundation/NSMetadataItem.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSMetadataItem.cmo support/classes.cmi 
-foundation/NSMetadataItem.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSMetadataItem.cmx support/classes.cmx 
-foundation/NSMetadataQuery.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSMetadataQuery.cmo support/classes.cmi 
-foundation/NSMetadataQuery.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSMetadataQuery.cmx support/classes.cmx 
-foundation/NSMetadataQueryAttributeValueTuple.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSMachPort.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSPort.cmo foundation/im_NSMachPort.cmo support/classes.cmi
+foundation/NSMachPort.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSPort.cmx foundation/im_NSMachPort.cmx support/classes.cmx
+foundation/NSMessagePort.cmo : support/objc.cmi foundation/NSPort.cmo \
+    foundation/im_NSMessagePort.cmo support/classes.cmi
+foundation/NSMessagePort.cmx : support/objc.cmx foundation/NSPort.cmx \
+    foundation/im_NSMessagePort.cmx support/classes.cmx
+foundation/NSMessagePortNameServer.cmo : support/selector.cmo \
+    support/objc.cmi foundation/NSPortNameServer.cmo \
+    foundation/im_NSMessagePortNameServer.cmo support/classes.cmi
+foundation/NSMessagePortNameServer.cmx : support/selector.cmx \
+    support/objc.cmx foundation/NSPortNameServer.cmx \
+    foundation/im_NSMessagePortNameServer.cmx support/classes.cmx
+foundation/NSMetadataItem.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSMetadataItem.cmo support/classes.cmi
+foundation/NSMetadataItem.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSMetadataItem.cmx support/classes.cmx
+foundation/NSMetadataQuery.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSMetadataQuery.cmo support/classes.cmi
+foundation/NSMetadataQuery.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSMetadataQuery.cmx support/classes.cmx
+foundation/NSMetadataQueryAttributeValueTuple.cmo : support/objc.cmi \
     foundation/NSObject.cmo \
-    foundation/im_NSMetadataQueryAttributeValueTuple.cmo support/classes.cmi 
-foundation/NSMetadataQueryAttributeValueTuple.cmx: support/objc.cmx \
+    foundation/im_NSMetadataQueryAttributeValueTuple.cmo support/classes.cmi
+foundation/NSMetadataQueryAttributeValueTuple.cmx : support/objc.cmx \
     foundation/NSObject.cmx \
-    foundation/im_NSMetadataQueryAttributeValueTuple.cmx support/classes.cmx 
-foundation/NSMetadataQueryResultGroup.cmo: support/objc.cmi \
+    foundation/im_NSMetadataQueryAttributeValueTuple.cmx support/classes.cmx
+foundation/NSMetadataQueryResultGroup.cmo : support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSMetadataQueryResultGroup.cmo \
-    support/classes.cmi 
-foundation/NSMetadataQueryResultGroup.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSMetadataQueryResultGroup.cmx : support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSMetadataQueryResultGroup.cmx \
-    support/classes.cmx 
-foundation/NSMethodSignature.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSMethodSignature.cmo support/classes.cmi 
-foundation/NSMethodSignature.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSMethodSignature.cmx support/classes.cmx 
-foundation/NSMiddleSpecifier.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSMethodSignature.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSMethodSignature.cmo support/classes.cmi
+foundation/NSMethodSignature.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSMethodSignature.cmx support/classes.cmx
+foundation/NSMiddleSpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo \
-    foundation/im_NSMiddleSpecifier.cmo support/classes.cmi 
-foundation/NSMiddleSpecifier.cmx: support/objc.cmx \
+    foundation/im_NSMiddleSpecifier.cmo support/classes.cmi
+foundation/NSMiddleSpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx \
-    foundation/im_NSMiddleSpecifier.cmx support/classes.cmx 
-foundation/NSMoveCommand.cmo: support/objc.cmi foundation/NSScriptCommand.cmo \
-    foundation/im_NSMoveCommand.cmo support/classes.cmi 
-foundation/NSMoveCommand.cmx: support/objc.cmx foundation/NSScriptCommand.cmx \
-    foundation/im_NSMoveCommand.cmx support/classes.cmx 
-foundation/NSMutableArray.cmo: support/selector.cmo support/objc.cmi \
+    foundation/im_NSMiddleSpecifier.cmx support/classes.cmx
+foundation/NSMoveCommand.cmo : support/objc.cmi \
+    foundation/NSScriptCommand.cmo foundation/im_NSMoveCommand.cmo \
+    support/classes.cmi
+foundation/NSMoveCommand.cmx : support/objc.cmx \
+    foundation/NSScriptCommand.cmx foundation/im_NSMoveCommand.cmx \
+    support/classes.cmx
+foundation/NSMutableArray.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSArray.cmo foundation/im_NSMutableArray.cmo \
     foundation/Foundation_cati_NSSortDescriptorSorting.cmo \
     foundation/Foundation_cati_NSPredicateSupport.cmo \
     foundation/Foundation_cati_NSMutableArrayCreation.cmo \
-    foundation/Foundation_cati_NSExtendedMutableArray.cmo support/classes.cmi 
-foundation/NSMutableArray.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSExtendedMutableArray.cmo support/classes.cmi
+foundation/NSMutableArray.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSArray.cmx foundation/im_NSMutableArray.cmx \
     foundation/Foundation_cati_NSSortDescriptorSorting.cmx \
     foundation/Foundation_cati_NSPredicateSupport.cmx \
     foundation/Foundation_cati_NSMutableArrayCreation.cmx \
-    foundation/Foundation_cati_NSExtendedMutableArray.cmx support/classes.cmx 
-foundation/NSMutableAttributedString.cmo: support/objc.cmi \
+    foundation/Foundation_cati_NSExtendedMutableArray.cmx support/classes.cmx
+foundation/NSMutableAttributedString.cmo : support/objc.cmi \
     foundation/NSAttributedString.cmo \
     foundation/im_NSMutableAttributedString.cmo \
     foundation/Foundation_cati_NSExtendedMutableAttributedString.cmo \
-    support/classes.cmi 
-foundation/NSMutableAttributedString.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSMutableAttributedString.cmx : support/objc.cmx \
     foundation/NSAttributedString.cmx \
     foundation/im_NSMutableAttributedString.cmx \
     foundation/Foundation_cati_NSExtendedMutableAttributedString.cmx \
-    support/classes.cmx 
-foundation/NSMutableCharacterSet.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSMutableCharacterSet.cmo : support/objc.cmi \
     foundation/NSCharacterSet.cmo foundation/im_NSMutableCharacterSet.cmo \
-    support/classes.cmi 
-foundation/NSMutableCharacterSet.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSMutableCharacterSet.cmx : support/objc.cmx \
     foundation/NSCharacterSet.cmx foundation/im_NSMutableCharacterSet.cmx \
-    support/classes.cmx 
-foundation/NSMutableData.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSMutableData.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSData.cmo foundation/im_NSMutableData.cmo \
     foundation/Foundation_cati_NSMutableDataCreation.cmo \
-    foundation/Foundation_cati_NSExtendedMutableData.cmo support/classes.cmi 
-foundation/NSMutableData.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSExtendedMutableData.cmo support/classes.cmi
+foundation/NSMutableData.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSData.cmx foundation/im_NSMutableData.cmx \
     foundation/Foundation_cati_NSMutableDataCreation.cmx \
-    foundation/Foundation_cati_NSExtendedMutableData.cmx support/classes.cmx 
-foundation/NSMutableDictionary.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSExtendedMutableData.cmx support/classes.cmx
+foundation/NSMutableDictionary.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSDictionary.cmo foundation/im_NSMutableDictionary.cmo \
     foundation/Foundation_cati_NSMutableDictionaryCreation.cmo \
     foundation/Foundation_cati_NSKeyValueCoding.cmo \
     foundation/Foundation_cati_NSExtendedMutableDictionary.cmo \
-    support/classes.cmi 
-foundation/NSMutableDictionary.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSMutableDictionary.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSDictionary.cmx foundation/im_NSMutableDictionary.cmx \
     foundation/Foundation_cati_NSMutableDictionaryCreation.cmx \
     foundation/Foundation_cati_NSKeyValueCoding.cmx \
     foundation/Foundation_cati_NSExtendedMutableDictionary.cmx \
-    support/classes.cmx 
-foundation/NSMutableSet.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSMutableSet.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSSet.cmo foundation/im_NSMutableSet.cmo \
     foundation/Foundation_cati_NSMutableSetCreation.cmo \
-    foundation/Foundation_cati_NSExtendedMutableSet.cmo support/classes.cmi 
-foundation/NSMutableSet.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSExtendedMutableSet.cmo support/classes.cmi
+foundation/NSMutableSet.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSSet.cmx foundation/im_NSMutableSet.cmx \
     foundation/Foundation_cati_NSMutableSetCreation.cmx \
-    foundation/Foundation_cati_NSExtendedMutableSet.cmx support/classes.cmx 
-foundation/NSMutableString.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSExtendedMutableSet.cmx support/classes.cmx
+foundation/NSMutableString.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSString.cmo foundation/im_NSMutableString.cmo \
     foundation/Foundation_cati_NSMutableStringExtensionMethods.cmo \
-    support/classes.cmi 
-foundation/NSMutableString.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSMutableString.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSString.cmx foundation/im_NSMutableString.cmx \
     foundation/Foundation_cati_NSMutableStringExtensionMethods.cmx \
-    support/classes.cmx 
-foundation/NSMutableURLRequest.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSMutableURLRequest.cmo : support/objc.cmi \
     foundation/NSURLRequest.cmo foundation/im_NSMutableURLRequest.cmo \
     foundation/Foundation_cati_NSMutableHTTPURLRequest.cmo \
-    support/classes.cmi 
-foundation/NSMutableURLRequest.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSMutableURLRequest.cmx : support/objc.cmx \
     foundation/NSURLRequest.cmx foundation/im_NSMutableURLRequest.cmx \
     foundation/Foundation_cati_NSMutableHTTPURLRequest.cmx \
-    support/classes.cmx 
-foundation/NSNameSpecifier.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSNameSpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo foundation/im_NSNameSpecifier.cmo \
-    support/classes.cmi 
-foundation/NSNameSpecifier.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSNameSpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx foundation/im_NSNameSpecifier.cmx \
-    support/classes.cmx 
-foundation/NSNetService.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSNetService.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSNetService.cmo \
-    support/classes.cmi 
-foundation/NSNetService.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSNetService.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSNetService.cmx \
-    support/classes.cmx 
-foundation/NSNetServiceBrowser.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSNetServiceBrowser.cmo support/classes.cmi 
-foundation/NSNetServiceBrowser.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSNetServiceBrowser.cmx support/classes.cmx 
-foundation/NSNotification.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSNetServiceBrowser.cmo : support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSNetServiceBrowser.cmo \
+    support/classes.cmi
+foundation/NSNetServiceBrowser.cmx : support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSNetServiceBrowser.cmx \
+    support/classes.cmx
+foundation/NSNotification.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSNotification.cmo \
-    foundation/Foundation_cati_NSNotificationCreation.cmo support/classes.cmi 
-foundation/NSNotification.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSNotificationCreation.cmo support/classes.cmi
+foundation/NSNotification.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSNotification.cmx \
-    foundation/Foundation_cati_NSNotificationCreation.cmx support/classes.cmx 
-foundation/NSNotificationCenter.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSNotificationCreation.cmx support/classes.cmx
+foundation/NSNotificationCenter.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSNotificationCenter.cmo \
-    support/classes.cmi 
-foundation/NSNotificationCenter.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSNotificationCenter.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSNotificationCenter.cmx \
-    support/classes.cmx 
-foundation/NSNotificationQueue.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSNotificationQueue.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSNotificationQueue.cmo \
-    support/classes.cmi 
-foundation/NSNotificationQueue.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSNotificationQueue.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSNotificationQueue.cmx \
-    support/classes.cmx 
-foundation/NSNull.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSNull.cmo support/classes.cmi 
-foundation/NSNull.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSNull.cmx support/classes.cmx 
-foundation/NSNumber.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSNull.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSNull.cmo support/classes.cmi
+foundation/NSNull.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSNull.cmx support/classes.cmx
+foundation/NSNumber.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSValue.cmo foundation/im_NSNumber.cmo \
     foundation/Foundation_cati_NSNumberCreation.cmo \
     foundation/Foundation_cati_NSDecimalNumberExtensions.cmo \
-    support/classes.cmi 
-foundation/NSNumber.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSNumber.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSValue.cmx foundation/im_NSNumber.cmx \
     foundation/Foundation_cati_NSNumberCreation.cmx \
     foundation/Foundation_cati_NSDecimalNumberExtensions.cmx \
-    support/classes.cmx 
-foundation/NSNumberFormatter.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSNumberFormatter.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSFormatter.cmo foundation/im_NSNumberFormatter.cmo \
-    support/classes.cmi 
-foundation/NSNumberFormatter.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSNumberFormatter.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSFormatter.cmx foundation/im_NSNumberFormatter.cmx \
-    support/classes.cmx 
-foundation/NSObjCRuntime.cmo: support/objc.cmi 
-foundation/NSObjCRuntime.cmx: support/objc.cmx 
-foundation/NSObject.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSObjCRuntime.cmo : support/objc.cmi
+foundation/NSObjCRuntime.cmx : support/objc.cmx
+foundation/NSObject.cmo : support/selector.cmo support/objc.cmi \
     foundation/im_NSObject.cmo \
     foundation/Foundation_cati_NSXMLParserDelegateEventAdditions.cmo \
     foundation/Foundation_cati_NSURLDownloadDelegate.cmo \
@@ -1026,8 +1042,8 @@ foundation/NSObject.cmo: support/selector.cmo support/objc.cmi \
     foundation/Foundation_cati_NSConnectionDelegateMethods.cmo \
     foundation/Foundation_cati_NSComparisonMethods.cmo \
     foundation/Foundation_cati_NSClassDescriptionPrimitives.cmo \
-    foundation/Foundation_cati_NSArchiverCallback.cmo support/classes.cmi 
-foundation/NSObject.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSArchiverCallback.cmo support/classes.cmi
+foundation/NSObject.cmx : support/selector.cmx support/objc.cmx \
     foundation/im_NSObject.cmx \
     foundation/Foundation_cati_NSXMLParserDelegateEventAdditions.cmx \
     foundation/Foundation_cati_NSURLDownloadDelegate.cmx \
@@ -1064,766 +1080,796 @@ foundation/NSObject.cmx: support/selector.cmx support/objc.cmx \
     foundation/Foundation_cati_NSConnectionDelegateMethods.cmx \
     foundation/Foundation_cati_NSComparisonMethods.cmx \
     foundation/Foundation_cati_NSClassDescriptionPrimitives.cmx \
-    foundation/Foundation_cati_NSArchiverCallback.cmx support/classes.cmx 
-foundation/NSOutputStream.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSArchiverCallback.cmx support/classes.cmx
+foundation/NSOutputStream.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSStream.cmo foundation/im_NSOutputStream.cmo \
     foundation/Foundation_cati_NSOutputStreamExtensions.cmo \
-    support/classes.cmi 
-foundation/NSOutputStream.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSOutputStream.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSStream.cmx foundation/im_NSOutputStream.cmx \
     foundation/Foundation_cati_NSOutputStreamExtensions.cmx \
-    support/classes.cmx 
-foundation/NSPipe.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSPipe.cmo support/classes.cmi 
-foundation/NSPipe.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSPipe.cmx support/classes.cmx 
-foundation/NSPort.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSPort.cmo support/classes.cmi 
-foundation/NSPort.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSPort.cmx support/classes.cmx 
-foundation/NSPortCoder.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSCoder.cmo foundation/im_NSPortCoder.cmo support/classes.cmi 
-foundation/NSPortCoder.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSCoder.cmx foundation/im_NSPortCoder.cmx support/classes.cmx 
-foundation/NSPortMessage.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSPortMessage.cmo support/classes.cmi 
-foundation/NSPortMessage.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSPortMessage.cmx support/classes.cmx 
-foundation/NSPortNameServer.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSPipe.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSPipe.cmo support/classes.cmi
+foundation/NSPipe.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSPipe.cmx support/classes.cmx
+foundation/NSPort.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSPort.cmo support/classes.cmi
+foundation/NSPort.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSPort.cmx support/classes.cmx
+foundation/NSPortCoder.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSCoder.cmo foundation/im_NSPortCoder.cmo support/classes.cmi
+foundation/NSPortCoder.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSCoder.cmx foundation/im_NSPortCoder.cmx support/classes.cmx
+foundation/NSPortMessage.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSPortMessage.cmo support/classes.cmi
+foundation/NSPortMessage.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSPortMessage.cmx support/classes.cmx
+foundation/NSPortNameServer.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSPortNameServer.cmo \
-    support/classes.cmi 
-foundation/NSPortNameServer.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSPortNameServer.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSPortNameServer.cmx \
-    support/classes.cmx 
-foundation/NSPositionalSpecifier.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSPositionalSpecifier.cmo : support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSPositionalSpecifier.cmo \
-    support/classes.cmi 
-foundation/NSPositionalSpecifier.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSPositionalSpecifier.cmx : support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSPositionalSpecifier.cmx \
-    support/classes.cmx 
-foundation/NSPredicate.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSPredicate.cmo support/classes.cmi 
-foundation/NSPredicate.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSPredicate.cmx support/classes.cmx 
-foundation/NSProcessInfo.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSPredicate.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSPredicate.cmo support/classes.cmi
+foundation/NSPredicate.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSPredicate.cmx support/classes.cmx
+foundation/NSProcessInfo.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSProcessInfo.cmo \
-    support/classes.cmi 
-foundation/NSProcessInfo.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSProcessInfo.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSProcessInfo.cmx \
-    support/classes.cmx 
-foundation/NSPropertyListSerialization.cmo: support/selector.cmo \
+    support/classes.cmx
+foundation/NSPropertyListSerialization.cmo : support/selector.cmo \
     support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSPropertyListSerialization.cmo support/classes.cmi 
-foundation/NSPropertyListSerialization.cmx: support/selector.cmx \
+    foundation/im_NSPropertyListSerialization.cmo support/classes.cmi
+foundation/NSPropertyListSerialization.cmx : support/selector.cmx \
     support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSPropertyListSerialization.cmx support/classes.cmx 
-foundation/NSPropertySpecifier.cmo: support/objc.cmi \
+    foundation/im_NSPropertyListSerialization.cmx support/classes.cmx
+foundation/NSPropertySpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo \
-    foundation/im_NSPropertySpecifier.cmo support/classes.cmi 
-foundation/NSPropertySpecifier.cmx: support/objc.cmx \
+    foundation/im_NSPropertySpecifier.cmo support/classes.cmi
+foundation/NSPropertySpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx \
-    foundation/im_NSPropertySpecifier.cmx support/classes.cmx 
-foundation/NSProtocolChecker.cmo: support/selector.cmo support/objc.cmi \
+    foundation/im_NSPropertySpecifier.cmx support/classes.cmx
+foundation/NSProtocolChecker.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSProxy.cmo foundation/im_NSProtocolChecker.cmo \
     foundation/Foundation_cati_NSProtocolCheckerCreation.cmo \
-    support/classes.cmi 
-foundation/NSProtocolChecker.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSProtocolChecker.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSProxy.cmx foundation/im_NSProtocolChecker.cmx \
     foundation/Foundation_cati_NSProtocolCheckerCreation.cmx \
-    support/classes.cmx 
-foundation/NSProxy.cmo: support/selector.cmo support/objc.cmi \
-    foundation/im_NSProxy.cmo support/classes.cmi 
-foundation/NSProxy.cmx: support/selector.cmx support/objc.cmx \
-    foundation/im_NSProxy.cmx support/classes.cmx 
-foundation/NSQuitCommand.cmo: support/objc.cmi foundation/NSScriptCommand.cmo \
-    foundation/im_NSQuitCommand.cmo support/classes.cmi 
-foundation/NSQuitCommand.cmx: support/objc.cmx foundation/NSScriptCommand.cmx \
-    foundation/im_NSQuitCommand.cmx support/classes.cmx 
-foundation/NSRandomSpecifier.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSProxy.cmo : support/selector.cmo support/objc.cmi \
+    foundation/im_NSProxy.cmo support/classes.cmi
+foundation/NSProxy.cmx : support/selector.cmx support/objc.cmx \
+    foundation/im_NSProxy.cmx support/classes.cmx
+foundation/NSQuitCommand.cmo : support/objc.cmi \
+    foundation/NSScriptCommand.cmo foundation/im_NSQuitCommand.cmo \
+    support/classes.cmi
+foundation/NSQuitCommand.cmx : support/objc.cmx \
+    foundation/NSScriptCommand.cmx foundation/im_NSQuitCommand.cmx \
+    support/classes.cmx
+foundation/NSRandomSpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo \
-    foundation/im_NSRandomSpecifier.cmo support/classes.cmi 
-foundation/NSRandomSpecifier.cmx: support/objc.cmx \
+    foundation/im_NSRandomSpecifier.cmo support/classes.cmi
+foundation/NSRandomSpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx \
-    foundation/im_NSRandomSpecifier.cmx support/classes.cmx 
-foundation/NSRangeSpecifier.cmo: support/objc.cmi \
+    foundation/im_NSRandomSpecifier.cmx support/classes.cmx
+foundation/NSRangeSpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo foundation/im_NSRangeSpecifier.cmo \
-    support/classes.cmi 
-foundation/NSRangeSpecifier.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSRangeSpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx foundation/im_NSRangeSpecifier.cmx \
-    support/classes.cmx 
-foundation/NSRecursiveLock.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSRecursiveLock.cmo support/classes.cmi 
-foundation/NSRecursiveLock.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSRecursiveLock.cmx support/classes.cmx 
-foundation/NSRelativeSpecifier.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSRecursiveLock.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSRecursiveLock.cmo support/classes.cmi
+foundation/NSRecursiveLock.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSRecursiveLock.cmx support/classes.cmx
+foundation/NSRelativeSpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo \
-    foundation/im_NSRelativeSpecifier.cmo support/classes.cmi 
-foundation/NSRelativeSpecifier.cmx: support/objc.cmx \
+    foundation/im_NSRelativeSpecifier.cmo support/classes.cmi
+foundation/NSRelativeSpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx \
-    foundation/im_NSRelativeSpecifier.cmx support/classes.cmx 
-foundation/NSRunLoop.cmo: support/selector.cmo support/objc.cmi \
+    foundation/im_NSRelativeSpecifier.cmx support/classes.cmx
+foundation/NSRunLoop.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSRunLoop.cmo \
     foundation/Foundation_cati_NSRunLoopConveniences.cmo \
-    foundation/Foundation_cati_NSOrderedPerform.cmo support/classes.cmi 
-foundation/NSRunLoop.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSOrderedPerform.cmo support/classes.cmi
+foundation/NSRunLoop.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSRunLoop.cmx \
     foundation/Foundation_cati_NSRunLoopConveniences.cmx \
-    foundation/Foundation_cati_NSOrderedPerform.cmx support/classes.cmx 
-foundation/NSScanner.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSOrderedPerform.cmx support/classes.cmx
+foundation/NSScanner.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSScanner.cmo \
     foundation/Foundation_cati_NSExtendedScanner.cmo \
     foundation/Foundation_cati_NSDecimalNumberScanning.cmo \
-    support/classes.cmi 
-foundation/NSScanner.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSScanner.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSScanner.cmx \
     foundation/Foundation_cati_NSExtendedScanner.cmx \
     foundation/Foundation_cati_NSDecimalNumberScanning.cmx \
-    support/classes.cmx 
-foundation/NSScriptClassDescription.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSScriptClassDescription.cmo : support/objc.cmi \
     foundation/NSClassDescription.cmo \
-    foundation/im_NSScriptClassDescription.cmo support/classes.cmi 
-foundation/NSScriptClassDescription.cmx: support/objc.cmx \
+    foundation/im_NSScriptClassDescription.cmo support/classes.cmi
+foundation/NSScriptClassDescription.cmx : support/objc.cmx \
     foundation/NSClassDescription.cmx \
-    foundation/im_NSScriptClassDescription.cmx support/classes.cmx 
-foundation/NSScriptCoercionHandler.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSScriptCoercionHandler.cmo \
-    support/classes.cmi 
-foundation/NSScriptCoercionHandler.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSScriptCoercionHandler.cmx \
-    support/classes.cmx 
-foundation/NSScriptCommand.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSScriptCommand.cmo \
-    support/classes.cmi 
-foundation/NSScriptCommand.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSScriptCommand.cmx \
-    support/classes.cmx 
-foundation/NSScriptCommandDescription.cmo: support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSScriptCommandDescription.cmo \
-    support/classes.cmi 
-foundation/NSScriptCommandDescription.cmx: support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSScriptCommandDescription.cmx \
-    support/classes.cmx 
-foundation/NSScriptExecutionContext.cmo: support/selector.cmo \
+    foundation/im_NSScriptClassDescription.cmx support/classes.cmx
+foundation/NSScriptCoercionHandler.cmo : support/selector.cmo \
     support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSScriptExecutionContext.cmo support/classes.cmi 
-foundation/NSScriptExecutionContext.cmx: support/selector.cmx \
+    foundation/im_NSScriptCoercionHandler.cmo support/classes.cmi
+foundation/NSScriptCoercionHandler.cmx : support/selector.cmx \
     support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSScriptExecutionContext.cmx support/classes.cmx 
-foundation/NSScriptObjectSpecifier.cmo: support/objc.cmi \
+    foundation/im_NSScriptCoercionHandler.cmx support/classes.cmx
+foundation/NSScriptCommand.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSScriptCommand.cmo \
+    support/classes.cmi
+foundation/NSScriptCommand.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSScriptCommand.cmx \
+    support/classes.cmx
+foundation/NSScriptCommandDescription.cmo : support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSScriptCommandDescription.cmo \
+    support/classes.cmi
+foundation/NSScriptCommandDescription.cmx : support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSScriptCommandDescription.cmx \
+    support/classes.cmx
+foundation/NSScriptExecutionContext.cmo : support/selector.cmo \
+    support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSScriptExecutionContext.cmo support/classes.cmi
+foundation/NSScriptExecutionContext.cmx : support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSScriptExecutionContext.cmx support/classes.cmx
+foundation/NSScriptObjectSpecifier.cmo : support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSScriptObjectSpecifier.cmo \
-    support/classes.cmi 
-foundation/NSScriptObjectSpecifier.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSScriptObjectSpecifier.cmx : support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSScriptObjectSpecifier.cmx \
-    support/classes.cmx 
-foundation/NSScriptObjectSpecifiers.cmo: support/objc.cmi 
-foundation/NSScriptObjectSpecifiers.cmx: support/objc.cmx 
-foundation/NSScriptSuiteRegistry.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSScriptObjectSpecifiers.cmo : support/objc.cmi
+foundation/NSScriptObjectSpecifiers.cmx : support/objc.cmx
+foundation/NSScriptSuiteRegistry.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSScriptSuiteRegistry.cmo \
-    support/classes.cmi 
-foundation/NSScriptSuiteRegistry.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSScriptSuiteRegistry.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSScriptSuiteRegistry.cmx \
-    support/classes.cmx 
-foundation/NSScriptWhoseTest.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSScriptWhoseTest.cmo support/classes.cmi 
-foundation/NSScriptWhoseTest.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSScriptWhoseTest.cmx support/classes.cmx 
-foundation/NSSet.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSScriptWhoseTest.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSScriptWhoseTest.cmo support/classes.cmi
+foundation/NSScriptWhoseTest.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSScriptWhoseTest.cmx support/classes.cmx
+foundation/NSSet.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSSet.cmo \
     foundation/Foundation_cati_NSSetCreation.cmo \
     foundation/Foundation_cati_NSKeyValueObserverRegistration.cmo \
     foundation/Foundation_cati_NSKeyValueCoding.cmo \
-    foundation/Foundation_cati_NSExtendedSet.cmo support/classes.cmi 
-foundation/NSSet.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSExtendedSet.cmo support/classes.cmi
+foundation/NSSet.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSSet.cmx \
     foundation/Foundation_cati_NSSetCreation.cmx \
     foundation/Foundation_cati_NSKeyValueObserverRegistration.cmx \
     foundation/Foundation_cati_NSKeyValueCoding.cmx \
-    foundation/Foundation_cati_NSExtendedSet.cmx support/classes.cmx 
-foundation/NSSetCommand.cmo: support/objc.cmi foundation/NSScriptCommand.cmo \
-    foundation/im_NSSetCommand.cmo support/classes.cmi 
-foundation/NSSetCommand.cmx: support/objc.cmx foundation/NSScriptCommand.cmx \
-    foundation/im_NSSetCommand.cmx support/classes.cmx 
-foundation/NSSimpleCString.cmo: support/objc.cmi foundation/NSString.cmo \
-    foundation/im_NSSimpleCString.cmo support/classes.cmi 
-foundation/NSSimpleCString.cmx: support/objc.cmx foundation/NSString.cmx \
-    foundation/im_NSSimpleCString.cmx support/classes.cmx 
-foundation/NSSocketPort.cmo: support/objc.cmi foundation/NSPort.cmo \
-    foundation/im_NSSocketPort.cmo support/classes.cmi 
-foundation/NSSocketPort.cmx: support/objc.cmx foundation/NSPort.cmx \
-    foundation/im_NSSocketPort.cmx support/classes.cmx 
-foundation/NSSocketPortNameServer.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSPortNameServer.cmo foundation/im_NSSocketPortNameServer.cmo \
-    support/classes.cmi 
-foundation/NSSocketPortNameServer.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSPortNameServer.cmx foundation/im_NSSocketPortNameServer.cmx \
-    support/classes.cmx 
-foundation/NSSortDescriptor.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSSortDescriptor.cmo support/classes.cmi 
-foundation/NSSortDescriptor.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSSortDescriptor.cmx support/classes.cmx 
-foundation/NSSpecifierTest.cmo: support/objc.cmi \
+    foundation/Foundation_cati_NSExtendedSet.cmx support/classes.cmx
+foundation/NSSetCommand.cmo : support/objc.cmi \
+    foundation/NSScriptCommand.cmo foundation/im_NSSetCommand.cmo \
+    support/classes.cmi
+foundation/NSSetCommand.cmx : support/objc.cmx \
+    foundation/NSScriptCommand.cmx foundation/im_NSSetCommand.cmx \
+    support/classes.cmx
+foundation/NSSimpleCString.cmo : support/objc.cmi foundation/NSString.cmo \
+    foundation/im_NSSimpleCString.cmo support/classes.cmi
+foundation/NSSimpleCString.cmx : support/objc.cmx foundation/NSString.cmx \
+    foundation/im_NSSimpleCString.cmx support/classes.cmx
+foundation/NSSocketPort.cmo : support/objc.cmi foundation/NSPort.cmo \
+    foundation/im_NSSocketPort.cmo support/classes.cmi
+foundation/NSSocketPort.cmx : support/objc.cmx foundation/NSPort.cmx \
+    foundation/im_NSSocketPort.cmx support/classes.cmx
+foundation/NSSocketPortNameServer.cmo : support/selector.cmo \
+    support/objc.cmi foundation/NSPortNameServer.cmo \
+    foundation/im_NSSocketPortNameServer.cmo support/classes.cmi
+foundation/NSSocketPortNameServer.cmx : support/selector.cmx \
+    support/objc.cmx foundation/NSPortNameServer.cmx \
+    foundation/im_NSSocketPortNameServer.cmx support/classes.cmx
+foundation/NSSortDescriptor.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSSortDescriptor.cmo support/classes.cmi
+foundation/NSSortDescriptor.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSSortDescriptor.cmx support/classes.cmx
+foundation/NSSpecifierTest.cmo : support/objc.cmi \
     foundation/NSScriptWhoseTest.cmo foundation/im_NSSpecifierTest.cmo \
-    support/classes.cmi 
-foundation/NSSpecifierTest.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSSpecifierTest.cmx : support/objc.cmx \
     foundation/NSScriptWhoseTest.cmx foundation/im_NSSpecifierTest.cmx \
-    support/classes.cmx 
-foundation/NSSpellServer.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSSpellServer.cmo support/classes.cmi 
-foundation/NSSpellServer.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSSpellServer.cmx support/classes.cmx 
-foundation/NSStream.cmo: support/objc.cmi foundation/NSObject.cmo \
+    support/classes.cmx
+foundation/NSSpellServer.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSSpellServer.cmo support/classes.cmi
+foundation/NSSpellServer.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSSpellServer.cmx support/classes.cmx
+foundation/NSStream.cmo : support/objc.cmi foundation/NSObject.cmo \
     foundation/im_NSStream.cmo \
     foundation/Foundation_cati_NSSocketStreamCreationExtensions.cmo \
-    support/classes.cmi 
-foundation/NSStream.cmx: support/objc.cmx foundation/NSObject.cmx \
+    support/classes.cmi
+foundation/NSStream.cmx : support/objc.cmx foundation/NSObject.cmx \
     foundation/im_NSStream.cmx \
     foundation/Foundation_cati_NSSocketStreamCreationExtensions.cmx \
-    support/classes.cmx 
-foundation/NSString.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSString.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSString.cmo \
     foundation/Foundation_cati_NSURLUtilities.cmo \
     foundation/Foundation_cati_NSStringPathExtensions.cmo \
     foundation/Foundation_cati_NSStringExtensionMethods.cmo \
     foundation/Foundation_cati_NSStringDeprecated.cmo \
     foundation/Foundation_cati_NSExtendedStringPropertyListParsing.cmo \
-    support/classes.cmi 
-foundation/NSString.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSString.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSString.cmx \
     foundation/Foundation_cati_NSURLUtilities.cmx \
     foundation/Foundation_cati_NSStringPathExtensions.cmx \
     foundation/Foundation_cati_NSStringExtensionMethods.cmx \
     foundation/Foundation_cati_NSStringDeprecated.cmx \
     foundation/Foundation_cati_NSExtendedStringPropertyListParsing.cmx \
-    support/classes.cmx 
-foundation/NSTask.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSTask.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSTask.cmo \
-    foundation/Foundation_cati_NSTaskConveniences.cmo support/classes.cmi 
-foundation/NSTask.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSTaskConveniences.cmo support/classes.cmi
+foundation/NSTask.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSTask.cmx \
-    foundation/Foundation_cati_NSTaskConveniences.cmx support/classes.cmx 
-foundation/NSThread.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSThread.cmo support/classes.cmi 
-foundation/NSThread.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSThread.cmx support/classes.cmx 
-foundation/NSTimeZone.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSTaskConveniences.cmx support/classes.cmx
+foundation/NSThread.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSThread.cmo support/classes.cmi
+foundation/NSThread.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSThread.cmx support/classes.cmx
+foundation/NSTimeZone.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSTimeZone.cmo \
     foundation/Foundation_cati_NSTimeZoneCreation.cmo \
-    foundation/Foundation_cati_NSExtendedTimeZone.cmo support/classes.cmi 
-foundation/NSTimeZone.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSExtendedTimeZone.cmo support/classes.cmi
+foundation/NSTimeZone.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSTimeZone.cmx \
     foundation/Foundation_cati_NSTimeZoneCreation.cmx \
-    foundation/Foundation_cati_NSExtendedTimeZone.cmx support/classes.cmx 
-foundation/NSTimer.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSTimer.cmo support/classes.cmi 
-foundation/NSTimer.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSTimer.cmx support/classes.cmx 
-foundation/NSURL.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSExtendedTimeZone.cmx support/classes.cmx
+foundation/NSTimer.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSTimer.cmo support/classes.cmi
+foundation/NSTimer.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSTimer.cmx support/classes.cmx
+foundation/NSURL.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSURL.cmo \
-    foundation/Foundation_cati_NSURLLoading.cmo support/classes.cmi 
-foundation/NSURL.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSURLLoading.cmo support/classes.cmi
+foundation/NSURL.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSURL.cmx \
-    foundation/Foundation_cati_NSURLLoading.cmx support/classes.cmx 
-foundation/NSURLAuthenticationChallenge.cmo: support/objc.cmi \
+    foundation/Foundation_cati_NSURLLoading.cmx support/classes.cmx
+foundation/NSURLAuthenticationChallenge.cmo : support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSURLAuthenticationChallenge.cmo \
-    support/classes.cmi 
-foundation/NSURLAuthenticationChallenge.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSURLAuthenticationChallenge.cmx : support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSURLAuthenticationChallenge.cmx \
-    support/classes.cmx 
-foundation/NSURLCache.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSURLCache.cmo support/classes.cmi 
-foundation/NSURLCache.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSURLCache.cmx support/classes.cmx 
-foundation/NSURLConnection.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSURLCache.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSURLCache.cmo support/classes.cmi
+foundation/NSURLCache.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSURLCache.cmx support/classes.cmx
+foundation/NSURLConnection.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSURLConnection.cmo \
     foundation/Foundation_cati_NSURLConnectionSynchronousLoading.cmo \
-    support/classes.cmi 
-foundation/NSURLConnection.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSURLConnection.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSURLConnection.cmx \
     foundation/Foundation_cati_NSURLConnectionSynchronousLoading.cmx \
-    support/classes.cmx 
-foundation/NSURLCredential.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSURLCredential.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSURLCredential.cmo \
-    support/classes.cmi 
-foundation/NSURLCredential.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSURLCredential.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSURLCredential.cmx \
-    support/classes.cmx 
-foundation/NSURLCredentialStorage.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSURLCredentialStorage.cmo \
-    support/classes.cmi 
-foundation/NSURLCredentialStorage.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSURLCredentialStorage.cmx \
-    support/classes.cmx 
-foundation/NSURLDownload.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSURLCredentialStorage.cmo : support/selector.cmo \
+    support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSURLCredentialStorage.cmo support/classes.cmi
+foundation/NSURLCredentialStorage.cmx : support/selector.cmx \
+    support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSURLCredentialStorage.cmx support/classes.cmx
+foundation/NSURLDownload.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSURLDownload.cmo \
-    support/classes.cmi 
-foundation/NSURLDownload.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSURLDownload.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSURLDownload.cmx \
-    support/classes.cmx 
-foundation/NSURLError.cmo: support/objc.cmi 
-foundation/NSURLError.cmx: support/objc.cmx 
-foundation/NSURLHandle.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSURLHandle.cmo support/classes.cmi 
-foundation/NSURLHandle.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSURLHandle.cmx support/classes.cmx 
-foundation/NSURLProtectionSpace.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSURLProtectionSpace.cmo support/classes.cmi 
-foundation/NSURLProtectionSpace.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSURLProtectionSpace.cmx support/classes.cmx 
-foundation/NSURLProtocol.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSURLError.cmo : support/objc.cmi
+foundation/NSURLError.cmx : support/objc.cmx
+foundation/NSURLHandle.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSURLHandle.cmo support/classes.cmi
+foundation/NSURLHandle.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSURLHandle.cmx support/classes.cmx
+foundation/NSURLProtectionSpace.cmo : support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSURLProtectionSpace.cmo \
+    support/classes.cmi
+foundation/NSURLProtectionSpace.cmx : support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSURLProtectionSpace.cmx \
+    support/classes.cmx
+foundation/NSURLProtocol.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSURLProtocol.cmo \
-    support/classes.cmi 
-foundation/NSURLProtocol.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSURLProtocol.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSURLProtocol.cmx \
-    support/classes.cmx 
-foundation/NSURLRequest.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSURLRequest.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSURLRequest.cmo \
-    foundation/Foundation_cati_NSHTTPURLRequest.cmo support/classes.cmi 
-foundation/NSURLRequest.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSHTTPURLRequest.cmo support/classes.cmi
+foundation/NSURLRequest.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSURLRequest.cmx \
-    foundation/Foundation_cati_NSHTTPURLRequest.cmx support/classes.cmx 
-foundation/NSURLResponse.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSURLResponse.cmo support/classes.cmi 
-foundation/NSURLResponse.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSURLResponse.cmx support/classes.cmx 
-foundation/NSUnarchiver.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSCoder.cmo foundation/im_NSUnarchiver.cmo support/classes.cmi 
-foundation/NSUnarchiver.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSCoder.cmx foundation/im_NSUnarchiver.cmx support/classes.cmx 
-foundation/NSUndoManager.cmo: support/objc.cmi foundation/NSObject.cmo \
-    foundation/im_NSUndoManager.cmo support/classes.cmi 
-foundation/NSUndoManager.cmx: support/objc.cmx foundation/NSObject.cmx \
-    foundation/im_NSUndoManager.cmx support/classes.cmx 
-foundation/NSUniqueIDSpecifier.cmo: support/objc.cmi \
+    foundation/Foundation_cati_NSHTTPURLRequest.cmx support/classes.cmx
+foundation/NSURLResponse.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSURLResponse.cmo support/classes.cmi
+foundation/NSURLResponse.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSURLResponse.cmx support/classes.cmx
+foundation/NSUnarchiver.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSCoder.cmo foundation/im_NSUnarchiver.cmo support/classes.cmi
+foundation/NSUnarchiver.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSCoder.cmx foundation/im_NSUnarchiver.cmx support/classes.cmx
+foundation/NSUndoManager.cmo : support/objc.cmi foundation/NSObject.cmo \
+    foundation/im_NSUndoManager.cmo support/classes.cmi
+foundation/NSUndoManager.cmx : support/objc.cmx foundation/NSObject.cmx \
+    foundation/im_NSUndoManager.cmx support/classes.cmx
+foundation/NSUniqueIDSpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo \
-    foundation/im_NSUniqueIDSpecifier.cmo support/classes.cmi 
-foundation/NSUniqueIDSpecifier.cmx: support/objc.cmx \
+    foundation/im_NSUniqueIDSpecifier.cmo support/classes.cmi
+foundation/NSUniqueIDSpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx \
-    foundation/im_NSUniqueIDSpecifier.cmx support/classes.cmx 
-foundation/NSUserDefaults.cmo: support/selector.cmo support/objc.cmi \
+    foundation/im_NSUniqueIDSpecifier.cmx support/classes.cmx
+foundation/NSUserDefaults.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSUserDefaults.cmo \
-    support/classes.cmi 
-foundation/NSUserDefaults.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSUserDefaults.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSUserDefaults.cmx \
-    support/classes.cmx 
-foundation/NSValue.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSValue.cmo : support/selector.cmo support/objc.cmi \
     support/NSSize.cmo support/NSRect.cmo support/NSRange.cmo \
     support/NSPoint.cmo foundation/NSObject.cmo foundation/im_NSValue.cmo \
     foundation/Foundation_cati_NSValueRangeExtensions.cmo \
     foundation/Foundation_cati_NSValueGeometryExtensions.cmo \
     foundation/Foundation_cati_NSValueExtensionMethods.cmo \
-    foundation/Foundation_cati_NSValueCreation.cmo support/classes.cmi 
-foundation/NSValue.cmx: support/selector.cmx support/objc.cmx \
+    foundation/Foundation_cati_NSValueCreation.cmo support/classes.cmi
+foundation/NSValue.cmx : support/selector.cmx support/objc.cmx \
     support/NSSize.cmx support/NSRect.cmx support/NSRange.cmx \
     support/NSPoint.cmx foundation/NSObject.cmx foundation/im_NSValue.cmx \
     foundation/Foundation_cati_NSValueRangeExtensions.cmx \
     foundation/Foundation_cati_NSValueGeometryExtensions.cmx \
     foundation/Foundation_cati_NSValueExtensionMethods.cmx \
-    foundation/Foundation_cati_NSValueCreation.cmx support/classes.cmx 
-foundation/NSValueTransformer.cmo: support/selector.cmo support/objc.cmi \
+    foundation/Foundation_cati_NSValueCreation.cmx support/classes.cmx
+foundation/NSValueTransformer.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSObject.cmo foundation/im_NSValueTransformer.cmo \
-    support/classes.cmi 
-foundation/NSValueTransformer.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSValueTransformer.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSObject.cmx foundation/im_NSValueTransformer.cmx \
-    support/classes.cmx 
-foundation/NSWhoseSpecifier.cmo: support/objc.cmi \
+    support/classes.cmx
+foundation/NSWhoseSpecifier.cmo : support/objc.cmi \
     foundation/NSScriptObjectSpecifier.cmo foundation/im_NSWhoseSpecifier.cmo \
-    support/classes.cmi 
-foundation/NSWhoseSpecifier.cmx: support/objc.cmx \
+    support/classes.cmi
+foundation/NSWhoseSpecifier.cmx : support/objc.cmx \
     foundation/NSScriptObjectSpecifier.cmx foundation/im_NSWhoseSpecifier.cmx \
-    support/classes.cmx 
-foundation/NSXMLDTD.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSXMLNode.cmo foundation/im_NSXMLDTD.cmo support/classes.cmi 
-foundation/NSXMLDTD.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSXMLNode.cmx foundation/im_NSXMLDTD.cmx support/classes.cmx 
-foundation/NSXMLDTDNode.cmo: support/objc.cmi foundation/NSXMLNode.cmo \
-    foundation/im_NSXMLDTDNode.cmo support/classes.cmi 
-foundation/NSXMLDTDNode.cmx: support/objc.cmx foundation/NSXMLNode.cmx \
-    foundation/im_NSXMLDTDNode.cmx support/classes.cmx 
-foundation/NSXMLDocument.cmo: support/selector.cmo support/objc.cmi \
+    support/classes.cmx
+foundation/NSXMLDTD.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSXMLNode.cmo foundation/im_NSXMLDTD.cmo support/classes.cmi
+foundation/NSXMLDTD.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSXMLNode.cmx foundation/im_NSXMLDTD.cmx support/classes.cmx
+foundation/NSXMLDTDNode.cmo : support/objc.cmi foundation/NSXMLNode.cmo \
+    foundation/im_NSXMLDTDNode.cmo support/classes.cmi
+foundation/NSXMLDTDNode.cmx : support/objc.cmx foundation/NSXMLNode.cmx \
+    foundation/im_NSXMLDTDNode.cmx support/classes.cmx
+foundation/NSXMLDocument.cmo : support/selector.cmo support/objc.cmi \
     foundation/NSXMLNode.cmo foundation/im_NSXMLDocument.cmo \
-    support/classes.cmi 
-foundation/NSXMLDocument.cmx: support/selector.cmx support/objc.cmx \
+    support/classes.cmi
+foundation/NSXMLDocument.cmx : support/selector.cmx support/objc.cmx \
     foundation/NSXMLNode.cmx foundation/im_NSXMLDocument.cmx \
-    support/classes.cmx 
-foundation/NSXMLElement.cmo: support/objc.cmi foundation/NSXMLNode.cmo \
-    foundation/im_NSXMLElement.cmo support/classes.cmi 
-foundation/NSXMLElement.cmx: support/objc.cmx foundation/NSXMLNode.cmx \
-    foundation/im_NSXMLElement.cmx support/classes.cmx 
-foundation/NSXMLNode.cmo: support/selector.cmo support/objc.cmi \
-    foundation/NSObject.cmo foundation/im_NSXMLNode.cmo support/classes.cmi 
-foundation/NSXMLNode.cmx: support/selector.cmx support/objc.cmx \
-    foundation/NSObject.cmx foundation/im_NSXMLNode.cmx support/classes.cmx 
-foundation/NSXMLNodeOptions.cmo: support/objc.cmi 
-foundation/NSXMLNodeOptions.cmx: support/objc.cmx 
-foundation/NSXMLParser.cmo: support/objc.cmi foundation/NSObject.cmo \
+    support/classes.cmx
+foundation/NSXMLElement.cmo : support/objc.cmi foundation/NSXMLNode.cmo \
+    foundation/im_NSXMLElement.cmo support/classes.cmi
+foundation/NSXMLElement.cmx : support/objc.cmx foundation/NSXMLNode.cmx \
+    foundation/im_NSXMLElement.cmx support/classes.cmx
+foundation/NSXMLNode.cmo : support/selector.cmo support/objc.cmi \
+    foundation/NSObject.cmo foundation/im_NSXMLNode.cmo support/classes.cmi
+foundation/NSXMLNode.cmx : support/selector.cmx support/objc.cmx \
+    foundation/NSObject.cmx foundation/im_NSXMLNode.cmx support/classes.cmx
+foundation/NSXMLNodeOptions.cmo : support/objc.cmi
+foundation/NSXMLNodeOptions.cmx : support/objc.cmx
+foundation/NSXMLParser.cmo : support/objc.cmi foundation/NSObject.cmo \
     foundation/im_NSXMLParser.cmo \
     foundation/Foundation_cati_NSXMLParserLocatorAdditions.cmo \
-    support/classes.cmi 
-foundation/NSXMLParser.cmx: support/objc.cmx foundation/NSObject.cmx \
+    support/classes.cmi
+foundation/NSXMLParser.cmx : support/objc.cmx foundation/NSObject.cmx \
     foundation/im_NSXMLParser.cmx \
     foundation/Foundation_cati_NSXMLParserLocatorAdditions.cmx \
-    support/classes.cmx 
-foundation/NSZone.cmo: support/objc.cmi 
-foundation/NSZone.cmx: support/objc.cmx 
-foundation/im_NSAffineTransform.cmo: support/selector.cmo support/objc.cmi \
-    support/NSSize.cmo support/NSPoint.cmo 
-foundation/im_NSAffineTransform.cmx: support/selector.cmx support/objc.cmx \
-    support/NSSize.cmx support/NSPoint.cmx 
-foundation/im_NSAppleEventDescriptor.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSAppleEventDescriptor.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSAppleEventManager.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSAppleEventManager.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSAppleScript.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSAppleScript.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSArchiver.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSArchiver.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSArray.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSArray.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSAssertionHandler.cmo: support/objc.cmi 
-foundation/im_NSAssertionHandler.cmx: support/objc.cmx 
-foundation/im_NSAttributedString.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSAttributedString.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSAutoreleasePool.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSAutoreleasePool.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSBundle.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSBundle.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSCachedURLResponse.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCachedURLResponse.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSCalendar.cmo: support/selector.cmo support/objc.cmi \
-    support/NSRange.cmo 
-foundation/im_NSCalendar.cmx: support/selector.cmx support/objc.cmx \
-    support/NSRange.cmx 
-foundation/im_NSCalendarDate.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCalendarDate.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSCharacterSet.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCharacterSet.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSClassDescription.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSClassDescription.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSCloneCommand.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCloneCommand.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSCloseCommand.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCloseCommand.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSCoder.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCoder.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSComparisonPredicate.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSComparisonPredicate.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSCompoundPredicate.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCompoundPredicate.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSConditionLock.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSConditionLock.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSConnection.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSConnection.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSConstantString.cmo: support/objc.cmi 
-foundation/im_NSConstantString.cmx: support/objc.cmx 
-foundation/im_NSCountCommand.cmo: support/objc.cmi 
-foundation/im_NSCountCommand.cmx: support/objc.cmx 
-foundation/im_NSCountedSet.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCountedSet.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSCreateCommand.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSCreateCommand.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSData.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSData.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDate.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSDate.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDateComponents.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSDateComponents.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDateFormatter.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSDateFormatter.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDecimalNumber.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSDecimalNumber.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDecimalNumberHandler.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSDecimalNumberHandler.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSDeleteCommand.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSDeleteCommand.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDictionary.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSDictionary.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDirectoryEnumerator.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSDirectoryEnumerator.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSDistantObject.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSDistantObject.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDistantObjectRequest.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSDistantObjectRequest.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSDistributedLock.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSDistributedLock.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSDistributedNotificationCenter.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSDistributedNotificationCenter.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSEnumerator.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSEnumerator.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSError.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSError.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSException.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSException.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSExistsCommand.cmo: support/objc.cmi 
-foundation/im_NSExistsCommand.cmx: support/objc.cmx 
-foundation/im_NSExpression.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSExpression.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSFileHandle.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSFileHandle.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSFileManager.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSFileManager.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSFormatter.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSFormatter.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSGetCommand.cmo: support/objc.cmi 
-foundation/im_NSGetCommand.cmx: support/objc.cmx 
-foundation/im_NSHTTPCookie.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSHTTPCookie.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSHTTPCookieStorage.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSHTTPCookieStorage.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSHTTPURLResponse.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSHTTPURLResponse.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSHost.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSHost.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSIndexPath.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSIndexPath.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSIndexSpecifier.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSIndexSpecifier.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSInputStream.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSInputStream.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSKeyedArchiver.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSKeyedArchiver.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSKeyedUnarchiver.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSKeyedUnarchiver.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSLocale.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSLocale.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSLock.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSLock.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSLogicalTest.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSLogicalTest.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMachBootstrapServer.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSMachBootstrapServer.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSMachPort.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMachPort.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMessagePort.cmo: support/objc.cmi 
-foundation/im_NSMessagePort.cmx: support/objc.cmx 
-foundation/im_NSMessagePortNameServer.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSMessagePortNameServer.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSMetadataItem.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMetadataItem.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMetadataQuery.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMetadataQuery.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMetadataQueryAttributeValueTuple.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSMetadataQueryAttributeValueTuple.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSMetadataQueryResultGroup.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSMetadataQueryResultGroup.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSMethodSignature.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMethodSignature.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMiddleSpecifier.cmo: support/objc.cmi 
-foundation/im_NSMiddleSpecifier.cmx: support/objc.cmx 
-foundation/im_NSMoveCommand.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMoveCommand.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMutableArray.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMutableArray.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMutableAttributedString.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/im_NSMutableAttributedString.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/im_NSMutableCharacterSet.cmo: support/selector.cmo \
-    support/objc.cmi support/NSRange.cmo 
-foundation/im_NSMutableCharacterSet.cmx: support/selector.cmx \
-    support/objc.cmx support/NSRange.cmx 
-foundation/im_NSMutableData.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMutableData.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMutableDictionary.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMutableDictionary.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMutableSet.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMutableSet.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSMutableString.cmo: support/selector.cmo support/objc.cmi \
-    support/NSRange.cmo 
-foundation/im_NSMutableString.cmx: support/selector.cmx support/objc.cmx \
-    support/NSRange.cmx 
-foundation/im_NSMutableURLRequest.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSMutableURLRequest.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSNameSpecifier.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSNameSpecifier.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSNetService.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSNetService.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSNetServiceBrowser.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSNetServiceBrowser.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSNotification.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSNotification.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSNotificationCenter.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSNotificationCenter.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSNotificationQueue.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSNotificationQueue.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSNull.cmo: support/objc.cmi 
-foundation/im_NSNull.cmx: support/objc.cmx 
-foundation/im_NSNumber.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSNumber.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSNumberFormatter.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSNumberFormatter.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSObject.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSObject.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSOutputStream.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSOutputStream.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSPipe.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSPipe.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSPort.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSPort.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSPortCoder.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSPortCoder.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSPortMessage.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSPortMessage.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSPortNameServer.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSPortNameServer.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSPositionalSpecifier.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSPositionalSpecifier.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSPredicate.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSPredicate.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSProcessInfo.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSProcessInfo.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSPropertyListSerialization.cmo: support/objc.cmi 
-foundation/im_NSPropertyListSerialization.cmx: support/objc.cmx 
-foundation/im_NSPropertySpecifier.cmo: support/objc.cmi 
-foundation/im_NSPropertySpecifier.cmx: support/objc.cmx 
-foundation/im_NSProtocolChecker.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSProtocolChecker.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSProxy.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSProxy.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSQuitCommand.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSQuitCommand.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSRandomSpecifier.cmo: support/objc.cmi 
-foundation/im_NSRandomSpecifier.cmx: support/objc.cmx 
-foundation/im_NSRangeSpecifier.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSRangeSpecifier.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSRecursiveLock.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSRecursiveLock.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSRelativeSpecifier.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSRelativeSpecifier.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSRunLoop.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSRunLoop.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSScanner.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSScanner.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSScriptClassDescription.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSScriptClassDescription.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSScriptCoercionHandler.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSScriptCoercionHandler.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSScriptCommand.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSScriptCommand.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSScriptCommandDescription.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSScriptCommandDescription.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSScriptExecutionContext.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSScriptExecutionContext.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSScriptObjectSpecifier.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSScriptObjectSpecifier.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSScriptSuiteRegistry.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSScriptSuiteRegistry.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSScriptWhoseTest.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSScriptWhoseTest.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSSet.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSSet.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSSetCommand.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSSetCommand.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSSimpleCString.cmo: support/objc.cmi 
-foundation/im_NSSimpleCString.cmx: support/objc.cmx 
-foundation/im_NSSocketPort.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSSocketPort.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSSocketPortNameServer.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSSocketPortNameServer.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSSortDescriptor.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSSortDescriptor.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSSpecifierTest.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSSpecifierTest.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSSpellServer.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSSpellServer.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSStream.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSStream.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSString.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSString.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSTask.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSTask.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSThread.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSThread.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSTimeZone.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSTimeZone.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSTimer.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSTimer.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURL.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURL.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLAuthenticationChallenge.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSURLAuthenticationChallenge.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSURLCache.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLCache.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLConnection.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLConnection.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLCredential.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLCredential.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLCredentialStorage.cmo: support/selector.cmo \
-    support/objc.cmi 
-foundation/im_NSURLCredentialStorage.cmx: support/selector.cmx \
-    support/objc.cmx 
-foundation/im_NSURLDownload.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLDownload.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLHandle.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLHandle.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLProtectionSpace.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLProtectionSpace.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLProtocol.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLProtocol.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLRequest.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLRequest.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSURLResponse.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSURLResponse.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSUnarchiver.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSUnarchiver.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSUndoManager.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSUndoManager.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSUniqueIDSpecifier.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSUniqueIDSpecifier.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSUserDefaults.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSUserDefaults.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSValue.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSValue.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSValueTransformer.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSValueTransformer.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSWhoseSpecifier.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSWhoseSpecifier.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSXMLDTD.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSXMLDTD.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSXMLDTDNode.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSXMLDTDNode.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSXMLDocument.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSXMLDocument.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSXMLElement.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSXMLElement.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSXMLNode.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSXMLNode.cmx: support/selector.cmx support/objc.cmx 
-foundation/im_NSXMLParser.cmo: support/selector.cmo support/objc.cmi 
-foundation/im_NSXMLParser.cmx: support/selector.cmx support/objc.cmx 
+    support/classes.cmx
+foundation/NSZone.cmo : support/objc.cmi
+foundation/NSZone.cmx : support/objc.cmx
+foundation/im_NSAffineTransform.cmo : support/selector.cmo support/objc.cmi \
+    support/NSSize.cmo support/NSPoint.cmo
+foundation/im_NSAffineTransform.cmx : support/selector.cmx support/objc.cmx \
+    support/NSSize.cmx support/NSPoint.cmx
+foundation/im_NSAppleEventDescriptor.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSAppleEventDescriptor.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSAppleEventManager.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSAppleEventManager.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSAppleScript.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSAppleScript.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSArchiver.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSArchiver.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSArray.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSArray.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSAssertionHandler.cmo : support/objc.cmi
+foundation/im_NSAssertionHandler.cmx : support/objc.cmx
+foundation/im_NSAttributedString.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSAttributedString.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSAutoreleasePool.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSAutoreleasePool.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSBundle.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSBundle.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSCachedURLResponse.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSCachedURLResponse.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSCalendar.cmo : support/selector.cmo support/objc.cmi \
+    support/NSRange.cmo
+foundation/im_NSCalendar.cmx : support/selector.cmx support/objc.cmx \
+    support/NSRange.cmx
+foundation/im_NSCalendarDate.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSCalendarDate.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSCharacterSet.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSCharacterSet.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSClassDescription.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSClassDescription.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSCloneCommand.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSCloneCommand.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSCloseCommand.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSCloseCommand.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSCoder.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSCoder.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSComparisonPredicate.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSComparisonPredicate.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSCompoundPredicate.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSCompoundPredicate.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSConditionLock.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSConditionLock.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSConnection.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSConnection.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSConstantString.cmo : support/objc.cmi
+foundation/im_NSConstantString.cmx : support/objc.cmx
+foundation/im_NSCountCommand.cmo : support/objc.cmi
+foundation/im_NSCountCommand.cmx : support/objc.cmx
+foundation/im_NSCountedSet.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSCountedSet.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSCreateCommand.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSCreateCommand.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSData.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSData.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDate.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSDate.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDateComponents.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSDateComponents.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDateFormatter.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSDateFormatter.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDecimalNumber.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSDecimalNumber.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDecimalNumberHandler.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSDecimalNumberHandler.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSDeleteCommand.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSDeleteCommand.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDictionary.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSDictionary.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDirectoryEnumerator.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSDirectoryEnumerator.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSDistantObject.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSDistantObject.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDistantObjectRequest.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSDistantObjectRequest.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSDistributedLock.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSDistributedLock.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSDistributedNotificationCenter.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSDistributedNotificationCenter.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSEnumerator.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSEnumerator.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSError.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSError.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSException.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSException.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSExistsCommand.cmo : support/objc.cmi
+foundation/im_NSExistsCommand.cmx : support/objc.cmx
+foundation/im_NSExpression.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSExpression.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSFileHandle.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSFileHandle.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSFileManager.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSFileManager.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSFormatter.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSFormatter.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSGetCommand.cmo : support/objc.cmi
+foundation/im_NSGetCommand.cmx : support/objc.cmx
+foundation/im_NSHTTPCookie.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSHTTPCookie.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSHTTPCookieStorage.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSHTTPCookieStorage.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSHTTPURLResponse.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSHTTPURLResponse.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSHost.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSHost.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSIndexPath.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSIndexPath.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSIndexSpecifier.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSIndexSpecifier.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSInputStream.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSInputStream.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSKeyedArchiver.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSKeyedArchiver.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSKeyedUnarchiver.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSKeyedUnarchiver.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSLocale.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSLocale.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSLock.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSLock.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSLogicalTest.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSLogicalTest.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMachBootstrapServer.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSMachBootstrapServer.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSMachPort.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSMachPort.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMessagePort.cmo : support/objc.cmi
+foundation/im_NSMessagePort.cmx : support/objc.cmx
+foundation/im_NSMessagePortNameServer.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSMessagePortNameServer.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSMetadataItem.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSMetadataItem.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMetadataQuery.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSMetadataQuery.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMetadataQueryAttributeValueTuple.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSMetadataQueryAttributeValueTuple.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSMetadataQueryResultGroup.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSMetadataQueryResultGroup.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSMethodSignature.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSMethodSignature.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMiddleSpecifier.cmo : support/objc.cmi
+foundation/im_NSMiddleSpecifier.cmx : support/objc.cmx
+foundation/im_NSMoveCommand.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSMoveCommand.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMutableArray.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSMutableArray.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMutableAttributedString.cmo : support/selector.cmo \
+    support/objc.cmi support/NSRange.cmo
+foundation/im_NSMutableAttributedString.cmx : support/selector.cmx \
+    support/objc.cmx support/NSRange.cmx
+foundation/im_NSMutableCharacterSet.cmo : support/selector.cmo \
+    support/objc.cmi support/NSRange.cmo
+foundation/im_NSMutableCharacterSet.cmx : support/selector.cmx \
+    support/objc.cmx support/NSRange.cmx
+foundation/im_NSMutableData.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSMutableData.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMutableDictionary.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSMutableDictionary.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSMutableSet.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSMutableSet.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSMutableString.cmo : support/selector.cmo support/objc.cmi \
+    support/NSRange.cmo
+foundation/im_NSMutableString.cmx : support/selector.cmx support/objc.cmx \
+    support/NSRange.cmx
+foundation/im_NSMutableURLRequest.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSMutableURLRequest.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSNameSpecifier.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSNameSpecifier.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSNetService.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSNetService.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSNetServiceBrowser.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSNetServiceBrowser.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSNotification.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSNotification.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSNotificationCenter.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSNotificationCenter.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSNotificationQueue.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSNotificationQueue.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSNull.cmo : support/objc.cmi
+foundation/im_NSNull.cmx : support/objc.cmx
+foundation/im_NSNumber.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSNumber.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSNumberFormatter.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSNumberFormatter.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSObject.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSObject.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSOutputStream.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSOutputStream.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSPipe.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSPipe.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSPort.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSPort.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSPortCoder.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSPortCoder.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSPortMessage.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSPortMessage.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSPortNameServer.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSPortNameServer.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSPositionalSpecifier.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSPositionalSpecifier.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSPredicate.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSPredicate.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSProcessInfo.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSProcessInfo.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSPropertyListSerialization.cmo : support/objc.cmi
+foundation/im_NSPropertyListSerialization.cmx : support/objc.cmx
+foundation/im_NSPropertySpecifier.cmo : support/objc.cmi
+foundation/im_NSPropertySpecifier.cmx : support/objc.cmx
+foundation/im_NSProtocolChecker.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSProtocolChecker.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSProxy.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSProxy.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSQuitCommand.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSQuitCommand.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSRandomSpecifier.cmo : support/objc.cmi
+foundation/im_NSRandomSpecifier.cmx : support/objc.cmx
+foundation/im_NSRangeSpecifier.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSRangeSpecifier.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSRecursiveLock.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSRecursiveLock.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSRelativeSpecifier.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSRelativeSpecifier.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSRunLoop.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSRunLoop.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSScanner.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSScanner.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSScriptClassDescription.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSScriptClassDescription.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSScriptCoercionHandler.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSScriptCoercionHandler.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSScriptCommand.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSScriptCommand.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSScriptCommandDescription.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSScriptCommandDescription.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSScriptExecutionContext.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSScriptExecutionContext.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSScriptObjectSpecifier.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSScriptObjectSpecifier.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSScriptSuiteRegistry.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSScriptSuiteRegistry.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSScriptWhoseTest.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSScriptWhoseTest.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSSet.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSSet.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSSetCommand.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSSetCommand.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSSimpleCString.cmo : support/objc.cmi
+foundation/im_NSSimpleCString.cmx : support/objc.cmx
+foundation/im_NSSocketPort.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSSocketPort.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSSocketPortNameServer.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSSocketPortNameServer.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSSortDescriptor.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSSortDescriptor.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSSpecifierTest.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSSpecifierTest.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSSpellServer.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSSpellServer.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSStream.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSStream.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSString.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSString.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSTask.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSTask.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSThread.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSThread.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSTimeZone.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSTimeZone.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSTimer.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSTimer.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURL.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURL.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURLAuthenticationChallenge.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSURLAuthenticationChallenge.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSURLCache.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURLCache.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURLConnection.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURLConnection.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURLCredential.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURLCredential.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURLCredentialStorage.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSURLCredentialStorage.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSURLDownload.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURLDownload.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURLHandle.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURLHandle.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURLProtectionSpace.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSURLProtectionSpace.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSURLProtocol.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURLProtocol.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURLRequest.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURLRequest.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSURLResponse.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSURLResponse.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSUnarchiver.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSUnarchiver.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSUndoManager.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSUndoManager.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSUniqueIDSpecifier.cmo : support/selector.cmo \
+    support/objc.cmi
+foundation/im_NSUniqueIDSpecifier.cmx : support/selector.cmx \
+    support/objc.cmx
+foundation/im_NSUserDefaults.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSUserDefaults.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSValue.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSValue.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSValueTransformer.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSValueTransformer.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSWhoseSpecifier.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSWhoseSpecifier.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSXMLDTD.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSXMLDTD.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSXMLDTDNode.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSXMLDTDNode.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSXMLDocument.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSXMLDocument.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSXMLElement.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSXMLElement.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSXMLNode.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSXMLNode.cmx : support/selector.cmx support/objc.cmx
+foundation/im_NSXMLParser.cmo : support/selector.cmo support/objc.cmi
+foundation/im_NSXMLParser.cmx : support/selector.cmx support/objc.cmx
