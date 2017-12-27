@@ -5,7 +5,7 @@
  *    - new?
  *    - argumentsRetained:
  *
- * 
+ *
  */
 #include <string.h>
 
@@ -25,6 +25,8 @@
 #include "camlobjc.h"
 #include "camlstubs.h"
 
+extern value caml_wrap_pointer (void *x);
+
 @implementation OCamlProxy
 
 - initWithId:(int)oid
@@ -34,9 +36,10 @@
 
 - (void) forwardInvocation:(NSInvocation *)inv
 {
+  CAMLparam0();
+  CAMLlocal5(o, args, res, taggedval, variant);
   // we need local storage for the target, the argument array,
   // a temporary variable for argument conversions, and the result
-  CAMLlocal5(o, args, res, taggedval, variant);
   void *buffer;
 
   // Build arguments array (all values injected to ffi type)
@@ -74,7 +77,7 @@
         CVARG(char *, tagString, (NULL==a) ? caml_copy_string("") : caml_copy_string(a));
 	break;
       case '@': // id
-      case '#': // Class 
+      case '#': // Class
 	CVARG(id, tagPointer, caml_wrap_id(a));
 	break;
       case ':': // SEL
@@ -84,11 +87,11 @@
       default:
 	// consider that we can't handle that invocation
 	[self doesNotRecognizeSelector:[inv selector]];
-	return;
+	CAMLreturn0;
       }
     } else { // Only supporting simple argument types
       [self doesNotRecognizeSelector:[inv selector]];
-      return;
+      CAMLreturn0;
     }
   }
   // Figure out selector full name and its hash variant
@@ -140,22 +143,22 @@
 	{ char * b =  String_val(res); [inv setReturnValue:&b]; break;}
   case '@': // id
 	{ id b =  Camlid_val(res); [inv setReturnValue:&b]; break;}
-  case '#': // Class 
+  case '#': // Class
 	{ Class b =  Camlid_val(res); [inv setReturnValue:&b]; break;}
   case ':': // SEL
 	{ SEL b =  Caml_pointer_val(res); [inv setReturnValue:&b]; break;}
   default: // ouch
     [self doesNotRecognizeSelector:[inv selector]];
   }
-
+  CAMLreturn0;
 }
 
 
 
 // From the documentation
-// Important: To respond to methods that your object does not itself recognize, 
+// Important: To respond to methods that your object does not itself recognize,
 // you must override methodSignatureForSelector: in addition to forwardInvocation:.
-// Your overriding method must provide an appropriate method signature for the given 
+// Your overriding method must provide an appropriate method signature for the given
 // selector, either by preformulating one or by asking another object for one.
 
 // We use signatureWithObjCTypes to store the signatures of

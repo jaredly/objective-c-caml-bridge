@@ -1,0 +1,10 @@
+*.cmo
+*.cmi
+*.o
+*.log
+*.cma
+*.so
+*.a
+*.debug
+objcmapper
+test_generator
