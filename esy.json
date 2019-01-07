@@ -1,0 +1,29 @@
+{
+  "name": "ReasonLanguageServer",
+  "version": "0.0.0-dont-publish",
+  "private": true,
+  "scripts": {
+    "test": "esy dune exec ExamplesTests"
+  },
+  "keywords": [
+    "Reason",
+    "lsp",
+    "IDE"
+  ],
+  "repository": {
+    "url": "jaredly/objective-c-caml-bridge",
+    "type": "git"
+  },
+  "description": "",
+  "author": "Jared Forsyth",
+  "license": "ISC",
+  "esy": {
+    "build": "make"
+  },
+  "dependencies": {
+    "@opam/dune": "*",
+    "@opam/camlp4": "*",
+    "@esy-ocaml/reason": "*",
+    "ocaml": "~4.7.2"
+  }
+}

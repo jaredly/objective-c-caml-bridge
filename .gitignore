@@ -10,3 +10,5 @@ objcmapper
 test_generator
 ocamlcocoa
 tests/t*
+_esy
+node_modules

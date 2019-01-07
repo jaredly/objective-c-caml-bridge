@@ -23,7 +23,7 @@ let print_token w = function
 
 # 25 "generator/lexobjc.ml"
 let __ocaml_lex_tables = {
-  Lexing.lex_base = 
+  Lexing.lex_base =
    "\000\000\210\255\211\255\001\000\078\000\088\000\112\000\002\000\
     \017\000\054\000\033\000\104\000\227\255\228\255\229\255\230\255\
     \231\255\232\255\233\255\234\255\235\255\236\255\237\255\238\255\
@@ -42,7 +42,7 @@ let __ocaml_lex_tables = {
     \043\012\066\012\214\255\245\000\213\255\109\001\253\255\254\255\
     \238\000\255\255\101\002\002\000\102\002\092\012\108\012\186\012\
     \255\255\182\000\225\000\254\255\185\000\001\000\253\255";
-  Lexing.lex_backtrk = 
+  Lexing.lex_backtrk =
    "\255\255\255\255\255\255\255\255\040\000\040\000\039\000\043\000\
     \033\000\255\255\030\000\029\000\255\255\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
@@ -61,7 +61,7 @@ let __ocaml_lex_tables = {
     \255\255\041\000\255\255\255\255\255\255\255\255\255\255\255\255\
     \002\000\255\255\000\000\255\255\000\000\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255";
-  Lexing.lex_default = 
+  Lexing.lex_default =
    "\255\255\000\000\000\000\123\000\255\255\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
@@ -80,7 +80,7 @@ let __ocaml_lex_tables = {
     \255\255\255\255\000\000\255\255\000\000\126\000\000\000\000\000\
     \255\255\000\000\130\000\255\255\132\000\255\255\255\255\255\255\
     \000\000\255\255\255\255\000\000\255\255\255\255\000\000";
-  Lexing.lex_trans = 
+  Lexing.lex_trans =
    "\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\002\000\007\000\112\000\132\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
@@ -521,7 +521,7 @@ let __ocaml_lex_tables = {
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\
     \000\000\000\000\000\000";
-  Lexing.lex_check = 
+  Lexing.lex_check =
    "\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\000\000\000\000\007\000\131\000\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
@@ -962,22 +962,22 @@ let __ocaml_lex_tables = {
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\255\
     \255\255\255\255\255\255";
-  Lexing.lex_base_code = 
+  Lexing.lex_base_code =
    "";
-  Lexing.lex_backtrk_code = 
+  Lexing.lex_backtrk_code =
    "";
-  Lexing.lex_default_code = 
+  Lexing.lex_default_code =
    "";
-  Lexing.lex_trans_code = 
+  Lexing.lex_trans_code =
    "";
-  Lexing.lex_check_code = 
+  Lexing.lex_check_code =
    "";
-  Lexing.lex_code = 
+  Lexing.lex_code =
    "";
 }
 
 let rec objc_dot_h lexbuf =
-    __ocaml_lex_objc_dot_h_rec lexbuf 0
+   __ocaml_lex_objc_dot_h_rec lexbuf 0
 and __ocaml_lex_objc_dot_h_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
@@ -1224,11 +1224,11 @@ and __ocaml_lex_objc_dot_h_rec lexbuf __ocaml_lex_state =
         ( EOF )
 # 1226 "generator/lexobjc.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_objc_dot_h_rec lexbuf __ocaml_lex_state
 
 and comment lexbuf =
-    __ocaml_lex_comment_rec lexbuf 125
+   __ocaml_lex_comment_rec lexbuf 125
 and __ocaml_lex_comment_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
@@ -1246,11 +1246,11 @@ and __ocaml_lex_comment_rec lexbuf __ocaml_lex_state =
       ( comment lexbuf )
 # 1248 "generator/lexobjc.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_comment_rec lexbuf __ocaml_lex_state
 
 and preproc lexbuf =
-    __ocaml_lex_preproc_rec lexbuf 130
+   __ocaml_lex_preproc_rec lexbuf 130
 and __ocaml_lex_preproc_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
@@ -1264,11 +1264,11 @@ and __ocaml_lex_preproc_rec lexbuf __ocaml_lex_state =
       )
 # 1266 "generator/lexobjc.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_preproc_rec lexbuf __ocaml_lex_state
 
 and multiline lexbuf =
-    __ocaml_lex_multiline_rec lexbuf 131
+   __ocaml_lex_multiline_rec lexbuf 131
 and __ocaml_lex_multiline_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
@@ -1281,11 +1281,11 @@ and __ocaml_lex_multiline_rec lexbuf __ocaml_lex_state =
       )
 # 1283 "generator/lexobjc.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_multiline_rec lexbuf __ocaml_lex_state
 
 and import lexbuf =
-    __ocaml_lex_import_rec lexbuf 133
+   __ocaml_lex_import_rec lexbuf 133
 and __ocaml_lex_import_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
@@ -1309,7 +1309,7 @@ and __ocaml_lex_import_rec lexbuf __ocaml_lex_state =
       )
 # 1311 "generator/lexobjc.ml"
 
-  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf; 
+  | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_import_rec lexbuf __ocaml_lex_state
 
 ;;
