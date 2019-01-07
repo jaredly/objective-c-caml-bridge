@@ -5,7 +5,7 @@ support/kvc.cmx: support/objc.cmx
 support/objc.cmo: support/selector.cmo support/objc.cmi 
 support/objc.cmx: support/selector.cmx support/objc.cmi 
 support/classes.cmi: support/objc.cmi 
-support/objc.cmi: support/selector.cmo 
+support/objc.cmi: support/NSRange.cmo support/NSPoint.cmo support/NSSize.cmo support/NSRect.cmo support/selector.cmo 
 generator/btypes.cmo: generator/hardcoded.cmo generator/ast.cmo 
 generator/btypes.cmx: generator/hardcoded.cmx generator/ast.cmx 
 generator/debug.cmo: generator/debug.cmi 
